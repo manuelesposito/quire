@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quire — Foundation Specimen v0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=EB+Garamond:wght@400;500;600&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =========================================================================
+   Quire — Foundation Specimen v0  (DRAFT proposals to react to, NOT final)
+   Warm paper canvas · near-black ink · clay accent (the cold WP blue is gone)
+   Serif character layer (3 candidates) over a sans+mono working layer.
+   ========================================================================= */
+:root{
+  /* surfaces — warm paper */
+  --qr-surface-canvas:#F4F0E9;
+  --qr-surface-raised:#FBF9F5;
+  --qr-surface-sunken:#ECE6DB;
+  /* ink — warm near-black */
+  --qr-text-default:#211C16;
+  --qr-text-muted:#6E665A;
+  --qr-text-subtle:#9C9183;
+  /* hairlines — warm */
+  --qr-border:#E4DCCF;
+  --qr-border-strong:#D5C9B7;
+  /* accent — clay (replaces cold #3858E9) */
+  --qr-accent:#BF613A;
+  --qr-accent-hover:#A44E2C;
+  --qr-on-accent:#FBF6EF;
+  --qr-accent-soft:#F0DECF;
+  /* feedback (warm-leaning) */
+  --qr-success:#5E7A52; --qr-warning:#B6802B; --qr-danger:#B14A3A;
+  /* type */
+  --qr-sans:'Inter',system-ui,sans-serif;
+  --qr-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --qr-radius-control:6px;
+  --qr-radius-card:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--qr-surface-canvas)}
+body{
+  font-family:var(--qr-sans);color:var(--qr-text-default);
+  background:var(--qr-surface-canvas);
+  -webkit-font-smoothing:antialiased;line-height:1.45;
+  font-size:14px;letter-spacing:-0.006em;
+  padding:48px 40px 80px;
+}
+.wrap{max-width:1080px;margin:0 auto}
+.eyebrow{font-family:var(--qr-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--qr-text-subtle)}
+h1.title{font-family:'Newsreader',serif;font-weight:500;font-size:40px;letter-spacing:-0.01em;margin:6px 0 4px}
+.lede{color:var(--qr-text-muted);max-width:60ch;font-size:14px}
+.note{display:inline-block;margin-top:14px;font-family:var(--qr-mono);font-size:11px;color:var(--qr-text-muted);background:var(--qr-surface-sunken);border:1px solid var(--qr-border);padding:6px 10px;border-radius:6px}
+
+section{margin-top:44px;border-top:1px solid var(--qr-border);padding-top:22px}
+.sec-label{font-family:var(--qr-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--qr-text-subtle);margin-bottom:16px}
+
+/* swatches */
+.swatches{display:flex;flex-wrap:wrap;gap:10px}
+.sw{width:124px;border:1px solid var(--qr-border);border-radius:8px;overflow:hidden;background:var(--qr-surface-raised)}
+.sw .chip{height:54px}
+.sw .meta{padding:7px 9px}
+.sw .name{font-size:12px;font-weight:500}
+.sw .hex{font-family:var(--qr-mono);font-size:10.5px;color:var(--qr-text-muted);text-transform:uppercase}
+
+/* killed-blue callout */
+.compare{display:flex;gap:14px;align-items:center;margin-top:14px}
+.compare .box{width:64px;height:64px;border-radius:8px;border:1px solid var(--qr-border);display:flex;align-items:flex-end;justify-content:center}
+.compare .box span{font-family:var(--qr-mono);font-size:9.5px;background:#fff8;padding:1px 4px;margin-bottom:5px;border-radius:3px}
+.strike{position:relative}
+.strike::after{content:"";position:absolute;inset:0;background:linear-gradient(to top left,transparent 47%,#b14a3a 47%,#b14a3a 53%,transparent 53%)}
+
+/* type specimens */
+.serif-row{display:grid;grid-template-columns:120px 1fr;gap:18px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--qr-border)}
+.serif-row:last-child{border-bottom:0}
+.serif-tag{font-family:var(--qr-mono);font-size:11px;color:var(--qr-text-muted)}
+.serif-big{font-size:34px;font-weight:500;letter-spacing:-0.01em;line-height:1.1}
+.serif-sent{font-size:15px;color:var(--qr-text-muted);margin-top:4px}
+.fr{font-family:'Fraunces',serif}
+.nr{font-family:'Newsreader',serif}
+.eb{font-family:'EB Garamond',serif}
+
+.scale > div{display:flex;align-items:baseline;gap:14px;padding:5px 0}
+.scale .px{font-family:var(--qr-mono);font-size:10.5px;color:var(--qr-text-subtle);width:74px}
+
+/* controls */
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.card{background:var(--qr-surface-raised);border:1px solid var(--qr-border);border-radius:var(--qr-radius-card);padding:18px}
+.card h3{font-family:'Newsreader',serif;font-weight:500;font-size:17px;margin-bottom:14px}
+.btn{font-family:var(--qr-sans);font-size:13px;font-weight:500;border-radius:var(--qr-radius-control);padding:7px 14px;border:1px solid transparent;cursor:pointer;letter-spacing:-0.005em}
+.btn-primary{background:var(--qr-accent);color:var(--qr-on-accent)}
+.btn-secondary{background:var(--qr-surface-raised);border-color:var(--qr-border-strong);color:var(--qr-text-default)}
+.btn-tertiary{background:transparent;color:var(--qr-accent)}
+.btn-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+.seg{display:inline-flex;background:var(--qr-surface-sunken);border:1px solid var(--qr-border);border-radius:7px;padding:2px}
+.seg button{font-family:var(--qr-sans);font-size:12px;border:0;background:transparent;color:var(--qr-text-muted);padding:5px 12px;border-radius:5px;cursor:pointer}
+.seg button.on{background:var(--qr-surface-raised);color:var(--qr-text-default);box-shadow:0 1px 2px #0000000f;font-weight:500}
+
+.row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--qr-border)}
+.row:last-child{border-bottom:0}
+.row .lbl{font-size:13px;font-weight:500}
+.row .desc{font-size:12px;color:var(--qr-text-muted);margin-top:1px}
+input.qr{font-family:var(--qr-sans);font-size:13px;padding:7px 10px;border:1px solid var(--qr-border-strong);border-radius:6px;background:var(--qr-surface-raised);color:var(--qr-text-default);width:160px}
+input.qr:focus{outline:2px solid var(--qr-accent-soft);border-color:var(--qr-accent)}
+.switch{width:38px;height:22px;background:var(--qr-accent);border-radius:99px;position:relative;cursor:pointer}
+.switch::after{content:"";position:absolute;top:2px;left:18px;width:18px;height:18px;background:#fff;border-radius:50%}
+.switch.off{background:var(--qr-border-strong)}
+.switch.off::after{left:2px}
+.note-row{font-size:12px;color:var(--qr-text-muted);background:var(--qr-accent-soft);border:1px solid #e6cdb8;border-left:3px solid var(--qr-accent);border-radius:6px;padding:9px 12px;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Quire · Foundation</div>
+  <h1 class="title">Foundation Specimen — v0</h1>
+  <p class="lede">A first, draftable look at the warm-bookish + software-precise direction: a warm paper canvas, near-black ink, a clay accent in place of WordPress's cold blue, and a serif character layer sitting over a dense sans + mono working layer.</p>
+  <span class="note">⚠ Every value here is a DRAFT proposal to react to — not a final decision. This is for judging the feel, picking a serif, and dialing the warmth.</span>
+
+  <section>
+    <div class="sec-label">Surfaces — warm paper, not stark white</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#F4F0E9"></div><div class="meta"><div class="name">canvas</div><div class="hex">#F4F0E9</div></div></div>
+      <div class="sw"><div class="chip" style="background:#FBF9F5"></div><div class="meta"><div class="name">raised</div><div class="hex">#FBF9F5</div></div></div>
+      <div class="sw"><div class="chip" style="background:#ECE6DB"></div><div class="meta"><div class="name">sunken</div><div class="hex">#ECE6DB</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Warm neutral ramp — every gray has a warm undertone</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#FBF9F5"></div><div class="meta"><div class="name">neutral 0</div><div class="hex">#FBF9F5</div></div></div>
+      <div class="sw"><div class="chip" style="background:#E4DCCF"></div><div class="meta"><div class="name">neutral 200</div><div class="hex">#E4DCCF</div></div></div>
+      <div class="sw"><div class="chip" style="background:#C9BCA8"></div><div class="meta"><div class="name">neutral 400</div><div class="hex">#C9BCA8</div></div></div>
+      <div class="sw"><div class="chip" style="background:#9C9183"></div><div class="meta"><div class="name">neutral 600</div><div class="hex">#9C9183</div></div></div>
+      <div class="sw"><div class="chip" style="background:#6E665A"></div><div class="meta"><div class="name">neutral 800</div><div class="hex">#6E665A</div></div></div>
+      <div class="sw"><div class="chip" style="background:#211C16"></div><div class="meta"><div class="name">neutral 1000</div><div class="hex">#211C16</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Accent — clay (the cold blue is gone)</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#F0DECF"></div><div class="meta"><div class="name">accent soft</div><div class="hex">#F0DECF</div></div></div>
+      <div class="sw"><div class="chip" style="background:#BF613A"></div><div class="meta"><div class="name">accent</div><div class="hex">#BF613A</div></div></div>
+      <div class="sw"><div class="chip" style="background:#A44E2C"></div><div class="meta"><div class="name">accent hover</div><div class="hex">#A44E2C</div></div></div>
+    </div>
+    <div class="compare">
+      <div class="box strike" style="background:#3858E9"><span>was</span></div>
+      <div style="font-family:var(--qr-mono);font-size:12px;color:var(--qr-text-muted)">→</div>
+      <div class="box" style="background:#BF613A"><span style="color:#fff">now</span></div>
+      <div style="font-size:13px;color:var(--qr-text-muted)">WordPress's cold indigo <code style="font-family:var(--qr-mono)">#3858E9</code> → Quire clay <code style="font-family:var(--qr-mono)">#BF613A</code></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Serif character layer — pick one (judge by eye)</div>
+    <div class="serif-row"><div class="serif-tag">Fraunces</div><div><div class="serif-big fr">Quire — a cleaner WordPress admin</div><div class="serif-sent fr">Pages gathered and bound into one. The most character and warmth.</div></div></div>
+    <div class="serif-row"><div class="serif-tag">Newsreader</div><div><div class="serif-big nr">Quire — a cleaner WordPress admin</div><div class="serif-sent nr">Pages gathered and bound into one. Warm, editorial, classic.</div></div></div>
+    <div class="serif-row"><div class="serif-tag">EB Garamond</div><div><div class="serif-big eb">Quire — a cleaner WordPress admin</div><div class="serif-sent eb">Pages gathered and bound into one. WordPress's own serif.</div></div></div>
+  </section>
+
+  <section>
+    <div class="sec-label">Working layer — sans (Inter) + mono (IBM Plex Mono)</div>
+    <div class="scale">
+      <div><span class="px">page-title 28</span><span style="font-size:28px;font-weight:600;letter-spacing:-0.015em">Settings</span></div>
+      <div><span class="px">section 18</span><span style="font-size:18px;font-weight:600;letter-spacing:-0.01em">General</span></div>
+      <div><span class="px">body 14</span><span style="font-size:14px">The everyday working text — calm and dense, legible at small sizes.</span></div>
+      <div><span class="px">label 13</span><span style="font-size:13px;font-weight:500">Site title</span></div>
+      <div><span class="px">mono-label 11</span><span style="font-family:var(--qr-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--qr-text-muted)">Permalinks</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Controls — dense &amp; precise</div>
+    <div class="controls">
+      <div class="card">
+        <h3>Buttons &amp; toggles</h3>
+        <div class="btn-row">
+          <button class="btn btn-primary">Save changes</button>
+          <button class="btn btn-secondary">Cancel</button>
+          <button class="btn btn-tertiary">Learn more</button>
+        </div>
+        <div class="btn-row" style="margin-top:14px">
+          <div class="seg"><button class="on">Light</button><button>Dark</button></div>
+          <div class="seg"><button class="on">All</button><button>Published</button><button>Drafts</button></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Settings rows</h3>
+        <div class="row"><div><div class="lbl">Search engine visibility</div><div class="desc">Discourage search engines from indexing</div></div><div class="switch off"></div></div>
+        <div class="row"><div><div class="lbl">Comments</div><div class="desc">Allow people to submit comments</div></div><div class="switch"></div></div>
+        <div class="row"><div><div class="lbl">Site title</div><div class="desc">Shown in the browser tab</div></div><input class="qr" value="Quire" /></div>
+        <div class="note-row">A notice in the clay accent — calm, warm, never the old cold blue.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
