@@ -1,0 +1,14 @@
+{
+  "name": "@quire/icons",
+  "version": "0.0.0",
+  "description": "One icon set — the single symbol family for the entire Quire admin.",
+  "license": "GPL-2.0-or-later",
+  "type": "module",
+  "main": "./src/index.ts",
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "echo \"TODO\"",
+    "lint": "echo \"no-op\"",
+    "test": "echo \"no-op\""
+  }
+}

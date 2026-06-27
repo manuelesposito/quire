@@ -1,0 +1,18 @@
+{
+  "name": "@quire/components",
+  "version": "0.0.0",
+  "description": "The styled Quire component library — primitives + tokens. Button, SettingsRow, Notice, Card, DataTable, Toggle, Tabs, Modal, and more.",
+  "license": "GPL-2.0-or-later",
+  "type": "module",
+  "main": "./src/index.ts",
+  "files": ["dist", "src"],
+  "dependencies": {
+    "@quire/primitives": "workspace:*",
+    "@quire/tokens": "workspace:*"
+  },
+  "scripts": {
+    "build": "echo \"TODO\"",
+    "lint": "echo \"no-op\"",
+    "test": "echo \"no-op\""
+  }
+}

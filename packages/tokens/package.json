@@ -1,0 +1,14 @@
+{
+  "name": "@quire/tokens",
+  "version": "0.0.0",
+  "description": "Quire design tokens — the single source of truth for color, type, space, radius, elevation, and motion.",
+  "license": "GPL-2.0-or-later",
+  "type": "module",
+  "main": "./src/index.ts",
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "echo \"TODO: token pipeline (Style Dictionary) -> CSS custom props + TS\"",
+    "lint": "echo \"no-op\"",
+    "test": "echo \"no-op\""
+  }
+}

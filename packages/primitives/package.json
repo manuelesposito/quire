@@ -1,0 +1,14 @@
+{
+  "name": "@quire/primitives",
+  "version": "0.0.0",
+  "description": "Unstyled, accessible behaviors (button, toggle, dialog, tabs, table, menu) — no look, just correctness and a11y.",
+  "license": "GPL-2.0-or-later",
+  "type": "module",
+  "main": "./src/index.ts",
+  "files": ["dist", "src"],
+  "scripts": {
+    "build": "echo \"TODO\"",
+    "lint": "echo \"no-op\"",
+    "test": "echo \"no-op\""
+  }
+}
