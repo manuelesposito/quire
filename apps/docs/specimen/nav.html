@@ -9,12 +9,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{
-  --canvas:#E8E5DC;            /* the page */
-  --bar:#F1EDE4;               /* BOTH sidebars share one colour (connected) */
+  --canvas:#E8E5DC;
+  --bar:#F1EDE4;
   --item-active:#E4DFD3;
   --hover:rgba(0,0,0,.045);
+  --logo:#332E24;                 /* one calm monochrome ink for ALL marks */
   --text:#211C14; --text-muted:#6C6457; --text-subtle:#9A8F7F;
-  --border:#DCD5C8;
+  --border:#D9D2C4;
   --ochre-soft:#F1DEA0; --ochre:#CF9A2E;
   --sans:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace; --serif:'Newsreader',serif;
 }
@@ -23,28 +24,37 @@ html,body{height:100%}
 body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-size:13.5px;line-height:1.45;letter-spacing:-0.006em;-webkit-font-smoothing:antialiased}
 .app{display:flex;height:100vh;overflow:hidden}
 
-/* ---------- product rail ---------- */
-.rail{width:78px;background:var(--bar);display:flex;flex-direction:column;align-items:center;padding:10px 0 14px;flex-shrink:0}
+/* monochrome masked marks — one ink colour, optically matched boxes */
+.logo,.hlogo{background-color:var(--logo);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;
+  -webkit-mask-size:contain;mask-size:contain;display:block}
+.logo.wp { width:22px;height:22px;-webkit-mask-image:url(logos/wp-mono.svg);     mask-image:url(logos/wp-mono.svg)}
+.logo.woo{ width:27px;height:18px;-webkit-mask-image:url(logos/woo-w.svg);       mask-image:url(logos/woo-w.svg)}
+.logo.jp { width:21px;height:21px;-webkit-mask-image:url(logos/jetpack-mono.svg);mask-image:url(logos/jetpack-mono.svg)}
+.hlogo.wp { width:18px;height:18px;-webkit-mask-image:url(logos/wp-mono.svg);     mask-image:url(logos/wp-mono.svg)}
+.hlogo.woo{ width:23px;height:15px;-webkit-mask-image:url(logos/woo-w.svg);       mask-image:url(logos/woo-w.svg)}
+.hlogo.jp { width:17px;height:17px;-webkit-mask-image:url(logos/jetpack-mono.svg);mask-image:url(logos/jetpack-mono.svg)}
+
+/* ---------- product rail (hairline divider, same colour as panel) ---------- */
+.rail{width:78px;background:var(--bar);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:14px 0;flex-shrink:0}
 .rail .stack{display:flex;flex-direction:column;gap:4px;width:100%;align-items:center;flex:1}
-.prod{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:0;cursor:pointer;padding:5px 0;width:100%;color:inherit}
+.prod{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:0;cursor:pointer;padding:5px 0;width:100%}
 .prod .sq{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;transition:background .12s}
-.prod .sq img{height:23px;width:auto;display:block;pointer-events:none}
 .prod .lbl{font-size:9.5px;color:var(--text-subtle);letter-spacing:.01em}
 .prod:hover .sq{background:var(--hover)}
 .prod.active .sq{background:var(--ochre-soft)}
 .prod.active .lbl{color:var(--text);font-weight:500}
-/* quiet add button, Figma-style — no dashed box */
 .add .sq{color:var(--text-subtle)}
 .add:hover .sq{background:var(--hover);color:var(--text-muted)}
 .add svg{width:18px;height:18px}
-.rail .acct{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#C9A24A,#A85F3C);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;margin-top:8px}
+.rail .acct{width:30px;height:30px;border-radius:50%;background:var(--logo);color:#EFE9DC;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;margin-top:8px}
 
-/* ---------- contextual sidebar (same colour, connected) ---------- */
-.subnav{width:236px;background:var(--bar);border-right:1px solid var(--border);flex-shrink:0;padding:16px 14px;display:flex;flex-direction:column}
-.subnav .head{display:flex;align-items:center;gap:9px;padding:4px 8px 0}
-.subnav .head img{height:19px;width:auto}
+/* ---------- contextual sidebar ---------- */
+.subnav{width:236px;background:var(--bar);border-right:1px solid var(--border);flex-shrink:0;padding:14px 14px;display:flex;flex-direction:column}
+.subnav .head{display:flex;align-items:center;gap:9px;padding:6px 8px 0;min-height:42px}
 .subnav .head .name{font-family:var(--serif);font-size:19px;font-weight:500}
-.subnav .sep{height:1px;background:var(--border);margin:13px 8px 12px}
+.subnav .sep{height:1px;background:var(--border);margin:12px 8px}
 .subnav a{display:block;padding:7px 10px;border-radius:7px;color:var(--text-muted);text-decoration:none;font-size:13px;font-weight:450;cursor:pointer}
 .subnav a:hover{background:var(--hover);color:var(--text)}
 .subnav a.active{background:var(--item-active);color:var(--text);font-weight:600}
@@ -60,25 +70,22 @@ body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-siz
 <body>
 <div class="app">
 
-  <!-- PRODUCT RAIL — WordPress is first & default; no brand mark -->
   <nav class="rail">
-    <div class="stack" id="rail">
-      <button class="prod active" data-p="wp"><span class="sq"><img src="logos/wp.svg" alt=""></span><span class="lbl">WordPress</span></button>
-      <button class="prod"        data-p="woo"><span class="sq"><img src="logos/woo.svg" alt=""></span><span class="lbl">Woo</span></button>
-      <button class="prod"        data-p="jp"><span class="sq"><img src="logos/jetpack-real.svg" alt=""></span><span class="lbl">Jetpack</span></button>
+    <div class="stack">
+      <button class="prod active" data-p="wp"><span class="sq"><span class="logo wp"></span></span><span class="lbl">WordPress</span></button>
+      <button class="prod"        data-p="woo"><span class="sq"><span class="logo woo"></span></span><span class="lbl">Woo</span></button>
+      <button class="prod"        data-p="jp"><span class="sq"><span class="logo jp"></span></span><span class="lbl">Jetpack</span></button>
       <button class="prod add" title="Add a plugin you use (e.g. Elementor)"><span class="sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
     </div>
     <div class="acct">M</div>
   </nav>
 
-  <!-- CONTEXTUAL SIDEBAR -->
   <aside class="subnav">
-    <div class="head"><img id="headLogo" src="logos/wp.svg" alt=""><span class="name" id="headName">WordPress</span></div>
+    <div class="head"><span class="hlogo wp" id="headLogo"></span><span class="name" id="headName">WordPress</span></div>
     <div class="sep"></div>
     <div id="menu"></div>
   </aside>
 
-  <!-- CONTENT (kept minimal — nav focus) -->
   <div class="content">
     <div class="ph">
       <div class="big" id="phTitle">WordPress</div>
@@ -90,18 +97,15 @@ body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-siz
 
 <script>
 const DATA = {
-  wp:  { name:'WordPress',   logo:'logos/wp.svg',
-         items:['Dashboard','Posts','Pages','Media','Comments','Appearance','Plugins','Users','Tools','Settings'] },
-  woo: { name:'WooCommerce', logo:'logos/woo.svg',
-         items:['Home','Orders','Products','Customers','Analytics','Marketing','Settings','Extensions'] },
-  jp:  { name:'Jetpack',     logo:'logos/jetpack-real.svg',
-         items:['Dashboard','My Plan','Activity Log','Backup','Scan','Stats','Settings'] },
+  wp:  { name:'WordPress',   items:['Dashboard','Posts','Pages','Media','Comments','Appearance','Plugins','Users','Tools','Settings'] },
+  woo: { name:'WooCommerce', items:['Home','Orders','Products','Customers','Analytics','Marketing','Settings','Extensions'] },
+  jp:  { name:'Jetpack',     items:['Dashboard','My Plan','Activity Log','Backup','Scan','Stats','Settings'] },
 };
 const menu = document.getElementById('menu');
 function render(p, activeIdx=0){
   const d = DATA[p];
   document.getElementById('headName').textContent = d.name;
-  document.getElementById('headLogo').src = d.logo;
+  document.getElementById('headLogo').className = 'hlogo ' + p;
   document.getElementById('phTitle').textContent = d.name;
   menu.innerHTML = d.items.map((it,i)=>`<a class="${i===activeIdx?'active':''}">${it}</a>`).join('');
   menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.querySelectorAll('a').forEach(x=>x.classList.remove('active'));a.classList.add('active');});
