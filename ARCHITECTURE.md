@@ -65,11 +65,14 @@ WordPress core ships its own evolving design system (`@wordpress/components`), a
 increasingly renders the React admin screens. Quire's stance:
 
 - **Classic / PHP surfaces** → full custom Quire components.
-- **React-Gutenberg surfaces** → align Quire tokens to *consume and extend*
-  `@wordpress/components`, not re-skin a moving target.
+- **React-Gutenberg surfaces** → *extend* `@wordpress/components` **technically** — map our
+  `--qr-` tokens onto its `--wp-components-*` variables so it obeys Quire's look — rather than
+  re-skin a moving target. We **never inherit its visual language**: extending it is not
+  adopting it.
 
 This boundary is documented and treated as load-bearing; ignoring it is how a redesign rots
-at the editor's edge.
+at the editor's edge. See `DESIGN.md → Relationship to @wordpress/components` for the full
+learn / reject / interoperate stance.
 
 ## Non-negotiable invariants (enforced, not just hoped)
 

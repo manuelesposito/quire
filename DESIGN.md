@@ -76,6 +76,35 @@ Grounded in the real screenshot inventory. Minimum set:
   avatar, popover/menu.
 - **Editor surface (special case):** consumed via `@wordpress/components`, not re-skinned.
 
+## Relationship to `@wordpress/components`
+
+WordPress already ships a design system: **`@wordpress/components`** (the React library
+behind Gutenberg), **`@wordpress/base-styles`** (SCSS variables/mixins and CSS custom
+properties like `--wp-admin-theme-color`, `--wp-components-color-accent`), a published
+**Gutenberg Storybook**, and a **WordPress Design Library in Figma**.
+
+We are clear-eyed about it: it is reasonably accessible and componentized, but it **does not
+cohere** — grown by many teams over many years and applied unevenly, it is a major source of
+the very "four clashing languages" problem Quire exists to fix. Quire's stance is therefore
+deliberate: **learn from it, reject its style, interoperate only where the platform forces
+us to — and even there, never inherit its look.**
+
+- **Learn (coverage, not style).** Its component set is a battle-tested checklist of *what a
+  WordPress admin needs*, and its accessibility patterns are worth studying. We mine *which
+  components must exist* — never *how they look*. It also serves as a concrete anti-pattern
+  library: examples of the incoherence we're correcting.
+- **Reject (the visual language).** Its look is not Quire's look. We do not adopt its tokens,
+  its density, or its component styling as our own.
+- **Interoperate (only where forced, on our terms).** On React/Gutenberg surfaces we cannot
+  remove its components, so we *extend* them **technically** — mounting into them and mapping
+  our `--qr-` tokens onto their `--wp-components-*` variables so they obey Quire's look. On
+  classic/PHP surfaces we use full custom Quire components.
+
+**The load-bearing distinction: "extend it technically" is *not* "adopt its look."** Even
+where we interoperate, we bend `@wordpress/components` to Quire's tokens; we never let its
+visual language leak into ours. A future contributor must not mistake technical interop for
+stylistic inheritance.
+
 ## Source of truth
 
 - **Machine:** `packages/tokens` (tokens) → `packages/components` (styled library).
