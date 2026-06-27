@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quire — Navigation concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#E8E5DC; --raised:#F3F0E9; --sunken:#DDD8CC; --rail:#EEEAE0;
+  --ink:#211C14; --text:#211C14; --text-muted:#6C6457; --text-subtle:#988D7D;
+  --border:#D8D1C3; --border-strong:#C7BBA7;
+  --ochre:#CF9A2E; --ochre-deep:#A87B1C; --ochre-soft:#F0DC9B;
+  --sans:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace; --serif:'Newsreader',serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-size:13.5px;line-height:1.45;letter-spacing:-0.006em;-webkit-font-smoothing:antialiased}
+.app{display:flex;height:100vh;overflow:hidden}
+
+/* ---------- product rail (light, the switcher) ---------- */
+.rail{width:82px;background:var(--rail);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:14px 0;flex-shrink:0}
+.rail .brand{font-family:var(--serif);font-size:24px;color:var(--ink);font-weight:600;line-height:1;margin-bottom:18px}
+.rail .stack{display:flex;flex-direction:column;gap:6px;width:100%;align-items:center;flex:1}
+.prod{width:66px;padding:9px 0 7px;border-radius:11px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;border:1px solid transparent;position:relative}
+.prod .logo{width:23px;height:23px;background-color:var(--text-muted);
+  -webkit-mask-image:var(--src);mask-image:var(--src);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;
+  -webkit-mask-size:contain;mask-size:contain;transition:background-color .12s}
+.prod span{font-size:9.5px;color:var(--text-subtle);letter-spacing:0.01em}
+.prod:hover{background:#0000000a}
+.prod.active{background:var(--raised);border-color:var(--border)}
+.prod.active .logo{background-color:var(--ochre-deep)}
+.prod.active span{color:var(--text);font-weight:500}
+.prod.active::before{content:"";position:absolute;left:-1px;top:12px;bottom:12px;width:3px;border-radius:0 3px 3px 0;background:var(--ochre)}
+.add{width:40px;height:40px;border-radius:11px;border:1.5px dashed var(--border-strong);color:var(--text-subtle);display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;margin-top:6px}
+.add:hover{color:var(--text-muted);border-color:var(--text-subtle)}
+.rail .acct{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#C9A24A,#A85F3C);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;margin-top:8px}
+
+/* ---------- contextual sidebar (the index) ---------- */
+.subnav{width:240px;background:var(--raised);border-right:1px solid var(--border);flex-shrink:0;padding:18px 14px;display:flex;flex-direction:column}
+.subnav .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-subtle);padding:0 8px;margin-bottom:6px}
+.subnav .grp{font-family:var(--serif);font-size:20px;font-weight:500;padding:0 8px;margin-bottom:16px;display:flex;align-items:center;gap:9px}
+.subnav .grp .logo{width:18px;height:18px;background-color:var(--ink);
+  -webkit-mask-image:var(--src);mask-image:var(--src);
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;
+  -webkit-mask-size:contain;mask-size:contain}
+.subnav a{display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:7px;color:var(--text-muted);text-decoration:none;font-size:13px;font-weight:450;cursor:pointer}
+.subnav a .dot{width:5px;height:5px;border-radius:50%;background:transparent;flex-shrink:0}
+.subnav a:hover{background:var(--sunken);color:var(--text)}
+.subnav a.active{background:var(--canvas);color:var(--text);font-weight:600}
+.subnav a.active .dot{background:var(--ochre)}
+
+/* ---------- content (deliberately minimal — nav focus) ---------- */
+.content{flex:1;display:flex;flex-direction:column;min-width:0;align-items:center;justify-content:center;padding:40px;text-align:center}
+.content .ph{max-width:380px;color:var(--text-subtle)}
+.content .ph .big{font-family:var(--serif);font-size:26px;color:var(--text-muted);font-weight:500;margin-bottom:8px}
+.content .ph .small{font-size:13px}
+.content .ph .pill{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--text-muted);background:var(--sunken);border:1px solid var(--border);padding:6px 10px;border-radius:6px}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- PRODUCT RAIL -->
+  <nav class="rail">
+    <div class="brand">Q</div>
+    <div class="stack" id="rail">
+      <div class="prod active" data-p="wp"   style="--src:url(logos/wordpress.svg)"><div class="logo"></div><span>WordPress</span></div>
+      <div class="prod"        data-p="woo"  style="--src:url(logos/woocommerce.svg)"><div class="logo"></div><span>Woo</span></div>
+      <div class="prod"        data-p="jp"   style="--src:url(logos/jetpack.svg)"><div class="logo"></div><span>Jetpack</span></div>
+      <div class="add" title="Add a plugin you use (e.g. Elementor)">+</div>
+    </div>
+    <div class="acct">M</div>
+  </nav>
+
+  <!-- CONTEXTUAL SIDEBAR -->
+  <aside class="subnav">
+    <div class="eyebrow" id="eyebrow">Product</div>
+    <div class="grp"><div class="logo" id="grpLogo"></div><span id="grpName">WordPress</span></div>
+    <div id="menu"></div>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="content">
+    <div class="ph">
+      <div class="big" id="phTitle">WordPress</div>
+      <div class="small" id="phText">The slim bar switches products. This panel is the selected product's own menu. Content lives here — kept empty on purpose so we stay on the navigation idea.</div>
+      <div class="pill">Click WordPress · Woo · Jetpack in the rail →</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = {
+  wp:  { name:'WordPress',  src:'logos/wordpress.svg',
+         items:['Dashboard','Posts','Pages','Media','Comments','Appearance','Plugins','Users','Tools','Settings'] },
+  woo: { name:'WooCommerce',src:'logos/woocommerce.svg',
+         items:['Home','Orders','Products','Customers','Analytics','Marketing','Settings','Extensions'] },
+  jp:  { name:'Jetpack',    src:'logos/jetpack.svg',
+         items:['Dashboard','My Plan','Activity Log','Backup','Scan','Stats','Settings'] },
+};
+const menu = document.getElementById('menu');
+function render(p, activeIdx=0){
+  const d = DATA[p];
+  document.getElementById('grpName').textContent = d.name;
+  document.getElementById('grpLogo').style.setProperty('--src', `url(${d.src})`);
+  document.getElementById('phTitle').textContent = d.name;
+  menu.innerHTML = d.items.map((it,i)=>`<a class="${i===activeIdx?'active':''}"><span class="dot"></span>${it}</a>`).join('');
+  menu.querySelectorAll('a').forEach((a,i)=>a.onclick=()=>{menu.querySelectorAll('a').forEach(x=>x.classList.remove('active'));a.classList.add('active');});
+}
+document.querySelectorAll('.prod').forEach(el=>{
+  el.onclick=()=>{
+    document.querySelectorAll('.prod').forEach(x=>x.classList.remove('active'));
+    el.classList.add('active');
+    render(el.dataset.p);
+  };
+});
+const start=(new URLSearchParams(location.search).get('p'))||'wp';
+document.querySelectorAll('.prod').forEach(x=>x.classList.toggle('active', x.dataset.p===start));
+render(start);
+</script>
+</body>
+</html>
