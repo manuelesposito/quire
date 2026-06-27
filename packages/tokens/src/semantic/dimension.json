@@ -1,0 +1,12 @@
+{
+  "radius": {
+    "control": { "$value": "{radius.200}", "$type": "dimension" },
+    "card":    { "$value": "{radius.300}", "$type": "dimension" }
+  },
+  "space": {
+    "inset": {
+      "sm": { "$value": "{space.200}", "$type": "dimension" },
+      "md": { "$value": "{space.400}", "$type": "dimension" }
+    }
+  }
+}

@@ -4,11 +4,19 @@
   "description": "Quire design tokens — the single source of truth for color, type, space, radius, elevation, and motion.",
   "license": "GPL-2.0-or-later",
   "type": "module",
-  "main": "./src/index.ts",
+  "main": "./dist/ts/tokens.ts",
+  "exports": {
+    ".": "./dist/ts/tokens.ts",
+    "./css": "./dist/css/variables.css",
+    "./src/*": "./src/*"
+  },
   "files": ["dist", "src"],
   "scripts": {
-    "build": "echo \"TODO: token pipeline (Style Dictionary) -> CSS custom props + TS\"",
+    "build": "node build.mjs",
     "lint": "echo \"no-op\"",
     "test": "echo \"no-op\""
+  },
+  "devDependencies": {
+    "style-dictionary": "^4.3.0"
   }
 }

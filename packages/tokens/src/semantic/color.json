@@ -1,0 +1,22 @@
+{
+  "color": {
+    "text": {
+      "default":   { "$value": "{color.neutral.900}", "$type": "color" },
+      "muted":     { "$value": "{color.neutral.700}", "$type": "color" },
+      "on-action": { "$value": "{color.neutral.0}",   "$type": "color" }
+    },
+    "surface": {
+      "canvas": { "$value": "{color.neutral.100}", "$type": "color" },
+      "raised": { "$value": "{color.neutral.0}",   "$type": "color" }
+    },
+    "border": {
+      "default": { "$value": "{color.neutral.300}", "$type": "color" }
+    },
+    "action": {
+      "primary": {
+        "default": { "$value": "{color.blue.500}", "$type": "color" },
+        "hover":   { "$value": "{color.blue.600}", "$type": "color" }
+      }
+    }
+  }
+}
