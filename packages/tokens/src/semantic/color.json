@@ -57,6 +57,11 @@
       "focus-ring":       { "$value": "{color.ochre.400}",   "$type": "color" }
     },
 
+    "control": {
+      "on":    { "$value": "{color.neutral.900}", "$type": "color" },
+      "on-fg": { "$value": "{color.neutral.0}",   "$type": "color" }
+    },
+
     "feedback": {
       "success": {
         "surface": { "$value": "{color.sage.100}", "$type": "color" },
