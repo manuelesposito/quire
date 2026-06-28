@@ -141,6 +141,32 @@ select.field{appearance:none;-webkit-appearance:none;padding-right:32px;cursor:p
 .srow--switch{grid-template-columns:1fr auto;align-items:center}
 .srow__rlabel{font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium)}
 
+/* =========================================================================
+   Notice · Badge/StatusPill · Tabs — built to the locked grammar.
+   ========================================================================= */
+.notice{display:flex;gap:var(--qr-space-300);align-items:flex-start;padding:var(--qr-space-300) var(--qr-space-400);border-radius:var(--qr-radius-md);border-left:3px solid;font-size:var(--qr-font-size-300);line-height:var(--qr-font-line-height-normal);max-width:560px}
+.notice svg{width:18px;height:18px;flex-shrink:0;margin-top:1px}
+.notice__title{font-weight:var(--qr-font-weight-semibold)}
+.notice__body{margin-top:2px;opacity:.85}
+.notice--success{background:var(--qr-color-feedback-success-surface);border-color:var(--qr-color-feedback-success-border);color:var(--qr-color-feedback-success-text)}
+.notice--info{background:var(--qr-color-feedback-info-surface);border-color:var(--qr-color-feedback-info-border);color:var(--qr-color-feedback-info-text)}
+.notice--warning{background:var(--qr-color-feedback-warning-surface);border-color:var(--qr-color-feedback-warning-border);color:var(--qr-color-feedback-warning-text)}
+.notice--danger{background:var(--qr-color-feedback-danger-surface);border-color:var(--qr-color-feedback-danger-border);color:var(--qr-color-feedback-danger-text)}
+
+.badge{display:inline-flex;align-items:center;gap:6px;padding:3px var(--qr-space-200);border-radius:var(--qr-radius-full);font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-medium);line-height:1.2}
+.badge .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.badge--success{background:var(--qr-color-feedback-success-surface);color:var(--qr-color-feedback-success-text)}
+.badge--warning{background:var(--qr-color-feedback-warning-surface);color:var(--qr-color-feedback-warning-text)}
+.badge--danger{background:var(--qr-color-feedback-danger-surface);color:var(--qr-color-feedback-danger-text)}
+.badge--neutral{background:var(--qr-color-surface-sunken);color:var(--qr-color-text-muted)}
+.badge--count{background:var(--qr-color-action-primary-default);color:var(--qr-color-action-primary-text);min-width:20px;justify-content:center;padding:2px 7px}
+
+.tabs{display:flex;gap:var(--qr-space-500);border-bottom:1px solid var(--qr-color-border-default)}
+.tab{padding:var(--qr-space-300) 0;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);color:var(--qr-color-text-muted);cursor:pointer;background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color var(--qr-motion-control-duration) var(--qr-motion-control-easing)}
+.tab:hover{color:var(--qr-color-text-default)}
+.tab.is-active{color:var(--qr-color-text-default);border-bottom-color:var(--qr-color-accent-default)}
+.tab:focus-visible{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
+
 /* theme toggle */
 #themeToggle{position:fixed;right:20px;bottom:20px;display:inline-flex;align-items:center;padding:10px 16px;border-radius:var(--qr-radius-control);border:1px solid var(--qr-color-border-strong);background:var(--qr-color-surface-nav);color:var(--qr-color-text-default);cursor:pointer;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);box-shadow:0 4px 14px rgba(0,0,0,.16);z-index:50}
 #themeToggle:hover{background:var(--qr-color-state-hover)}
@@ -247,6 +273,40 @@ select.field{appearance:none;-webkit-appearance:none;padding-right:32px;cursor:p
       <label class="toggle"><input type="checkbox"><span class="track"></span> Off</label>
       <label class="toggle"><input type="checkbox" checked><span class="track"></span> On</label>
       <label class="toggle"><input type="checkbox" checked disabled><span class="track"></span> Disabled</label>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Feedback</div>
+    <div class="sec-title">Notice</div>
+    <div style="display:flex;flex-direction:column;gap:var(--qr-space-300)">
+      <div class="notice notice--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg><div><div class="notice__title">Settings saved</div><div class="notice__body">Your changes are live across the site.</div></div></div>
+      <div class="notice notice--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11.5v4.5"/><path d="M12 8h.01"/></svg><div><div class="notice__title">Heads up</div><div class="notice__body">A sample Privacy Policy page was created for you to review.</div></div></div>
+      <div class="notice notice--warning"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3z"/><path d="M12 10v4"/><path d="M12 17h.01"/></svg><div><div class="notice__title">Not a secure connection</div><div class="notice__body">We recommend serving your site over HTTPS to keep customer data safe.</div></div></div>
+      <div class="notice notice--danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></svg><div><div class="notice__title">Couldn't save changes</div><div class="notice__body">There was a problem reaching the server. Try again.</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Feedback</div>
+    <div class="sec-title">Badge &amp; status pill</div>
+    <div class="cluster" style="gap:14px">
+      <span class="badge badge--success"><span class="dot"></span> Completed</span>
+      <span class="badge badge--warning"><span class="dot"></span> Processing</span>
+      <span class="badge badge--danger"><span class="dot"></span> Failed</span>
+      <span class="badge badge--neutral"><span class="dot"></span> Draft</span>
+      <span class="badge badge--count">6</span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Navigation</div>
+    <div class="sec-title">Tabs</div>
+    <div class="tabs">
+      <button class="tab is-active">General</button>
+      <button class="tab">Writing</button>
+      <button class="tab">Reading</button>
+      <button class="tab">Discussion</button>
     </div>
   </section>
 
