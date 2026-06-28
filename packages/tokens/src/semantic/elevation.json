@@ -1,0 +1,6 @@
+{
+  "elevation": {
+    "raised":  { "$value": "{shadow.raised}",  "$type": "shadow" },
+    "overlay": { "$value": "{shadow.overlay}", "$type": "shadow" }
+  }
+}

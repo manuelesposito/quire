@@ -1,0 +1,6 @@
+{
+  "shadow": {
+    "raised":  { "$value": { "color": "#00000022", "offsetX": "0", "offsetY": "1px",  "blur": "2px",  "spread": "0"  }, "$type": "shadow" },
+    "overlay": { "$value": { "color": "#00000026", "offsetX": "0", "offsetY": "10px", "blur": "28px", "spread": "-6px" }, "$type": "shadow" }
+  }
+}

@@ -204,6 +204,30 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
 .dt-pager button:disabled{opacity:.4;cursor:not-allowed}
 .dt-pager button:focus-visible{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
 
+/* =========================================================================
+   PageHeader · Menu/Popover · Modal — closing out Tier 1, to the grammar.
+   ========================================================================= */
+.pageheader{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--qr-space-400);padding-bottom:var(--qr-space-300);border-bottom:1px solid var(--qr-color-border-default);max-width:720px}
+.pageheader__crumb{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle);margin-bottom:5px}
+.pageheader__title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-800);letter-spacing:var(--qr-font-letter-spacing-tight);line-height:1.1}
+.pageheader__actions{display:flex;gap:var(--qr-space-200);align-items:center}
+
+.menu{background:var(--qr-color-surface-raised);border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-md);box-shadow:var(--qr-elevation-overlay);padding:var(--qr-space-100);min-width:210px}
+.menu__label{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle);padding:var(--qr-space-200) var(--qr-space-300) var(--qr-space-100)}
+.menu__item{display:flex;align-items:center;gap:var(--qr-space-200);padding:var(--qr-space-200) var(--qr-space-300);border-radius:var(--qr-radius-sm);font-size:var(--qr-font-size-300);color:var(--qr-color-text-default);cursor:pointer}
+.menu__item svg{width:15px;height:15px;color:var(--qr-color-text-muted)}
+.menu__item:hover{background:var(--qr-color-state-hover)}
+.menu__item.is-danger{color:var(--qr-color-feedback-danger-text)}
+.menu__item.is-danger svg{color:currentColor}
+.menu__sep{height:1px;background:var(--qr-color-border-default);margin:var(--qr-space-100) 0}
+
+.modal-scrim{background:rgba(0,0,0,.32);border-radius:var(--qr-radius-md);padding:var(--qr-space-800);display:flex;justify-content:center}
+.modal{background:var(--qr-color-surface-raised);border-radius:var(--qr-radius-lg);box-shadow:var(--qr-elevation-overlay);width:420px;max-width:100%;overflow:hidden}
+.modal__head{padding:var(--qr-space-400) var(--qr-space-400) var(--qr-space-200)}
+.modal__title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-600)}
+.modal__body{padding:0 var(--qr-space-400) var(--qr-space-400);color:var(--qr-color-text-muted);font-size:var(--qr-font-size-300);line-height:var(--qr-font-line-height-normal)}
+.modal__foot{display:flex;justify-content:flex-end;gap:var(--qr-space-200);padding:var(--qr-space-300) var(--qr-space-400);border-top:1px solid var(--qr-color-border-default)}
+
 /* theme toggle */
 #themeToggle{position:fixed;right:20px;bottom:20px;display:inline-flex;align-items:center;padding:10px 16px;border-radius:var(--qr-radius-control);border:1px solid var(--qr-color-border-strong);background:var(--qr-color-surface-nav);color:var(--qr-color-text-default);cursor:pointer;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);box-shadow:0 4px 14px rgba(0,0,0,.16);z-index:50}
 #themeToggle:hover{background:var(--qr-color-state-hover)}
@@ -401,6 +425,46 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
       <div class="dt-foot">
         <span>4 orders</span>
         <div class="dt-pager"><button disabled>‹</button><button class="is-active">1</button><button>2</button><button>›</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Navigation</div>
+    <div class="sec-title">PageHeader</div>
+    <div class="pageheader">
+      <div>
+        <div class="pageheader__crumb">Settings / General</div>
+        <div class="pageheader__title">General</div>
+      </div>
+      <div class="pageheader__actions">
+        <button class="btn btn--secondary btn--sm">Discard</button>
+        <button class="btn btn--primary btn--sm">Save changes</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="overlays">
+    <div class="sec-label">Overlays</div>
+    <div class="sec-title">Menu &amp; Modal</div>
+    <div class="cluster" style="gap:var(--qr-space-800);align-items:flex-start;flex-wrap:wrap">
+      <div class="menu">
+        <div class="menu__label">Order #1041</div>
+        <div class="menu__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Edit</div>
+        <div class="menu__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg> Duplicate</div>
+        <div class="menu__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> View customer</div>
+        <div class="menu__sep"></div>
+        <div class="menu__item is-danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M6 6l1 14h10l1-14"/></svg> Delete order</div>
+      </div>
+      <div class="modal-scrim">
+        <div class="modal">
+          <div class="modal__head"><div class="modal__title">Delete this product?</div></div>
+          <div class="modal__body">“Vintage Notebook” will be permanently removed from your store. This can’t be undone.</div>
+          <div class="modal__foot">
+            <button class="btn btn--secondary btn--sm">Cancel</button>
+            <button class="btn btn--destructive btn--sm">Delete product</button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
