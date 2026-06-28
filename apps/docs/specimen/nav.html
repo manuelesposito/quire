@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <!-- the canonical foundation: this nav now CONSUMES @quire/tokens -->
 <link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
 <style>
 :root{
   /* local aliases mapped onto the token foundation — no hardcoded design values */
@@ -75,6 +76,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-siz
 .content .ph .big{font-family:var(--serif);font-size:26px;color:var(--text-muted);font-weight:500;margin-bottom:8px}
 .content .ph .small{font-size:13px;line-height:1.5}
 .content .ph .pill{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--text-muted);background:var(--hover);border:1px solid var(--border);padding:6px 10px;border-radius:var(--qr-radius-sm)}
+#themeToggle{position:fixed;right:16px;bottom:16px;width:34px;height:34px;border-radius:var(--qr-radius-control);border:1px solid var(--border);background:var(--bar);color:var(--text-muted);cursor:pointer;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center;z-index:10}
+#themeToggle:hover{background:var(--hover)}
 </style>
 </head>
 <body>
@@ -105,7 +108,15 @@ body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-siz
   </div>
 </div>
 
+<button id="themeToggle" title="Toggle dark / light">☾</button>
+
 <script>
+const themeQ = new URLSearchParams(location.search).get('theme');
+if (themeQ === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+document.getElementById('themeToggle').onclick = () => {
+  const dk = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.documentElement.setAttribute('data-theme', dk ? 'light' : 'dark');
+};
 const DATA = {
   wp:  { name:'WordPress',   items:['Dashboard','Posts','Pages','Media','Comments','Appearance','Plugins','Users','Tools','Settings'] },
   woo: { name:'WooCommerce', items:['Home','Orders','Products','Customers','Analytics','Marketing','Settings','Extensions'] },
