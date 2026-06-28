@@ -1,12 +1,26 @@
 {
-  "radius": {
-    "control": { "$value": "{radius.200}", "$type": "dimension" },
-    "card":    { "$value": "{radius.300}", "$type": "dimension" }
-  },
   "space": {
     "inset": {
+      "xs": { "$value": "{space.100}", "$type": "dimension" },
       "sm": { "$value": "{space.200}", "$type": "dimension" },
-      "md": { "$value": "{space.400}", "$type": "dimension" }
+      "md": { "$value": "{space.400}", "$type": "dimension" },
+      "lg": { "$value": "{space.600}", "$type": "dimension" }
+    },
+    "stack": {
+      "xs": { "$value": "{space.100}", "$type": "dimension" },
+      "sm": { "$value": "{space.200}", "$type": "dimension" },
+      "md": { "$value": "{space.400}", "$type": "dimension" },
+      "lg": { "$value": "{space.600}", "$type": "dimension" }
+    },
+    "inline": {
+      "xs": { "$value": "{space.100}", "$type": "dimension" },
+      "sm": { "$value": "{space.200}", "$type": "dimension" },
+      "md": { "$value": "{space.300}", "$type": "dimension" }
     }
+  },
+  "radius": {
+    "control": { "$value": "{radius.sm}",   "$type": "dimension" },
+    "card":    { "$value": "{radius.md}",   "$type": "dimension" },
+    "pill":    { "$value": "{radius.full}", "$type": "dimension" }
   }
 }

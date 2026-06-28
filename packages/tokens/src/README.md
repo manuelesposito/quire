@@ -1,16 +1,35 @@
-# tokens/src — PLACEHOLDER VALUES
+# tokens/src — Quire's canonical foundation (v1)
 
-> ⚠️ **The values in these files are scaffolding, not design decisions.**
->
-> They exist only to prove the pipeline builds end-to-end (W3C JSON → CSS variables + TS).
-> The real color, type, spacing, radius, elevation, and motion values are a later,
-> deliberate decision made against the three real product surfaces — see
-> [`../ARCHITECTURE.md`](../ARCHITECTURE.md). Do not treat anything here as final.
+These are the **real, decided** token values — the single source of truth, consolidated from
+the validated warm-bookish direction and the navigation work. They are no longer placeholders.
 
-Structure follows the three-tier model:
+The build (`pnpm --filter @quire/tokens build`) compiles them via Style Dictionary into
+`dist/css/variables.css` (`--qr-*` custom properties) and `dist/ts/tokens.ts`.
+
+## Structure (three-tier — see ../ARCHITECTURE.md)
 
 ```
-primitive/   raw values  (color.neutral.900, space.200, font.size.300)
-semantic/    roles        (color.text.default → {color.neutral.900})
-component/   per-component knobs (added later, sparingly)
+primitive/   raw values, named by what they are
+  color.json        warm neutral ramp · ochre accent · brick/sage/slate "almanac" hues
+  typography.json   families (Newsreader · Inter · IBM Plex Mono) · size/weight/line-height/letter-spacing
+  dimension.json    4px space scale · radius · border-width · sizing (controls, rail, sidebar)
+
+semantic/    roles, named by purpose — what components consume
+  color.json        text · surface · border · accent · action · state (hover/active/selected/focus) · feedback
+  typography.json   text roles: display · page-title · section · body · label · caption · mono-label · code
+  dimension.json    space (inset/stack/inline) · radius (control/card/pill)
 ```
+
+## Conventions
+
+- Components reference **semantic** tokens only — never primitives, never raw values.
+- Everything emits under the `--qr-` namespace so it never collides with WordPress's `--wp-*`.
+- Interaction states are first-class tokens (`color.state.hover`, `…active-surface`,
+  `…selected-surface`, `…selected-mark`, `…focus-ring`) so hover/active/selected/focus are
+  consistent everywhere by construction.
+
+## Still to add (follow-ups)
+
+- Motion (durations/easing) and elevation (shadow) tokens.
+- Dark-mode remap of the semantic layer.
+- Wire the demo surfaces to consume these tokens (replacing their inline values).

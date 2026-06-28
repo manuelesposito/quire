@@ -1,0 +1,67 @@
+{
+  "text": {
+    "display": {
+      "family":         { "$value": "{font.family.serif}",          "$type": "fontFamily" },
+      "size":           { "$value": "{font.size.900}",              "$type": "dimension" },
+      "weight":         { "$value": "{font.weight.medium}",         "$type": "fontWeight" },
+      "line-height":    { "$value": "{font.line-height.tight}",     "$type": "number" },
+      "letter-spacing": { "$value": "{font.letter-spacing.tight}",  "$type": "dimension" }
+    },
+    "page-title": {
+      "family":         { "$value": "{font.family.serif}",          "$type": "fontFamily" },
+      "size":           { "$value": "{font.size.800}",              "$type": "dimension" },
+      "weight":         { "$value": "{font.weight.medium}",         "$type": "fontWeight" },
+      "line-height":    { "$value": "{font.line-height.tight}",     "$type": "number" },
+      "letter-spacing": { "$value": "{font.letter-spacing.tight}",  "$type": "dimension" }
+    },
+    "section": {
+      "family":         { "$value": "{font.family.sans}",           "$type": "fontFamily" },
+      "size":           { "$value": "{font.size.600}",              "$type": "dimension" },
+      "weight":         { "$value": "{font.weight.semibold}",       "$type": "fontWeight" },
+      "line-height":    { "$value": "{font.line-height.snug}",      "$type": "number" },
+      "letter-spacing": { "$value": "{font.letter-spacing.tight}",  "$type": "dimension" }
+    },
+    "body": {
+      "family":         { "$value": "{font.family.sans}",           "$type": "fontFamily" },
+      "size":           { "$value": "{font.size.400}",              "$type": "dimension" },
+      "weight":         { "$value": "{font.weight.regular}",        "$type": "fontWeight" },
+      "line-height":    { "$value": "{font.line-height.normal}",    "$type": "number" },
+      "letter-spacing": { "$value": "{font.letter-spacing.normal}", "$type": "dimension" }
+    },
+    "body-sm": {
+      "family":         { "$value": "{font.family.sans}",           "$type": "fontFamily" },
+      "size":           { "$value": "{font.size.300}",              "$type": "dimension" },
+      "weight":         { "$value": "{font.weight.regular}",        "$type": "fontWeight" },
+      "line-height":    { "$value": "{font.line-height.normal}",    "$type": "number" },
+      "letter-spacing": { "$value": "{font.letter-spacing.normal}", "$type": "dimension" }
+    },
+    "label": {
+      "family":         { "$value": "{font.family.sans}",           "$type": "fontFamily" },
+      "size":           { "$value": "{font.size.300}",              "$type": "dimension" },
+      "weight":         { "$value": "{font.weight.medium}",         "$type": "fontWeight" },
+      "line-height":    { "$value": "{font.line-height.normal}",    "$type": "number" },
+      "letter-spacing": { "$value": "{font.letter-spacing.normal}", "$type": "dimension" }
+    },
+    "caption": {
+      "family":         { "$value": "{font.family.sans}",           "$type": "fontFamily" },
+      "size":           { "$value": "{font.size.200}",              "$type": "dimension" },
+      "weight":         { "$value": "{font.weight.regular}",        "$type": "fontWeight" },
+      "line-height":    { "$value": "{font.line-height.normal}",    "$type": "number" },
+      "letter-spacing": { "$value": "{font.letter-spacing.normal}", "$type": "dimension" }
+    },
+    "mono-label": {
+      "family":         { "$value": "{font.family.mono}",           "$type": "fontFamily" },
+      "size":           { "$value": "{font.size.100}",              "$type": "dimension" },
+      "weight":         { "$value": "{font.weight.medium}",         "$type": "fontWeight" },
+      "line-height":    { "$value": "{font.line-height.normal}",    "$type": "number" },
+      "letter-spacing": { "$value": "{font.letter-spacing.wide}",   "$type": "dimension" }
+    },
+    "code": {
+      "family":         { "$value": "{font.family.mono}",           "$type": "fontFamily" },
+      "size":           { "$value": "{font.size.300}",              "$type": "dimension" },
+      "weight":         { "$value": "{font.weight.regular}",        "$type": "fontWeight" },
+      "line-height":    { "$value": "{font.line-height.normal}",    "$type": "number" },
+      "letter-spacing": { "$value": "{font.letter-spacing.normal}", "$type": "dimension" }
+    }
+  }
+}
