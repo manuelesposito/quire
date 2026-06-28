@@ -123,6 +123,24 @@ select.field{appearance:none;-webkit-appearance:none;padding-right:32px;cursor:p
 .toggle input:focus-visible + .track{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
 .toggle:has(input:disabled){opacity:.5;cursor:not-allowed}
 
+/* =========================================================================
+   Card + SettingsRow — the composition layer (metabox <-> card unifier).
+   ========================================================================= */
+.card{background:var(--qr-color-surface-raised);border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-card);width:560px;max-width:100%;overflow:hidden}
+.card__head{padding:var(--qr-space-400) var(--qr-space-400) var(--qr-space-300)}
+.card__title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-600);color:var(--qr-color-text-default)}
+.card__desc{font-size:var(--qr-font-size-200);color:var(--qr-color-text-muted);margin-top:2px}
+.card__body{padding:0 var(--qr-space-400)}
+.card__foot{display:flex;justify-content:flex-end;gap:var(--qr-space-200);padding:var(--qr-space-300) var(--qr-space-400);border-top:1px solid var(--qr-color-border-default)}
+
+.srow{display:grid;grid-template-columns:170px 1fr;gap:var(--qr-space-400);padding:var(--qr-space-300) 0;border-top:1px solid var(--qr-color-border-default);align-items:start}
+.srow:first-child{border-top:0}
+.srow__label{font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);padding-top:7px;display:flex;align-items:center;gap:6px}
+.srow__tip{width:15px;height:15px;border-radius:50%;border:1px solid var(--qr-color-border-strong);color:var(--qr-color-text-subtle);font-size:9px;font-family:var(--qr-font-family-mono);display:inline-flex;align-items:center;justify-content:center;cursor:help}
+.srow__help{font-size:var(--qr-font-size-200);color:var(--qr-color-text-muted);margin-top:6px;max-width:48ch}
+.srow--switch{grid-template-columns:1fr auto;align-items:center}
+.srow__rlabel{font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium)}
+
 /* theme toggle */
 #themeToggle{position:fixed;right:20px;bottom:20px;display:inline-flex;align-items:center;padding:10px 16px;border-radius:var(--qr-radius-control);border:1px solid var(--qr-color-border-strong);background:var(--qr-color-surface-nav);color:var(--qr-color-text-default);cursor:pointer;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);box-shadow:0 4px 14px rgba(0,0,0,.16);z-index:50}
 #themeToggle:hover{background:var(--qr-color-state-hover)}
@@ -229,6 +247,44 @@ select.field{appearance:none;-webkit-appearance:none;padding-right:32px;cursor:p
       <label class="toggle"><input type="checkbox"><span class="track"></span> Off</label>
       <label class="toggle"><input type="checkbox" checked><span class="track"></span> On</label>
       <label class="toggle"><input type="checkbox" checked disabled><span class="track"></span> Disabled</label>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Composed · Card + SettingsRow</div>
+    <div class="sec-title">A settings panel, from real components</div>
+    <p class="lede" style="margin-bottom:22px">Everything in this card is the gallery's own components — Card, SettingsRow, Input, Select, Toggle, Button — assembled. Not a mock; the real thing.</p>
+    <div class="card">
+      <div class="card__head">
+        <div class="card__title">Site identity</div>
+        <div class="card__desc">How your site introduces itself across the web.</div>
+      </div>
+      <div class="card__body">
+        <div class="srow">
+          <div class="srow__label">Site title</div>
+          <div class="srow__control"><input class="field" value="My WordPress site" style="width:100%"></div>
+        </div>
+        <div class="srow">
+          <div class="srow__label">Tagline <span class="srow__tip">?</span></div>
+          <div class="srow__control"><input class="field" placeholder="Just another WordPress site" style="width:100%"><div class="srow__help">In a few words, explain what this site is about.</div></div>
+        </div>
+        <div class="srow">
+          <div class="srow__label">Default role</div>
+          <div class="srow__control"><div class="select-wrap" style="width:100%"><select class="field" style="width:100%"><option>Subscriber</option><option>Editor</option><option>Administrator</option></select></div></div>
+        </div>
+        <div class="srow srow--switch">
+          <div class="srow__main"><div class="srow__rlabel">Search engine visibility</div><div class="srow__help" style="margin-top:2px">Discourage search engines from indexing this site.</div></div>
+          <label class="toggle"><input type="checkbox"><span class="track"></span></label>
+        </div>
+        <div class="srow srow--switch">
+          <div class="srow__main"><div class="srow__rlabel">Comments</div><div class="srow__help" style="margin-top:2px">Allow people to submit comments on new posts.</div></div>
+          <label class="toggle"><input type="checkbox" checked><span class="track"></span></label>
+        </div>
+      </div>
+      <div class="card__foot">
+        <button class="btn btn--secondary btn--sm">Cancel</button>
+        <button class="btn btn--primary btn--sm">Save changes</button>
+      </div>
     </div>
   </section>
 </div>
