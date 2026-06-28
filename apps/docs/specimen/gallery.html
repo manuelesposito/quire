@@ -228,6 +228,51 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
 .modal__body{padding:0 var(--qr-space-400) var(--qr-space-400);color:var(--qr-color-text-muted);font-size:var(--qr-font-size-300);line-height:var(--qr-font-line-height-normal)}
 .modal__foot{display:flex;justify-content:flex-end;gap:var(--qr-space-200);padding:var(--qr-space-300) var(--qr-space-400);border-top:1px solid var(--qr-color-border-default)}
 
+/* =========================================================================
+   Tier 2: StatTile · ProgressBar · Checklist · Tooltip · EmptyState · Avatar ·
+   HelpTip · TokenInput — all to the grammar.
+   ========================================================================= */
+.stat{border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-card);padding:var(--qr-space-400);background:var(--qr-color-surface-raised);min-width:150px}
+.stat__label{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle)}
+.stat__value{font-size:var(--qr-font-size-800);font-weight:var(--qr-font-weight-semibold);letter-spacing:var(--qr-font-letter-spacing-tight);margin-top:var(--qr-space-200);line-height:1.1}
+.stat__delta{font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-medium);margin-top:var(--qr-space-100)}
+.stat__delta.up{color:var(--qr-color-feedback-success-text)}
+.stat__delta.down{color:var(--qr-color-feedback-danger-text)}
+
+.progress{height:8px;background:var(--qr-color-surface-sunken);border-radius:var(--qr-radius-full);overflow:hidden;max-width:360px}
+.progress__fill{height:100%;background:var(--qr-color-accent-default);border-radius:var(--qr-radius-full)}
+
+.checklist{max-width:420px}
+.checklist__item{display:flex;align-items:center;gap:var(--qr-space-300);padding:var(--qr-space-300) 0;border-top:1px solid var(--qr-color-border-default);font-size:var(--qr-font-size-300)}
+.checklist__item:first-child{border-top:0}
+.checklist__mark{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--qr-color-border-strong);flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;color:var(--qr-color-control-on-fg)}
+.checklist__mark svg{width:12px;height:12px;opacity:0}
+.checklist__item.done .checklist__mark{background:var(--qr-color-control-on);border-color:var(--qr-color-control-on)}
+.checklist__item.done .checklist__mark svg{opacity:1}
+.checklist__item.done .checklist__label{color:var(--qr-color-text-subtle)}
+.checklist__label{flex:1}
+.checklist__meta{font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle)}
+
+.tooltip{display:inline-block;background:var(--qr-color-surface-inverse);color:var(--qr-color-text-inverse);font-size:var(--qr-font-size-200);padding:var(--qr-space-100) var(--qr-space-200);border-radius:var(--qr-radius-sm);box-shadow:var(--qr-elevation-overlay);max-width:240px;line-height:1.4}
+
+.empty{text-align:center;padding:var(--qr-space-1200) var(--qr-space-400);border:1px dashed var(--qr-color-border-strong);border-radius:var(--qr-radius-card);max-width:420px}
+.empty svg{width:28px;height:28px;color:var(--qr-color-text-subtle);margin-bottom:var(--qr-space-300)}
+.empty__title{font-family:var(--qr-font-family-serif);font-size:var(--qr-font-size-600);font-weight:var(--qr-font-weight-medium);margin-bottom:var(--qr-space-100)}
+.empty__body{font-size:var(--qr-font-size-300);color:var(--qr-color-text-muted);margin:0 auto var(--qr-space-400);max-width:34ch}
+
+.avatar{width:32px;height:32px;border-radius:50%;background:var(--qr-color-surface-sunken);color:var(--qr-color-text-muted);display:inline-flex;align-items:center;justify-content:center;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-medium)}
+.avatar--lg{width:40px;height:40px;font-size:var(--qr-font-size-300)}
+.avatar--sm{width:24px;height:24px;font-size:var(--qr-font-size-100)}
+
+.helptip{width:16px;height:16px;border-radius:50%;border:1px solid var(--qr-color-border-strong);color:var(--qr-color-text-subtle);font-family:var(--qr-font-family-mono);font-size:10px;display:inline-flex;align-items:center;justify-content:center;cursor:help}
+
+.tokens{display:flex;flex-wrap:wrap;gap:var(--qr-space-100);align-items:center;border:1px solid var(--qr-color-border-strong);border-radius:var(--qr-radius-sm);padding:var(--qr-space-100) var(--qr-space-200);background:var(--qr-color-surface-raised);max-width:360px;min-height:var(--qr-size-control-md)}
+.tokens:focus-within{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
+.token{display:inline-flex;align-items:center;gap:5px;background:var(--qr-color-surface-sunken);border-radius:var(--qr-radius-xs);padding:2px var(--qr-space-200);font-size:var(--qr-font-size-200)}
+.token__x{cursor:pointer;color:var(--qr-color-text-subtle);font-size:13px;line-height:1}
+.token__x:hover{color:var(--qr-color-text-default)}
+.tokens input{border:0;background:none;outline:none;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);color:var(--qr-color-text-default);flex:1;min-width:70px;padding:2px}
+
 /* theme toggle */
 #themeToggle{position:fixed;right:20px;bottom:20px;display:inline-flex;align-items:center;padding:10px 16px;border-radius:var(--qr-radius-control);border:1px solid var(--qr-color-border-strong);background:var(--qr-color-surface-nav);color:var(--qr-color-text-default);cursor:pointer;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);box-shadow:0 4px 14px rgba(0,0,0,.16);z-index:50}
 #themeToggle:hover{background:var(--qr-color-state-hover)}
@@ -466,6 +511,71 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Data display</div>
+    <div class="sec-title">StatTile</div>
+    <div class="cluster" style="gap:var(--qr-space-400)">
+      <div class="stat"><div class="stat__label">Total sales</div><div class="stat__value">$12,480</div><div class="stat__delta up">▲ 8.2% this week</div></div>
+      <div class="stat"><div class="stat__label">Orders</div><div class="stat__value">316</div><div class="stat__delta down">▼ 3.1% this week</div></div>
+      <div class="stat"><div class="stat__label">Visitors</div><div class="stat__value">9,204</div><div class="stat__delta up">▲ 12% this week</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Data display</div>
+    <div class="sec-title">ProgressBar &amp; Checklist</div>
+    <div style="display:flex;flex-direction:column;gap:var(--qr-space-200);max-width:360px;margin-bottom:var(--qr-space-600)">
+      <div class="progress"><div class="progress__fill" style="width:35%"></div></div>
+      <div class="progress"><div class="progress__fill" style="width:70%"></div></div>
+      <div class="progress"><div class="progress__fill" style="width:100%"></div></div>
+    </div>
+    <div class="checklist">
+      <div class="checklist__item done"><span class="checklist__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span><span class="checklist__label">Add your products</span><span class="checklist__meta">Done</span></div>
+      <div class="checklist__item done"><span class="checklist__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span><span class="checklist__label">Set up payments</span><span class="checklist__meta">Done</span></div>
+      <div class="checklist__item"><span class="checklist__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span><span class="checklist__label">Customize your store</span><span class="checklist__meta">3 min</span></div>
+      <div class="checklist__item"><span class="checklist__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span><span class="checklist__label">Launch your store</span><span class="checklist__meta">2 min</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Overlays</div>
+    <div class="sec-title">Tooltip</div>
+    <div class="tooltip">Payment received — the order is awaiting fulfilment.</div>
+  </section>
+
+  <section>
+    <div class="sec-label">Feedback</div>
+    <div class="sec-title">EmptyState</div>
+    <div class="empty">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h5l2 3h4l2-3h5"/><path d="M5 6h14l2 6v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z"/></svg>
+      <div class="empty__title">No orders yet</div>
+      <div class="empty__body">When customers place orders, they’ll appear here. Share your store to get the first one.</div>
+      <button class="btn btn--primary btn--sm">Add a product</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Misc</div>
+    <div class="sec-title">Avatar &amp; HelpTip</div>
+    <div class="cluster" style="gap:var(--qr-space-400);align-items:center">
+      <span class="avatar avatar--sm">M</span>
+      <span class="avatar">ME</span>
+      <span class="avatar avatar--lg">JS</span>
+      <span style="display:inline-flex;align-items:center;gap:8px;font-size:var(--qr-font-size-300)">Administration email <span class="helptip">?</span></span>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Forms · text</div>
+    <div class="sec-title">TokenInput</div>
+    <div class="tokens">
+      <span class="token">news <span class="token__x">×</span></span>
+      <span class="token">tutorial <span class="token__x">×</span></span>
+      <span class="token">announcement <span class="token__x">×</span></span>
+      <input placeholder="Add a tag…">
     </div>
   </section>
 
