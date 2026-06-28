@@ -76,7 +76,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-siz
 .content .ph .big{font-family:var(--serif);font-size:26px;color:var(--text-muted);font-weight:500;margin-bottom:8px}
 .content .ph .small{font-size:13px;line-height:1.5}
 .content .ph .pill{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--text-muted);background:var(--hover);border:1px solid var(--border);padding:6px 10px;border-radius:var(--qr-radius-sm)}
-#themeToggle{position:fixed;right:16px;bottom:16px;width:34px;height:34px;border-radius:var(--qr-radius-control);border:1px solid var(--border);background:var(--bar);color:var(--text-muted);cursor:pointer;font-size:15px;line-height:1;display:flex;align-items:center;justify-content:center;z-index:10}
+#themeToggle{position:fixed;right:20px;bottom:20px;display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:var(--qr-radius-control);border:1px solid var(--qr-color-border-strong);background:var(--bar);color:var(--text);cursor:pointer;font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:-0.005em;box-shadow:0 4px 14px rgba(0,0,0,.16);z-index:50}
 #themeToggle:hover{background:var(--hover)}
 </style>
 </head>
@@ -108,15 +108,16 @@ body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-siz
   </div>
 </div>
 
-<button id="themeToggle" title="Toggle dark / light">☾</button>
+<button id="themeToggle">Switch to dark</button>
 
 <script>
-const themeQ = new URLSearchParams(location.search).get('theme');
-if (themeQ === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
-document.getElementById('themeToggle').onclick = () => {
-  const dk = document.documentElement.getAttribute('data-theme') === 'dark';
-  document.documentElement.setAttribute('data-theme', dk ? 'light' : 'dark');
-};
+const tBtn = document.getElementById('themeToggle');
+function setTheme(mode){
+  document.documentElement.setAttribute('data-theme', mode);
+  tBtn.textContent = mode === 'dark' ? 'Switch to light' : 'Switch to dark';
+}
+setTheme(new URLSearchParams(location.search).get('theme') === 'dark' ? 'dark' : 'light');
+tBtn.onclick = () => setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
 const DATA = {
   wp:  { name:'WordPress',   items:['Dashboard','Posts','Pages','Media','Comments','Appearance','Plugins','Users','Tools','Settings'] },
   woo: { name:'WooCommerce', items:['Home','Orders','Products','Customers','Analytics','Marketing','Settings','Extensions'] },
