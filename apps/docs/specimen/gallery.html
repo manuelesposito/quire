@@ -273,6 +273,43 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
 .token__x:hover{color:var(--qr-color-text-default)}
 .tokens input{border:0;background:none;outline:none;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);color:var(--qr-color-text-default);flex:1;min-width:70px;padding:2px}
 
+/* =========================================================================
+   Tier 3 (the buildable ones): ChartCard · PromoCard · MediaField · Command.
+   ========================================================================= */
+.chartcard{border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-card);background:var(--qr-color-surface-raised);padding:var(--qr-space-400);max-width:320px}
+.chartcard__label{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle)}
+.chartcard__value{font-size:var(--qr-font-size-700);font-weight:var(--qr-font-weight-semibold);letter-spacing:var(--qr-font-letter-spacing-tight);margin-top:var(--qr-space-100)}
+.chart{display:flex;align-items:flex-end;gap:6px;height:72px;margin-top:var(--qr-space-300)}
+.chart .bar{flex:1;background:var(--qr-color-surface-sunken);border-radius:var(--qr-radius-xs);min-height:6px}
+.chart .bar.now{background:var(--qr-color-accent-default)}
+
+.promo{border:1px solid #e6cf9f;background:var(--qr-color-accent-soft);border-radius:var(--qr-radius-card);padding:var(--qr-space-400);max-width:340px}
+.promo__kicker{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-accent-strong)}
+.promo__title{font-family:var(--qr-font-family-serif);font-size:var(--qr-font-size-600);font-weight:var(--qr-font-weight-medium);margin:var(--qr-space-100) 0;color:var(--qr-color-text-default)}
+.promo__body{font-size:var(--qr-font-size-300);color:#7a5f28;margin-bottom:var(--qr-space-400)}
+
+.mediafield{display:flex;gap:var(--qr-space-800);align-items:flex-start;flex-wrap:wrap}
+.media-empty{width:120px;height:120px;border:1px dashed var(--qr-color-border-strong);border-radius:var(--qr-radius-md);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--qr-space-200);color:var(--qr-color-text-subtle);font-size:var(--qr-font-size-200);cursor:pointer}
+.media-empty svg{width:22px;height:22px}
+.media-filled{display:flex;gap:var(--qr-space-300);align-items:center}
+.media-thumb{width:120px;height:120px;border-radius:var(--qr-radius-md);background:linear-gradient(135deg,#C9A24A,#A85F3C);border:1px solid var(--qr-color-border-default)}
+.media-meta{display:flex;flex-direction:column;gap:var(--qr-space-200)}
+.media-name{font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium)}
+
+.cmdk{width:440px;max-width:100%;background:var(--qr-color-surface-raised);border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-md);box-shadow:var(--qr-elevation-overlay);overflow:hidden}
+.cmdk__search{display:flex;align-items:center;gap:var(--qr-space-200);padding:var(--qr-space-300) var(--qr-space-400);border-bottom:1px solid var(--qr-color-border-default)}
+.cmdk__search svg{width:16px;height:16px;color:var(--qr-color-text-subtle)}
+.cmdk__search input{border:0;background:none;outline:none;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-400);color:var(--qr-color-text-default);flex:1}
+.cmdk__list{padding:var(--qr-space-100)}
+.cmdk__item{display:flex;align-items:center;gap:var(--qr-space-300);padding:var(--qr-space-200) var(--qr-space-300);border-radius:var(--qr-radius-sm);font-size:var(--qr-font-size-300);cursor:pointer;color:var(--qr-color-text-default)}
+.cmdk__item:hover,.cmdk__item.is-active{background:var(--qr-color-state-hover)}
+.cmdk__item svg{width:15px;height:15px;color:var(--qr-color-text-muted)}
+.cmdk__kbd{margin-left:auto;font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle);border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-xs);padding:1px 5px}
+
+.consume{border:1px dashed var(--qr-color-border-strong);border-radius:var(--qr-radius-card);padding:var(--qr-space-400);max-width:620px;font-size:var(--qr-font-size-300);color:var(--qr-color-text-muted)}
+.consume b{color:var(--qr-color-text-default);font-weight:var(--qr-font-weight-semibold)}
+.consume li{margin-top:var(--qr-space-200);list-style:none}
+
 /* theme toggle */
 #themeToggle{position:fixed;right:20px;bottom:20px;display:inline-flex;align-items:center;padding:10px 16px;border-radius:var(--qr-radius-control);border:1px solid var(--qr-color-border-strong);background:var(--qr-color-surface-nav);color:var(--qr-color-text-default);cursor:pointer;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);box-shadow:0 4px 14px rgba(0,0,0,.16);z-index:50}
 #themeToggle:hover{background:var(--qr-color-state-hover)}
@@ -576,6 +613,77 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
       <span class="token">tutorial <span class="token__x">×</span></span>
       <span class="token">announcement <span class="token__x">×</span></span>
       <input placeholder="Add a tag…">
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Data display · Tier 3</div>
+    <div class="sec-title">ChartCard</div>
+    <div class="chartcard">
+      <div class="chartcard__label">Net sales · 14 days</div>
+      <div class="chartcard__value">$12,480</div>
+      <div class="chart">
+        <div class="bar" style="height:30%"></div><div class="bar" style="height:48%"></div><div class="bar" style="height:38%"></div><div class="bar" style="height:62%"></div><div class="bar" style="height:55%"></div><div class="bar" style="height:72%"></div><div class="bar" style="height:60%"></div><div class="bar" style="height:80%"></div><div class="bar" style="height:68%"></div><div class="bar" style="height:90%"></div><div class="bar" style="height:74%"></div><div class="bar" style="height:84%"></div><div class="bar" style="height:78%"></div><div class="bar now" style="height:100%"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Feedback · Tier 3</div>
+    <div class="sec-title">PromoCard <span style="font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-regular);color:var(--qr-color-text-subtle)">— governed, kept calm</span></div>
+    <div class="promo">
+      <div class="promo__kicker">Jetpack</div>
+      <div class="promo__title">See who’s visiting</div>
+      <div class="promo__body">Add traffic stats and visitor insights to your dashboard with a connected Jetpack plan.</div>
+      <button class="btn btn--secondary btn--sm">Explore Jetpack</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Forms · Tier 3</div>
+    <div class="sec-title">MediaField</div>
+    <div class="mediafield">
+      <div>
+        <div class="media-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg> Set image</div>
+        <div style="font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle);margin-top:var(--qr-space-200);text-align:center">Empty</div>
+      </div>
+      <div>
+        <div class="media-filled">
+          <div class="media-thumb"></div>
+          <div class="media-meta">
+            <span class="media-name">notebook-cover.jpg</span>
+            <span style="font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle)">1200 × 1200 · 240 KB</span>
+            <div style="display:flex;gap:var(--qr-space-300);margin-top:var(--qr-space-100)"><button class="btn btn--secondary btn--sm">Replace</button><button class="btn btn--tertiary btn--sm" style="color:var(--qr-color-feedback-danger-text)">Remove</button></div>
+          </div>
+        </div>
+        <div style="font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle);margin-top:var(--qr-space-200)">Filled · opens WP media library</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Navigation · Tier 3</div>
+    <div class="sec-title">Command palette <span style="font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-regular);color:var(--qr-color-text-subtle)">— ⌘K</span></div>
+    <div class="cmdk">
+      <div class="cmdk__search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+        <input placeholder="Search or jump to…" value="ord">
+      </div>
+      <div class="cmdk__list">
+        <div class="cmdk__item is-active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg> Go to Orders <span class="cmdk__kbd">↵</span></div>
+        <div class="cmdk__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> Add new order</div>
+        <div class="cmdk__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.5-2.3 1a7 7 0 0 0-1.7-1l-.4-2.5h-4l-.4 2.5a7 7 0 0 0-1.7 1l-2.3-1-2 3.5 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.5 2.3-1a7 7 0 0 0 1.7 1l.4 2.5h4l.4-2.5a7 7 0 0 0 1.7-1l2.3 1 2-3.5-2-1.5a7 7 0 0 0 .1-1z"/></svg> Order settings</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Tier 3 · not built (on purpose)</div>
+    <div class="sec-title">Consumed &amp; cut</div>
+    <div class="consume">
+      <li><b>Block / site editor &amp; rich text</b> — consumed from <code style="font-family:var(--qr-font-family-mono)">@wordpress/components</code> (Gutenberg). We extend it with our tokens, we don’t rebuild it.</li>
+      <li><b>Admin bar</b> — cut. Folded into the product rail.</li>
+      <li><b>Media picker modal</b> — consumed from WordPress’ media library. We build the <em>field</em> above; WP provides the picker.</li>
     </div>
   </section>
 
