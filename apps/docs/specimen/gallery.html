@@ -80,6 +80,49 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
 .btn:focus-visible,.btn.s-focus{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
 .btn:disabled,.btn.s-disabled{opacity:.42;cursor:not-allowed;pointer-events:none}
 
+/* =========================================================================
+   Form atoms — Input / Textarea / Select / Checkbox / Radio / Toggle.
+   All token-driven, all theme light/dark for free.
+   ========================================================================= */
+.field{
+  font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);
+  color:var(--qr-color-text-default);background:var(--qr-color-surface-raised);
+  border:1px solid var(--qr-color-border-strong);border-radius:var(--qr-radius-sm);
+  padding:0 var(--qr-space-300);min-height:var(--qr-size-control-md);width:260px;
+  transition:border-color .12s, box-shadow .12s;
+}
+textarea.field{padding:var(--qr-space-200) var(--qr-space-300);min-height:84px;line-height:var(--qr-font-line-height-normal);resize:vertical}
+.field::placeholder{color:var(--qr-color-text-subtle)}
+.field:focus,.field.s-focus{outline:none;border-color:var(--qr-color-accent-default);box-shadow:0 0 0 3px var(--qr-color-accent-soft)}
+.field:disabled,.field.s-disabled{opacity:.55;cursor:not-allowed;background:var(--qr-color-surface-sunken)}
+.field.s-error{border-color:var(--qr-color-feedback-danger-border)}
+
+.select-wrap{position:relative;display:inline-flex}
+.select-wrap::after{content:"";position:absolute;right:13px;top:50%;width:7px;height:7px;border-right:1.5px solid var(--qr-color-text-muted);border-bottom:1.5px solid var(--qr-color-text-muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+select.field{appearance:none;-webkit-appearance:none;padding-right:32px;cursor:pointer}
+
+.opt{display:inline-flex;align-items:center;gap:var(--qr-space-200);font-size:var(--qr-font-size-300);color:var(--qr-color-text-default);cursor:pointer;user-select:none}
+.opt input{position:absolute;opacity:0;width:0;height:0}
+.opt .box{width:18px;height:18px;flex-shrink:0;border:1.5px solid var(--qr-color-border-strong);background:var(--qr-color-surface-raised);display:inline-flex;align-items:center;justify-content:center;transition:.12s;color:var(--qr-color-action-primary-text)}
+.opt .box.sq{border-radius:4px}
+.opt .box.ro{border-radius:50%}
+.opt .box svg{width:12px;height:12px;opacity:0;transition:.1s}
+.opt .box .dot{width:8px;height:8px;border-radius:50%;background:var(--qr-color-action-primary-text);transform:scale(0);transition:.1s}
+.opt input:checked + .box{background:var(--qr-color-action-primary-default);border-color:var(--qr-color-action-primary-default)}
+.opt input:checked + .box svg{opacity:1}
+.opt input:checked + .box .dot{transform:scale(1)}
+.opt input:focus-visible + .box{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
+.opt:has(input:disabled){opacity:.5;cursor:not-allowed}
+
+.toggle{display:inline-flex;align-items:center;gap:var(--qr-space-200);cursor:pointer;font-size:var(--qr-font-size-300);color:var(--qr-color-text-default)}
+.toggle input{position:absolute;opacity:0;width:0;height:0}
+.toggle .track{width:38px;height:22px;border-radius:999px;background:var(--qr-color-border-strong);position:relative;transition:.15s;flex-shrink:0}
+.toggle .track::after{content:"";position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:.15s}
+.toggle input:checked + .track{background:var(--qr-color-accent-default)}
+.toggle input:checked + .track::after{left:18px}
+.toggle input:focus-visible + .track{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
+.toggle:has(input:disabled){opacity:.5;cursor:not-allowed}
+
 /* theme toggle */
 #themeToggle{position:fixed;right:20px;bottom:20px;display:inline-flex;align-items:center;padding:10px 16px;border-radius:var(--qr-radius-control);border:1px solid var(--qr-color-border-strong);background:var(--qr-color-surface-nav);color:var(--qr-color-text-default);cursor:pointer;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);box-shadow:0 4px 14px rgba(0,0,0,.16);z-index:50}
 #themeToggle:hover{background:var(--qr-color-state-hover)}
@@ -88,8 +131,8 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
 <body>
 <div class="wrap">
   <div class="eyebrow">Quire · Components</div>
-  <h1>Button</h1>
-  <p class="lede">The first component, built entirely from <code>@quire/tokens</code> — so it themes light/dark for free (try the toggle). Four variants, every state. This is the source of truth, made visible.</p>
+  <h1>Components</h1>
+  <p class="lede">The source of truth, made visible. Every component is built entirely from <code>@quire/tokens</code> — so it themes light/dark for free (try the toggle). This gallery grows as we build down the inventory.</p>
 
   <section>
     <div class="sec-label">Variants × states</div>
@@ -148,6 +191,44 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
       <button class="btn btn--secondary">Cancel</button>
       <button class="btn btn--tertiary">Learn more</button>
       <button class="btn btn--destructive">Delete</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Forms · text</div>
+    <div class="sec-title">Input, textarea &amp; select</div>
+    <div class="matrix" style="grid-template-columns:120px repeat(4,max-content)">
+      <div class="mhead"></div>
+      <div class="mhead">Default</div><div class="mhead">Focus</div><div class="mhead">Disabled</div><div class="mhead">Error</div>
+      <div class="rlabel">Input</div>
+      <input class="field" placeholder="Site title">
+      <input class="field s-focus" value="My WordPress site">
+      <input class="field s-disabled" value="Read only" disabled>
+      <input class="field s-error" value="not-an-email">
+    </div>
+    <div class="cluster" style="margin-top:24px;align-items:flex-start">
+      <textarea class="field" placeholder="In a few words, explain what this site is about"></textarea>
+      <div class="select-wrap"><select class="field"><option>English (United States)</option><option>Deutsch</option><option>Italiano</option></select></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Forms · selection</div>
+    <div class="sec-title">Checkbox, radio &amp; toggle</div>
+    <div class="cluster" style="gap:30px">
+      <label class="opt"><input type="checkbox"><span class="box sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span> Unchecked</label>
+      <label class="opt"><input type="checkbox" checked><span class="box sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span> Checked</label>
+      <label class="opt"><input type="checkbox" checked disabled><span class="box sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span> Disabled</label>
+    </div>
+    <div class="cluster" style="gap:30px;margin-top:18px">
+      <label class="opt"><input type="radio" name="demo-radio"><span class="box ro"><span class="dot"></span></span> Option A</label>
+      <label class="opt"><input type="radio" name="demo-radio" checked><span class="box ro"><span class="dot"></span></span> Option B</label>
+      <label class="opt"><input type="radio" name="demo-radio" disabled><span class="box ro"><span class="dot"></span></span> Disabled</label>
+    </div>
+    <div class="cluster" style="gap:30px;margin-top:18px">
+      <label class="toggle"><input type="checkbox"><span class="track"></span> Off</label>
+      <label class="toggle"><input type="checkbox" checked><span class="track"></span> On</label>
+      <label class="toggle"><input type="checkbox" checked disabled><span class="track"></span> Disabled</label>
     </div>
   </section>
 </div>
