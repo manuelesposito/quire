@@ -15,7 +15,7 @@
   /* local aliases mapped onto the token foundation — no hardcoded design values */
   --canvas:      var(--qr-color-surface-canvas);
   --bar:         var(--qr-color-surface-nav);
-  --item-active: var(--qr-color-state-selected-surface);
+  --item-active: var(--qr-color-state-active-surface);
   --hover:       var(--qr-color-state-hover);
   --logo:        var(--qr-color-text-default);
   --text:        var(--qr-color-text-default);
@@ -53,8 +53,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-siz
 .prod:focus-visible .sq,.add:focus-visible .sq{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
 .prod .lbl{font-size:var(--qr-font-size-100);color:var(--text-subtle);letter-spacing:.01em}
 .prod:hover .sq{background:var(--hover)}
-.prod.active .sq{background:var(--qr-color-state-selected-surface)}
-.prod.active .logo{background-color:var(--qr-color-state-selected-mark)}   /* dark-ochre accent mark, from tokens */
+.prod.active .sq{background:var(--qr-color-state-active-surface)}
+.prod.active .logo{background-color:var(--qr-color-text-default)}   /* active mark = ink — ochre is the accent, not "where you are" */
 .prod.active .lbl{color:var(--text);font-weight:500}
 .add .sq{color:var(--text-subtle)}
 .add:hover .sq{background:var(--hover);color:var(--text-muted)}

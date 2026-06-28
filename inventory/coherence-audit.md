@@ -101,10 +101,11 @@ how "whole before detail" stays true as we finish Tiers 1 → 2 → 3.
 
 ## ✅ Applied (grammar-alignment pass)
 
-- **§1 "on" colour — RESOLVED.** Rule locked: **ochre = wayfinding** (active product, active
-  menu item → ochre-soft, focus ring, links); **ink = form selection** (checkbox, radio,
-  toggle-on now all ink). Nav active menu item moved grey → ochre-soft to match the product
-  square.
+- **§1 colour semantics — RESOLVED (refined).** **Ochre = accent / emphasis only** (links,
+  highlights, focus ring) — *not* routine "active". **Active / selected / current = neutral +
+  ink** (active product = neutral square + ink mark; active menu item = neutral surface + bold
+  ink; active tab = ink underline). **Ink = form selection** (checkbox/radio/toggle-on). Keeps
+  ochre precious and removes the ochre-vs-warning ambiguity.
 - **§2 focus — RESOLVED.** One outline ring (2px focus-ring + 2px offset) on buttons, inputs,
   selects, checkboxes, radios, toggles, and nav items. Input border-glow removed.
 - **§5 radius — RESOLVED.** Added `radius.xs` (4px); checkbox uses it; toggle track uses
