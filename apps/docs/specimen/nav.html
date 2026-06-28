@@ -15,7 +15,7 @@
   /* local aliases mapped onto the token foundation — no hardcoded design values */
   --canvas:      var(--qr-color-surface-canvas);
   --bar:         var(--qr-color-surface-nav);
-  --item-active: var(--qr-color-state-active-surface);
+  --item-active: var(--qr-color-state-selected-surface);
   --hover:       var(--qr-color-state-hover);
   --logo:        var(--qr-color-text-default);
   --text:        var(--qr-color-text-default);
@@ -30,7 +30,7 @@
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-size:13.5px;line-height:1.45;letter-spacing:-0.006em;-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-normal);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased}
 .app{display:flex;height:100vh;overflow:hidden}
 
 /* monochrome masked marks — one ink colour, optically matched boxes */
@@ -49,8 +49,9 @@ body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-siz
 .rail{width:var(--qr-size-rail);background:var(--bar);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:14px 0;flex-shrink:0}
 .rail .stack{display:flex;flex-direction:column;gap:4px;width:100%;align-items:center;flex:1}
 .prod{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:0;cursor:pointer;padding:5px 0;width:100%}
-.prod .sq{width:42px;height:42px;border-radius:var(--qr-radius-card);display:flex;align-items:center;justify-content:center;transition:background .12s}
-.prod .lbl{font-size:9.5px;color:var(--text-subtle);letter-spacing:.01em}
+.prod .sq{width:42px;height:42px;border-radius:var(--qr-radius-card);display:flex;align-items:center;justify-content:center;transition:background var(--qr-motion-control-duration) var(--qr-motion-control-easing)}
+.prod:focus-visible .sq,.add:focus-visible .sq{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
+.prod .lbl{font-size:var(--qr-font-size-100);color:var(--text-subtle);letter-spacing:.01em}
 .prod:hover .sq{background:var(--hover)}
 .prod.active .sq{background:var(--qr-color-state-selected-surface)}
 .prod.active .logo{background-color:var(--qr-color-state-selected-mark)}   /* dark-ochre accent mark, from tokens */
@@ -66,9 +67,10 @@ body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-siz
 .subnav .head .name{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:-0.01em;color:var(--text)}
 .subnav .sep{height:1px;background:var(--border);margin:11px -14px}
 .subnav #menu{display:flex;flex-direction:column;gap:3px}
-.subnav a{display:block;padding:7px 10px;border-radius:var(--qr-radius-control);color:var(--text-muted);text-decoration:none;font-size:13px;font-weight:450;cursor:pointer}
+.subnav a{display:block;padding:var(--qr-space-200) var(--qr-space-300);border-radius:var(--qr-radius-control);color:var(--text-muted);text-decoration:none;font-size:var(--qr-font-size-300);font-weight:450;cursor:pointer;transition:background var(--qr-motion-control-duration) var(--qr-motion-control-easing)}
 .subnav a:hover{background:var(--hover);color:var(--text)}
 .subnav a.active{background:var(--item-active);color:var(--text);font-weight:600}
+.subnav a:focus-visible{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
 
 /* ---------- content ---------- */
 .content{flex:1;display:flex;flex-direction:column;min-width:0;align-items:center;justify-content:center;padding:40px;text-align:center}

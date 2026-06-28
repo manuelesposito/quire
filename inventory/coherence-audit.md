@@ -96,3 +96,23 @@ every component consume the **text roles** and the **state tokens** rather than 
 
 Then the rule going forward: **no new component ships until it obeys this grammar** — that's
 how "whole before detail" stays true as we finish Tiers 1 → 2 → 3.
+
+---
+
+## ✅ Applied (grammar-alignment pass)
+
+- **§1 "on" colour — RESOLVED.** Rule locked: **ochre = wayfinding** (active product, active
+  menu item → ochre-soft, focus ring, links); **ink = form selection** (checkbox, radio,
+  toggle-on now all ink). Nav active menu item moved grey → ochre-soft to match the product
+  square.
+- **§2 focus — RESOLVED.** One outline ring (2px focus-ring + 2px offset) on buttons, inputs,
+  selects, checkboxes, radios, toggles, and nav items. Input border-glow removed.
+- **§5 radius — RESOLVED.** Added `radius.xs` (4px); checkbox uses it; toggle track uses
+  `radius.full`.
+- **§6 strays — RESOLVED.** Toggle knob → `color.neutral.0`; transitions → motion tokens.
+- **§7 motion — RESOLVED.** Added `duration.fast/base` + `easing.standard` + `motion.control`;
+  applied across Button, fields, checkbox/radio/toggle, nav.
+- **§3/§4 partial.** Off-scale fonts snapped (nav 13.5→14, 9.5→11; mhead 10.5→11). Remaining:
+  make components consume the composite **text roles** (not raw size tokens) + snap residual
+  demo-layout gaps. Folded into ongoing work.
+- **§8 elevation — DEFERRED** until overlays (Modal/Popover) are built; add shadow tokens then.

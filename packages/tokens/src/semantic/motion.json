@@ -1,0 +1,8 @@
+{
+  "motion": {
+    "control": {
+      "duration": { "$value": "{duration.fast}",   "$type": "duration" },
+      "easing":   { "$value": "{easing.standard}",  "$type": "cubicBezier" }
+    }
+  }
+}
