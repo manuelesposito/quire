@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quire — Components</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- the foundation -->
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
+<style>
+/* ===== page chrome (token-driven) ===== */
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:var(--qr-font-family-sans);
+  background:var(--qr-color-surface-canvas);
+  color:var(--qr-color-text-default);
+  font-size:var(--qr-font-size-400);
+  line-height:var(--qr-font-line-height-normal);
+  letter-spacing:var(--qr-font-letter-spacing-normal);
+  -webkit-font-smoothing:antialiased;
+  padding:48px 44px 96px;
+}
+.wrap{max-width:920px;margin:0 auto}
+.eyebrow{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle)}
+h1{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-900);letter-spacing:var(--qr-font-letter-spacing-tight);margin:6px 0 8px}
+.lede{color:var(--qr-color-text-muted);max-width:60ch}
+.lede code{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200);background:var(--qr-color-surface-sunken);padding:1px 6px;border-radius:var(--qr-radius-sm)}
+
+section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padding-top:24px}
+.sec-label{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle);margin-bottom:6px}
+.sec-title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-700);margin-bottom:20px}
+
+/* ===== the states matrix ===== */
+.matrix{display:grid;grid-template-columns:120px repeat(5, max-content);gap:16px 22px;align-items:center}
+.mhead{font-family:var(--qr-font-family-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--qr-color-text-subtle)}
+.rlabel{font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);color:var(--qr-color-text-muted)}
+.row-note{grid-column:1 / -1;font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle);margin-top:4px}
+
+.cluster{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.cluster + .cluster{margin-top:16px}
+
+/* =========================================================================
+   Button — Quire's first component. Every value comes from @quire/tokens,
+   so it themes (light/dark) for free. Variants x states.
+   ========================================================================= */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--qr-space-200);
+  font-family:var(--qr-font-family-sans);
+  font-size:var(--qr-font-size-300);
+  font-weight:var(--qr-font-weight-medium);
+  letter-spacing:-0.005em;line-height:1;
+  min-height:var(--qr-size-control-md);
+  padding:0 var(--qr-space-400);
+  border:1px solid transparent;
+  border-radius:var(--qr-radius-control);
+  cursor:pointer;white-space:nowrap;
+  transition:background-color .12s ease, border-color .12s ease, color .12s ease;
+}
+.btn--sm{min-height:var(--qr-size-control-sm);padding:0 var(--qr-space-300);font-size:var(--qr-font-size-200)}
+
+.btn--primary{background:var(--qr-color-action-primary-default);color:var(--qr-color-action-primary-text)}
+.btn--primary:hover,.btn--primary.s-hover{background:var(--qr-color-action-primary-hover)}
+.btn--primary:active,.btn--primary.s-active{background:var(--qr-color-action-primary-hover)}
+
+.btn--secondary{background:var(--qr-color-surface-raised);border-color:var(--qr-color-action-secondary-border);color:var(--qr-color-action-secondary-text)}
+.btn--secondary:hover,.btn--secondary.s-hover{background:var(--qr-color-state-hover)}
+.btn--secondary:active,.btn--secondary.s-active{background:var(--qr-color-state-active-surface)}
+
+.btn--tertiary{background:transparent;color:var(--qr-color-action-tertiary-text);font-weight:var(--qr-font-weight-semibold)}
+.btn--tertiary:hover,.btn--tertiary.s-hover{background:var(--qr-color-state-hover)}
+.btn--tertiary:active,.btn--tertiary.s-active{background:var(--qr-color-state-active-surface)}
+
+.btn--destructive{background:var(--qr-color-action-destructive-default);color:var(--qr-color-action-destructive-text)}
+.btn--destructive:hover,.btn--destructive.s-hover{background:var(--qr-color-action-destructive-hover)}
+.btn--destructive:active,.btn--destructive.s-active{background:var(--qr-color-action-destructive-hover)}
+
+.btn:focus-visible,.btn.s-focus{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
+.btn:disabled,.btn.s-disabled{opacity:.42;cursor:not-allowed;pointer-events:none}
+
+/* theme toggle */
+#themeToggle{position:fixed;right:20px;bottom:20px;display:inline-flex;align-items:center;padding:10px 16px;border-radius:var(--qr-radius-control);border:1px solid var(--qr-color-border-strong);background:var(--qr-color-surface-nav);color:var(--qr-color-text-default);cursor:pointer;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);box-shadow:0 4px 14px rgba(0,0,0,.16);z-index:50}
+#themeToggle:hover{background:var(--qr-color-state-hover)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Quire · Components</div>
+  <h1>Button</h1>
+  <p class="lede">The first component, built entirely from <code>@quire/tokens</code> — so it themes light/dark for free (try the toggle). Four variants, every state. This is the source of truth, made visible.</p>
+
+  <section>
+    <div class="sec-label">Variants × states</div>
+    <div class="sec-title">The matrix</div>
+    <div class="matrix">
+      <div class="mhead"></div>
+      <div class="mhead">Default</div><div class="mhead">Hover</div><div class="mhead">Active</div><div class="mhead">Focus</div><div class="mhead">Disabled</div>
+
+      <div class="rlabel">Primary</div>
+      <button class="btn btn--primary">Save changes</button>
+      <button class="btn btn--primary s-hover">Save changes</button>
+      <button class="btn btn--primary s-active">Save changes</button>
+      <button class="btn btn--primary s-focus">Save changes</button>
+      <button class="btn btn--primary s-disabled">Save changes</button>
+
+      <div class="rlabel">Secondary</div>
+      <button class="btn btn--secondary">Cancel</button>
+      <button class="btn btn--secondary s-hover">Cancel</button>
+      <button class="btn btn--secondary s-active">Cancel</button>
+      <button class="btn btn--secondary s-focus">Cancel</button>
+      <button class="btn btn--secondary s-disabled">Cancel</button>
+
+      <div class="rlabel">Tertiary</div>
+      <button class="btn btn--tertiary">Learn more</button>
+      <button class="btn btn--tertiary s-hover">Learn more</button>
+      <button class="btn btn--tertiary s-active">Learn more</button>
+      <button class="btn btn--tertiary s-focus">Learn more</button>
+      <button class="btn btn--tertiary s-disabled">Learn more</button>
+
+      <div class="rlabel">Destructive</div>
+      <button class="btn btn--destructive">Delete</button>
+      <button class="btn btn--destructive s-hover">Delete</button>
+      <button class="btn btn--destructive s-active">Delete</button>
+      <button class="btn btn--destructive s-focus">Delete</button>
+      <button class="btn btn--destructive s-disabled">Delete</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Sizes</div>
+    <div class="sec-title">Medium &amp; small</div>
+    <div class="cluster">
+      <button class="btn btn--primary">Medium</button>
+      <button class="btn btn--secondary">Medium</button>
+      <button class="btn btn--primary btn--sm">Small</button>
+      <button class="btn btn--secondary btn--sm">Small</button>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Live</div>
+    <div class="sec-title">Real, interactive</div>
+    <p class="lede" style="margin-bottom:16px">These actually respond — hover, click, and tab to them to see focus.</p>
+    <div class="cluster">
+      <button class="btn btn--primary">Save changes</button>
+      <button class="btn btn--secondary">Cancel</button>
+      <button class="btn btn--tertiary">Learn more</button>
+      <button class="btn btn--destructive">Delete</button>
+    </div>
+  </section>
+</div>
+
+<button id="themeToggle">Switch to dark</button>
+<script>
+const tBtn = document.getElementById('themeToggle');
+function setTheme(mode){
+  document.documentElement.setAttribute('data-theme', mode);
+  tBtn.textContent = mode === 'dark' ? 'Switch to light' : 'Switch to dark';
+}
+setTheme(new URLSearchParams(location.search).get('theme') === 'dark' ? 'dark' : 'light');
+tBtn.onclick = () => setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+</script>
+</body>
+</html>

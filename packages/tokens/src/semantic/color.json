@@ -41,6 +41,11 @@
       },
       "tertiary": {
         "text": { "$value": "{color.ochre.600}", "$type": "color" }
+      },
+      "destructive": {
+        "default": { "$value": "{color.brick.400}", "$type": "color" },
+        "hover":   { "$value": "{color.brick.600}", "$type": "color" },
+        "text":    { "$value": "{color.neutral.0}",  "$type": "color" }
       }
     },
 
