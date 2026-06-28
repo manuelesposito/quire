@@ -7,17 +7,25 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- the canonical foundation: this nav now CONSUMES @quire/tokens -->
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
 <style>
 :root{
-  --canvas:#E8E5DC;
-  --bar:#F1EDE4;
-  --item-active:#E4DFD3;
-  --hover:rgba(0,0,0,.045);
-  --logo:#332E24;                 /* one calm monochrome ink for ALL marks */
-  --text:#211C14; --text-muted:#6C6457; --text-subtle:#9A8F7F;
-  --border:#D9D2C4;
-  --ochre-soft:#F1DEA0; --ochre:#CF9A2E;
-  --sans:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace; --serif:'Newsreader',serif;
+  /* local aliases mapped onto the token foundation — no hardcoded design values */
+  --canvas:      var(--qr-color-surface-canvas);
+  --bar:         var(--qr-color-surface-nav);
+  --item-active: var(--qr-color-state-active-surface);
+  --hover:       var(--qr-color-state-hover);
+  --logo:        var(--qr-color-text-default);
+  --text:        var(--qr-color-text-default);
+  --text-muted:  var(--qr-color-text-muted);
+  --text-subtle: var(--qr-color-text-subtle);
+  --border:      var(--qr-color-border-default);
+  --ochre-soft:  var(--qr-color-accent-soft);
+  --ochre:       var(--qr-color-accent-default);
+  --sans:        var(--qr-font-family-sans);
+  --mono:        var(--qr-font-family-mono);
+  --serif:       var(--qr-font-family-serif);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
@@ -37,27 +45,27 @@ body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-siz
 .hlogo.jp { width:16px;height:16px;-webkit-mask-image:url(logos/jetpack-mono.svg);mask-image:url(logos/jetpack-mono.svg)}
 
 /* ---------- product rail (hairline divider, same colour as panel) ---------- */
-.rail{width:78px;background:var(--bar);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:14px 0;flex-shrink:0}
+.rail{width:var(--qr-size-rail);background:var(--bar);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding:14px 0;flex-shrink:0}
 .rail .stack{display:flex;flex-direction:column;gap:4px;width:100%;align-items:center;flex:1}
 .prod{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:0;cursor:pointer;padding:5px 0;width:100%}
-.prod .sq{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;transition:background .12s}
+.prod .sq{width:42px;height:42px;border-radius:var(--qr-radius-card);display:flex;align-items:center;justify-content:center;transition:background .12s}
 .prod .lbl{font-size:9.5px;color:var(--text-subtle);letter-spacing:.01em}
 .prod:hover .sq{background:var(--hover)}
-.prod.active .sq{background:var(--ochre-soft)}
-.prod.active .logo{background-color:#5E430E}   /* dark ochre: accent-toned but reads on the light ochre square */
+.prod.active .sq{background:var(--qr-color-state-selected-surface)}
+.prod.active .logo{background-color:var(--qr-color-state-selected-mark)}   /* dark-ochre accent mark, from tokens */
 .prod.active .lbl{color:var(--text);font-weight:500}
 .add .sq{color:var(--text-subtle)}
 .add:hover .sq{background:var(--hover);color:var(--text-muted)}
 .add svg{width:18px;height:18px}
-.rail .acct{width:30px;height:30px;border-radius:50%;background:var(--logo);color:#EFE9DC;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;margin-top:8px}
+.rail .acct{width:30px;height:30px;border-radius:50%;background:var(--logo);color:var(--qr-color-text-inverse);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;margin-top:8px}
 
 /* ---------- contextual sidebar ---------- */
-.subnav{width:236px;background:var(--bar);border-right:1px solid var(--border);flex-shrink:0;padding:14px 14px;display:flex;flex-direction:column}
+.subnav{width:var(--qr-size-sidebar);background:var(--bar);border-right:1px solid var(--border);flex-shrink:0;padding:14px 14px;display:flex;flex-direction:column}
 .subnav .head{display:flex;align-items:center;gap:9px;padding:6px 8px 0;min-height:42px}
 .subnav .head .name{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:-0.01em;color:var(--text)}
 .subnav .sep{height:1px;background:var(--border);margin:11px -14px}
 .subnav #menu{display:flex;flex-direction:column;gap:3px}
-.subnav a{display:block;padding:7px 10px;border-radius:7px;color:var(--text-muted);text-decoration:none;font-size:13px;font-weight:450;cursor:pointer}
+.subnav a{display:block;padding:7px 10px;border-radius:var(--qr-radius-control);color:var(--text-muted);text-decoration:none;font-size:13px;font-weight:450;cursor:pointer}
 .subnav a:hover{background:var(--hover);color:var(--text)}
 .subnav a.active{background:var(--item-active);color:var(--text);font-weight:600}
 
@@ -66,7 +74,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-siz
 .content .ph{max-width:400px;color:var(--text-subtle)}
 .content .ph .big{font-family:var(--serif);font-size:26px;color:var(--text-muted);font-weight:500;margin-bottom:8px}
 .content .ph .small{font-size:13px;line-height:1.5}
-.content .ph .pill{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--text-muted);background:#0000000a;border:1px solid var(--border);padding:6px 10px;border-radius:6px}
+.content .ph .pill{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--text-muted);background:var(--hover);border:1px solid var(--border);padding:6px 10px;border-radius:var(--qr-radius-sm)}
 </style>
 </head>
 <body>
