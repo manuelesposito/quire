@@ -17,21 +17,26 @@
 body{font-family:var(--qr-font-family-sans);color:var(--qr-color-text-default);background:var(--qr-color-surface-canvas);
   -webkit-font-smoothing:antialiased;line-height:var(--qr-font-line-height-normal);font-size:var(--qr-font-size-400);
   letter-spacing:var(--qr-font-letter-spacing-normal);padding:72px 40px 120px}
-.wrap{max-width:760px;margin:0 auto}
+.wrap{max-width:720px;margin:0 auto}
 .eyebrow{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);letter-spacing:var(--qr-font-letter-spacing-normal);color:var(--qr-color-text-muted);margin-bottom:var(--qr-space-100)}
 
 /* hero */
 .hero{border-bottom:1px solid var(--qr-color-border-default);padding-bottom:var(--qr-space-1000);margin-bottom:var(--qr-space-1000)}
 h1{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-900);letter-spacing:var(--qr-font-letter-spacing-tight);line-height:1.05;margin:8px 0 var(--qr-space-600)}
-.northstar{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-regular);font-size:var(--qr-font-size-700);line-height:1.35;color:var(--qr-color-text-default);border-left:3px solid var(--qr-color-accent-strong);padding-left:var(--qr-space-500)}
-.northstar em{font-style:italic}
+.deck{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-regular);font-size:var(--qr-font-size-700);line-height:1.4;color:var(--qr-color-text-default);max-width:38ch}
+.deck .accent{color:var(--qr-color-accent-strong)}
 
 section{margin-top:var(--qr-space-1200)}
 .sec-label{font-family:var(--qr-font-family-serif);font-style:italic;font-size:var(--qr-font-size-600);color:var(--qr-color-text-muted);margin-bottom:var(--qr-space-400)}
 p{margin-bottom:var(--qr-space-400);max-width:64ch}
 p.lead{font-size:var(--qr-font-size-500);line-height:1.5}
 strong{font-weight:var(--qr-font-weight-semibold)}
+em{font-style:italic}
 .accent{color:var(--qr-color-accent-strong)}
+
+/* the earned North Star */
+.northstar{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-regular);font-size:var(--qr-font-size-700);line-height:1.35;color:var(--qr-color-text-default);border-left:3px solid var(--qr-color-accent-strong);padding-left:var(--qr-space-500);margin-top:var(--qr-space-500)}
+.northstar em{font-style:italic}
 
 /* beliefs */
 .beliefs{list-style:none;counter-reset:b;display:flex;flex-direction:column;gap:var(--qr-space-500);margin-top:var(--qr-space-200)}
@@ -66,36 +71,48 @@ strong{font-weight:var(--qr-font-weight-semibold)}
 
   <div class="hero">
     <div class="eyebrow">The design language</div>
-    <h1>What Quire is for</h1>
-    <div class="northstar">An everyday person's WordPress admin that feels like a <em>well-made book</em> — calm, coherent, and cared-for — not a committee's dashboard.</div>
+    <h1>Publishing is bookmaking.</h1>
+    <p class="deck">For most of human history, to publish meant to set pages and bind them — a craft of paper, ink, and care. WordPress is the press now. Somewhere in the wiring, its workshop started to look like a server room. <span class="accent">Quire is the argument that it shouldn't.</span></p>
   </div>
 
   <section>
-    <div class="sec-label">The name is the idea</div>
-    <p class="lead">A <strong>quire</strong> is a bookbinding term: a gathering of folded sheets, bound into a book.</p>
-    <p>WordPress's admin today is loose, mismatched pages from four different printers — wp-admin, Gutenberg, WooCommerce, Jetpack — never bound together. Quire's whole reason for being is to <span class="accent">gather the scattered pages into one coherent, well-bound whole.</span></p>
+    <div class="sec-label">What the interface forgot</div>
+    <p>A <strong>quire</strong> is a bookbinding term — a gathering of folded sheets, bound into a book. It isn't a clever name; it's the literal output of what you do here. You write a page, you arrange it, you send it to readers. That is bookmaking, unchanged in spirit since Gutenberg.</p>
+    <p>But open the admin and none of that is visible. You meet a control panel — wp-admin, Gutenberg, WooCommerce, Jetpack, four engineering teams' dashboards bolted edge to edge. The interface dresses an act of authorship in the cold clothes of a machine room. <strong>It lies about what it's for.</strong> Quire's whole job is to make the tool tell the truth again.</p>
   </section>
 
   <section>
-    <div class="sec-label">What we believe</div>
+    <div class="sec-label">Two shores, one bridge</div>
+    <p>We're not the first to reach for the book. Anthropic wraps its AI — an abstract, statistical, frankly inhuman thing — in paper, serifs, and the language of the library. The warmth there is <em>load-bearing</em>: it argues that a strange machine is in service of human thought. Bookishness humanizes the machine.</p>
+    <p>Quire reaches for the same book from the opposite shore. Anthropic warms something that was <em>never</em> human, to make it approachable. We warm something that <em>always was</em> human and got mechanized, to give it back. <span class="accent">Same bridge, opposite banks</span> — which is why the two can feel alike while starting from completely different places.</p>
+  </section>
+
+  <section>
+    <div class="sec-label">Warmth is a position, not a mood</div>
+    <p>This is a choice with an argument behind it. The web underneath — the stack, the plugins, the endless churn — is cold, fast, and disposable. We answer it on purpose with the opposite: the qualities of a <strong>made object</strong>. Warm putty paper, not white. A real typeface with a voice. Hairline borders instead of the weightless glow of an app. One quiet accent; nothing shouting.</p>
+    <p>We're building an admin meant to <strong>age</strong> — for a craft that is thousands of years old — in an industry that worships whatever shipped this morning. The calm isn't decoration. It's the position.</p>
+  </section>
+
+  <section>
+    <div class="sec-label">For the person at the keyboard</div>
+    <p>And it's for someone specific: a writer, a shopkeeper, a teacher, a volunteer — <em>not</em> an engineer. Today's admin makes them feel they're operating machinery they don't understand. Quire's job is to return the feeling the act deserves: <span class="accent">dignity</span>. You are not configuring a system. You are tending your own publication.</p>
+    <div class="northstar">The place where you publish should feel like the craft it is — a warm, ordered workshop that's <em>yours</em> — not a control panel you operate.</div>
+  </section>
+
+  <section>
+    <div class="sec-label">What this commits us to</div>
     <ul class="beliefs">
       <li><div><span class="bt">Coherence is respect.</span><div class="bd">Every clashing button is a small tax on someone's attention and confidence. Making everything mean one thing is how we respect the person using it.</div></div></li>
       <li><div><span class="bt">Calm is the feature.</span><div class="bd">The work is subtraction — fewer colours, fewer styles, less noise. A quiet screen is a finished screen. We never add a control to solve a problem we could remove.</div></div></li>
-      <li><div><span class="bt">Made like a book, not a form.</span><div class="bd">Warm paper, a real typeface, craft in the small things. Software can carry the dignity of a well-made physical object — and it should, because the people using it deserve that care.</div></div></li>
-      <li><div><span class="bt">For the everyday owner.</span><div class="bd">Not developers, not agencies — the shop owner, the writer, the volunteer who never chose to learn an admin panel. They deserve one that doesn't punish them.</div></div></li>
-      <li><div><span class="bt">Built to age, not to trend.</span><div class="bd">Bookish over fashionable — meant to feel right in ten years, not novel for one. This is why "not generic" matters: generic is disposable.</div></div></li>
+      <li><div><span class="bt">Made like a book, not a form.</span><div class="bd">Warm paper, a real typeface, craft in the small things. The dignity of a made object, because the people using it deserve that care.</div></div></li>
+      <li><div><span class="bt">Built to age, not to trend.</span><div class="bd">Bookish over fashionable — meant to feel right in ten years, not novel for one. Generic is disposable; we are not building disposable.</div></div></li>
       <li><div><span class="bt">A commons, not a product.</span><div class="bd">Open, GPL, owned by the community that runs a large share of the web. Quire answers to no vendor.</div></div></li>
     </ul>
   </section>
 
   <section>
-    <div class="sec-label">The feel</div>
-    <p>Warm putty paper, not white — the colour of an old page. Surfaces separate by tone and a hairline, never by drop shadow; shadow is saved for things that truly float. A muted, vintage <em>almanac</em> palette where <strong>one warm accent</strong> does the emphasis and nothing else shouts. Generous spacing, few things on screen at once. The emotion we're aiming for is <span class="accent">reassurance</span> — the calm of a well-made book, for someone who never asked to learn an admin panel.</p>
-  </section>
-
-  <section>
     <div class="sec-label">Typography — three voices, three jobs</div>
-    <p>Type carries most of the feeling. Quire uses three families, each with one clear job, and keeps strict discipline between them — that restraint is what keeps a dense screen calm.</p>
+    <p>Type carries most of the feeling, so it carries most of the argument. Three families, each with one clear job, and strict discipline between them — that restraint is what keeps a dense screen calm.</p>
 
     <div class="type">
 
@@ -103,7 +120,7 @@ strong{font-weight:var(--qr-font-weight-semibold)}
         <div class="spec__show">
           <div class="spec__role">Newsreader — the voice</div>
           <div class="show-serif">What a cleaner WordPress admin feels like<br><span class="it">warm, calm, and deliberate</span></div>
-          <div class="spec__why">A warm, literary serif made for reading on screens, with optical sizing so it stays graceful from a caption to a headline. It carries Quire's character: page titles, display headings, and the <em>italic section labels</em> that read like a book's running-heads. Reserved on purpose — used where character matters, so it never becomes wallpaper.</div>
+          <div class="spec__why">A warm, literary serif made for reading on screens, with optical sizing so it stays graceful from a caption to a headline. It carries the bookish voice: page titles, display headings, and the <em>italic section labels</em> that read like a book's running-heads. Reserved on purpose — used where character matters, so it never becomes wallpaper.</div>
         </div>
         <div class="spec__meta"><b>Newsreader</b> · serif · Google Fonts · weights 400 / 500 / 600 · roman + italic · optical sizing</div>
       </div>
@@ -112,7 +129,7 @@ strong{font-weight:var(--qr-font-weight-semibold)}
         <div class="spec__show">
           <div class="spec__role">Inter — the work</div>
           <div class="show-sans">The everyday working text — calm and dense, perfectly legible at small sizes.<br><span class="small">Buttons, labels, table data, settings rows, help text — the heavy lifting.</span></div>
-          <div class="spec__why">A neutral, humanist sans built for interfaces: exceptionally legible small, calm in dense layouts. It does the everyday work so the serif can stay special. If the serif is Quire's voice, Inter is its hands.</div>
+          <div class="spec__why">A neutral, humanist sans built for interfaces: exceptionally legible small, calm in dense layouts. It does the everyday work so the serif can stay special. If the serif is the voice, Inter is the hands.</div>
         </div>
         <div class="spec__meta"><b>Inter</b> · sans-serif · Google Fonts · weights 400 / 450 / 500 / 600 · the UI workhorse</div>
       </div>
@@ -120,8 +137,8 @@ strong{font-weight:var(--qr-font-weight-semibold)}
       <div class="spec">
         <div class="spec__show">
           <div class="spec__role">IBM Plex Mono — the technical</div>
-          <div class="show-mono"><span class="cmt">// only where something is literally technical</span><br><span class="kw">add_filter</span>( 'quire_tokens', … )<br>PERMALINKS · ⌘K · color.accent.strong</div>
-          <div class="spec__why">A monospace with quiet character, used only for genuinely technical things: code, identifiers, keyboard keys, token names. It signals "this is machinery" — never decoration, never body text.</div>
+          <div class="show-mono"><span class="cmt">// only where something is literally technical</span><br><span class="kw">add_filter</span>( 'quire_tokens', … )<br>⌘K · color.accent.strong</div>
+          <div class="spec__why">A monospace with quiet character, used only for genuinely technical things: code, identifiers, keyboard keys, token names. It signals "this is machinery" — never decoration, never body text. (It's why the old mono labels felt wrong: they dressed plain words as code.)</div>
         </div>
         <div class="spec__meta"><b>IBM Plex Mono</b> · monospace · Google Fonts · weights 400 / 500 · technical only</div>
       </div>
@@ -134,7 +151,7 @@ strong{font-weight:var(--qr-font-weight-semibold)}
 
   <section>
     <div class="sec-label">Where we're going</div>
-    <p>Today Quire is a coherent skin over the existing admin. The North Star is a genuine reimagining of what running a WordPress site feels like. At every stage the immutable core is the <em>feeling</em> — calm, bound, warm, made with care.</p>
+    <p>Today Quire is a coherent skin over the existing admin. The longer arc is a genuine reimagining of what running a WordPress site feels like — but at every stage the immutable core is the <em>feeling</em>: the workshop, not the server room.</p>
   </section>
 
   <div class="foot">
