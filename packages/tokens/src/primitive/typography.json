@@ -1,7 +1,7 @@
 {
   "font": {
     "family": {
-      "serif": { "$value": "Newsreader, Georgia, serif", "$type": "fontFamily" },
+      "serif": { "$value": "'Libre Baskerville', Georgia, serif", "$type": "fontFamily" },
       "sans":  { "$value": "Inter, system-ui, sans-serif", "$type": "fontFamily" },
       "mono":  { "$value": "'IBM Plex Mono', ui-monospace, monospace", "$type": "fontFamily" }
     },

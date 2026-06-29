@@ -11,7 +11,7 @@ The build (`pnpm --filter @quire/tokens build`) compiles them via Style Dictiona
 ```
 primitive/   raw values, named by what they are
   color.json        warm neutral ramp · ochre accent · brick/sage/slate "almanac" hues
-  typography.json   families (Newsreader · Inter · IBM Plex Mono) · size/weight/line-height/letter-spacing
+  typography.json   families (Libre Baskerville · Inter · IBM Plex Mono) · size/weight/line-height/letter-spacing
   dimension.json    4px space scale · radius · border-width · sizing (controls, rail, sidebar)
 
 semantic/    roles, named by purpose — what components consume

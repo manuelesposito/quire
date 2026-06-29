@@ -96,7 +96,7 @@ The four pillars of the feel:
   info). WordPress's cold indigo is gone. *(The accent itself — warm ochre vs. cooler slate —
   is under active review; the live contrast check on the Tokens screen is part of deciding
   it, since legibility on warm paper is a factor.)*
-- **Three typefaces, three jobs.** **Newsreader** (serif) for character and headings;
+- **Three typefaces, three jobs.** **Libre Baskerville** (serif) for character and headings;
   **Inter** (sans) for dense everyday reading; **IBM Plex Mono** for code and identifiers only.
 - **Calm and deliberate.** Roomy spacing, few options at once, nothing shouting. The
   emotional target is *reassuring* — for an everyday owner, not a power user.
