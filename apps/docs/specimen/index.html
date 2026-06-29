@@ -3,122 +3,115 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Quire — Foundation Specimen v0.2</title>
+<title>Quire — Foundation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- The real source of truth. Everything below reads from these. -->
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
 <style>
 /* =========================================================================
-   Quire — Foundation Specimen v0.2  (DRAFT — react to it)
-   Bookish, not cloth: warm putty/oatmeal paper (the 81k page color), a muted
-   "almanac" palette (ochre lead + brick/sage/slate), serif = Newsreader,
-   calm INK actions with ochre used as a highlighter — distinct from Claude.
+   Quire — Foundation specimen
+   Bookish, not cloth: warm paper, a muted "almanac" palette (ochre accent +
+   brick/sage/slate status), Newsreader for character, calm ink actions with
+   ochre used like a highlighter. Every value here is a live token — change a
+   token and this page changes with it. No hand-typed palette.
    ========================================================================= */
-:root{
-  /* surfaces — warm putty/oatmeal paper (from the Anthropic 81k page) */
-  --qr-canvas:#E8E5DC;
-  --qr-raised:#F3F0E9;
-  --qr-sunken:#DDD8CC;
-  /* ink — warm near-black */
-  --qr-ink:#211C14;
-  --qr-text:#211C14;
-  --qr-text-muted:#6C6457;
-  --qr-text-subtle:#988D7D;
-  /* hairlines */
-  --qr-border:#D8D1C3;
-  --qr-border-strong:#C7BBA7;
-  /* bookish "almanac" palette — muted, vintage */
-  --qr-ochre:#CF9A2E;        --qr-ochre-deep:#B07F1E;  --qr-ochre-soft:#F0DC9B;
-  --qr-brick:#AC5638;        --qr-brick-soft:#E8CDBF;
-  --qr-sage:#7C8856;         --qr-sage-soft:#D9DCC2;
-  --qr-slate:#5C6B79;        --qr-slate-soft:#CDD4DA;
-  /* actions — calm ink (like the page's CTAs), ochre as highlight */
-  --qr-action:#232019;       --qr-action-hover:#3A352B;  --qr-on-action:#F3F0E9;
-  /* type */
-  --qr-sans:'Inter',system-ui,sans-serif;
-  --qr-mono:'IBM Plex Mono',ui-monospace,monospace;
-  --qr-serif:'Newsreader',serif;
-  --qr-r-control:6px; --qr-r-card:10px;
-}
 *{box-sizing:border-box;margin:0;padding:0}
-html{background:var(--qr-canvas)}
-body{font-family:var(--qr-sans);color:var(--qr-text);background:var(--qr-canvas);
-  -webkit-font-smoothing:antialiased;line-height:1.45;font-size:14px;letter-spacing:-0.006em;padding:48px 40px 72px}
+body{font-family:var(--qr-font-family-sans);color:var(--qr-color-text-default);background:var(--qr-color-surface-canvas);
+  -webkit-font-smoothing:antialiased;line-height:var(--qr-font-line-height-normal);font-size:var(--qr-font-size-400);
+  letter-spacing:var(--qr-font-letter-spacing-normal);padding:48px 40px 96px}
 .wrap{max-width:1080px;margin:0 auto}
-.eyebrow{font-family:var(--qr-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--qr-text-subtle)}
-h1.title{font-family:var(--qr-serif);font-weight:500;font-size:42px;letter-spacing:-0.01em;margin:6px 0 6px}
-.lede{color:var(--qr-text-muted);max-width:62ch;font-size:14px}
-.note{display:inline-block;margin-top:14px;font-family:var(--qr-mono);font-size:11px;color:var(--qr-text-muted);background:var(--qr-sunken);border:1px solid var(--qr-border);padding:6px 10px;border-radius:6px}
-section{margin-top:42px;border-top:1px solid var(--qr-border);padding-top:22px}
-.sec-label{font-family:var(--qr-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--qr-text-subtle);margin-bottom:16px}
-.swatches{display:flex;flex-wrap:wrap;gap:10px}
-.sw{width:120px;border:1px solid var(--qr-border);border-radius:8px;overflow:hidden;background:var(--qr-raised)}
-.sw .chip{height:52px}
-.sw .meta{padding:7px 9px}
-.sw .name{font-size:12px;font-weight:500}
-.sw .hex{font-family:var(--qr-mono);font-size:10.5px;color:var(--qr-text-muted);text-transform:uppercase}
+.eyebrow{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle)}
+h1.title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-900);letter-spacing:var(--qr-font-letter-spacing-tight);margin:6px 0 8px}
+.lede{color:var(--qr-color-text-muted);max-width:64ch;font-size:var(--qr-font-size-400)}
+.back{display:inline-block;margin-bottom:var(--qr-space-400);font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle);text-decoration:none}
+.back:hover{color:var(--qr-color-text-default)}
+section{margin-top:var(--qr-space-1200);border-top:1px solid var(--qr-color-border-default);padding-top:var(--qr-space-600)}
+.sec-label{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle);margin-bottom:var(--qr-space-500)}
+.sec-note{font-size:var(--qr-font-size-300);color:var(--qr-color-text-muted);margin:calc(-1 * var(--qr-space-200)) 0 var(--qr-space-500)}
+
+/* swatches — chip color is a live token; the caption names the role + primitive */
+.swatches{display:flex;flex-wrap:wrap;gap:var(--qr-space-300)}
+.sw{width:132px;border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-md);overflow:hidden;background:var(--qr-color-surface-raised)}
+.sw .chip{height:56px;border-bottom:1px solid var(--qr-color-border-default)}
+.sw .meta{padding:8px 10px}
+.sw .role{font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-medium)}
+.sw .maps{font-family:var(--qr-font-family-mono);font-size:10.5px;color:var(--qr-color-text-subtle);margin-top:2px}
 
 /* type */
-.serif-disp{font-family:var(--qr-serif);font-weight:500;font-size:38px;letter-spacing:-0.01em;line-height:1.08}
-.serif-sub{font-family:var(--qr-serif);font-weight:400;font-size:18px;color:var(--qr-text-muted);margin-top:8px}
-.hl{background:var(--qr-ochre-soft);box-shadow:0 0 0 2px var(--qr-ochre-soft);border-radius:2px}
-.scale > div{display:flex;align-items:baseline;gap:14px;padding:5px 0}
-.scale .px{font-family:var(--qr-mono);font-size:10.5px;color:var(--qr-text-subtle);width:90px}
+.serif-disp{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-800);letter-spacing:var(--qr-font-letter-spacing-tight);line-height:1.08}
+.serif-sub{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-regular);font-size:var(--qr-font-size-500);color:var(--qr-color-text-muted);margin-top:8px}
+.hl{background:var(--qr-color-accent-soft);box-shadow:0 0 0 2px var(--qr-color-accent-soft);border-radius:2px}
+.scale > div{display:flex;align-items:baseline;gap:16px;padding:6px 0}
+.scale .px{font-family:var(--qr-font-family-mono);font-size:10.5px;color:var(--qr-color-text-subtle);width:120px;flex:none}
 
-/* controls */
-.controls{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.card{background:var(--qr-raised);border:1px solid var(--qr-border);border-radius:var(--qr-r-card);padding:18px}
-.card h3{font-family:var(--qr-serif);font-weight:500;font-size:18px;margin-bottom:14px}
-.btn{font-family:var(--qr-sans);font-size:13px;font-weight:500;border-radius:var(--qr-r-control);padding:7px 14px;border:1px solid transparent;cursor:pointer;letter-spacing:-0.005em}
-.btn-primary{background:var(--qr-action);color:var(--qr-on-action)}
-.btn-secondary{background:var(--qr-raised);border-color:var(--qr-border-strong);color:var(--qr-text)}
-.btn-tertiary{background:transparent;color:var(--qr-ochre-deep);font-weight:600}
-.btn-brick{background:var(--qr-brick);color:#fff}
-.btn-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.tag{font-family:var(--qr-mono);font-size:10px;color:var(--qr-text-subtle);text-transform:uppercase;letter-spacing:0.1em;margin-top:10px}
-.seg{display:inline-flex;background:var(--qr-sunken);border:1px solid var(--qr-border);border-radius:7px;padding:2px}
-.seg button{font-family:var(--qr-sans);font-size:12px;border:0;background:transparent;color:var(--qr-text-muted);padding:5px 12px;border-radius:5px;cursor:pointer}
-.seg button.on{background:var(--qr-raised);color:var(--qr-text);box-shadow:0 1px 2px #0000000f;font-weight:500}
-.row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--qr-border)}
+/* sample controls — real component look, all tokens */
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:var(--qr-space-600)}
+.card{background:var(--qr-color-surface-raised);border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-card);padding:var(--qr-space-500)}
+.card h3{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-500);margin-bottom:var(--qr-space-400)}
+.btn{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);border-radius:var(--qr-radius-control);padding:7px 14px;border:1px solid transparent;cursor:pointer}
+.btn-primary{background:var(--qr-color-action-primary-default);color:var(--qr-color-action-primary-text)}
+.btn-secondary{background:var(--qr-color-surface-raised);border-color:var(--qr-color-border-strong);color:var(--qr-color-text-default)}
+.btn-tertiary{background:transparent;color:var(--qr-color-accent-strong);font-weight:var(--qr-font-weight-semibold)}
+.btn-row{display:flex;gap:var(--qr-space-200);align-items:center;flex-wrap:wrap}
+.tag{font-family:var(--qr-font-family-mono);font-size:10px;color:var(--qr-color-text-subtle);text-transform:uppercase;letter-spacing:var(--qr-font-letter-spacing-wide);margin-top:var(--qr-space-300)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--qr-color-border-default)}
 .row:last-child{border-bottom:0}
-.row .lbl{font-size:13px;font-weight:500}
-.row .desc{font-size:12px;color:var(--qr-text-muted);margin-top:1px}
-input.qr{font-family:var(--qr-sans);font-size:13px;padding:7px 10px;border:1px solid var(--qr-border-strong);border-radius:6px;background:var(--qr-raised);color:var(--qr-text);width:150px}
-input.qr:focus{outline:2px solid var(--qr-ochre-soft);border-color:var(--qr-ochre)}
-.switch{width:38px;height:22px;background:var(--qr-action);border-radius:99px;position:relative;cursor:pointer}
-.switch::after{content:"";position:absolute;top:2px;left:18px;width:18px;height:18px;background:#fff;border-radius:50%}
-.switch.off{background:var(--qr-border-strong)}
+.row .lbl{font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium)}
+.row .desc{font-size:var(--qr-font-size-200);color:var(--qr-color-text-muted);margin-top:1px}
+input.qr{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);padding:7px 10px;border:1px solid var(--qr-color-border-strong);border-radius:var(--qr-radius-control);background:var(--qr-color-surface-raised);color:var(--qr-color-text-default);width:150px}
+input.qr:focus{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px;border-color:var(--qr-color-border-strong)}
+/* toggle — ON uses the control ink, per the grammar (form selection = ink, not ochre) */
+.switch{width:38px;height:22px;background:var(--qr-color-control-on);border-radius:99px;position:relative;cursor:pointer}
+.switch::after{content:"";position:absolute;top:2px;left:18px;width:18px;height:18px;background:var(--qr-color-control-on-fg);border-radius:50%;box-shadow:var(--qr-elevation-raised)}
+.switch.off{background:var(--qr-color-border-strong)}
 .switch.off::after{left:2px}
-.notice{font-size:12px;color:#6a4f1c;background:var(--qr-ochre-soft);border:1px solid #e3cd84;border-left:3px solid var(--qr-ochre);border-radius:6px;padding:9px 12px;margin-top:12px}
-a.lnk{color:var(--qr-ochre-deep);text-decoration:underline;text-underline-offset:2px;font-weight:500}
+.notice{font-size:var(--qr-font-size-200);color:var(--qr-color-feedback-warning-text);background:var(--qr-color-feedback-warning-surface);border:1px solid var(--qr-color-feedback-warning-border);border-left:3px solid var(--qr-color-accent-strong);border-radius:var(--qr-radius-control);padding:9px 12px;margin-top:12px}
+a.lnk{color:var(--qr-color-accent-strong);text-decoration:underline;text-underline-offset:2px;font-weight:var(--qr-font-weight-medium)}
+
+#themeToggle{position:fixed;right:20px;bottom:20px;padding:10px 16px;border-radius:var(--qr-radius-control);border:1px solid var(--qr-color-border-strong);background:var(--qr-color-surface-nav);color:var(--qr-color-text-default);cursor:pointer;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);box-shadow:var(--qr-elevation-overlay);z-index:50}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="eyebrow">Quire · Foundation</div>
-  <h1 class="title">Foundation Specimen — v0.2</h1>
-  <p class="lede">Bookish, not cloth. Warm putty/oatmeal paper (the color of the 81k page), a muted “almanac” palette, Newsreader for character, and <strong>calm ink actions with ochre used like a highlighter</strong> — the bookish principle, not a Claude copy.</p>
-  <span class="note">⚠ DRAFT values — for judging the feel. Dialing: paper warmth, the ochre, ink-vs-color actions.</span>
+  <a class="back" href="home.html">← Start</a>
+  <div class="eyebrow">Quire · 01 Foundation</div>
+  <h1 class="title">Foundation</h1>
+  <p class="lede">The look itself — warm paper, a muted “almanac” palette with ochre as the accent, Newsreader for character, and calm ink actions. <strong>Every swatch and control on this page reads from the live tokens</strong> — this is the real source of truth, not a sketch of it.</p>
 
   <section>
-    <div class="sec-label">Surfaces — warm putty paper, not cream, not white</div>
+    <div class="sec-label">Surfaces — warm paper, in layers</div>
+    <div class="sec-note">Borders do the separating, not shadows. Shadows are reserved for things that float (menus, modals).</div>
     <div class="swatches">
-      <div class="sw"><div class="chip" style="background:#E8E5DC"></div><div class="meta"><div class="name">canvas</div><div class="hex">#E8E5DC</div></div></div>
-      <div class="sw"><div class="chip" style="background:#F3F0E9"></div><div class="meta"><div class="name">raised</div><div class="hex">#F3F0E9</div></div></div>
-      <div class="sw"><div class="chip" style="background:#DDD8CC"></div><div class="meta"><div class="name">sunken</div><div class="hex">#DDD8CC</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--qr-color-surface-canvas)"></div><div class="meta"><div class="role">canvas</div><div class="maps">neutral.100 · #E8E5DC</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--qr-color-surface-raised)"></div><div class="meta"><div class="role">raised</div><div class="maps">neutral.50 · #F3F0E9</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--qr-color-surface-nav)"></div><div class="meta"><div class="role">nav</div><div class="maps">neutral.75 · #F1EDE4</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--qr-color-surface-sunken)"></div><div class="meta"><div class="role">sunken</div><div class="maps">neutral.150 · #DDD8CC</div></div></div>
     </div>
   </section>
 
   <section>
-    <div class="sec-label">Bookish “almanac” palette — muted, vintage (ochre leads)</div>
+    <div class="sec-label">Ink &amp; text — warm near-black, three weights</div>
     <div class="swatches">
-      <div class="sw"><div class="chip" style="background:#CF9A2E"></div><div class="meta"><div class="name">ochre · lead</div><div class="hex">#CF9A2E</div></div></div>
-      <div class="sw"><div class="chip" style="background:#AC5638"></div><div class="meta"><div class="name">brick</div><div class="hex">#AC5638</div></div></div>
-      <div class="sw"><div class="chip" style="background:#7C8856"></div><div class="meta"><div class="name">sage</div><div class="hex">#7C8856</div></div></div>
-      <div class="sw"><div class="chip" style="background:#5C6B79"></div><div class="meta"><div class="name">slate</div><div class="hex">#5C6B79</div></div></div>
-      <div class="sw"><div class="chip" style="background:#232019"></div><div class="meta"><div class="name">ink · action</div><div class="hex">#232019</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--qr-color-text-default)"></div><div class="meta"><div class="role">text · default</div><div class="maps">neutral.900 · #211C14</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--qr-color-text-muted)"></div><div class="meta"><div class="role">text · muted</div><div class="maps">neutral.600 · #6C6457</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--qr-color-text-subtle)"></div><div class="meta"><div class="role">text · subtle</div><div class="maps">neutral.400 · #9A8F7F</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--qr-color-border-strong)"></div><div class="meta"><div class="role">border · strong</div><div class="maps">neutral.300 · #C7BBA7</div></div></div>
     </div>
-    <div style="margin-top:12px;font-size:13px;color:var(--qr-text-muted)">Gone: WordPress's cold indigo <code style="font-family:var(--qr-mono)">#3858E9</code>. The terracotta is dialed back into this muted family so we're bookish, not a clay copy.</div>
+  </section>
+
+  <section>
+    <div class="sec-label">The accent &amp; the status family — muted “almanac”</div>
+    <div class="sec-note">Ochre is the <em>accent</em> — links, highlights, focus. The others carry meaning only: sage = success, ochre = warning, brick = danger, slate = info. WordPress’s cold indigo <code style="font-family:var(--qr-font-family-mono)">#3858E9</code> is gone.</div>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:var(--qr-color-accent-strong)"></div><div class="meta"><div class="role">ochre · accent</div><div class="maps">ochre.600 · #A87B1C</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--qr-color-feedback-danger-border)"></div><div class="meta"><div class="role">brick · danger</div><div class="maps">brick.400 · #AC5638</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--qr-color-feedback-success-border)"></div><div class="meta"><div class="role">sage · success</div><div class="maps">sage.400 · #7C8856</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--qr-color-feedback-info-border)"></div><div class="meta"><div class="role">slate · info</div><div class="maps">slate.400 · #5C6B79</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--qr-color-action-primary-default)"></div><div class="meta"><div class="role">ink · action</div><div class="maps">neutral.900 · #211C14</div></div></div>
+    </div>
   </section>
 
   <section>
@@ -130,16 +123,16 @@ a.lnk{color:var(--qr-ochre-deep);text-decoration:underline;text-underline-offset
   <section>
     <div class="sec-label">Working layer — Inter + IBM Plex Mono</div>
     <div class="scale">
-      <div><span class="px">page-title 28</span><span style="font-size:28px;font-weight:600;letter-spacing:-0.015em">Settings</span></div>
-      <div><span class="px">section 18</span><span style="font-size:18px;font-weight:600;letter-spacing:-0.01em">General</span></div>
-      <div><span class="px">body 14</span><span style="font-size:14px">The everyday working text — calm and dense, legible at small sizes.</span></div>
-      <div><span class="px">label 13</span><span style="font-size:13px;font-weight:500">Site title</span></div>
-      <div><span class="px">mono-label 11</span><span style="font-family:var(--qr-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--qr-text-muted)">Permalinks</span></div>
+      <div><span class="px">title · size-700</span><span style="font-size:var(--qr-font-size-700);font-weight:var(--qr-font-weight-semibold);letter-spacing:var(--qr-font-letter-spacing-tight)">Settings</span></div>
+      <div><span class="px">section · size-500</span><span style="font-size:var(--qr-font-size-500);font-weight:var(--qr-font-weight-semibold);letter-spacing:var(--qr-font-letter-spacing-tight)">General</span></div>
+      <div><span class="px">body · size-400</span><span style="font-size:var(--qr-font-size-400)">The everyday working text — calm and dense, legible at small sizes.</span></div>
+      <div><span class="px">label · size-300</span><span style="font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium)">Site title</span></div>
+      <div><span class="px">mono · size-100</span><span style="font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-muted)">Permalinks</span></div>
     </div>
   </section>
 
   <section>
-    <div class="sec-label">Controls — dense, ink actions, ochre highlights</div>
+    <div class="sec-label">Controls — ink actions, ochre highlights</div>
     <div class="controls">
       <div class="card">
         <h3>Actions</h3>
@@ -148,16 +141,10 @@ a.lnk{color:var(--qr-ochre-deep);text-decoration:underline;text-underline-offset
           <button class="btn btn-secondary">Cancel</button>
           <button class="btn btn-tertiary">Learn more</button>
         </div>
-        <div class="tag">Recommended: calm ink primary (like the page's black CTAs)</div>
-        <div class="btn-row" style="margin-top:14px">
-          <button class="btn btn-brick">Save changes</button>
-          <span style="font-size:12px;color:var(--qr-text-muted)">— alt: muted brick, if you want color in the action</span>
+        <div class="tag">Primary = calm ink. Ochre stays the accent, never the button.</div>
+        <div class="btn-row" style="margin-top:18px">
+          <span style="font-size:var(--qr-font-size-300);color:var(--qr-color-text-muted)">Links &amp; selected use ochre — </span><a class="lnk" href="#">read the guide</a>
         </div>
-        <div class="btn-row" style="margin-top:16px">
-          <div class="seg"><button class="on">Light</button><button>Dark</button></div>
-          <div class="seg"><button class="on">All</button><button>Published</button><button>Drafts</button></div>
-        </div>
-        <div class="tag" style="margin-top:14px">Links &amp; selected use ochre: <a class="lnk" href="#">read the guide</a></div>
       </div>
       <div class="card">
         <h3>Settings rows</h3>
@@ -170,5 +157,13 @@ a.lnk{color:var(--qr-ochre-deep);text-decoration:underline;text-underline-offset
   </section>
 
 </div>
+
+<button id="themeToggle">Switch to dark</button>
+<script>
+const tBtn=document.getElementById('themeToggle');
+function setTheme(m){document.documentElement.setAttribute('data-theme',m);tBtn.textContent=m==='dark'?'Switch to light':'Switch to dark';}
+setTheme(new URLSearchParams(location.search).get('theme')==='dark'?'dark':'light');
+tBtn.onclick=()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+</script>
 </body>
 </html>
