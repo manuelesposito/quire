@@ -46,9 +46,9 @@ section{margin-top:var(--qr-space-1200);border-top:1px solid var(--qr-color-bord
 .sw{width:108px;border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-sm);overflow:hidden;background:var(--qr-color-surface-raised)}
 .sw .chip{height:46px;border-bottom:1px solid var(--qr-color-border-default)}
 .sw .meta{padding:6px 8px}
-.sw .meta .name{font-size:11px;display:block}
+.sw .meta .name{font-size:11px;display:block;line-height:1.3;overflow-wrap:anywhere}
 .sw .meta .val{font-size:10px;display:block;margin-top:1px}
-.grid-roles{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:var(--qr-space-200);margin-top:var(--qr-space-300)}
+.grid-roles{display:grid;grid-template-columns:repeat(auto-fill,minmax(126px,1fr));gap:var(--qr-space-200);margin-top:var(--qr-space-300)}
 .role-group{margin-top:var(--qr-space-500)}
 .role-group > .ramp-title{margin-top:0}
 
@@ -208,7 +208,7 @@ section{margin-top:var(--qr-space-1200);border-top:1px solid var(--qr-color-bord
     ROLES[grp].forEach(function(role){
       var name='--qr-color-'+grp+'-'+role;
       row.appendChild(el('<div class="sw"><div class="chip" style="background:var('+name+')"></div>'+
-        '<div class="meta"><span class="name">'+grp+'.'+role+'</span><span class="val">'+hex(resolveColor(name))+'</span></div></div>'));
+        '<div class="meta"><span class="name">'+role+'</span><span class="val">'+hex(resolveColor(name))+'</span></div></div>'));
     });
     rolesEl.appendChild(group);
   });
