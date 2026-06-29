@@ -358,6 +358,44 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
 .acc-body{padding:0 var(--qr-space-400) var(--qr-space-400);color:var(--qr-color-text-muted);font-size:var(--qr-font-size-300);line-height:var(--qr-font-line-height-normal)}
 .acc-item:not(.is-open) .acc-body{display:none}
 
+/* =========================================================================
+   Final specialised: LineChart · Stepper · Tree · Code editor
+   ========================================================================= */
+.linechart svg{width:100%;height:110px;display:block;margin-top:var(--qr-space-300)}
+.linechart .area{fill:var(--qr-color-state-hover)}
+.linechart .line{fill:none;stroke:var(--qr-color-text-muted);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.linechart .pt{fill:var(--qr-color-accent-default)}
+
+.stepper{display:flex;align-items:flex-start;max-width:560px}
+.step{flex:1;display:flex;flex-direction:column;align-items:center;position:relative}
+.step__dot{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-semibold);border:1.5px solid var(--qr-color-border-strong);background:var(--qr-color-surface-raised);color:var(--qr-color-text-subtle);z-index:1}
+.step.done .step__dot{background:var(--qr-color-control-on);border-color:var(--qr-color-control-on);color:var(--qr-color-control-on-fg)}
+.step.current .step__dot{border-color:var(--qr-color-text-default);color:var(--qr-color-text-default);border-width:2px}
+.step__dot svg{width:14px;height:14px}
+.step__label{font-size:var(--qr-font-size-200);color:var(--qr-color-text-muted);margin-top:var(--qr-space-200);text-align:center}
+.step.current .step__label{color:var(--qr-color-text-default);font-weight:var(--qr-font-weight-medium)}
+.step__line{position:absolute;top:15px;left:-50%;width:100%;height:2px;background:var(--qr-color-border-default);z-index:0}
+.step.done .step__line,.step.current .step__line{background:var(--qr-color-text-default)}
+.step:first-child .step__line{display:none}
+
+.tree{max-width:420px;font-size:var(--qr-font-size-300)}
+.tree-item{display:flex;align-items:center;gap:var(--qr-space-200);padding:var(--qr-space-200);border-radius:var(--qr-radius-sm);cursor:pointer}
+.tree-item:hover{background:var(--qr-color-state-hover)}
+.tree-toggle{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;color:var(--qr-color-text-muted);flex-shrink:0}
+.tree-toggle svg{width:13px;height:13px;transition:transform var(--qr-motion-control-duration) var(--qr-motion-control-easing)}
+.tree-item.open > .tree-toggle svg{transform:rotate(90deg)}
+.tree-item .tname{flex:1}
+.tree-item .tcount{color:var(--qr-color-text-subtle);font-size:var(--qr-font-size-200)}
+.tree-children{margin-left:var(--qr-space-500)}
+.tree-leaf .tree-toggle{visibility:hidden}
+
+.code{background:var(--qr-color-surface-sunken);border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-md);overflow:hidden;max-width:520px;font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200);line-height:1.7}
+.code-row{display:flex}
+.code-ln{width:42px;flex-shrink:0;text-align:right;padding-right:var(--qr-space-300);color:var(--qr-color-text-subtle);user-select:none;background:var(--qr-color-surface-canvas)}
+.code-txt{padding-left:var(--qr-space-300);white-space:pre;color:var(--qr-color-text-default)}
+.code-cmt{color:var(--qr-color-text-subtle)}
+.code-kw{color:var(--qr-color-accent-strong)}
+
 /* theme toggle */
 #themeToggle{position:fixed;right:20px;bottom:20px;display:inline-flex;align-items:center;padding:10px 16px;border-radius:var(--qr-radius-control);border:1px solid var(--qr-color-border-strong);background:var(--qr-color-surface-nav);color:var(--qr-color-text-default);cursor:pointer;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);box-shadow:0 4px 14px rgba(0,0,0,.16);z-index:50}
 #themeToggle:hover{background:var(--qr-color-state-hover)}
@@ -789,6 +827,61 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
       <div class="acc-item is-open"><div class="acc-head">Shipping <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div><div class="acc-body">Configure where you ship and what you charge. Add shipping zones for different regions and set rates per zone.</div></div>
       <div class="acc-item"><div class="acc-head">Taxes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div><div class="acc-body">Set up tax rates and rules for the regions you sell to.</div></div>
       <div class="acc-item"><div class="acc-head">Payments <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div><div class="acc-body">Choose how customers pay — cards, bank transfer, and more.</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Data display</div>
+    <div class="sec-title">Line chart</div>
+    <div class="chartcard linechart">
+      <div class="chartcard__label">Net sales · 14 days</div>
+      <div class="chartcard__value">$12,480</div>
+      <svg viewBox="0 0 300 110" preserveAspectRatio="none">
+        <polygon class="area" points="0,110 0,82 40,88 80,60 120,72 160,46 200,54 240,32 280,42 300,18 300,110"/>
+        <polyline class="line" points="0,82 40,88 80,60 120,72 160,46 200,54 240,32 280,42 300,18"/>
+        <circle class="pt" cx="300" cy="18" r="3.5"/>
+      </svg>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Navigation</div>
+    <div class="sec-title">Stepper / wizard</div>
+    <div class="stepper">
+      <div class="step done"><div class="step__line"></div><div class="step__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></div><div class="step__label">Store details</div></div>
+      <div class="step done"><div class="step__line"></div><div class="step__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></div><div class="step__label">Products</div></div>
+      <div class="step current"><div class="step__line"></div><div class="step__dot">3</div><div class="step__label">Payments</div></div>
+      <div class="step"><div class="step__line"></div><div class="step__dot">4</div><div class="step__label">Shipping</div></div>
+      <div class="step"><div class="step__line"></div><div class="step__dot">5</div><div class="step__label">Launch</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Data display</div>
+    <div class="sec-title">Nested list / tree</div>
+    <div class="tree">
+      <div class="tree-item open"><span class="tree-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span><span class="tname">Clothing</span><span class="tcount">24</span></div>
+      <div class="tree-children">
+        <div class="tree-item tree-leaf"><span class="tree-toggle"></span><span class="tname">T-Shirts</span><span class="tcount">12</span></div>
+        <div class="tree-item tree-leaf"><span class="tree-toggle"></span><span class="tname">Hoodies</span><span class="tcount">8</span></div>
+        <div class="tree-item open"><span class="tree-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span><span class="tname">Caps</span><span class="tcount">4</span></div>
+        <div class="tree-children"><div class="tree-item tree-leaf"><span class="tree-toggle"></span><span class="tname">Snapback</span><span class="tcount">4</span></div></div>
+      </div>
+      <div class="tree-item"><span class="tree-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span><span class="tname">Accessories</span><span class="tcount">10</span></div>
+      <div class="tree-item"><span class="tree-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span><span class="tname">Home &amp; Living</span><span class="tcount">6</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Tools · advanced</div>
+    <div class="sec-title">Code editor</div>
+    <div class="code">
+      <div class="code-row"><span class="code-ln">1</span><span class="code-txt"><span class="code-cmt">/* Quire admin tweak */</span></span></div>
+      <div class="code-row"><span class="code-ln">2</span><span class="code-txt"><span class="code-kw">.wp-admin</span> {</span></div>
+      <div class="code-row"><span class="code-ln">3</span><span class="code-txt">  background: <span class="code-kw">var</span>(--qr-color-surface-canvas);</span></div>
+      <div class="code-row"><span class="code-ln">4</span><span class="code-txt">  font-family: Inter, system-ui, sans-serif;</span></div>
+      <div class="code-row"><span class="code-ln">5</span><span class="code-txt">  color: <span class="code-kw">var</span>(--qr-color-text-default);</span></div>
+      <div class="code-row"><span class="code-ln">6</span><span class="code-txt">}</span></div>
     </div>
   </section>
 

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quire — Start</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-canvas);color:var(--qr-color-text-default);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-normal);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased;min-height:100vh;padding:72px 40px}
+.wrap{max-width:760px;margin:0 auto}
+.eyebrow{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle)}
+h1{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-900);letter-spacing:var(--qr-font-letter-spacing-tight);margin:8px 0 10px}
+.lede{color:var(--qr-color-text-muted);max-width:56ch;margin-bottom:var(--qr-space-1200)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--qr-space-400)}
+.card{display:block;text-decoration:none;color:inherit;background:var(--qr-color-surface-raised);border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-card);padding:var(--qr-space-600);transition:border-color var(--qr-motion-control-duration) var(--qr-motion-control-easing),box-shadow var(--qr-motion-control-duration) var(--qr-motion-control-easing)}
+.card:hover{border-color:var(--qr-color-border-strong);box-shadow:var(--qr-elevation-raised)}
+.card__no{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle)}
+.card__title{font-family:var(--qr-font-family-serif);font-size:var(--qr-font-size-700);font-weight:var(--qr-font-weight-medium);margin:var(--qr-space-200) 0 var(--qr-space-100);display:flex;align-items:center;justify-content:space-between}
+.card__title .arr{color:var(--qr-color-accent-strong)}
+.card__desc{font-size:var(--qr-font-size-300);color:var(--qr-color-text-muted)}
+.foot{margin-top:var(--qr-space-1200);font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle);font-family:var(--qr-font-family-mono)}
+#themeToggle{position:fixed;right:20px;bottom:20px;padding:10px 16px;border-radius:var(--qr-radius-control);border:1px solid var(--qr-color-border-strong);background:var(--qr-color-surface-nav);color:var(--qr-color-text-default);cursor:pointer;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);box-shadow:var(--qr-elevation-overlay);z-index:50}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Quire · Design system</div>
+  <h1>Quire</h1>
+  <p class="lede">A cleaner, warm, unified admin for WordPress, WooCommerce &amp; Jetpack. Everything below is built from one token foundation. Start anywhere.</p>
+
+  <div class="grid">
+    <a class="card" href="index.html">
+      <div class="card__no">01</div>
+      <div class="card__title">Foundation <span class="arr">→</span></div>
+      <div class="card__desc">The look itself — warm paper, the colour palette, and the type system (Newsreader · Inter · IBM Plex Mono). Where the style was decided.</div>
+    </a>
+    <a class="card" href="gallery.html">
+      <div class="card__no">02</div>
+      <div class="card__title">Components <span class="arr">→</span></div>
+      <div class="card__desc">The full component library — every control, every state, light &amp; dark. The source of truth, made visible.</div>
+    </a>
+    <a class="card" href="nav.html">
+      <div class="card__no">03</div>
+      <div class="card__title">Navigation <span class="arr">→</span></div>
+      <div class="card__desc">The product-switcher rail (WordPress · Woo · Jetpack) and the contextual sidebar that adapts to it.</div>
+    </a>
+    <a class="card" href="orders.html">
+      <div class="card__no">04</div>
+      <div class="card__title">A real page <span class="arr">→</span></div>
+      <div class="card__desc">The Orders screen — the navigation, header, stat tiles, and table assembled from real components.</div>
+    </a>
+  </div>
+
+  <div class="foot">Tip — every screen has a “Switch to dark” button, bottom-right.</div>
+</div>
+
+<button id="themeToggle">Switch to dark</button>
+<script>
+const tBtn=document.getElementById('themeToggle');
+function setTheme(m){document.documentElement.setAttribute('data-theme',m);tBtn.textContent=m==='dark'?'Switch to light':'Switch to dark';}
+setTheme(new URLSearchParams(location.search).get('theme')==='dark'?'dark':'light');
+tBtn.onclick=()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
+</script>
+</body>
+</html>
