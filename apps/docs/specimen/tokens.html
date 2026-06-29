@@ -41,16 +41,17 @@ section{margin-top:var(--qr-space-1200);border-top:1px solid var(--qr-color-bord
 .radius-demo{height:40px;width:64px;background:var(--qr-color-surface-sunken);border:1px solid var(--qr-color-border-strong)}
 
 /* colour ramps + roles */
-.ramp{display:flex;flex-wrap:wrap;gap:var(--qr-space-200);margin-top:var(--qr-space-200)}
-.ramp-title{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200);color:var(--qr-color-text-muted);margin-top:var(--qr-space-400);text-transform:none}
-.sw{width:108px;border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-sm);overflow:hidden;background:var(--qr-color-surface-raised)}
+/* one swatch grid everywhere — same card size + same gaps in palette AND roles */
+.ramp,.grid-roles{display:grid;grid-template-columns:repeat(auto-fill,128px);gap:var(--qr-space-300);margin-top:var(--qr-space-300)}
+.ramp-title{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200);color:var(--qr-color-text-muted);margin:0;text-transform:none}
+.sw{border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-sm);overflow:hidden;background:var(--qr-color-surface-raised)}
 .sw .chip{height:46px;border-bottom:1px solid var(--qr-color-border-default)}
 .sw .meta{padding:6px 8px}
 .sw .meta .name{font-size:11px;display:block;line-height:1.3;overflow-wrap:anywhere}
 .sw .meta .val{font-size:10px;display:block;margin-top:1px}
-.grid-roles{display:grid;grid-template-columns:repeat(auto-fill,minmax(126px,1fr));gap:var(--qr-space-200);margin-top:var(--qr-space-300)}
-.role-group{margin-top:var(--qr-space-500)}
-.role-group > .ramp-title{margin-top:0}
+/* spacing rhythm: swatch gap (12) < group gap (32) < section gap (48 + divider) */
+.role-group{margin-top:var(--qr-space-800)}
+.role-group:first-child{margin-top:var(--qr-space-400)}
 
 /* contrast / legibility */
 .crow{display:grid;grid-template-columns:210px 190px 76px auto;gap:var(--qr-space-400);align-items:center;padding:var(--qr-space-200) 0;border-top:1px solid var(--qr-color-border-default)}
