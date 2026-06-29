@@ -76,3 +76,13 @@ assembling existing parts — it'll match automatically and won't change anythin
 **Priority of the remaining ⬜, for everyday-owner scope:** segmented control, media grid,
 date picker, file upload, and accordion are the most worth doing soon (they appear on common
 screens). Line chart / charts, stepper, tree, code editor are more occasional / advanced.
+
+---
+
+## Update — priority batch built ✅
+
+Built and added to the gallery: **Segmented control**, **Media grid**, **Date picker**,
+**File upload / dropzone**, **Accordion**. Remaining ⬜ (occasional / advanced only):
+**Line chart** (+ chart toolbar), **Stepper / wizard**, **Nested list / tree**, **Code editor**.
+So the *common* set + the everyday-priority specialised set are now done; only a handful of
+occasional/advanced controls remain.
