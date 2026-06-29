@@ -20,7 +20,6 @@ h1{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medi
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--qr-space-400)}
 .card{display:block;text-decoration:none;color:inherit;background:var(--qr-color-surface-raised);border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-card);padding:var(--qr-space-600);transition:border-color var(--qr-motion-control-duration) var(--qr-motion-control-easing),box-shadow var(--qr-motion-control-duration) var(--qr-motion-control-easing)}
 .card:hover{border-color:var(--qr-color-border-strong);box-shadow:var(--qr-elevation-raised)}
-.card__no{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle)}
 .card__title{font-family:var(--qr-font-family-serif);font-size:var(--qr-font-size-700);font-weight:var(--qr-font-weight-medium);margin:var(--qr-space-200) 0 var(--qr-space-100);display:flex;align-items:center;justify-content:space-between}
 .card__title .arr{color:var(--qr-color-accent-strong)}
 .card__desc{font-size:var(--qr-font-size-300);color:var(--qr-color-text-muted)}
@@ -37,38 +36,32 @@ h1{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medi
 
   <div class="grid">
     <a class="card" href="philosophy.html">
-      <div class="card__no">00</div>
       <div class="card__title">The design language <span class="arr">→</span></div>
       <div class="card__desc">Start here — the North Star, the philosophy, the feel, and the typography in detail. The why, before the what.</div>
     </a>
     <a class="card" href="index.html">
-      <div class="card__no">01</div>
       <div class="card__title">Foundation <span class="arr">→</span></div>
       <div class="card__desc">The look itself — warm paper, the colour palette, and the type system (Libre Baskerville · Inter · IBM Plex Mono). Where the style was decided.</div>
     </a>
     <a class="card" href="tokens.html">
-      <div class="card__no">02</div>
       <div class="card__title">Tokens <span class="arr">→</span></div>
       <div class="card__desc">The variables sheet — every type, spacing, radius &amp; colour style, read live. The dial board for tuning the whole system.</div>
     </a>
     <a class="card" href="gallery.html">
-      <div class="card__no">03</div>
       <div class="card__title">Components <span class="arr">→</span></div>
       <div class="card__desc">The full component library — every control, every state, light &amp; dark. The source of truth, made visible.</div>
     </a>
     <a class="card" href="nav.html">
-      <div class="card__no">04</div>
       <div class="card__title">Navigation <span class="arr">→</span></div>
       <div class="card__desc">The product-switcher rail (WordPress · Woo · Jetpack) and the contextual sidebar that adapts to it.</div>
     </a>
     <a class="card" href="orders.html">
-      <div class="card__no">05</div>
       <div class="card__title">A real page <span class="arr">→</span></div>
       <div class="card__desc">The Orders screen — the navigation, header, stat tiles, and table assembled from real components.</div>
     </a>
   </div>
 
-  <div class="foot">Tip — every screen has a “Switch to dark” button, bottom-right.</div>
+  <div class="foot">Tip — use the bar above to move between screens; the Dark toggle is top-right.</div>
 </div>
 
 <script src="workbench.js"></script>
