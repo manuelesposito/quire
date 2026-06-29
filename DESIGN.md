@@ -1,8 +1,43 @@
 # Quire — Design
 
-This document defines **the problem Quire's design system exists to solve** and the
-**principles** every design decision is measured against. It is the design source of truth
-in prose; the machine source of truth is `packages/tokens`.
+This document is Quire's design source of truth **in prose**: the **philosophy** we build
+toward, the **problem** we solve, and the **principles and grammar** every decision is
+measured against. The machine source of truth is `packages/tokens` — this file *explains*, the
+code *enforces*, and the two are meant to describe the same system.
+
+---
+
+## The North Star — Quire's philosophy
+
+A *quire* is a bookbinding term: a gathering of folded sheets, bound into a book. The name
+holds the whole idea. WordPress's admin today is **loose, mismatched pages from four different
+printers** — wp-admin, Gutenberg, WooCommerce, Jetpack — never bound together. **Quire's
+reason for being is to gather the scattered pages into one coherent, well-bound whole.**
+
+> **North Star.** An everyday person's WordPress admin that feels like a well-made book —
+> calm, coherent, and cared-for — not a committee's dashboard.
+
+What we believe:
+
+1. **Coherence is respect.** Every clashing button is a small tax on someone's attention and
+   confidence. Making everything mean *one thing* is how we respect the person using it.
+2. **Calm is the feature.** The work is subtraction — fewer colours, fewer styles, less noise.
+   A quiet screen is a finished screen. We never add a control to solve a problem we could
+   remove.
+3. **Made like a book, not a form.** Warm paper, a real typeface, craft in the small things.
+   Software can carry the dignity of a well-made physical object — and it should, because the
+   people using it deserve that care.
+4. **For the everyday owner.** Not developers, not agencies — the shop owner, the writer, the
+   volunteer who never *chose* to learn an admin panel. They deserve one that doesn't punish
+   them.
+5. **Built to age, not to trend.** Bookish over fashionable — meant to feel right in ten years,
+   not novel for one. This is *why* "not generic" matters: generic is disposable.
+6. **A commons, not a product.** Open, GPL, owned by the community that runs a large share of
+   the web. Quire answers to no vendor.
+
+**The long arc:** today Quire is a coherent skin over the existing admin; the North Star is a
+genuine reimagining of what running a WordPress site feels like. At every stage the immutable
+core is the *feeling* — calm, bound, warm, made with care.
 
 ---
 
@@ -75,7 +110,8 @@ what to do; never jargon. Reassure, don't alarm.
    family. Divergence between WP, WooCommerce, and Jetpack is the bug; convergence is the
    product.
 2. **Tokens are law.** Every color, space, radius, type, elevation, and motion value comes
-   from `packages/tokens`. No raw hex, no magic numbers, ever. (Enforced by lint.)
+   from `packages/tokens`. No raw hex, no magic numbers, ever. *(Today upheld by review; a
+   no-raw-value lint is planned — see the enforcement table below.)*
 3. **Calm by default.** Roomier spacing, quieter surfaces, less on screen. Reject classic
    wp-admin density.
 4. **Compose, never fork.** Surfaces are built from `packages/components`. If a component
@@ -107,6 +143,26 @@ hold everywhere, and a component that breaks one is the bug.
    3:1 large/heavy). This is checked live on the Tokens screen; a failing pair is a bug, not a
    preference.
 6. **Everything from tokens.** No off-scale value, ever (see Principle 2).
+
+## How these are enforced (words ↔ code)
+
+The philosophy, principles, and grammar above are only real if the code backs them. Where a
+rule *can* be checked mechanically, it should be — that is the difference between a poster and
+a guarantee. Honest status today:
+
+| Rule | Enforced by | Status |
+| --- | --- | --- |
+| One of each | A single shared definition per component (`components.css` / `packages/components`) | ✅ real |
+| Legible by guarantee | Live WCAG contrast check on the **Tokens** screen | ✅ real |
+| Accent = emphasis only · status = four fixed colours | Semantic colour tokens (`accent.*`, `feedback.*`) | ✅ real (by token use) |
+| Borders separate · shadow floats | `elevation.*` tokens; shadow only on overlay components | ✅ real (by token use) |
+| One focus ring | Shared focus-ring token used by every focusable component | ✅ real |
+| Tokens are law (no raw values) | A no-raw-value lint | ⏳ planned — package `lint` scripts are placeholders (`no-op`) today |
+| Contrast never regresses | The contrast check wired as a CI gate | ⏳ planned |
+| Calm · compose-never-fork · respect-the-boundary · degrade-gracefully | Design + code review | 👁 judgment |
+
+When a row says *planned*, the rule still holds — it is upheld by review until the check
+exists. We do not claim enforcement the code does not provide.
 
 ## Foundations to define (and their conflicts)
 
@@ -166,7 +222,9 @@ stylistic inheritance.
 ## Source of truth
 
 - **Machine:** `packages/tokens` (tokens) → `packages/components` (styled library).
-- **Prose:** this file.
-- **Visual:** the Storybook + inventory in `apps/docs`.
+- **Prose:** this file — philosophy → problem → principles → grammar.
+- **Visual:** the live specimens in `apps/docs/specimen` (Foundation, Tokens, Components,
+  Navigation, Orders), plus the screenshot inventory in `inventory/`.
 
-If these ever disagree, `packages/tokens` wins and the others are corrected.
+If these ever disagree, `packages/tokens` wins for *values* and this file wins for *intent*;
+the others are corrected to match.
