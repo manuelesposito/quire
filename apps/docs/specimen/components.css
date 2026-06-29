@@ -4,9 +4,14 @@
    (gallery, orders, …) links this file, then adds only its own page layout.
    Every value comes from @quire/tokens, so all of it themes light/dark for
    free. Built to the locked grammar:
-     · ochre = accent only (links, highlights, focus ring)
-     · active / selected / current = neutral + ink
-     · form selection (checkbox / radio / toggle-on) = control.on / on-fg ink
+     · ochre = accent + the SINGULAR "you are here" (one current product, one
+       current page): a light-ochre surface with a dark-ochre mark on top
+       (inverts in dark). Also links, highlights, focus ring.
+     · bulk / multi-select (e.g. ticked table rows) = neutral surface — many at
+       once, so it stays calm and never reads as a wall of warnings.
+     · hover / pressed = a neutral translucent wash (sits below selected).
+     · form selection (checkbox / radio / toggle-on, picked date) = control.on /
+       on-fg ink — it picks a value, not a location.
      · focus = one outline ring everywhere
      · separation = borders; shadow only for things that float (menus, modals)
    Demo size caps (max-width / fixed width) are sensible defaults a consuming
@@ -138,8 +143,9 @@ select.field{appearance:none;-webkit-appearance:none;padding-right:32px;cursor:p
 .tab:focus-visible{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
 
 /* =========================================================================
-   DataTable — reuses Checkbox + Badge; obeys the grammar (selected = neutral,
-   ochre only on link/action hover).
+   DataTable — reuses Checkbox + Badge. Row select is BULK (many at once), so it
+   uses the neutral selected surface, not ochre — ochre is for the singular
+   "you are here", never a wall of ticked rows.
    ========================================================================= */
 .dt{border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-card);overflow:hidden;background:var(--qr-color-surface-raised);max-width:720px}
 .dt-toolbar{display:flex;align-items:center;justify-content:space-between;gap:var(--qr-space-400);padding:var(--qr-space-300) var(--qr-space-400);border-bottom:1px solid var(--qr-color-border-default)}
@@ -176,7 +182,7 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
    PageHeader · Menu/Popover · Modal.
    ========================================================================= */
 .pageheader{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--qr-space-400);padding-bottom:var(--qr-space-300);border-bottom:1px solid var(--qr-color-border-default);max-width:720px}
-.pageheader__crumb{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle);margin-bottom:5px}
+.pageheader__crumb{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);letter-spacing:var(--qr-font-letter-spacing-normal);color:var(--qr-color-text-subtle);margin-bottom:5px}
 .pageheader__title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-800);letter-spacing:var(--qr-font-letter-spacing-tight);line-height:1.1}
 .pageheader__actions{display:flex;gap:var(--qr-space-200);align-items:center}
 
@@ -251,10 +257,10 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
 .chart .bar{flex:1;background:var(--qr-color-surface-sunken);border-radius:var(--qr-radius-xs);min-height:6px}
 .chart .bar.now{background:var(--qr-color-accent-default)}
 
-.promo{border:1px solid var(--qr-color-feedback-warning-border);background:var(--qr-color-accent-soft);border-radius:var(--qr-radius-card);padding:var(--qr-space-400);max-width:340px}
-.promo__kicker{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-accent-strong)}
+.promo{border:1px solid var(--qr-color-accent-default);background:var(--qr-color-accent-soft);border-radius:var(--qr-radius-card);padding:var(--qr-space-400);max-width:340px}
+.promo__kicker{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-medium);letter-spacing:var(--qr-font-letter-spacing-normal);color:var(--qr-color-text-muted)}
 .promo__title{font-family:var(--qr-font-family-serif);font-size:var(--qr-font-size-600);font-weight:var(--qr-font-weight-medium);margin:var(--qr-space-100) 0;color:var(--qr-color-text-default)}
-.promo__body{font-size:var(--qr-font-size-300);color:var(--qr-color-feedback-warning-text);margin-bottom:var(--qr-space-400)}
+.promo__body{font-size:var(--qr-font-size-300);color:var(--qr-color-text-muted);margin-bottom:var(--qr-space-400)}
 
 .mediafield{display:flex;gap:var(--qr-space-800);align-items:flex-start;flex-wrap:wrap}
 .media-empty{width:120px;height:120px;border:1px dashed var(--qr-color-border-strong);border-radius:var(--qr-radius-md);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--qr-space-200);color:var(--qr-color-text-subtle);font-size:var(--qr-font-size-200);cursor:pointer}
@@ -366,8 +372,9 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
 
 /* =========================================================================
    Navigation — product rail + contextual sidebar + monochrome marks.
-   Active / selected = neutral + ink (ochre stays the accent, not "where you
-   are"). Used by real pages and the navigation concept.
+   The current product + current page are the system's singular "you are here":
+   a light-ochre surface + dark-ochre mark (inverts in dark). Hover stays a
+   neutral wash, so hover and selected differ in hue AND lightness.
    ========================================================================= */
 .logo,.hlogo{background-color:var(--qr-color-text-default);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;display:block}
 .logo.wp{width:24px;height:24px;-webkit-mask-image:url(logos/wp-mono.svg);mask-image:url(logos/wp-mono.svg)}
@@ -384,8 +391,8 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
 .prod:focus-visible .sq,.add:focus-visible .sq{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
 .prod .lbl{font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle);letter-spacing:.01em}
 .prod:hover .sq{background:var(--qr-color-state-hover)}
-.prod.active .sq{background:var(--qr-color-state-active-surface)}
-.prod.active .logo{background-color:var(--qr-color-text-default)}
+.prod.active .sq{background:var(--qr-color-state-selected-surface)}
+.prod.active .logo{background-color:var(--qr-color-state-selected-mark)}
 .prod.active .lbl{color:var(--qr-color-text-default);font-weight:var(--qr-font-weight-medium)}
 .add .sq{color:var(--qr-color-text-subtle)}
 .add:hover .sq{background:var(--qr-color-state-hover);color:var(--qr-color-text-muted)}
@@ -399,5 +406,5 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
 .subnav #menu{display:flex;flex-direction:column;gap:3px}
 .subnav a{display:block;padding:var(--qr-space-200) var(--qr-space-300);border-radius:var(--qr-radius-control);color:var(--qr-color-text-muted);text-decoration:none;font-size:var(--qr-font-size-300);font-weight:450;cursor:pointer;transition:background var(--qr-motion-control-duration) var(--qr-motion-control-easing)}
 .subnav a:hover{background:var(--qr-color-state-hover);color:var(--qr-color-text-default)}
-.subnav a.active{background:var(--qr-color-state-active-surface);color:var(--qr-color-text-default);font-weight:var(--qr-font-weight-semibold)}
+.subnav a.active{background:var(--qr-color-state-selected-surface);color:var(--qr-color-state-selected-mark);font-weight:var(--qr-font-weight-semibold)}
 .subnav a:focus-visible{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
