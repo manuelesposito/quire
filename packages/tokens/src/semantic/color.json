@@ -5,7 +5,7 @@
       "muted":     { "$value": "{color.neutral.700}", "$type": "color" },
       "subtle":    { "$value": "{color.neutral.600}", "$type": "color" },
       "inverse":   { "$value": "{color.neutral.0}",   "$type": "color" },
-      "accent":    { "$value": "{color.slate.600}",   "$type": "color" },
+      "accent":    { "$value": "{color.ochre.600}",   "$type": "color" },
       "on-accent": { "$value": "{color.neutral.0}",   "$type": "color" }
     },
 
@@ -23,10 +23,10 @@
     },
 
     "accent": {
-      "soft":    { "$value": "{color.slate.100}", "$type": "color" },
-      "default": { "$value": "{color.slate.400}", "$type": "color" },
-      "strong":  { "$value": "{color.slate.600}", "$type": "color" },
-      "deep":    { "$value": "{color.slate.600}", "$type": "color" }
+      "soft":    { "$value": "{color.ochre.100}", "$type": "color" },
+      "default": { "$value": "{color.ochre.400}", "$type": "color" },
+      "strong":  { "$value": "{color.ochre.600}", "$type": "color" },
+      "deep":    { "$value": "{color.ochre.800}", "$type": "color" }
     },
 
     "action": {
@@ -40,7 +40,7 @@
         "text":   { "$value": "{color.neutral.900}", "$type": "color" }
       },
       "tertiary": {
-        "text": { "$value": "{color.slate.600}", "$type": "color" }
+        "text": { "$value": "{color.ochre.600}", "$type": "color" }
       },
       "destructive": {
         "default": { "$value": "{color.brick.400}", "$type": "color" },
@@ -52,9 +52,9 @@
     "state": {
       "hover":            { "$value": "#211C140D", "$type": "color" },
       "active-surface":   { "$value": "{color.neutral.125}", "$type": "color" },
-      "selected-surface": { "$value": "{color.slate.100}",   "$type": "color" },
-      "selected-mark":    { "$value": "{color.slate.600}",   "$type": "color" },
-      "focus-ring":       { "$value": "{color.slate.400}",   "$type": "color" }
+      "selected-surface": { "$value": "{color.ochre.100}",   "$type": "color" },
+      "selected-mark":    { "$value": "{color.ochre.800}",   "$type": "color" },
+      "focus-ring":       { "$value": "{color.ochre.400}",   "$type": "color" }
     },
 
     "control": {
