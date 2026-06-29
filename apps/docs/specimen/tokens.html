@@ -51,6 +51,18 @@ section{margin-top:var(--qr-space-1200);border-top:1px solid var(--qr-color-bord
 .grid-roles{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:var(--qr-space-200);margin-top:var(--qr-space-300)}
 .role-group{margin-top:var(--qr-space-500)}
 .role-group > .ramp-title{margin-top:0}
+
+/* contrast / legibility */
+.crow{display:grid;grid-template-columns:210px 190px 76px auto;gap:var(--qr-space-400);align-items:center;padding:var(--qr-space-200) 0;border-top:1px solid var(--qr-color-border-default)}
+.crow:first-child{border-top:0}
+.crow .clabel{font-size:var(--qr-font-size-300)}
+.cchip{height:36px;border-radius:var(--qr-radius-sm);display:flex;align-items:center;justify-content:center;font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);border:1px solid var(--qr-color-border-default)}
+.cratio{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200);color:var(--qr-color-text-muted)}
+.cbadge{justify-self:start;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-100);font-weight:var(--qr-font-weight-semibold);padding:2px 9px;border-radius:var(--qr-radius-full)}
+.cbadge.ok{background:var(--qr-color-feedback-success-surface);color:var(--qr-color-feedback-success-text)}
+.cbadge.warn{background:var(--qr-color-feedback-warning-surface);color:var(--qr-color-feedback-warning-text)}
+.cbadge.bad{background:var(--qr-color-feedback-danger-surface);color:var(--qr-color-feedback-danger-text)}
+
 #probe{position:absolute;visibility:hidden;pointer-events:none;left:-9999px;top:0}
 </style>
 </head>
@@ -93,6 +105,12 @@ section{margin-top:var(--qr-space-1200);border-top:1px solid var(--qr-color-bord
     <div class="sec-label">Colour — the roles</div>
     <div class="sec-note">Semantic tokens: what components actually use. Each points at a pigment — change the role, change the system. (These remap in dark.)</div>
     <div id="roles"></div>
+  </section>
+
+  <section>
+    <div class="sec-label">Colour — contrast &amp; legibility</div>
+    <div class="sec-note">The guarantee. Every text-on-surface pair a real screen uses, checked against WCAG AA — normal text needs 4.5:1, large/heavy text 3:1. Flip dark in the bar to re-check both themes.</div>
+    <div id="contrast"></div>
   </section>
 </div>
 
@@ -193,6 +211,38 @@ section{margin-top:var(--qr-space-1200);border-top:1px solid var(--qr-color-bord
         '<div class="meta"><span class="name">'+grp+'.'+role+'</span><span class="val">'+hex(resolveColor(name))+'</span></div></div>'));
     });
     rolesEl.appendChild(group);
+  });
+
+  // ---- contrast / legibility (WCAG) ----
+  function parseRGB(s){ var m=s.match(/[\d.]+/g); return m ? m.slice(0,3).map(Number) : [0,0,0]; }
+  function relLum(rgb){ var a=rgb.map(function(v){ v/=255; return v<=0.03928 ? v/12.92 : Math.pow((v+0.055)/1.055,2.4); }); return 0.2126*a[0]+0.7152*a[1]+0.0722*a[2]; }
+  function ratio(fg,bg){ var L1=relLum(parseRGB(fg)), L2=relLum(parseRGB(bg)); var hi=Math.max(L1,L2),lo=Math.min(L1,L2); return (hi+0.05)/(lo+0.05); }
+  var PAIRS = [
+    ['Body text · on canvas',   '--qr-color-text-default',            '--qr-color-surface-canvas'],
+    ['Body text · on raised',   '--qr-color-text-default',            '--qr-color-surface-raised'],
+    ['Muted text · on canvas',  '--qr-color-text-muted',              '--qr-color-surface-canvas'],
+    ['Subtle text · on canvas', '--qr-color-text-subtle',             '--qr-color-surface-canvas'],
+    ['Link / accent · on paper','--qr-color-accent-strong',           '--qr-color-surface-canvas'],
+    ['Primary button',          '--qr-color-action-primary-text',     '--qr-color-action-primary-default'],
+    ['Destructive button',      '--qr-color-action-destructive-text', '--qr-color-action-destructive-default'],
+    ['Checkbox check',          '--qr-color-control-on-fg',           '--qr-color-control-on'],
+    ['Highlight (accent-soft)', '--qr-color-text-default',            '--qr-color-accent-soft'],
+    ['Success notice',          '--qr-color-feedback-success-text',   '--qr-color-feedback-success-surface'],
+    ['Warning notice',          '--qr-color-feedback-warning-text',   '--qr-color-feedback-warning-surface'],
+    ['Danger notice',           '--qr-color-feedback-danger-text',    '--qr-color-feedback-danger-surface'],
+    ['Info notice',             '--qr-color-feedback-info-text',      '--qr-color-feedback-info-surface']
+  ];
+  var cEl = document.getElementById('contrast');
+  PAIRS.forEach(function(p){
+    var fg = resolveColor(p[1]), bg = resolveColor(p[2]);
+    var r = ratio(fg, bg);
+    var grade = r >= 4.5 ? ['ok','AA'] : (r >= 3 ? ['warn','AA Large only'] : ['bad','Fails']);
+    cEl.appendChild(el(
+      '<div class="crow"><span class="clabel">'+p[0]+'</span>'+
+      '<span class="cchip" style="color:var('+p[1]+');background:var('+p[2]+')">Sample text</span>'+
+      '<span class="cratio">'+r.toFixed(2)+':1</span>'+
+      '<span class="cbadge '+grade[0]+'">'+grade[1]+'</span></div>'
+    ));
   });
 
   // re-read resolved values when the theme toggles (semantic colours remap)

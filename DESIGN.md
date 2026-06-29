@@ -33,6 +33,42 @@ add controls. When in doubt, choose the roomier spacing, the quieter surface, th
 options visible at once. Developers and agencies are not the primary audience — everyday
 owners are.
 
+## The design language — how Quire feels
+
+The principles below say *what* to converge; this says *how it should feel* — the part a
+contributor cannot infer from the tokens.
+
+**Bookish, not chrome.** Quire should feel like a warm, well-set book or an old almanac —
+paper, ink, and character — not a SaaS dashboard. The touchstone is the calm of Anthropic's
+*81k interviews* page: warm putty/oatmeal paper, a serif with personality, generous quiet.
+It is deliberately **not** a clone of any existing admin, nor a copy of any other product's
+look.
+
+**It must not look generic.** The sharpest test we apply: *could a default design-system
+starter kit have produced this screen?* If yes, it's wrong. The canonical tell we've banned
+is the **mono, UPPERCASE, wide-tracked overline label** — the universal "made by a generic
+tool" signature. Quire's labels are **editorial** instead: section labels set in the serif
+(italic, sentence case), like a book's running-head; small technical labels stay quiet and
+lowercase. Character over convention.
+
+The four pillars of the feel:
+
+- **Warm paper, in layers.** The canvas is warm putty — not white, not cream. Surfaces
+  separate by tone and a 1px hairline, never by drop shadow. Shadow is reserved for things
+  that truly float.
+- **An "almanac" palette.** Muted, vintage pigments. **One** accent for emphasis; status
+  colours that carry meaning only (sage = success, ochre = warning, brick = danger, slate =
+  info). WordPress's cold indigo is gone. *(The accent itself — warm ochre vs. cooler slate —
+  is under active review; the live contrast check on the Tokens screen is part of deciding
+  it, since legibility on warm paper is a factor.)*
+- **Three typefaces, three jobs.** **Newsreader** (serif) for character and headings;
+  **Inter** (sans) for dense everyday reading; **IBM Plex Mono** for code and identifiers only.
+- **Calm and deliberate.** Roomy spacing, few options at once, nothing shouting. The
+  emotional target is *reassuring* — for an everyday owner, not a power user.
+
+**Voice & tone (microcopy).** Plain, warm, concrete. Short sentences. Say what happened and
+what to do; never jargon. Reassure, don't alarm.
+
 ## Principles
 
 1. **One of each.** One primary button. One settings row. One notice. One toggle. One icon
@@ -49,6 +85,28 @@ owners are.
    components are reserved for the classic/PHP surfaces. This boundary is explicit.
 6. **Degrade gracefully.** Quire styles WP core + WooCommerce + Jetpack. Foreign third-party
    plugin screens keep the shared chrome and sit calmly inside it — never pretend coverage.
+
+## The grammar — the locked visual rules
+
+System-wide rules that keep every screen coherent. They are not per-component choices; they
+hold everywhere, and a component that breaks one is the bug.
+
+1. **Colour is meaning, not decoration.** The accent is for *emphasis only* — links,
+   highlights, the focus ring. **"Where you are" is never the accent:** active / selected /
+   current states use a neutral surface + ink. **Form selection** (a ticked checkbox, a chosen
+   radio, a toggle that's on) uses the control ink (`control.on` / `control.on-fg`), not the
+   accent.
+2. **One focus ring.** Everything focusable shows the same ring — a 2px accent outline at a
+   2px offset. No alternate focus styles.
+3. **Borders separate; shadow floats.** Surfaces divide by 1px hairline borders. Drop shadow
+   appears *only* on overlays that leave the page plane — menus, popovers, modals (and the
+   small lift under a control thumb).
+4. **Status has four fixed colours.** success = sage, warning = ochre, danger = brick, info =
+   slate — and a status colour never doubles as decoration.
+5. **Legible by guarantee.** Every text-on-surface pair must pass WCAG AA (4.5:1 normal text,
+   3:1 large/heavy). This is checked live on the Tokens screen; a failing pair is a bug, not a
+   preference.
+6. **Everything from tokens.** No off-scale value, ever (see Principle 2).
 
 ## Foundations to define (and their conflicts)
 
