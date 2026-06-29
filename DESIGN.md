@@ -91,9 +91,11 @@ The four pillars of the feel:
 - **Warm paper, in layers.** The canvas is warm putty — not white, not cream. Surfaces
   separate by tone and a 1px hairline, never by drop shadow. Shadow is reserved for things
   that truly float.
-- **An "almanac" palette.** Muted, vintage pigments. **One** accent for emphasis; status
-  colours that carry meaning only (sage = success, ochre = warning, brick = danger, slate =
-  info). WordPress's cold indigo is gone. *(The accent itself — warm ochre vs. cooler slate —
+- **An "almanac" palette.** Muted, vintage pigments. **One** accent for emphasis (warm
+  ochre); status colours that carry meaning only (sage = success, amber = warning, brick =
+  danger, slate = info). Warning is a deliberately *more orange* amber so it never collides
+  with the gold accent — the accent doubles as the "you are here" selection. WordPress's cold
+  indigo is gone. *(The accent itself — warm ochre vs. cooler slate —
   is under active review; the live contrast check on the Tokens screen is part of deciding
   it, since legibility on warm paper is a factor.)*
 - **Three typefaces, three jobs.** **Libre Baskerville** (serif) for character and headings;
@@ -127,18 +129,25 @@ what to do; never jargon. Reassure, don't alarm.
 System-wide rules that keep every screen coherent. They are not per-component choices; they
 hold everywhere, and a component that breaks one is the bug.
 
-1. **Colour is meaning, not decoration.** The accent is for *emphasis only* — links,
-   highlights, the focus ring. **"Where you are" is never the accent:** active / selected /
-   current states use a neutral surface + ink. **Form selection** (a ticked checkbox, a chosen
-   radio, a toggle that's on) uses the control ink (`control.on` / `control.on-fg`), not the
-   accent.
+1. **Colour is meaning, and selection has a cardinality.** The accent is for emphasis —
+   links, highlights, the focus ring — and for the **singular "you are here"**: the one
+   current product, the one current page. That state is a light-ochre surface with a
+   dark-ochre mark on top (inverted in dark) — the same warm, legible selection Figma draws in
+   blue. Because it is always *singular*, the accent stays sparse and keeps its meaning.
+   **Bulk, plural selection is neutral** — ticked table rows and the like use a neutral
+   surface, never the accent, so a screenful of them stays calm and never reads as a wall of
+   warnings. **Hover / pressed** is a neutral translucent wash that sits *below* selected, so
+   the two differ in hue and lightness. **Form selection** (a ticked checkbox, a chosen radio,
+   a toggle that's on, a picked date) uses the control ink (`control.on` / `control.on-fg`):
+   it picks a value, not a location.
 2. **One focus ring.** Everything focusable shows the same ring — a 2px accent outline at a
    2px offset. No alternate focus styles.
 3. **Borders separate; shadow floats.** Surfaces divide by 1px hairline borders. Drop shadow
    appears *only* on overlays that leave the page plane — menus, popovers, modals (and the
    small lift under a control thumb).
-4. **Status has four fixed colours.** success = sage, warning = ochre, danger = brick, info =
-   slate — and a status colour never doubles as decoration.
+4. **Status has four fixed colours.** success = sage, warning = amber, danger = brick, info =
+   slate — and a status colour never doubles as decoration. Warning is amber (orange), kept
+   distinct from the gold accent precisely so "selected" and "warning" never read alike.
 5. **Legible by guarantee.** Every text-on-surface pair must pass WCAG AA (4.5:1 normal text,
    3:1 large/heavy). This is checked live on the Tokens screen; a failing pair is a bug, not a
    preference.
