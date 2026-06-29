@@ -6,10 +6,11 @@
 <title>Quire — Foundation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <!-- The real source of truth. Everything below reads from these. -->
 <link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
 <link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
+<link rel="stylesheet" href="workbench.css">
 <style>
 /* =========================================================================
    Quire — Foundation specimen
@@ -21,15 +22,16 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--qr-font-family-sans);color:var(--qr-color-text-default);background:var(--qr-color-surface-canvas);
   -webkit-font-smoothing:antialiased;line-height:var(--qr-font-line-height-normal);font-size:var(--qr-font-size-400);
-  letter-spacing:var(--qr-font-letter-spacing-normal);padding:48px 40px 96px}
+  letter-spacing:var(--qr-font-letter-spacing-normal);padding:64px 40px 96px}
 .wrap{max-width:1080px;margin:0 auto}
-.eyebrow{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle)}
+/* labels: no more uppercase-mono-tracked overline. eyebrow = quiet lowercase mono; section labels = editorial serif italic. */
+.eyebrow{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200);letter-spacing:var(--qr-font-letter-spacing-normal);color:var(--qr-color-text-subtle)}
 h1.title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-900);letter-spacing:var(--qr-font-letter-spacing-tight);margin:6px 0 8px}
 .lede{color:var(--qr-color-text-muted);max-width:64ch;font-size:var(--qr-font-size-400)}
 .back{display:inline-block;margin-bottom:var(--qr-space-400);font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle);text-decoration:none}
 .back:hover{color:var(--qr-color-text-default)}
 section{margin-top:var(--qr-space-1200);border-top:1px solid var(--qr-color-border-default);padding-top:var(--qr-space-600)}
-.sec-label{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle);margin-bottom:var(--qr-space-500)}
+.sec-label{font-family:var(--qr-font-family-serif);font-style:italic;font-weight:var(--qr-font-weight-regular);font-size:var(--qr-font-size-500);letter-spacing:var(--qr-font-letter-spacing-normal);color:var(--qr-color-text-muted);margin-bottom:var(--qr-space-500)}
 .sec-note{font-size:var(--qr-font-size-300);color:var(--qr-color-text-muted);margin:calc(-1 * var(--qr-space-200)) 0 var(--qr-space-500)}
 
 /* swatches — chip color is a live token; the caption names the role + primitive */
@@ -76,7 +78,6 @@ a.lnk{color:var(--qr-color-accent-strong);text-decoration:underline;text-underli
 </head>
 <body>
 <div class="wrap">
-  <a class="back" href="home.html">← Start</a>
   <div class="eyebrow">Quire · 01 Foundation</div>
   <h1 class="title">Foundation</h1>
   <p class="lede">The look itself — warm paper, a muted “almanac” palette with ochre as the accent, Newsreader for character, and calm ink actions. <strong>Every swatch and control on this page reads from the live tokens</strong> — this is the real source of truth, not a sketch of it.</p>
@@ -158,12 +159,6 @@ a.lnk{color:var(--qr-color-accent-strong);text-decoration:underline;text-underli
 
 </div>
 
-<button id="themeToggle">Switch to dark</button>
-<script>
-const tBtn=document.getElementById('themeToggle');
-function setTheme(m){document.documentElement.setAttribute('data-theme',m);tBtn.textContent=m==='dark'?'Switch to light':'Switch to dark';}
-setTheme(new URLSearchParams(location.search).get('theme')==='dark'?'dark':'light');
-tBtn.onclick=()=>setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark');
-</script>
+<script src="workbench.js"></script>
 </body>
 </html>

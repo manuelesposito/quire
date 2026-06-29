@@ -10,6 +10,7 @@
 <!-- the canonical foundation: this nav now CONSUMES @quire/tokens -->
 <link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
 <link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
+<link rel="stylesheet" href="workbench.css">
 <link rel="stylesheet" href="components.css">
 <style>
 :root{
@@ -28,7 +29,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-normal);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased}
-.app{display:flex;height:100vh;overflow:hidden}
+.app{display:flex;height:calc(100vh - var(--wb-h));overflow:hidden}
 /* product rail + contextual sidebar + marks live in components.css */
 .content{flex:1;display:flex;flex-direction:column;min-width:0;align-items:center;justify-content:center;padding:40px;text-align:center}
 .content .ph{max-width:400px;color:var(--text-subtle)}
@@ -67,16 +68,9 @@ body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-siz
   </div>
 </div>
 
-<button id="themeToggle">Switch to dark</button>
 
 <script>
-const tBtn = document.getElementById('themeToggle');
-function setTheme(mode){
-  document.documentElement.setAttribute('data-theme', mode);
-  tBtn.textContent = mode === 'dark' ? 'Switch to light' : 'Switch to dark';
-}
-setTheme(new URLSearchParams(location.search).get('theme') === 'dark' ? 'dark' : 'light');
-tBtn.onclick = () => setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+
 const DATA = {
   wp:  { name:'WordPress',   items:['Dashboard','Posts','Pages','Media','Comments','Appearance','Plugins','Users','Tools','Settings'] },
   woo: { name:'WooCommerce', items:['Home','Orders','Products','Customers','Analytics','Marketing','Settings','Extensions'] },
@@ -97,5 +91,6 @@ const start=(new URLSearchParams(location.search).get('p'))||'wp';
 document.querySelectorAll('.prod[data-p]').forEach(x=>x.classList.toggle('active', x.dataset.p===start));
 render(start);
 </script>
+<script src="workbench.js"></script>
 </body>
 </html>

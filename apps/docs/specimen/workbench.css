@@ -1,0 +1,42 @@
+/* =========================================================================
+   Quire — workbench.css
+   The thin connective bar across the top of every specimen screen, so the
+   pages link together into one workbench you can click through. This is
+   DOCS chrome (not a product component) — it never ships; it just makes the
+   system easy to work on. Injected by workbench.js, styled here, all tokens.
+   ========================================================================= */
+:root{ --wb-h:44px; }
+
+.wb{
+  position:fixed;top:0;left:0;right:0;height:var(--wb-h);z-index:200;
+  display:flex;align-items:center;gap:14px;padding:0 16px;
+  background:var(--qr-color-surface-nav);
+  border-bottom:1px solid var(--qr-color-border-default);
+  font-family:var(--qr-font-family-sans);
+}
+.wb__brand{
+  font-family:var(--qr-font-family-serif);font-size:var(--qr-font-size-500);
+  font-weight:var(--qr-font-weight-medium);letter-spacing:-0.01em;
+  color:var(--qr-color-text-default);text-decoration:none;padding-right:2px;
+}
+.wb__nav{display:flex;gap:2px;flex:1;flex-wrap:wrap}
+.wb__link{
+  padding:5px 10px;border-radius:var(--qr-radius-sm);
+  color:var(--qr-color-text-muted);text-decoration:none;
+  font-size:var(--qr-font-size-300);white-space:nowrap;
+}
+.wb__link:hover{background:var(--qr-color-state-hover);color:var(--qr-color-text-default)}
+/* active = neutral + ink (per the grammar — never the accent) */
+.wb__link.is-active{background:var(--qr-color-state-active-surface);color:var(--qr-color-text-default);font-weight:var(--qr-font-weight-medium)}
+.wb__toggle{
+  display:inline-flex;align-items:center;gap:7px;padding:6px 12px;
+  border-radius:var(--qr-radius-control);border:1px solid var(--qr-color-border-strong);
+  background:var(--qr-color-surface-raised);color:var(--qr-color-text-default);
+  cursor:pointer;font-family:var(--qr-font-family-sans);
+  font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-medium);
+}
+.wb__toggle:hover{background:var(--qr-color-state-hover)}
+
+/* leave room for the fixed bar. Doc pages override padding-top in their own
+   <style>; app pages (no body padding) inherit this offset. */
+body{padding-top:var(--wb-h)}

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quire — Tokens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
+<link rel="stylesheet" href="workbench.css">
+<style>
+/* Tokens — the live variables sheet. Reads resolved values from the real
+   tokens (via a probe), so it can never drift and it re-reads in dark. */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-canvas);color:var(--qr-color-text-default);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-normal);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased;padding:64px 40px 96px}
+.wrap{max-width:1000px;margin:0 auto}
+.eyebrow{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle)}
+h1.title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-900);letter-spacing:var(--qr-font-letter-spacing-tight);margin:6px 0 8px}
+.lede{color:var(--qr-color-text-muted);max-width:64ch}
+.lede code{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200);background:var(--qr-color-surface-sunken);padding:1px 6px;border-radius:var(--qr-radius-sm)}
+section{margin-top:var(--qr-space-1200);border-top:1px solid var(--qr-color-border-default);padding-top:var(--qr-space-600)}
+.sec-label{font-family:var(--qr-font-family-serif);font-style:italic;font-weight:var(--qr-font-weight-regular);font-size:var(--qr-font-size-500);color:var(--qr-color-text-muted);margin-bottom:var(--qr-space-100)}
+.sec-note{font-size:var(--qr-font-size-300);color:var(--qr-color-text-subtle);margin-bottom:var(--qr-space-500)}
+
+/* shared atoms */
+.name{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200);color:var(--qr-color-text-default)}
+.val{font-family:var(--qr-font-family-mono);font-size:11px;color:var(--qr-color-text-subtle)}
+
+/* type styles */
+.tstyle{display:grid;grid-template-columns:200px 1fr;gap:var(--qr-space-400);padding:var(--qr-space-400) 0;border-top:1px solid var(--qr-color-border-default);align-items:baseline}
+.tstyle:first-child{border-top:0}
+.tstyle .meta .name{display:block;margin-bottom:3px}
+.tstyle .sample{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* scale rows (size / space / radius) */
+.rows{display:flex;flex-direction:column;gap:var(--qr-space-100)}
+.srow{display:grid;grid-template-columns:150px 70px 1fr;gap:var(--qr-space-400);align-items:center;padding:var(--qr-space-100) 0}
+.bar{height:18px;background:var(--qr-color-accent-default);border-radius:2px;max-width:100%}
+.radius-demo{height:40px;width:64px;background:var(--qr-color-surface-sunken);border:1px solid var(--qr-color-border-strong)}
+
+/* colour ramps + roles */
+.ramp{display:flex;flex-wrap:wrap;gap:var(--qr-space-200);margin-top:var(--qr-space-200)}
+.ramp-title{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200);color:var(--qr-color-text-muted);margin-top:var(--qr-space-400);text-transform:none}
+.sw{width:108px;border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-sm);overflow:hidden;background:var(--qr-color-surface-raised)}
+.sw .chip{height:46px;border-bottom:1px solid var(--qr-color-border-default)}
+.sw .meta{padding:6px 8px}
+.sw .meta .name{font-size:11px;display:block}
+.sw .meta .val{font-size:10px;display:block;margin-top:1px}
+.grid-roles{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:var(--qr-space-200);margin-top:var(--qr-space-300)}
+.role-group{margin-top:var(--qr-space-500)}
+.role-group > .ramp-title{margin-top:0}
+#probe{position:absolute;visibility:hidden;pointer-events:none;left:-9999px;top:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">Quire · 02 Tokens</div>
+  <h1 class="title">Tokens</h1>
+  <p class="lede">The variables sheet — every type, spacing, radius and colour style, read <strong>live</strong> from <code>@quire/tokens</code>. This is the dial board: tune a token and every screen (and this sheet) moves with it. Flip dark in the bar to watch the semantic colours remap.</p>
+
+  <section>
+    <div class="sec-label">Type styles</div>
+    <div class="sec-note">Named text styles — like Figma text styles. Each is a bundle of family · size · weight.</div>
+    <div id="typeStyles"></div>
+  </section>
+
+  <section>
+    <div class="sec-label">Type scale</div>
+    <div class="sec-note">The raw size steps the styles are built from.</div>
+    <div class="rows" id="typeScale"></div>
+  </section>
+
+  <section>
+    <div class="sec-label">Spacing</div>
+    <div class="sec-note">A 4px-based scale. Borders, padding, and gaps only ever use these.</div>
+    <div class="rows" id="spaceScale"></div>
+  </section>
+
+  <section>
+    <div class="sec-label">Radius</div>
+    <div class="rows" id="radiusScale"></div>
+  </section>
+
+  <section>
+    <div class="sec-label">Colour — the palette</div>
+    <div class="sec-note">Primitive ramps: the raw pigments. Components never touch these directly.</div>
+    <div id="ramps"></div>
+  </section>
+
+  <section>
+    <div class="sec-label">Colour — the roles</div>
+    <div class="sec-note">Semantic tokens: what components actually use. Each points at a pigment — change the role, change the system. (These remap in dark.)</div>
+    <div id="roles"></div>
+  </section>
+</div>
+
+<span id="probe"></span>
+<script src="workbench.js"></script>
+<script>
+(function(){
+  var probe = document.getElementById('probe');
+  function cssVar(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
+  function resolveColor(varName){ probe.style.background=''; probe.style.background='var('+varName+')'; return getComputedStyle(probe).backgroundColor; }
+  function resolveLen(varName){ probe.style.width='var('+varName+')'; return getComputedStyle(probe).width; }
+  function hex(rgb){
+    var m = rgb.match(/[\d.]+/g); if(!m) return rgb;
+    if(m.length>=4 && +m[3] < 1) return 'rgba('+m.slice(0,4).join(', ')+')';
+    return '#'+m.slice(0,3).map(function(x){return (+x).toString(16).padStart(2,'0');}).join('');
+  }
+  function el(html){ var d=document.createElement('div'); d.innerHTML=html.trim(); return d.firstChild; }
+
+  // ---- type styles ----
+  var TYPE = ['display','page-title','section','body','body-sm','label','caption','mono-label','code'];
+  var SAMPLE = 'The quick brown fox';
+  var ts = document.getElementById('typeStyles');
+  TYPE.forEach(function(t){
+    var base='--qr-text-'+t;
+    var size=resolveLen(base+'-size'), weight=(function(){probe.style.fontWeight='var('+base+'-weight)';return getComputedStyle(probe).fontWeight;})();
+    var fam=(function(){probe.style.fontFamily='var('+base+'-family)';return getComputedStyle(probe).fontFamily.split(',')[0].replace(/["']/g,'');})();
+    var styleCss='font-family:var('+base+'-family);font-size:var('+base+'-size);font-weight:var('+base+'-weight);line-height:var('+base+'-line-height);letter-spacing:var('+base+'-letter-spacing)';
+    var sample = (t==='mono-label') ? 'PERMALINKS' : (t==='code' ? 'add_filter( ... )' : SAMPLE);
+    ts.appendChild(el(
+      '<div class="tstyle"><div class="meta"><span class="name">text.'+t+'</span>'+
+      '<span class="val">'+fam+' · '+size+' · '+weight+'</span></div>'+
+      '<div class="sample" style="'+styleCss+'">'+sample+'</div></div>'
+    ));
+  });
+
+  // ---- type scale ----
+  var SIZES=[100,200,300,400,500,600,700,800,900];
+  var tsc=document.getElementById('typeScale');
+  SIZES.forEach(function(s){
+    var v=resolveLen('--qr-font-size-'+s);
+    tsc.appendChild(el('<div class="srow"><span class="name">font-size-'+s+'</span><span class="val">'+v+'</span>'+
+      '<span style="font-size:var(--qr-font-size-'+s+');line-height:1">Aa Settings</span></div>'));
+  });
+
+  // ---- spacing ----
+  var SPACE=[0,50,100,200,300,400,500,600,800,1000,1200,1600];
+  var sp=document.getElementById('spaceScale');
+  SPACE.forEach(function(s){
+    var v=resolveLen('--qr-space-'+s);
+    sp.appendChild(el('<div class="srow"><span class="name">space-'+s+'</span><span class="val">'+v+'</span>'+
+      '<span class="bar" style="width:var(--qr-space-'+s+')"></span></div>'));
+  });
+
+  // ---- radius ----
+  var RADIUS=['none','xs','sm','md','lg','full'];
+  var rr=document.getElementById('radiusScale');
+  RADIUS.forEach(function(r){
+    var v=resolveLen('--qr-radius-'+r);
+    rr.appendChild(el('<div class="srow"><span class="name">radius-'+r+'</span><span class="val">'+(r==='full'?'9999px':v)+'</span>'+
+      '<span class="radius-demo" style="border-radius:var(--qr-radius-'+r+')"></span></div>'));
+  });
+
+  // ---- colour ramps ----
+  var RAMPS={
+    neutral:[0,50,75,100,125,150,200,300,400,600,700,800,900,1000],
+    ochre:[100,200,400,600,800], brick:[100,400,600], sage:[100,400,600], slate:[100,400,600]
+  };
+  var rampsEl=document.getElementById('ramps');
+  Object.keys(RAMPS).forEach(function(fam){
+    var group=el('<div class="role-group"><div class="ramp-title">'+fam+'</div><div class="ramp"></div></div>');
+    var row=group.querySelector('.ramp');
+    RAMPS[fam].forEach(function(step){
+      var name='--qr-color-'+fam+'-'+step;
+      row.appendChild(el('<div class="sw"><div class="chip" style="background:var('+name+')"></div>'+
+        '<div class="meta"><span class="name">'+fam+'.'+step+'</span><span class="val">'+hex(resolveColor(name))+'</span></div></div>'));
+    });
+    rampsEl.appendChild(group);
+  });
+
+  // ---- semantic roles ----
+  var ROLES={
+    text:['default','muted','subtle','inverse','accent','on-accent'],
+    surface:['canvas','raised','nav','sunken','inverse'],
+    border:['default','strong'],
+    accent:['soft','default','strong','deep'],
+    action:['primary-default','primary-hover','primary-text','secondary-border','secondary-text','tertiary-text','destructive-default','destructive-hover','destructive-text'],
+    state:['active-surface','selected-surface','selected-mark','focus-ring','hover'],
+    control:['on','on-fg'],
+    feedback:['success-surface','success-border','success-text','warning-surface','warning-border','warning-text','danger-surface','danger-border','danger-text','info-surface','info-border','info-text']
+  };
+  var rolesEl=document.getElementById('roles');
+  Object.keys(ROLES).forEach(function(grp){
+    var group=el('<div class="role-group"><div class="ramp-title">'+grp+'</div><div class="grid-roles"></div></div>');
+    var row=group.querySelector('.grid-roles');
+    ROLES[grp].forEach(function(role){
+      var name='--qr-color-'+grp+'-'+role;
+      row.appendChild(el('<div class="sw"><div class="chip" style="background:var('+name+')"></div>'+
+        '<div class="meta"><span class="name">'+grp+'.'+role+'</span><span class="val">'+hex(resolveColor(name))+'</span></div></div>'));
+    });
+    rolesEl.appendChild(group);
+  });
+
+  // re-read resolved values when the theme toggles (semantic colours remap)
+  new MutationObserver(function(){ location.reload(); })
+    .observe(document.documentElement, { attributes:true, attributeFilter:['data-theme'] });
+})();
+</script>
+</body>
+</html>

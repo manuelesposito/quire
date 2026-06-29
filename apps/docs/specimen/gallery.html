@@ -10,11 +10,12 @@
 <!-- the foundation -->
 <link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
 <link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
+<link rel="stylesheet" href="workbench.css">
 <link rel="stylesheet" href="components.css">
 <style>
 /* ===== page chrome (token-driven) — every component lives in components.css ===== */
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-canvas);color:var(--qr-color-text-default);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-normal);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased;padding:48px 44px 96px}
+body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-canvas);color:var(--qr-color-text-default);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-normal);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased;padding:64px 44px 96px}
 .wrap{max-width:920px;margin:0 auto}
 .eyebrow{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle)}
 h1{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-900);letter-spacing:var(--qr-font-letter-spacing-tight);margin:6px 0 8px}
@@ -567,17 +568,11 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 </div>
 
-<button id="themeToggle">Switch to dark</button>
 <script>
-const tBtn = document.getElementById('themeToggle');
-function setTheme(mode){
-  document.documentElement.setAttribute('data-theme', mode);
-  tBtn.textContent = mode === 'dark' ? 'Switch to light' : 'Switch to dark';
-}
-setTheme(new URLSearchParams(location.search).get('theme') === 'dark' ? 'dark' : 'light');
-tBtn.onclick = () => setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+
 const _to = new URLSearchParams(location.search).get('to');
 if (_to) { const el = document.getElementById(_to); if (el) el.scrollIntoView({block:'start'}); }
 </script>
+<script src="workbench.js"></script>
 </body>
 </html>
