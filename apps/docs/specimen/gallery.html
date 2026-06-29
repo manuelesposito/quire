@@ -310,6 +310,54 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
 .consume b{color:var(--qr-color-text-default);font-weight:var(--qr-font-weight-semibold)}
 .consume li{margin-top:var(--qr-space-200);list-style:none}
 
+/* =========================================================================
+   Priority specialised: Segmented · MediaGrid · DatePicker · FileUpload · Accordion
+   ========================================================================= */
+.segmented{display:inline-flex;background:var(--qr-color-surface-sunken);border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-sm);padding:2px;gap:2px}
+.segmented button{display:inline-flex;align-items:center;gap:6px;border:0;background:none;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);color:var(--qr-color-text-muted);padding:5px 11px;border-radius:var(--qr-radius-xs);cursor:pointer}
+.segmented button svg{width:15px;height:15px}
+.segmented button.is-active{background:var(--qr-color-surface-raised);color:var(--qr-color-text-default);box-shadow:var(--qr-elevation-raised);font-weight:var(--qr-font-weight-medium)}
+
+.mediagrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:var(--qr-space-300);max-width:520px}
+.media-item{aspect-ratio:1;border-radius:var(--qr-radius-md);border:1px solid var(--qr-color-border-default);position:relative;cursor:pointer}
+.media-item.is-selected{outline:2px solid var(--qr-color-text-default);outline-offset:2px}
+.media-item .check{position:absolute;top:6px;left:6px;width:18px;height:18px;border-radius:var(--qr-radius-xs);background:var(--qr-color-control-on);color:var(--qr-color-control-on-fg);display:none;align-items:center;justify-content:center}
+.media-item .check svg{width:12px;height:12px}
+.media-item.is-selected .check{display:inline-flex}
+
+.calendar{background:var(--qr-color-surface-raised);border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-md);box-shadow:var(--qr-elevation-overlay);padding:var(--qr-space-300);width:264px}
+.cal-head{display:flex;align-items:center;justify-content:space-between;padding:var(--qr-space-100) var(--qr-space-200) var(--qr-space-300);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium)}
+.cal-nav{width:26px;height:26px;border-radius:var(--qr-radius-sm);border:0;background:none;color:var(--qr-color-text-muted);cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.cal-nav:hover{background:var(--qr-color-state-hover)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.cal-dow{font-family:var(--qr-font-family-mono);font-size:10px;color:var(--qr-color-text-subtle);text-align:center;padding:var(--qr-space-100) 0}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:var(--qr-font-size-200);border-radius:var(--qr-radius-sm);color:var(--qr-color-text-default);cursor:pointer}
+.cal-day:hover{background:var(--qr-color-state-hover)}
+.cal-day.today{box-shadow:inset 0 0 0 1px var(--qr-color-border-strong)}
+.cal-day.in-range{background:var(--qr-color-state-active-surface)}
+.cal-day.is-selected{background:var(--qr-color-control-on);color:var(--qr-color-control-on-fg);font-weight:var(--qr-font-weight-medium)}
+
+.dropzone{border:1px dashed var(--qr-color-border-strong);border-radius:var(--qr-radius-md);padding:var(--qr-space-800) var(--qr-space-400);text-align:center;color:var(--qr-color-text-muted);max-width:480px}
+.dropzone svg{width:26px;height:26px;color:var(--qr-color-text-subtle);margin-bottom:var(--qr-space-200)}
+.dropzone .strong{color:var(--qr-color-text-default);font-weight:var(--qr-font-weight-medium)}
+.dropzone .lnk{color:var(--qr-color-accent-strong);text-decoration:underline;cursor:pointer}
+.filelist{max-width:480px;margin-top:var(--qr-space-400);display:flex;flex-direction:column;gap:var(--qr-space-400)}
+.fileitem{display:flex;align-items:center;gap:var(--qr-space-300);font-size:var(--qr-font-size-300)}
+.fileitem > svg{width:18px;height:18px;color:var(--qr-color-text-muted);flex-shrink:0}
+.fileitem .fmeta{flex:1;min-width:0}
+.fileitem .fname{font-weight:var(--qr-font-weight-medium)}
+.fileitem .fsub{font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle)}
+.fileitem .rm{color:var(--qr-color-text-muted);cursor:pointer;font-size:var(--qr-font-size-200)}
+
+.accordion{border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-card);background:var(--qr-color-surface-raised);overflow:hidden;max-width:520px}
+.acc-item{border-top:1px solid var(--qr-color-border-default)}
+.acc-item:first-child{border-top:0}
+.acc-head{display:flex;justify-content:space-between;align-items:center;gap:var(--qr-space-300);padding:var(--qr-space-300) var(--qr-space-400);cursor:pointer;font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-300);color:var(--qr-color-text-default)}
+.acc-head svg{width:16px;height:16px;color:var(--qr-color-text-muted);transition:transform var(--qr-motion-control-duration) var(--qr-motion-control-easing)}
+.acc-item.is-open .acc-head svg{transform:rotate(180deg)}
+.acc-body{padding:0 var(--qr-space-400) var(--qr-space-400);color:var(--qr-color-text-muted);font-size:var(--qr-font-size-300);line-height:var(--qr-font-line-height-normal)}
+.acc-item:not(.is-open) .acc-body{display:none}
+
 /* theme toggle */
 #themeToggle{position:fixed;right:20px;bottom:20px;display:inline-flex;align-items:center;padding:10px 16px;border-radius:var(--qr-radius-control);border:1px solid var(--qr-color-border-strong);background:var(--qr-color-surface-nav);color:var(--qr-color-text-default);cursor:pointer;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);box-shadow:0 4px 14px rgba(0,0,0,.16);z-index:50}
 #themeToggle:hover{background:var(--qr-color-state-hover)}
@@ -674,6 +722,73 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
         <div class="cmdk__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg> Add new order</div>
         <div class="cmdk__item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.5-2.3 1a7 7 0 0 0-1.7-1l-.4-2.5h-4l-.4 2.5a7 7 0 0 0-1.7 1l-2.3-1-2 3.5 2 1.5a7 7 0 0 0 0 2l-2 1.5 2 3.5 2.3-1a7 7 0 0 0 1.7 1l.4 2.5h4l.4-2.5a7 7 0 0 0 1.7-1l2.3 1 2-3.5-2-1.5a7 7 0 0 0 .1-1z"/></svg> Order settings</div>
       </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Navigation</div>
+    <div class="sec-title">Segmented control</div>
+    <div class="cluster" style="gap:var(--qr-space-400)">
+      <div class="segmented">
+        <button class="is-active" title="List"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></button>
+        <button title="Grid"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
+      </div>
+      <div class="segmented"><button>Day</button><button class="is-active">Week</button><button>Month</button></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Data display</div>
+    <div class="sec-title">Media grid</div>
+    <div class="mediagrid">
+      <div class="media-item" style="background:linear-gradient(135deg,#C9A24A,#A85F3C)"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></div>
+      <div class="media-item is-selected" style="background:linear-gradient(135deg,#7C8856,#5E6A3C)"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></div>
+      <div class="media-item" style="background:linear-gradient(135deg,#5C6B79,#41505E)"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></div>
+      <div class="media-item" style="background:linear-gradient(135deg,#AC5638,#8A3F26)"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></div>
+      <div class="media-item" style="background:linear-gradient(135deg,#CF9A2E,#A87B1C)"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></div>
+      <div class="media-item" style="background:linear-gradient(135deg,#6C6457,#332E24)"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></div>
+      <div class="media-item" style="background:linear-gradient(135deg,#A85F3C,#C9A24A)"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></div>
+      <div class="media-item" style="background:linear-gradient(135deg,#5E6A3C,#7C8856)"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Forms</div>
+    <div class="sec-title">Date picker</div>
+    <div class="calendar">
+      <div class="cal-head"><button class="cal-nav">‹</button><span>June 2026</span><button class="cal-nav">›</button></div>
+      <div class="cal-grid">
+        <div class="cal-dow">Mo</div><div class="cal-dow">Tu</div><div class="cal-dow">We</div><div class="cal-dow">Th</div><div class="cal-dow">Fr</div><div class="cal-dow">Sa</div><div class="cal-dow">Su</div>
+        <div class="cal-day">1</div><div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div>
+        <div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day">10</div><div class="cal-day">11</div><div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day">14</div>
+        <div class="cal-day">15</div><div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day">18</div><div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day">21</div>
+        <div class="cal-day in-range">22</div><div class="cal-day in-range">23</div><div class="cal-day is-selected">24</div><div class="cal-day">25</div><div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day">28</div>
+        <div class="cal-day today">29</div><div class="cal-day">30</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Forms</div>
+    <div class="sec-title">File upload</div>
+    <div class="dropzone">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+      <div><span class="strong">Drag files here</span> or <span class="lnk">browse</span></div>
+      <div style="font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle);margin-top:var(--qr-space-100)">PNG, JPG or PDF · up to 10 MB</div>
+    </div>
+    <div class="filelist">
+      <div class="fileitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5"/><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/></svg><div class="fmeta"><div class="fname">catalogue.pdf</div><div class="progress" style="margin-top:6px;max-width:none"><div class="progress__fill" style="width:64%"></div></div></div><span class="fsub">64%</span></div>
+      <div class="fileitem"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v5h5"/><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/></svg><div class="fmeta"><div class="fname">hero-banner.jpg</div><div class="fsub">2.4 MB · Done</div></div><span class="rm">Remove</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-label">Data display</div>
+    <div class="sec-title">Accordion</div>
+    <div class="accordion">
+      <div class="acc-item is-open"><div class="acc-head">Shipping <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div><div class="acc-body">Configure where you ship and what you charge. Add shipping zones for different regions and set rates per zone.</div></div>
+      <div class="acc-item"><div class="acc-head">Taxes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div><div class="acc-body">Set up tax rates and rules for the regions you sell to.</div></div>
+      <div class="acc-item"><div class="acc-head">Payments <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div><div class="acc-body">Choose how customers pay — cards, bank transfer, and more.</div></div>
     </div>
   </section>
 
