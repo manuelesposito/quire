@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quire — The design language</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
+<link rel="stylesheet" href="workbench.css">
+<style>
+/* The design language — the front door of the style guide. Dogfoods the look:
+   warm paper, Newsreader voice, editorial italic labels, ochre for emphasis. */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--qr-font-family-sans);color:var(--qr-color-text-default);background:var(--qr-color-surface-canvas);
+  -webkit-font-smoothing:antialiased;line-height:var(--qr-font-line-height-normal);font-size:var(--qr-font-size-400);
+  letter-spacing:var(--qr-font-letter-spacing-normal);padding:72px 40px 120px}
+.wrap{max-width:760px;margin:0 auto}
+.eyebrow{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle)}
+
+/* hero */
+.hero{border-bottom:1px solid var(--qr-color-border-default);padding-bottom:var(--qr-space-1000);margin-bottom:var(--qr-space-1000)}
+h1{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-900);letter-spacing:var(--qr-font-letter-spacing-tight);line-height:1.05;margin:8px 0 var(--qr-space-600)}
+.northstar{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-regular);font-size:var(--qr-font-size-700);line-height:1.35;color:var(--qr-color-text-default);border-left:3px solid var(--qr-color-accent-strong);padding-left:var(--qr-space-500)}
+.northstar em{font-style:italic}
+
+section{margin-top:var(--qr-space-1200)}
+.sec-label{font-family:var(--qr-font-family-serif);font-style:italic;font-size:var(--qr-font-size-600);color:var(--qr-color-text-muted);margin-bottom:var(--qr-space-400)}
+p{margin-bottom:var(--qr-space-400);max-width:64ch}
+p.lead{font-size:var(--qr-font-size-500);line-height:1.5}
+strong{font-weight:var(--qr-font-weight-semibold)}
+.accent{color:var(--qr-color-accent-strong)}
+
+/* beliefs */
+.beliefs{list-style:none;counter-reset:b;display:flex;flex-direction:column;gap:var(--qr-space-500);margin-top:var(--qr-space-200)}
+.beliefs li{display:grid;grid-template-columns:30px 1fr;gap:var(--qr-space-400);align-items:start}
+.beliefs li::before{counter-increment:b;content:counter(b);font-family:var(--qr-font-family-serif);font-size:var(--qr-font-size-600);color:var(--qr-color-accent-strong);line-height:1.2}
+.beliefs .bt{font-weight:var(--qr-font-weight-semibold)}
+.beliefs .bd{color:var(--qr-color-text-muted);margin-top:2px}
+
+/* typography specimens */
+.type{display:flex;flex-direction:column;gap:var(--qr-space-800);margin-top:var(--qr-space-200)}
+.spec{border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-card);background:var(--qr-color-surface-raised);overflow:hidden}
+.spec__show{padding:var(--qr-space-600) var(--qr-space-600) var(--qr-space-500)}
+.spec__meta{display:flex;flex-wrap:wrap;gap:6px var(--qr-space-400);padding:var(--qr-space-300) var(--qr-space-600);border-top:1px solid var(--qr-color-border-default);background:var(--qr-color-surface-canvas);font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle)}
+.spec__meta b{color:var(--qr-color-text-muted);font-weight:var(--qr-font-weight-medium)}
+.spec__role{font-weight:var(--qr-font-weight-semibold);margin-bottom:var(--qr-space-200)}
+.spec__why{color:var(--qr-color-text-muted);font-size:var(--qr-font-size-300);margin-top:var(--qr-space-300)}
+.show-serif{font-family:var(--qr-font-family-serif);font-size:34px;line-height:1.15;letter-spacing:var(--qr-font-letter-spacing-tight)}
+.show-serif .it{font-style:italic;color:var(--qr-color-text-muted)}
+.show-sans{font-family:var(--qr-font-family-sans);font-size:18px;line-height:1.5}
+.show-sans .small{font-size:var(--qr-font-size-300);color:var(--qr-color-text-muted)}
+.show-mono{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-400);line-height:1.7;color:var(--qr-color-text-default)}
+.show-mono .kw{color:var(--qr-color-accent-strong)}
+.show-mono .cmt{color:var(--qr-color-text-subtle)}
+.pairing{font-family:var(--qr-font-family-serif);font-style:italic;font-size:var(--qr-font-size-600);color:var(--qr-color-text-default);line-height:1.4;margin-top:var(--qr-space-200)}
+
+.foot{margin-top:var(--qr-space-1200);padding-top:var(--qr-space-600);border-top:1px solid var(--qr-color-border-default);font-size:var(--qr-font-size-300);color:var(--qr-color-text-muted)}
+.foot a{color:var(--qr-color-accent-strong);text-decoration:underline;text-underline-offset:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">Quire · The design language</div>
+    <h1>What Quire is for</h1>
+    <div class="northstar">An everyday person's WordPress admin that feels like a <em>well-made book</em> — calm, coherent, and cared-for — not a committee's dashboard.</div>
+  </div>
+
+  <section>
+    <div class="sec-label">The name is the idea</div>
+    <p class="lead">A <strong>quire</strong> is a bookbinding term: a gathering of folded sheets, bound into a book.</p>
+    <p>WordPress's admin today is loose, mismatched pages from four different printers — wp-admin, Gutenberg, WooCommerce, Jetpack — never bound together. Quire's whole reason for being is to <span class="accent">gather the scattered pages into one coherent, well-bound whole.</span></p>
+  </section>
+
+  <section>
+    <div class="sec-label">What we believe</div>
+    <ul class="beliefs">
+      <li><div><span class="bt">Coherence is respect.</span><div class="bd">Every clashing button is a small tax on someone's attention and confidence. Making everything mean one thing is how we respect the person using it.</div></div></li>
+      <li><div><span class="bt">Calm is the feature.</span><div class="bd">The work is subtraction — fewer colours, fewer styles, less noise. A quiet screen is a finished screen. We never add a control to solve a problem we could remove.</div></div></li>
+      <li><div><span class="bt">Made like a book, not a form.</span><div class="bd">Warm paper, a real typeface, craft in the small things. Software can carry the dignity of a well-made physical object — and it should, because the people using it deserve that care.</div></div></li>
+      <li><div><span class="bt">For the everyday owner.</span><div class="bd">Not developers, not agencies — the shop owner, the writer, the volunteer who never chose to learn an admin panel. They deserve one that doesn't punish them.</div></div></li>
+      <li><div><span class="bt">Built to age, not to trend.</span><div class="bd">Bookish over fashionable — meant to feel right in ten years, not novel for one. This is why "not generic" matters: generic is disposable.</div></div></li>
+      <li><div><span class="bt">A commons, not a product.</span><div class="bd">Open, GPL, owned by the community that runs a large share of the web. Quire answers to no vendor.</div></div></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="sec-label">The feel</div>
+    <p>Warm putty paper, not white — the colour of an old page. Surfaces separate by tone and a hairline, never by drop shadow; shadow is saved for things that truly float. A muted, vintage <em>almanac</em> palette where <strong>one warm accent</strong> does the emphasis and nothing else shouts. Generous spacing, few things on screen at once. The emotion we're aiming for is <span class="accent">reassurance</span> — the calm of a well-made book, for someone who never asked to learn an admin panel.</p>
+  </section>
+
+  <section>
+    <div class="sec-label">Typography — three voices, three jobs</div>
+    <p>Type carries most of the feeling. Quire uses three families, each with one clear job, and keeps strict discipline between them — that restraint is what keeps a dense screen calm.</p>
+
+    <div class="type">
+
+      <div class="spec">
+        <div class="spec__show">
+          <div class="spec__role">Newsreader — the voice</div>
+          <div class="show-serif">What a cleaner WordPress admin feels like<br><span class="it">warm, calm, and deliberate</span></div>
+          <div class="spec__why">A warm, literary serif made for reading on screens, with optical sizing so it stays graceful from a caption to a headline. It carries Quire's character: page titles, display headings, and the <em>italic section labels</em> that read like a book's running-heads. Reserved on purpose — used where character matters, so it never becomes wallpaper.</div>
+        </div>
+        <div class="spec__meta"><b>Newsreader</b> · serif · Google Fonts · weights 400 / 500 / 600 · roman + italic · optical sizing</div>
+      </div>
+
+      <div class="spec">
+        <div class="spec__show">
+          <div class="spec__role">Inter — the work</div>
+          <div class="show-sans">The everyday working text — calm and dense, perfectly legible at small sizes.<br><span class="small">Buttons, labels, table data, settings rows, help text — the heavy lifting.</span></div>
+          <div class="spec__why">A neutral, humanist sans built for interfaces: exceptionally legible small, calm in dense layouts. It does the everyday work so the serif can stay special. If the serif is Quire's voice, Inter is its hands.</div>
+        </div>
+        <div class="spec__meta"><b>Inter</b> · sans-serif · Google Fonts · weights 400 / 450 / 500 / 600 · the UI workhorse</div>
+      </div>
+
+      <div class="spec">
+        <div class="spec__show">
+          <div class="spec__role">IBM Plex Mono — the technical</div>
+          <div class="show-mono"><span class="cmt">// only where something is literally technical</span><br><span class="kw">add_filter</span>( 'quire_tokens', … )<br>PERMALINKS · ⌘K · color.accent.strong</div>
+          <div class="spec__why">A monospace with quiet character, used only for genuinely technical things: code, identifiers, keyboard keys, token names. It signals "this is machinery" — never decoration, never body text.</div>
+        </div>
+        <div class="spec__meta"><b>IBM Plex Mono</b> · monospace · Google Fonts · weights 400 / 500 · technical only</div>
+      </div>
+
+    </div>
+
+    <p class="pairing">A serif for soul, a humanist sans for the work, a mono for the machinery.</p>
+    <p>The full size scale, weights, and named text styles (display, page-title, section, body, label, caption, mono-label, code) live on the <strong>Tokens</strong> screen, where you can see each one resolved live.</p>
+  </section>
+
+  <section>
+    <div class="sec-label">Where we're going</div>
+    <p>Today Quire is a coherent skin over the existing admin. The North Star is a genuine reimagining of what running a WordPress site feels like. At every stage the immutable core is the <em>feeling</em> — calm, bound, warm, made with care.</p>
+  </section>
+
+  <div class="foot">
+    The detailed rules and the locked grammar live in <a href="https://github.com/manuelesposito/quire/blob/main/DESIGN.md">DESIGN.md</a>. This page is its front door — the why, before the what.
+  </div>
+
+</div>
+<script src="workbench.js"></script>
+</body>
+</html>

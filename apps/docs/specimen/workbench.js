@@ -7,6 +7,7 @@
    ========================================================================= */
 (function () {
   var SCREENS = [
+    ['Philosophy', 'philosophy.html'],
     ['Foundation', 'index.html'],
     ['Components', 'gallery.html'],
     ['Tokens',     'tokens.html'],
