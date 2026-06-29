@@ -1,0 +1,47 @@
+/* =========================================================================
+   Quire — guide.css
+   Shared LAYOUT chrome for the living style guide's reading pages
+   (Foundation, Tokens, Components). Not product components — this is the
+   guide's own look, so the pages read as one designed place: the same quiet
+   kicker, the same editorial section heading, the same spacing rhythm.
+   Loaded after each page's <style>, so it governs these shared selectors.
+   ========================================================================= */
+
+/* the page kicker — quiet sentence-case sans, never the mono overline */
+.eyebrow{
+  font-family:var(--qr-font-family-sans);
+  font-size:var(--qr-font-size-300);
+  font-weight:var(--qr-font-weight-medium);
+  letter-spacing:var(--qr-font-letter-spacing-normal);
+  text-transform:none;
+  color:var(--qr-color-text-muted);
+  margin-bottom:var(--qr-space-100);
+}
+
+/* section rhythm — the biggest break in the page: a divider + generous space */
+section{
+  margin-top:var(--qr-space-1200);
+  border-top:1px solid var(--qr-color-border-default);
+  padding-top:var(--qr-space-600);
+}
+
+/* the section heading — one editorial serif-italic label, like a running-head */
+.sec-label{
+  font-family:var(--qr-font-family-serif);
+  font-style:italic;
+  font-weight:var(--qr-font-weight-regular);
+  font-size:var(--qr-font-size-600);
+  letter-spacing:var(--qr-font-letter-spacing-normal);
+  text-transform:none;
+  color:var(--qr-color-text-muted);
+  margin-bottom:var(--qr-space-500);
+}
+
+/* a short note sitting under a section heading */
+.sec-note{
+  font-size:var(--qr-font-size-300);
+  color:var(--qr-color-text-muted);
+  margin-top:calc(-1 * var(--qr-space-300));
+  margin-bottom:var(--qr-space-500);
+  max-width:64ch;
+}

@@ -34,6 +34,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
 #themeToggle{position:fixed;right:20px;bottom:20px;display:inline-flex;align-items:center;padding:10px 16px;border-radius:var(--qr-radius-control);border:1px solid var(--qr-color-border-strong);background:var(--qr-color-surface-nav);color:var(--qr-color-text-default);cursor:pointer;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);box-shadow:0 4px 14px rgba(0,0,0,.16);z-index:50}
 #themeToggle:hover{background:var(--qr-color-state-hover)}
 </style>
+<link rel="stylesheet" href="guide.css">
 </head>
 <body>
 <div class="wrap">
@@ -42,8 +43,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   <p class="lede">The source of truth, made visible. Every component is built entirely from <code>@quire/tokens</code> — so it themes light/dark for free (try the toggle). This gallery grows as we build down the inventory.</p>
 
   <section>
-    <div class="sec-label">Variants × states</div>
-    <div class="sec-title">The matrix</div>
+    <div class="sec-label">The matrix</div>
     <div class="matrix">
       <div class="mhead"></div>
       <div class="mhead">Default</div><div class="mhead">Hover</div><div class="mhead">Active</div><div class="mhead">Focus</div><div class="mhead">Disabled</div>
@@ -79,8 +79,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Sizes</div>
-    <div class="sec-title">Medium &amp; small</div>
+    <div class="sec-label">Medium &amp; small</div>
     <div class="cluster">
       <button class="btn btn--primary">Medium</button>
       <button class="btn btn--secondary">Medium</button>
@@ -90,8 +89,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Live</div>
-    <div class="sec-title">Real, interactive</div>
+    <div class="sec-label">Real, interactive</div>
     <p class="lede" style="margin-bottom:16px">These actually respond — hover, click, and tab to them to see focus.</p>
     <div class="cluster">
       <button class="btn btn--primary">Save changes</button>
@@ -102,8 +100,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Forms · text</div>
-    <div class="sec-title">Input, textarea &amp; select</div>
+    <div class="sec-label">Input, textarea &amp; select</div>
     <div class="matrix" style="grid-template-columns:120px repeat(4,max-content)">
       <div class="mhead"></div>
       <div class="mhead">Default</div><div class="mhead">Focus</div><div class="mhead">Disabled</div><div class="mhead">Error</div>
@@ -120,8 +117,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Forms · selection</div>
-    <div class="sec-title">Checkbox, radio &amp; toggle</div>
+    <div class="sec-label">Checkbox, radio &amp; toggle</div>
     <div class="cluster" style="gap:30px">
       <label class="opt"><input type="checkbox"><span class="box sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span> Unchecked</label>
       <label class="opt"><input type="checkbox" checked><span class="box sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span> Checked</label>
@@ -140,8 +136,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Feedback</div>
-    <div class="sec-title">Notice</div>
+    <div class="sec-label">Notice</div>
     <div style="display:flex;flex-direction:column;gap:var(--qr-space-300)">
       <div class="notice notice--success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg><div><div class="notice__title">Settings saved</div><div class="notice__body">Your changes are live across the site.</div></div></div>
       <div class="notice notice--info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11.5v4.5"/><path d="M12 8h.01"/></svg><div><div class="notice__title">Heads up</div><div class="notice__body">A sample Privacy Policy page was created for you to review.</div></div></div>
@@ -151,8 +146,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Feedback</div>
-    <div class="sec-title">Badge &amp; status pill</div>
+    <div class="sec-label">Badge &amp; status pill</div>
     <div class="cluster" style="gap:14px">
       <span class="badge badge--success"><span class="dot"></span> Completed</span>
       <span class="badge badge--warning"><span class="dot"></span> Processing</span>
@@ -163,8 +157,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Navigation</div>
-    <div class="sec-title">Tabs</div>
+    <div class="sec-label">Tabs</div>
     <div class="tabs">
       <button class="tab is-active">General</button>
       <button class="tab">Writing</button>
@@ -174,8 +167,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section id="datatable">
-    <div class="sec-label">Data display</div>
-    <div class="sec-title">DataTable</div>
+    <div class="sec-label">DataTable</div>
     <p class="lede" style="margin-bottom:22px">Sortable headers, row selection (reuses Checkbox), status pills (reuses Badge), hover actions, toolbar &amp; footer — the workhorse behind every list screen. Selected = neutral; ochre only on link/action hover.</p>
     <div class="dt">
       <div class="dt-toolbar">
@@ -232,8 +224,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Navigation</div>
-    <div class="sec-title">PageHeader</div>
+    <div class="sec-label">PageHeader</div>
     <div class="pageheader">
       <div>
         <div class="pageheader__crumb">Settings / General</div>
@@ -247,8 +238,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section id="overlays">
-    <div class="sec-label">Overlays</div>
-    <div class="sec-title">Menu &amp; Modal</div>
+    <div class="sec-label">Menu &amp; Modal</div>
     <div class="cluster" style="gap:var(--qr-space-800);align-items:flex-start;flex-wrap:wrap">
       <div class="menu">
         <div class="menu__label">Order #1041</div>
@@ -272,8 +262,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Data display</div>
-    <div class="sec-title">StatTile</div>
+    <div class="sec-label">StatTile</div>
     <div class="cluster" style="gap:var(--qr-space-400)">
       <div class="stat"><div class="stat__label">Total sales</div><div class="stat__value">$12,480</div><div class="stat__delta up">▲ 8.2% this week</div></div>
       <div class="stat"><div class="stat__label">Orders</div><div class="stat__value">316</div><div class="stat__delta down">▼ 3.1% this week</div></div>
@@ -282,8 +271,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Data display</div>
-    <div class="sec-title">ProgressBar &amp; Checklist</div>
+    <div class="sec-label">ProgressBar &amp; Checklist</div>
     <div style="display:flex;flex-direction:column;gap:var(--qr-space-200);max-width:360px;margin-bottom:var(--qr-space-600)">
       <div class="progress"><div class="progress__fill" style="width:35%"></div></div>
       <div class="progress"><div class="progress__fill" style="width:70%"></div></div>
@@ -298,14 +286,12 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Overlays</div>
-    <div class="sec-title">Tooltip</div>
+    <div class="sec-label">Tooltip</div>
     <div class="tooltip">Payment received — the order is awaiting fulfilment.</div>
   </section>
 
   <section>
-    <div class="sec-label">Feedback</div>
-    <div class="sec-title">EmptyState</div>
+    <div class="sec-label">EmptyState</div>
     <div class="empty">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h5l2 3h4l2-3h5"/><path d="M5 6h14l2 6v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-6z"/></svg>
       <div class="empty__title">No orders yet</div>
@@ -315,8 +301,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Misc</div>
-    <div class="sec-title">Avatar &amp; HelpTip</div>
+    <div class="sec-label">Avatar &amp; HelpTip</div>
     <div class="cluster" style="gap:var(--qr-space-400);align-items:center">
       <span class="avatar avatar--sm">M</span>
       <span class="avatar">ME</span>
@@ -326,8 +311,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Forms · text</div>
-    <div class="sec-title">TokenInput</div>
+    <div class="sec-label">TokenInput</div>
     <div class="tokens">
       <span class="token">news <span class="token__x">×</span></span>
       <span class="token">tutorial <span class="token__x">×</span></span>
@@ -337,8 +321,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Data display · Tier 3</div>
-    <div class="sec-title">ChartCard</div>
+    <div class="sec-label">ChartCard</div>
     <div class="chartcard">
       <div class="chartcard__label">Net sales · 14 days</div>
       <div class="chartcard__value">$12,480</div>
@@ -349,8 +332,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Feedback · Tier 3</div>
-    <div class="sec-title">PromoCard <span style="font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-regular);color:var(--qr-color-text-subtle)">— governed, kept calm</span></div>
+    <div class="sec-label">PromoCard <span style="font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-regular);color:var(--qr-color-text-subtle)">— governed, kept calm</span></div>
     <div class="promo">
       <div class="promo__kicker">Jetpack</div>
       <div class="promo__title">See who’s visiting</div>
@@ -360,8 +342,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Forms · Tier 3</div>
-    <div class="sec-title">MediaField</div>
+    <div class="sec-label">MediaField</div>
     <div class="mediafield">
       <div>
         <div class="media-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg> Set image</div>
@@ -382,8 +363,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Navigation · Tier 3</div>
-    <div class="sec-title">Command palette <span style="font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-regular);color:var(--qr-color-text-subtle)">— ⌘K</span></div>
+    <div class="sec-label">Command palette <span style="font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-regular);color:var(--qr-color-text-subtle)">— ⌘K</span></div>
     <div class="cmdk">
       <div class="cmdk__search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
@@ -398,8 +378,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Navigation</div>
-    <div class="sec-title">Segmented control</div>
+    <div class="sec-label">Segmented control</div>
     <div class="cluster" style="gap:var(--qr-space-400)">
       <div class="segmented">
         <button class="is-active" title="List"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></button>
@@ -410,8 +389,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Data display</div>
-    <div class="sec-title">Media grid</div>
+    <div class="sec-label">Media grid</div>
     <div class="mediagrid">
       <div class="media-item" style="background:linear-gradient(135deg,#C9A24A,#A85F3C)"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></div>
       <div class="media-item is-selected" style="background:linear-gradient(135deg,#7C8856,#5E6A3C)"><span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></div>
@@ -425,8 +403,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Forms</div>
-    <div class="sec-title">Date picker</div>
+    <div class="sec-label">Date picker</div>
     <div class="calendar">
       <div class="cal-head"><button class="cal-nav">‹</button><span>June 2026</span><button class="cal-nav">›</button></div>
       <div class="cal-grid">
@@ -441,8 +418,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Forms</div>
-    <div class="sec-title">File upload</div>
+    <div class="sec-label">File upload</div>
     <div class="dropzone">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
       <div><span class="strong">Drag files here</span> or <span class="lnk">browse</span></div>
@@ -455,8 +431,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Data display</div>
-    <div class="sec-title">Accordion</div>
+    <div class="sec-label">Accordion</div>
     <div class="accordion">
       <div class="acc-item is-open"><div class="acc-head">Shipping <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div><div class="acc-body">Configure where you ship and what you charge. Add shipping zones for different regions and set rates per zone.</div></div>
       <div class="acc-item"><div class="acc-head">Taxes <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div><div class="acc-body">Set up tax rates and rules for the regions you sell to.</div></div>
@@ -465,8 +440,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Data display</div>
-    <div class="sec-title">Line chart</div>
+    <div class="sec-label">Line chart</div>
     <div class="chartcard linechart">
       <div class="chartcard__label">Net sales · 14 days</div>
       <div class="chartcard__value">$12,480</div>
@@ -479,8 +453,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Navigation</div>
-    <div class="sec-title">Stepper / wizard</div>
+    <div class="sec-label">Stepper / wizard</div>
     <div class="stepper">
       <div class="step done"><div class="step__line"></div><div class="step__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></div><div class="step__label">Store details</div></div>
       <div class="step done"><div class="step__line"></div><div class="step__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></div><div class="step__label">Products</div></div>
@@ -491,8 +464,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Data display</div>
-    <div class="sec-title">Nested list / tree</div>
+    <div class="sec-label">Nested list / tree</div>
     <div class="tree">
       <div class="tree-item open"><span class="tree-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span><span class="tname">Clothing</span><span class="tcount">24</span></div>
       <div class="tree-children">
@@ -507,8 +479,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Tools · advanced</div>
-    <div class="sec-title">Code editor</div>
+    <div class="sec-label">Code editor</div>
     <div class="code">
       <div class="code-row"><span class="code-ln">1</span><span class="code-txt"><span class="code-cmt">/* Quire admin tweak */</span></span></div>
       <div class="code-row"><span class="code-ln">2</span><span class="code-txt"><span class="code-kw">.wp-admin</span> {</span></div>
@@ -520,8 +491,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Tier 3 · not built (on purpose)</div>
-    <div class="sec-title">Consumed &amp; cut</div>
+    <div class="sec-label">Consumed &amp; cut</div>
     <div class="consume">
       <li><b>Block / site editor &amp; rich text</b> — consumed from <code style="font-family:var(--qr-font-family-mono)">@wordpress/components</code> (Gutenberg). We extend it with our tokens, we don’t rebuild it.</li>
       <li><b>Admin bar</b> — cut. Folded into the product rail.</li>
@@ -530,8 +500,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   </section>
 
   <section>
-    <div class="sec-label">Composed · Card + SettingsRow</div>
-    <div class="sec-title">A settings panel, from real components</div>
+    <div class="sec-label">A settings panel, from real components</div>
     <p class="lede" style="margin-bottom:22px">Everything in this card is the gallery's own components — Card, SettingsRow, Input, Select, Toggle, Button — assembled. Not a mock; the real thing.</p>
     <div class="card">
       <div class="card__head">
