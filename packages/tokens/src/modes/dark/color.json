@@ -3,7 +3,7 @@
     "text": {
       "default":   { "$value": "{color.neutral.50}",   "$type": "color" },
       "muted":     { "$value": "{color.neutral.400}",  "$type": "color" },
-      "subtle":    { "$value": "{color.neutral.600}",  "$type": "color" },
+      "subtle":    { "$value": "{color.neutral.500}",  "$type": "color" },
       "inverse":   { "$value": "{color.neutral.1000}", "$type": "color" },
       "accent":    { "$value": "{color.slate.400}",    "$type": "color" },
       "on-accent": { "$value": "{color.neutral.1000}", "$type": "color" }

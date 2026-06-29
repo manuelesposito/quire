@@ -2,8 +2,8 @@
   "color": {
     "text": {
       "default":   { "$value": "{color.neutral.900}", "$type": "color" },
-      "muted":     { "$value": "{color.neutral.600}", "$type": "color" },
-      "subtle":    { "$value": "{color.neutral.400}", "$type": "color" },
+      "muted":     { "$value": "{color.neutral.700}", "$type": "color" },
+      "subtle":    { "$value": "{color.neutral.600}", "$type": "color" },
       "inverse":   { "$value": "{color.neutral.0}",   "$type": "color" },
       "accent":    { "$value": "{color.slate.600}",   "$type": "color" },
       "on-accent": { "$value": "{color.neutral.0}",   "$type": "color" }
@@ -66,7 +66,7 @@
       "success": {
         "surface": { "$value": "{color.sage.100}", "$type": "color" },
         "border":  { "$value": "{color.sage.400}", "$type": "color" },
-        "text":    { "$value": "{color.sage.600}", "$type": "color" }
+        "text":    { "$value": "{color.sage.700}", "$type": "color" }
       },
       "warning": {
         "surface": { "$value": "{color.ochre.100}", "$type": "color" },

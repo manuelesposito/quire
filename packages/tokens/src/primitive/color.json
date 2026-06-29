@@ -13,6 +13,7 @@
       "200":  { "$value": "#D9D2C4", "$type": "color" },
       "300":  { "$value": "#C7BBA7", "$type": "color" },
       "400":  { "$value": "#9A8F7F", "$type": "color" },
+      "500":  { "$value": "#8A8070", "$type": "color" },
       "600":  { "$value": "#6C6457", "$type": "color" },
       "700":  { "$value": "#4A4338", "$type": "color" },
       "800":  { "$value": "#332E24", "$type": "color" },
@@ -36,7 +37,8 @@
     "sage": {
       "100": { "$value": "#D9DCC2", "$type": "color" },
       "400": { "$value": "#7C8856", "$type": "color" },
-      "600": { "$value": "#5E6A3C", "$type": "color" }
+      "600": { "$value": "#5E6A3C", "$type": "color" },
+      "700": { "$value": "#515C30", "$type": "color" }
     },
     "slate": {
       "100": { "$value": "#CDD4DA", "$type": "color" },
