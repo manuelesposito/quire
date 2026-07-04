@@ -34,16 +34,21 @@ body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-ca
 
   <nav class="rail">
     <div class="stack">
-      <button class="prod" title="WordPress"><span class="sq"><span class="logo wp"></span></span><span class="lbl">WordPress</span></button>
-      <button class="prod active" title="WooCommerce"><span class="sq"><span class="logo woo"></span></span><span class="lbl">Woo</span></button>
-      <button class="prod" title="Jetpack"><span class="sq"><span class="logo jp"></span></span><span class="lbl">Jetpack</span></button>
-      <button class="prod add" title="Add a plugin"><span class="sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></button>
+      <button class="prod has-tip"><span class="sq"><span class="logo wp"></span></span><span class="tip">WordPress <span class="kbd">⌘1</span></span></button>
+      <button class="prod active has-tip"><span class="sq"><span class="logo woo"></span></span><span class="tip">WooCommerce <span class="kbd">⌘2</span></span></button>
+      <button class="prod has-tip"><span class="sq"><span class="logo jp"></span></span><span class="tip">Jetpack <span class="kbd">⌘3</span></span></button>
+      <button class="prod add has-tip"><span class="sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span><span class="tip">Add a plugin</span></button>
     </div>
-    <div class="acct">M</div>
+    <div class="acct has-tip">M<span class="tip">Account</span></div>
   </nav>
 
   <aside class="subnav">
-    <div class="head"><span class="name">WooCommerce</span></div>
+    <div class="head">
+      <span class="name">WooCommerce</span>
+      <button class="head__toggle" id="menuToggle" title="Collapse menu" aria-label="Collapse menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9.5" y1="4" x2="9.5" y2="20"/></svg>
+      </button>
+    </div>
     <div class="sep"></div>
     <a>Home</a>
     <a class="active">Orders</a>
@@ -105,5 +110,11 @@ body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-ca
 </div>
 
 <script src="workbench.js"></script>
+<script>
+// focus mode — collapse leaves only the rail; any rail click re-expands
+const app=document.querySelector('.app');
+document.getElementById('menuToggle').addEventListener('click',()=>app.classList.add('collapsed'));
+document.querySelectorAll('.rail .prod').forEach(b=>b.addEventListener('click',()=>app.classList.remove('collapsed')));
+</script>
 </body>
 </html>

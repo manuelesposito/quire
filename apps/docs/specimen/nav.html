@@ -30,21 +30,7 @@
 html,body{height:100%}
 body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-normal);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased}
 .app{display:flex;height:calc(100vh - var(--wb-h));overflow:hidden}
-/* product rail + contextual sidebar + marks live in components.css */
-/* TRIAL: icon-only admin bar — labels drop away, names live in the tooltip. */
-.rail{width:62px;padding-top:12px}
-.prod .lbl{display:none}
-.prod{padding:0}                 /* tighten: the square is the whole target */
-.rail .stack{gap:6px}            /* icons closer together */
-/* panel header: title sits dead-level with the WordPress icon (both centres at
-   12 + 21 = 33px), balanced padding, collapse control on the right. */
-.subnav{padding-top:12px;overflow:hidden;transition:width var(--qr-duration-base) var(--qr-easing-standard),opacity var(--qr-duration-fast) var(--qr-easing-standard)}
-.subnav .head{height:42px;min-height:0;padding:0 10px 0 12px;justify-content:space-between}
-.head__toggle{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border:0;background:none;color:var(--qr-color-text-subtle);cursor:pointer;border-radius:var(--qr-radius-sm)}
-.head__toggle:hover{background:var(--qr-color-state-hover);color:var(--qr-color-text-muted)}
-.head__toggle svg{width:17px;height:17px}
-/* focus mode — collapse leaves only the rail; clicking any rail item re-expands */
-.app.collapsed .subnav{width:0;padding-left:0;padding-right:0;opacity:0;pointer-events:none}
+/* icon-only rail + contextual sidebar + collapse all live in components.css */
 body.demo-tips .tip{opacity:1;transform:translateY(-50%) translateX(0)}
 .content{flex:1;display:flex;flex-direction:column;min-width:0;align-items:center;justify-content:center;padding:40px;text-align:center}
 .content .ph{max-width:400px;color:var(--text-subtle)}

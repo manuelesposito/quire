@@ -395,23 +395,30 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
 .hlogo.woo{width:16px;height:11px;-webkit-mask-image:url(logos/woo-w.svg);mask-image:url(logos/woo-w.svg)}
 .hlogo.jp{width:16px;height:16px;-webkit-mask-image:url(logos/jetpack-mono.svg);mask-image:url(logos/jetpack-mono.svg)}
 
-.rail{width:var(--qr-size-rail);background:var(--qr-color-surface-nav);border-right:1px solid var(--qr-color-border-default);display:flex;flex-direction:column;align-items:center;padding:14px 0;flex-shrink:0}
-.rail .stack{display:flex;flex-direction:column;gap:4px;width:100%;align-items:center;flex:1}
-.prod{display:flex;flex-direction:column;align-items:center;gap:5px;background:none;border:0;cursor:pointer;padding:5px 0;width:100%}
+/* Rail is ICON-ONLY (locked 2026-07-04): names live in the rich tooltip
+   (.has-tip > .tip), not labels. .lbl is kept as a hidden guard for any
+   stale markup. Width comes from the sizing token (62px). */
+.rail{width:var(--qr-size-rail);background:var(--qr-color-surface-nav);border-right:1px solid var(--qr-color-border-default);display:flex;flex-direction:column;align-items:center;padding:12px 0 14px;flex-shrink:0}
+.rail .stack{display:flex;flex-direction:column;gap:6px;width:100%;align-items:center;flex:1}
+.prod{display:flex;flex-direction:column;align-items:center;background:none;border:0;cursor:pointer;padding:0;width:100%}
 .prod .sq{width:42px;height:42px;border-radius:var(--qr-radius-card);display:flex;align-items:center;justify-content:center;transition:background var(--qr-motion-control-duration) var(--qr-motion-control-easing)}
 .prod:focus-visible .sq,.add:focus-visible .sq{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
-.prod .lbl{font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle);letter-spacing:.01em}
+.prod .lbl{display:none}
 .prod:hover .sq{background:var(--qr-color-state-hover)}
 .prod.active .sq{background:var(--qr-color-state-selected-surface)}
 .prod.active .logo{background-color:var(--qr-color-state-selected-mark)}
-.prod.active .lbl{color:var(--qr-color-text-default);font-weight:var(--qr-font-weight-medium)}
 .add .sq{color:var(--qr-color-text-subtle)}
 .add:hover .sq{background:var(--qr-color-state-hover);color:var(--qr-color-text-muted)}
 .add svg{width:18px;height:18px}
 .rail .acct{width:30px;height:30px;border-radius:50%;background:var(--qr-color-text-default);color:var(--qr-color-text-inverse);display:flex;align-items:center;justify-content:center;font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-semibold);margin-top:8px}
 
-.subnav{width:var(--qr-size-sidebar);background:var(--qr-color-surface-nav);border-right:1px solid var(--qr-color-border-default);flex-shrink:0;padding:14px 14px;display:flex;flex-direction:column}
-.subnav .head{display:flex;align-items:center;gap:9px;padding:6px 8px 0;min-height:42px}
+.subnav{width:var(--qr-size-sidebar);background:var(--qr-color-surface-nav);border-right:1px solid var(--qr-color-border-default);flex-shrink:0;padding:12px 14px 14px;display:flex;flex-direction:column;overflow:hidden;transition:width var(--qr-duration-base) var(--qr-easing-standard),opacity var(--qr-duration-fast) var(--qr-easing-standard)}
+.subnav .head{display:flex;align-items:center;justify-content:space-between;gap:9px;height:42px;min-height:0;padding:0 10px 0 12px}
+/* panel collapse — focus mode leaves only the rail */
+.head__toggle{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border:0;background:none;color:var(--qr-color-text-subtle);cursor:pointer;border-radius:var(--qr-radius-sm)}
+.head__toggle:hover{background:var(--qr-color-state-hover);color:var(--qr-color-text-muted)}
+.head__toggle svg{width:17px;height:17px}
+.app.collapsed .subnav{width:0;padding-left:0;padding-right:0;opacity:0;pointer-events:none}
 .subnav .head .name{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-400);font-weight:var(--qr-font-weight-semibold);letter-spacing:-0.01em;color:var(--qr-color-text-default)}
 .subnav .sep{height:1px;background:var(--qr-color-border-default);margin:11px -14px}
 .subnav #menu{display:flex;flex-direction:column;gap:3px}
