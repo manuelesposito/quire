@@ -5,7 +5,7 @@
       "muted":     { "$value": "{color.neutral.700}", "$type": "color" },
       "subtle":    { "$value": "{color.neutral.600}", "$type": "color" },
       "inverse":   { "$value": "{color.neutral.0}",   "$type": "color" },
-      "accent":    { "$value": "{color.ochre.600}",   "$type": "color" },
+      "accent":    { "$value": "{color.ochre.700}",   "$type": "color" },
       "on-accent": { "$value": "{color.neutral.0}",   "$type": "color" }
     },
 
@@ -40,7 +40,7 @@
         "text":   { "$value": "{color.neutral.900}", "$type": "color" }
       },
       "tertiary": {
-        "text": { "$value": "{color.ochre.600}", "$type": "color" }
+        "text": { "$value": "{color.ochre.700}", "$type": "color" }
       },
       "destructive": {
         "default": { "$value": "{color.brick.400}", "$type": "color" },

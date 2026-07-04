@@ -27,6 +27,7 @@
       "200": { "$value": "#E8C76A", "$type": "color" },
       "400": { "$value": "#CF9A2E", "$type": "color" },
       "600": { "$value": "#A87B1C", "$type": "color" },
+      "700": { "$value": "#7A5913", "$type": "color" },
       "800": { "$value": "#5E430E", "$type": "color" }
     },
 
