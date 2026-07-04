@@ -229,6 +229,17 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
 
 .tooltip{display:inline-block;background:var(--qr-color-surface-inverse);color:var(--qr-color-text-inverse);font-size:var(--qr-font-size-200);padding:var(--qr-space-100) var(--qr-space-200);border-radius:var(--qr-radius-sm);box-shadow:var(--qr-elevation-overlay);max-width:240px;line-height:1.4}
 
+/* Rich tooltip — the dark bubble + optional keycaps (the Figma pattern).
+   Reusable: put a .tip inside any .has-tip (relative) trigger; add .kbd chips
+   for shortcuts. Default position is to the RIGHT (for the slim rail); other
+   placements can be added as .tip--* variants later. The keycap tint is built
+   from currentColor, so it adapts when the tooltip inverts in dark. */
+.has-tip{position:relative}
+.tip{position:absolute;left:calc(100% + 9px);top:50%;transform:translateY(-50%) translateX(-4px);display:inline-flex;align-items:center;gap:var(--qr-space-200);white-space:nowrap;background:var(--qr-color-surface-inverse);color:var(--qr-color-text-inverse);font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-medium);padding:5px 9px;border-radius:var(--qr-radius-sm);box-shadow:var(--qr-elevation-overlay);opacity:0;pointer-events:none;transition:opacity var(--qr-duration-fast) var(--qr-easing-standard),transform var(--qr-duration-fast) var(--qr-easing-standard);z-index:60}
+.tip::before{content:"";position:absolute;right:100%;top:50%;transform:translateY(-50%);border:5px solid transparent;border-right-color:var(--qr-color-surface-inverse)}
+.tip .kbd{display:inline-flex;align-items:center;font-family:var(--qr-font-family-mono);font-size:11px;color:currentColor;background:color-mix(in srgb, currentColor 16%, transparent);border-radius:var(--qr-radius-xs);padding:1px 5px;letter-spacing:.02em}
+.has-tip:hover>.tip,.has-tip:focus-visible>.tip{opacity:1;transform:translateY(-50%) translateX(0)}
+
 .empty{text-align:center;padding:var(--qr-space-1200) var(--qr-space-400);border:1px dashed var(--qr-color-border-strong);border-radius:var(--qr-radius-card);max-width:420px}
 .empty svg{width:28px;height:28px;color:var(--qr-color-text-subtle);margin-bottom:var(--qr-space-300)}
 .empty__title{font-family:var(--qr-font-family-serif);font-size:var(--qr-font-size-600);font-weight:var(--qr-font-weight-medium);margin-bottom:var(--qr-space-100)}
