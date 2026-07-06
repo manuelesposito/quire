@@ -3,217 +3,254 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Quire — General Settings (rethought)</title>
+<title>Quire — Settings</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
+<link rel="stylesheet" href="workbench.css">
+<link rel="stylesheet" href="components.css">
 <style>
-:root{
-  --canvas:#E8E5DC; --raised:#F3F0E9; --sunken:#DDD8CC;
-  --ink:#211C14; --spine:#22201A; --spine-hi:#2E2B22;
-  --text:#211C14; --text-muted:#6C6457; --text-subtle:#988D7D;
-  --on-spine:#C8BFAC; --on-spine-muted:#8A8270;
-  --border:#D8D1C3; --border-strong:#C7BBA7;
-  --ochre:#CF9A2E; --ochre-deep:#A87B1C; --ochre-soft:#F0DC9B;
-  --action:#232019; --action-hover:#3A352B; --on-action:#F3F0E9;
-  --sans:'Inter',system-ui,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace; --serif:'Libre Baskerville',serif;
-}
+/* page layout only — every component lives in components.css.
+   The experiment: WP General Settings with Figma's bones (dense
+   inspector/property rows) wearing Quire's skin. */
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-size:13.5px;line-height:1.45;letter-spacing:-0.006em;-webkit-font-smoothing:antialiased}
-.app{display:flex;height:100vh;overflow:hidden}
-
-/* ---------- primary rail: the spine ---------- */
-.rail{width:74px;background:var(--spine);display:flex;flex-direction:column;align-items:center;padding:12px 0;flex-shrink:0}
-.rail .brand{font-family:var(--serif);font-size:22px;color:var(--canvas);font-weight:600;line-height:1;margin-bottom:16px}
-.rail .nav{display:flex;flex-direction:column;gap:2px;width:100%;align-items:center;flex:1}
-.rail .item{width:58px;padding:8px 0;border-radius:9px;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--on-spine-muted);cursor:pointer;text-decoration:none}
-.rail .item svg{width:19px;height:19px}
-.rail .item span{font-size:9.5px;letter-spacing:0.01em}
-.rail .item:hover{background:var(--spine-hi);color:var(--on-spine)}
-.rail .item.active{background:var(--spine-hi);color:var(--ochre)}
-.rail .sep{width:34px;height:1px;background:#ffffff14;margin:7px 0}
-.rail .acct{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#C9A24A,#A85F3C);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;margin-top:6px}
-
-/* ---------- secondary sidebar: the index ---------- */
-.subnav{width:236px;background:var(--raised);border-right:1px solid var(--border);flex-shrink:0;padding:18px 14px;display:flex;flex-direction:column}
-.subnav .eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--text-subtle);padding:0 8px;margin-bottom:12px}
-.subnav .grp{font-family:var(--serif);font-size:19px;font-weight:500;padding:0 8px;margin-bottom:14px}
-.subnav a{display:flex;align-items:center;gap:9px;padding:7px 9px;border-radius:7px;color:var(--text-muted);text-decoration:none;font-size:13px;font-weight:450}
-.subnav a .dot{width:5px;height:5px;border-radius:50%;background:transparent;flex-shrink:0}
-.subnav a:hover{background:var(--sunken);color:var(--text)}
-.subnav a.active{background:var(--canvas);color:var(--text);font-weight:600}
-.subnav a.active .dot{background:var(--ochre)}
-
-/* ---------- content: the page ---------- */
-.content{flex:1;display:flex;flex-direction:column;min-width:0}
-.topbar{display:flex;align-items:center;justify-content:space-between;padding:16px 32px;border-bottom:1px solid var(--border);background:color-mix(in srgb,var(--canvas) 88%, transparent);backdrop-filter:blur(6px);position:sticky;top:0;z-index:5}
-.crumb{font-family:var(--mono);font-size:11px;letter-spacing:0.06em;color:var(--text-subtle);text-transform:uppercase;margin-bottom:3px}
-.title{font-family:var(--serif);font-size:24px;font-weight:500;letter-spacing:-0.01em}
-.topbar .actions{display:flex;align-items:center;gap:12px}
-.saved{font-size:12px;color:var(--text-subtle)}
-.btn{font-family:var(--sans);font-size:13px;font-weight:500;border-radius:6px;padding:7px 15px;border:1px solid transparent;cursor:pointer;letter-spacing:-0.005em}
-.btn-primary{background:var(--action);color:var(--on-action)}
-.btn-primary:hover{background:var(--action-hover)}
-.btn-ghost{background:transparent;color:var(--text-muted);border-color:var(--border-strong)}
-
-.scroll{overflow-y:auto;padding:26px 32px 60px}
-.sheet{max-width:880px}
-.card{background:var(--raised);border:1px solid var(--border);border-radius:11px;padding:20px 22px;margin-bottom:18px}
-.card > h2{font-family:var(--serif);font-size:17px;font-weight:500;margin-bottom:3px}
-.card > .cdesc{font-size:12.5px;color:var(--text-muted);margin-bottom:16px}
-.row{display:grid;grid-template-columns:188px 1fr;gap:20px;padding:13px 0;border-top:1px solid var(--border)}
-.row:first-of-type{border-top:0;padding-top:4px}
-.lbl{font-size:13px;font-weight:500;padding-top:7px}
-.lbl .req{color:var(--ochre-deep)}
-.fieldhelp{font-size:12px;color:var(--text-muted);margin-top:6px;max-width:54ch}
-input[type=text],select{font-family:var(--sans);font-size:13.5px;padding:8px 11px;border:1px solid var(--border-strong);border-radius:6px;background:var(--canvas);color:var(--text);width:100%;max-width:360px}
-input[type=text]:focus,select:focus{outline:2px solid var(--ochre-soft);border-color:var(--ochre);background:#fff}
-input::placeholder{color:var(--text-subtle)}
-.mono-field{font-family:var(--mono);color:var(--text-muted)}
-.btn-choose{background:var(--canvas);border:1px solid var(--border-strong);color:var(--ochre-deep);font-weight:600;border-radius:6px;padding:8px 14px;font-size:13px;cursor:pointer}
-
-/* switch */
-.switch{width:38px;height:22px;background:var(--action);border-radius:99px;position:relative;cursor:pointer;flex-shrink:0}
-.switch::after{content:"";position:absolute;top:2px;left:18px;width:18px;height:18px;background:#fff;border-radius:50%}
-.switch.off{background:var(--border-strong)}
-.switch.off::after{left:2px}
-.toggle-line{display:flex;align-items:center;gap:11px}
-.toggle-line .t-label{font-size:13px}
-
-/* radio format list */
-.opts{display:flex;flex-direction:column;gap:2px}
-.opt{display:flex;align-items:center;gap:11px;padding:7px 9px;border-radius:7px;cursor:pointer}
-.opt:hover{background:var(--canvas)}
-.opt.sel{background:var(--canvas)}
-.radio{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--border-strong);flex-shrink:0;position:relative}
-.opt.sel .radio{border-color:var(--ochre)}
-.opt.sel .radio::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--ochre)}
-.opt .sample{font-size:13.5px;flex:1}
-.opt .code{font-family:var(--mono);font-size:11px;color:var(--text-muted);background:var(--sunken);padding:2px 7px;border-radius:4px}
-.preview{font-size:12.5px;color:var(--text-muted);margin-top:8px;padding-left:9px}
-.preview b{color:var(--text);font-weight:600}
-.helperline{font-size:12px;color:var(--text-muted);margin-top:9px}
-.helperline code{font-family:var(--mono);background:var(--sunken);padding:1px 5px;border-radius:4px;font-size:11px}
-a.lnk{color:var(--ochre-deep);text-decoration:underline;text-underline-offset:2px}
+body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-canvas);color:var(--qr-color-text-default);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-normal);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased}
+.app{display:flex;height:calc(100vh - var(--wb-h));overflow:hidden}
+.content{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.topbar{padding:20px 32px;border-bottom:1px solid var(--qr-color-border-default);display:flex;align-items:flex-end;justify-content:space-between;gap:var(--qr-space-400);background:var(--qr-color-surface-canvas)}
+.crumb{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle);margin-bottom:5px}
+.title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-800);letter-spacing:var(--qr-font-letter-spacing-tight);line-height:1.05}
+.topbar .actions{display:flex;gap:var(--qr-space-300);align-items:center}
+.saved{font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle)}
+.scroll{overflow-y:auto;padding:26px 32px 64px}
+/* one calm column of section cards */
+.col{max-width:680px;display:flex;flex-direction:column;gap:var(--qr-space-500)}
+.col .card{width:100%}
+.col .card__body{padding-bottom:var(--qr-space-300)}
+/* controls fill their srow cell at a comfortable dense width */
+.srow__control .field{width:100%;max-width:360px}
+.srow__control .field--url{max-width:420px;font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200)}
+.srow__control .select-wrap{width:100%;max-width:280px}
+.srow__control .select-wrap .field{max-width:none;width:100%}
+/* option lists (date/time format) — stacked radios, mono previews */
+.opts{display:flex;flex-direction:column;gap:var(--qr-space-200);padding-top:4px}
+.fmt{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200);color:var(--qr-color-text-muted);margin-left:6px}
+/* site icon row */
+.icon-row{display:flex;align-items:center;gap:var(--qr-space-300)}
+.site-icon{width:44px;height:44px;border-radius:var(--qr-radius-card);background:var(--qr-color-state-selected-surface);color:var(--qr-color-state-selected-mark);display:flex;align-items:center;justify-content:center;font-family:var(--qr-font-family-serif);font-size:22px;font-weight:var(--qr-font-weight-bold);flex-shrink:0}
 </style>
 </head>
 <body>
 <div class="app">
 
-  <!-- spine -->
   <nav class="rail">
-    <div class="brand">Q</div>
-    <div class="nav">
-      <a class="item"><i data-lucide="layout-dashboard"></i><span>Home</span></a>
-      <a class="item"><i data-lucide="pen-line"></i><span>Posts</span></a>
-      <a class="item"><i data-lucide="file-text"></i><span>Pages</span></a>
-      <a class="item"><i data-lucide="image"></i><span>Media</span></a>
-      <a class="item"><i data-lucide="message-square"></i><span>Comments</span></a>
-      <div class="sep"></div>
-      <a class="item"><i data-lucide="paintbrush"></i><span>Design</span></a>
-      <a class="item"><i data-lucide="blocks"></i><span>Plugins</span></a>
-      <a class="item"><i data-lucide="users"></i><span>Users</span></a>
-      <a class="item"><i data-lucide="wrench"></i><span>Tools</span></a>
-      <a class="item active"><i data-lucide="settings"></i><span>Settings</span></a>
+    <div class="stack">
+      <button class="prod active has-tip"><span class="sq"><span class="logo wp"></span></span><span class="tip">WordPress <span class="kbd">⌘1</span></span></button>
+      <button class="prod has-tip"><span class="sq"><span class="logo woo"></span></span><span class="tip">WooCommerce <span class="kbd">⌘2</span></span></button>
+      <button class="prod has-tip"><span class="sq"><span class="logo jp"></span></span><span class="tip">Jetpack <span class="kbd">⌘3</span></span></button>
+      <button class="prod add has-tip"><span class="sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span><span class="tip">Add a plugin</span></button>
     </div>
-    <div class="acct">M</div>
+    <div class="acct has-tip">M<span class="tip">Account</span></div>
   </nav>
 
-  <!-- index -->
   <aside class="subnav">
-    <div class="eyebrow">Quire</div>
-    <div class="grp">Settings</div>
-    <a class="active"><span class="dot"></span> General</a>
-    <a><span class="dot"></span> Writing</a>
-    <a><span class="dot"></span> Reading</a>
-    <a><span class="dot"></span> Discussion</a>
-    <a><span class="dot"></span> Media</a>
-    <a><span class="dot"></span> Permalinks</a>
-    <a><span class="dot"></span> Privacy</a>
-    <a><span class="dot"></span> Connectors</a>
+    <div class="head">
+      <span class="name">WordPress</span>
+      <button class="head__toggle" id="menuToggle" title="Collapse menu" aria-label="Collapse menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9.5" y1="4" x2="9.5" y2="20"/></svg>
+      </button>
+    </div>
+    <div class="sep"></div>
+    <a>Dashboard</a>
+    <a>Posts</a>
+    <a>Pages</a>
+    <a>Media</a>
+    <a>Comments</a>
+    <a>Appearance</a>
+    <a>Plugins</a>
+    <a>Users</a>
+    <a>Tools</a>
+    <a class="active">Settings</a>
   </aside>
 
-  <!-- page -->
   <div class="content">
     <header class="topbar">
       <div>
-        <div class="crumb">Settings / General</div>
+        <div class="crumb">WordPress / Settings</div>
         <div class="title">General</div>
       </div>
       <div class="actions">
-        <span class="saved">All changes saved</span>
-        <button class="btn btn-ghost">Discard</button>
-        <button class="btn btn-primary">Save changes</button>
+        <span class="saved">Last saved 2 minutes ago</span>
+        <button class="btn btn--secondary">Discard</button>
+        <button class="btn btn--primary">Save changes</button>
       </div>
     </header>
 
     <div class="scroll">
-      <div class="sheet">
+      <div class="col">
 
-        <div class="card">
-          <h2>Site identity</h2>
-          <div class="cdesc">How your site introduces itself across the web.</div>
-          <div class="row"><div class="lbl">Site title</div><div><input type="text" value="My WordPress Website" /></div></div>
-          <div class="row"><div class="lbl">Tagline</div><div><input type="text" placeholder="Just another WordPress site" /><div class="fieldhelp">In a few words, explain what this site is about.</div></div></div>
-          <div class="row"><div class="lbl">Site icon</div><div><button class="btn-choose">Choose a site icon</button><div class="fieldhelp">Shown in browser tabs and bookmarks. Square, at least 512×512px.</div></div></div>
-        </div>
-
-        <div class="card">
-          <h2>Addresses &amp; contact</h2>
-          <div class="cdesc">Where the site lives and who hears from it.</div>
-          <div class="row"><div class="lbl">WordPress address</div><div><input type="text" class="mono-field" value="http://localhost:8881" /></div></div>
-          <div class="row"><div class="lbl">Site address</div><div><input type="text" class="mono-field" value="http://localhost:8881" /></div></div>
-          <div class="row"><div class="lbl">Admin email</div><div><input type="text" value="admin@localhost.com" /><div class="fieldhelp">Used for admin notices. Changing it sends a confirmation to the new address before it takes effect.</div></div></div>
-        </div>
-
-        <div class="card">
-          <h2>Membership &amp; roles</h2>
-          <div class="row"><div class="lbl">Open registration</div><div><div class="toggle-line"><div class="switch off"></div><span class="t-label">Anyone can register an account</span></div></div></div>
-          <div class="row"><div class="lbl">Default role</div><div><select><option>Subscriber</option><option>Contributor</option><option>Author</option><option>Editor</option><option>Administrator</option></select><div class="fieldhelp">The role given to new accounts.</div></div></div>
-        </div>
-
-        <div class="card">
-          <h2>Localization</h2>
-          <div class="row"><div class="lbl">Site language</div><div><select><option>English (United States)</option><option>Deutsch</option><option>Italiano</option><option>Français</option></select></div></div>
-          <div class="row"><div class="lbl">Timezone</div><div><select><option>UTC+0</option><option>Europe/Berlin (UTC+1)</option><option>Europe/Rome (UTC+1)</option></select><div class="helperline">Universal time is <code>2026-06-24 14:33:23</code></div></div></div>
-        </div>
-
-        <div class="card">
-          <h2>Date &amp; time</h2>
-          <div class="cdesc">How dates and times are written across the site.</div>
-          <div class="row">
-            <div class="lbl">Date format</div>
-            <div>
-              <div class="opts">
-                <label class="opt sel"><span class="radio"></span><span class="sample">June 24, 2026</span><span class="code">F j, Y</span></label>
-                <label class="opt"><span class="radio"></span><span class="sample">2026-06-24</span><span class="code">Y-m-d</span></label>
-                <label class="opt"><span class="radio"></span><span class="sample">06/24/2026</span><span class="code">m/d/Y</span></label>
-                <label class="opt"><span class="radio"></span><span class="sample">24.06.2026</span><span class="code">d.m.Y</span></label>
-                <label class="opt"><span class="radio"></span><span class="sample">Custom</span><span class="code">F j, Y</span></label>
+        <section class="card">
+          <div class="card__head">
+            <div class="card__title">Site identity</div>
+            <div class="card__desc">How your site introduces itself — in browser tabs, search results, and feeds.</div>
+          </div>
+          <div class="card__body">
+            <div class="srow">
+              <div class="srow__label">Site title</div>
+              <div class="srow__control"><input class="field" value="Quill &amp; Quire"></div>
+            </div>
+            <div class="srow">
+              <div class="srow__label">Tagline <span class="srow__tip">?</span></div>
+              <div class="srow__control">
+                <input class="field" value="Rare &amp; second-hand books, carefully sourced">
+                <div class="srow__help">In a few words, explain what this site is about. Shown where themes and search engines choose to display it.</div>
               </div>
-              <div class="preview">Preview: <b>June 24, 2026</b></div>
+            </div>
+            <div class="srow">
+              <div class="srow__label">Site icon</div>
+              <div class="srow__control">
+                <div class="icon-row">
+                  <div class="site-icon">Q</div>
+                  <button class="btn btn--secondary btn--sm">Replace</button>
+                  <button class="btn btn--tertiary btn--sm">Remove</button>
+                </div>
+                <div class="srow__help">Shown in browser tabs and bookmarks. Square, at least 512 × 512 pixels.</div>
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="lbl">Time format</div>
-            <div>
-              <div class="opts">
-                <label class="opt sel"><span class="radio"></span><span class="sample">2:33 pm</span><span class="code">g:i a</span></label>
-                <label class="opt"><span class="radio"></span><span class="sample">14:33</span><span class="code">H:i</span></label>
-                <label class="opt"><span class="radio"></span><span class="sample">Custom</span><span class="code">g:i a</span></label>
+        </section>
+
+        <section class="card">
+          <div class="card__head">
+            <div class="card__title">Addresses</div>
+            <div class="card__desc">Where WordPress lives and where visitors find the site.</div>
+          </div>
+          <div class="card__body">
+            <div class="srow">
+              <div class="srow__label">WordPress address</div>
+              <div class="srow__control"><input class="field field--url" value="https://quillandquire.shop/wp"></div>
+            </div>
+            <div class="srow">
+              <div class="srow__label">Site address</div>
+              <div class="srow__control">
+                <input class="field field--url" value="https://quillandquire.shop">
+                <div class="srow__help">Enter the same address unless WordPress is installed in its own directory.</div>
               </div>
-              <div class="preview">Preview: <b>2:33 pm</b> · <a class="lnk" href="#">Formatting reference</a></div>
+            </div>
+            <div class="srow">
+              <div class="srow__label">Administration email</div>
+              <div class="srow__control">
+                <input class="field" value="manuel@quillandquire.shop">
+                <div class="srow__help">Used for admin purposes. A change is confirmed by email before it takes effect.</div>
+              </div>
             </div>
           </div>
-          <div class="row"><div class="lbl">Week starts on</div><div><select><option>Monday</option><option>Sunday</option></select></div></div>
-        </div>
+        </section>
+
+        <section class="card">
+          <div class="card__head">
+            <div class="card__title">Membership</div>
+            <div class="card__desc">Who can join, and what they can do when they arrive.</div>
+          </div>
+          <div class="card__body">
+            <div class="srow srow--switch">
+              <div>
+                <div class="srow__rlabel">Anyone can register</div>
+                <div class="srow__help">Visitors may create an account on the login screen.</div>
+              </div>
+              <label class="toggle"><input type="checkbox"><span class="track"></span></label>
+            </div>
+            <div class="srow">
+              <div class="srow__label">Default role</div>
+              <div class="srow__control">
+                <span class="select-wrap"><select class="field">
+                  <option selected>Subscriber</option>
+                  <option>Contributor</option>
+                  <option>Author</option>
+                  <option>Editor</option>
+                </select></span>
+                <div class="srow__help">The role every new account starts with.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card__head">
+            <div class="card__title">Language &amp; time</div>
+            <div class="card__desc">The language of the admin, and how dates and times read across the site.</div>
+          </div>
+          <div class="card__body">
+            <div class="srow">
+              <div class="srow__label">Site language</div>
+              <div class="srow__control">
+                <span class="select-wrap"><select class="field">
+                  <option selected>English (UK)</option>
+                  <option>Deutsch</option>
+                  <option>Italiano</option>
+                  <option>ไทย</option>
+                </select></span>
+              </div>
+            </div>
+            <div class="srow">
+              <div class="srow__label">Timezone</div>
+              <div class="srow__control">
+                <span class="select-wrap"><select class="field">
+                  <option selected>Europe/Berlin</option>
+                  <option>Europe/London</option>
+                  <option>Asia/Bangkok</option>
+                  <option>UTC</option>
+                </select></span>
+                <div class="srow__help">Universal time is <span class="fmt">2026-07-04 09:41 UTC</span> · local time is <span class="fmt">11:41</span></div>
+              </div>
+            </div>
+            <div class="srow">
+              <div class="srow__label">Date format</div>
+              <div class="srow__control">
+                <div class="opts">
+                  <label class="opt"><input type="radio" name="datefmt" checked><span class="box ro"><span class="dot"></span></span> 4 July 2026 <span class="fmt">j F Y</span></label>
+                  <label class="opt"><input type="radio" name="datefmt"><span class="box ro"><span class="dot"></span></span> 2026-07-04 <span class="fmt">Y-m-d</span></label>
+                  <label class="opt"><input type="radio" name="datefmt"><span class="box ro"><span class="dot"></span></span> 04/07/2026 <span class="fmt">d/m/Y</span></label>
+                  <label class="opt"><input type="radio" name="datefmt"><span class="box ro"><span class="dot"></span></span> July 4, 2026 <span class="fmt">F j, Y</span></label>
+                </div>
+              </div>
+            </div>
+            <div class="srow">
+              <div class="srow__label">Time format</div>
+              <div class="srow__control">
+                <div class="opts">
+                  <label class="opt"><input type="radio" name="timefmt" checked><span class="box ro"><span class="dot"></span></span> 11:41 <span class="fmt">H:i</span></label>
+                  <label class="opt"><input type="radio" name="timefmt"><span class="box ro"><span class="dot"></span></span> 11:41 am <span class="fmt">g:i a</span></label>
+                </div>
+              </div>
+            </div>
+            <div class="srow">
+              <div class="srow__label">Week starts on</div>
+              <div class="srow__control">
+                <span class="select-wrap"><select class="field">
+                  <option selected>Monday</option>
+                  <option>Sunday</option>
+                  <option>Saturday</option>
+                </select></span>
+              </div>
+            </div>
+          </div>
+        </section>
 
       </div>
     </div>
   </div>
 </div>
-<script>lucide.createIcons();</script>
+
+<script src="workbench.js"></script>
+<script>
+// focus mode — collapse leaves only the rail; any rail click re-expands
+const app=document.querySelector('.app');
+document.getElementById('menuToggle').addEventListener('click',()=>app.classList.add('collapsed'));
+document.querySelectorAll('.rail .prod').forEach(b=>b.addEventListener('click',()=>app.classList.remove('collapsed')));
+</script>
 </body>
 </html>

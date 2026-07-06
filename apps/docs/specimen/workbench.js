@@ -12,7 +12,8 @@
     ['Components', 'gallery.html'],
     ['Tokens',     'tokens.html'],
     ['Navigation', 'nav.html'],
-    ['Orders',     'orders.html']
+    ['Orders',     'orders.html'],
+    ['Settings',   'settings.html']
   ];
   var here = (location.pathname.split('/').pop() || 'index.html');
 
