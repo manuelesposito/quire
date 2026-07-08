@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quire — Jetpack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
+<link rel="stylesheet" href="workbench.css">
+<link rel="stylesheet" href="components.css">
+<style>
+/* page layout only — every component lives in components.css.
+   The experiment: Jetpack Settings, the third clashing design language,
+   wearing the same Quire skin as WP Settings and the Woo screens.
+   Tab-heavy + toggle-heavy + upsell — all three tamed by the grammar. */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-canvas);color:var(--qr-color-text-default);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-normal);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased}
+.app{display:flex;height:calc(100vh - var(--wb-h));overflow:hidden}
+.content{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.topbar{padding:20px 32px 0;border-bottom:1px solid var(--qr-color-border-default);background:var(--qr-color-surface-canvas)}
+.topbar__row{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--qr-space-400)}
+.crumb{font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle);margin-bottom:5px}
+.title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-800);letter-spacing:var(--qr-font-letter-spacing-tight);line-height:1.05}
+.topbar .actions{display:flex;gap:var(--qr-space-300);align-items:center}
+.topbar .tabs{margin-top:18px;border-bottom:0}
+.scroll{overflow-y:auto;padding:26px 32px 64px}
+.col{max-width:680px;display:flex;flex-direction:column;gap:var(--qr-space-500)}
+.col .card{width:100%}
+.col .card__body{padding-bottom:var(--qr-space-300)}
+.col .promo{max-width:none}
+/* stat line inside a switch row's help */
+.blocked{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle)}
+.srow--switch .badge{margin-right:var(--qr-space-300)}
+.switch-side{display:flex;align-items:center}
+.promo .btn{margin-right:var(--qr-space-200)}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <nav class="rail">
+    <div class="stack">
+      <button class="prod has-tip"><span class="sq"><span class="logo wp"></span></span><span class="tip">WordPress <span class="kbd">⌘1</span></span></button>
+      <button class="prod has-tip"><span class="sq"><span class="logo woo"></span></span><span class="tip">WooCommerce <span class="kbd">⌘2</span></span></button>
+      <button class="prod active has-tip"><span class="sq"><span class="logo jp"></span></span><span class="tip">Jetpack <span class="kbd">⌘3</span></span></button>
+      <button class="prod add has-tip"><span class="sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span><span class="tip">Add a plugin</span></button>
+    </div>
+    <div class="acct has-tip">M<span class="tip">Account</span></div>
+  </nav>
+
+  <aside class="subnav">
+    <div class="head">
+      <span class="name">Jetpack</span>
+      <button class="head__toggle" id="menuToggle" title="Collapse menu" aria-label="Collapse menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9.5" y1="4" x2="9.5" y2="20"/></svg>
+      </button>
+    </div>
+    <div class="sep"></div>
+    <a>My Jetpack</a>
+    <a>Stats</a>
+    <a>Activity</a>
+    <a>Backup</a>
+    <a>Scan</a>
+    <a>Akismet</a>
+    <a class="active">Settings</a>
+  </aside>
+
+  <div class="content">
+    <header class="topbar">
+      <div class="topbar__row">
+        <div>
+          <div class="crumb">Jetpack / Settings</div>
+          <div class="title">Settings</div>
+        </div>
+        <div class="actions">
+          <span class="badge badge--success"><span class="dot"></span> Connected</span>
+        </div>
+      </div>
+      <div class="tabs">
+        <button class="tab is-active">Security</button>
+        <button class="tab">Performance</button>
+        <button class="tab">Writing</button>
+        <button class="tab">Sharing</button>
+        <button class="tab">Discussion</button>
+        <button class="tab">Traffic</button>
+      </div>
+    </header>
+
+    <div class="scroll">
+      <div class="col">
+
+        <section class="card">
+          <div class="card__head">
+            <div class="card__title">Downtime monitoring</div>
+            <div class="card__desc">Jetpack checks the site from the outside and emails you the moment it stops answering.</div>
+          </div>
+          <div class="card__body">
+            <div class="srow srow--switch">
+              <div>
+                <div class="srow__rlabel">Monitor the site every five minutes</div>
+                <div class="srow__help">Alerts go to manuel@quillandquire.shop.</div>
+              </div>
+              <label class="toggle"><input type="checkbox" checked><span class="track"></span></label>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card__head">
+            <div class="card__title">Brute force protection</div>
+            <div class="card__desc">Blocks bots that try password after password on your login page.</div>
+          </div>
+          <div class="card__body">
+            <div class="srow srow--switch">
+              <div>
+                <div class="srow__rlabel">Protect the login page</div>
+                <div class="srow__help"><span class="blocked">5,204 attacks blocked all-time · 12 this week</span></div>
+              </div>
+              <label class="toggle"><input type="checkbox" checked><span class="track"></span></label>
+            </div>
+            <div class="srow srow--switch">
+              <div>
+                <div class="srow__rlabel">Allow WordPress.com sign-in</div>
+                <div class="srow__help">Members of the site can sign in with their WordPress.com account and two-step authentication.</div>
+              </div>
+              <label class="toggle"><input type="checkbox"><span class="track"></span></label>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="card__head">
+            <div class="card__title">Firewall</div>
+            <div class="card__desc">Inspects incoming traffic and stops known attack patterns before WordPress even runs.</div>
+          </div>
+          <div class="card__body">
+            <div class="srow srow--switch">
+              <div>
+                <div class="srow__rlabel">Web application firewall</div>
+                <div class="srow__help">Rules update automatically as new threats appear.</div>
+              </div>
+              <div class="switch-side">
+                <span class="badge badge--neutral"><span class="dot"></span> Off</span>
+                <label class="toggle"><input type="checkbox"><span class="track"></span></label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="promo">
+          <div class="promo__kicker">Not included in your plan</div>
+          <div class="promo__title">Real-time backups</div>
+          <div class="promo__body">Every change saved as it happens — restore the whole shop to any moment, even after a bad update or a break-in.</div>
+          <button class="btn btn--primary btn--sm">Add VaultPress Backup</button>
+          <button class="btn btn--tertiary btn--sm">Learn more</button>
+        </div>
+
+        <section class="card">
+          <div class="card__head">
+            <div class="card__title">Spam</div>
+            <div class="card__desc">Akismet reads every comment and contact-form entry so you don't have to.</div>
+          </div>
+          <div class="card__body">
+            <div class="srow srow--switch">
+              <div>
+                <div class="srow__rlabel">Filter spam automatically</div>
+                <div class="srow__help"><span class="blocked">318 spam comments caught this month</span></div>
+              </div>
+              <div class="switch-side">
+                <span class="badge badge--success"><span class="dot"></span> Active</span>
+                <label class="toggle"><input type="checkbox" checked><span class="track"></span></label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="workbench.js"></script>
+<script>
+// focus mode — collapse leaves only the rail; any rail click re-expands
+const app=document.querySelector('.app');
+document.getElementById('menuToggle').addEventListener('click',()=>app.classList.add('collapsed'));
+document.querySelectorAll('.rail .prod').forEach(b=>b.addEventListener('click',()=>app.classList.remove('collapsed')));
+</script>
+</body>
+</html>

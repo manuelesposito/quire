@@ -98,6 +98,10 @@
       "800": {
         "$value": "#5E430E",
         "$type": "color"
+      },
+      "900": {
+        "$value": "#2B220C",
+        "$type": "color"
       }
     },
     "amber": {

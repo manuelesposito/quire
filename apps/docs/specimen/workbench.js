@@ -15,7 +15,8 @@
     ['Dashboard',  'dashboard.html'],
     ['Orders',     'orders.html'],
     ['Products',   'products.html'],
-    ['Settings',   'settings.html']
+    ['Settings',   'settings.html'],
+    ['Jetpack',    'jetpack.html']
   ];
   var here = (location.pathname.split('/').pop() || 'index.html');
 

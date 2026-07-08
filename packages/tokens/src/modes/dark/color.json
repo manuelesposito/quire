@@ -193,6 +193,12 @@
           "$type": "color"
         }
       }
+    },
+    "accent": {
+      "soft": {
+        "$value": "{color.ochre.900}",
+        "$type": "color"
+      }
     }
   }
 }
