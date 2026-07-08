@@ -14,16 +14,19 @@ Jetpack — and **gather them into one calm, modern, consistent whole.**
 
 ## Status
 
-🌱 **Early — foundation stage.** We are building the design system (the source of truth)
-first, and proving it against real screens before committing to any single delivery
-mechanism. No production code ships yet.
+🌿 **Foundation built, delivery deferred.** The design system exists and is proven: a full
+token set (light + dark), the complete component catalogue, and a ten-screen **living style
+guide** where WordPress, WooCommerce, and Jetpack screens all render under one grammar.
+No production code ships yet — by design.
 
 | Decided | Open |
 | --- | --- |
-| Design-system-first monorepo (`packages/` = source of truth, `apps/` = swappable consumers) | Delivery mechanism (plugin overlay / standalone / hybrid) — **deliberately deferred** |
-| Audience: everyday site owners (calm, low-density) | Final token values (in progress) |
-| Scope: WordPress core + WooCommerce + Jetpack | — |
-| License: GPL-2.0-or-later | — |
+| Design-system-first monorepo (`packages/` = source of truth, `apps/` = swappable consumers) | Delivery mechanism (plugin overlay / standalone / hybrid) — **deliberately deferred**, now probe-informed (see `experiments/playground-probe/FINDINGS.md`) |
+| Audience: everyday site owners — calm through *consistency*, dense & precise (not big & empty) | Going public |
+| Tokens v1: warm paper canvas, ochre accent, Libre Baskerville · Inter · IBM Plex Mono; dark mode as a first-class axis | Spacing/type lint (colour lint is live) |
+| The grammar: accent = the singular "you are here"; bulk selection neutral; one focus ring; borders separate, shadow floats | — |
+| Enforced guarantees: WCAG contrast gate + raw-colour lint (both CI-able, see below) | — |
+| Scope: WordPress core + WooCommerce + Jetpack · License: GPL-2.0-or-later | — |
 
 ## Why this structure
 
@@ -63,23 +66,32 @@ inventory/         The audit input: ~199 real admin screenshots drive what we bu
 governance/        RFCs and the token-change process
 ```
 
-## The first deliverable
+## The first deliverable — done
 
-Not a plugin. Not an app. The first thing we ship is the smallest decisive proof:
+The founding bet was the smallest decisive proof:
 
-> A **token set** + one **Button** + one **SettingsRow** + one **Notice**, rendered against
-> three deliberately-conflicting real screens — WordPress General Settings, WooCommerce
-> Settings, and Jetpack Security.
+> A **token set** + real components, rendered against three deliberately-conflicting real
+> screens — WordPress General Settings, WooCommerce, and Jetpack Security.
 
-If one button and one settings row can make all three look like one product, the system is
-real. We build that before a single line of delivery code.
+That proof now exists in the living style guide: WP Settings, Dashboard, WooCommerce
+Orders & Products, and Jetpack Security all compose from one shared catalogue
+(`apps/docs/specimen/components.css`) on one token foundation — light and dark. The
+delivery question was probed against a live WordPress too
+(`experiments/playground-probe/FINDINGS.md`): WP's own theming hooks re-accent only the
+core React surfaces; a token-mapped bridge stylesheet is load-bearing everywhere else.
 
 ## Getting started
 
 ```bash
 corepack enable          # Node 20+ ships pnpm via corepack
 pnpm install
-pnpm dev
+pnpm --filter @quire/tokens build   # JSON tokens -> CSS variables + TS
+
+python3 serve.py         # the living style guide (no-cache dev server)
+# then open http://localhost:4321/apps/docs/specimen/home.html
+
+pnpm check:contrast      # WCAG gate: 52 text-on-surface pairs, both themes
+pnpm lint:colors         # tokens-are-law: no raw colours outside the tokens
 ```
 
 ## Contributing
