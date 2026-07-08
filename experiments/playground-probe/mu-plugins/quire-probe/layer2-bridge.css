@@ -104,3 +104,29 @@ input[type="search"], input[type="number"], select, textarea {
   border-radius: var(--qr-radius-sm);
   color: var(--qr-color-text-default);
 }
+
+/* ---- links: classic screens hardcode WP blue; give them Quire ochre ---- */
+#wpbody-content a:not(.button):not(.page-title-action) { color: var(--qr-color-text-accent); }
+#wpbody-content a:not(.button):hover { color: var(--qr-color-accent-deep); }
+/* menu items: win against the color-scheme sheet's late load */
+#adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {
+  background: var(--qr-color-surface-nav) !important;
+}
+#adminmenu a { color: var(--qr-color-text-muted) !important; }
+#adminmenu div.wp-menu-image::before { color: var(--qr-color-text-subtle) !important; }
+#adminmenu li.current a.menu-top,
+#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu {
+  background: var(--qr-color-state-selected-surface) !important;
+  color: var(--qr-color-state-selected-mark) !important;
+}
+#adminmenu li.current div.wp-menu-image::before,
+#adminmenu li.wp-has-current-submenu div.wp-menu-image::before {
+  color: var(--qr-color-state-selected-mark) !important;
+}
+#adminmenu li.menu-top:hover, #adminmenu li.menu-top > a:focus {
+  background: var(--qr-color-state-hover) !important;
+  color: var(--qr-color-text-default) !important;
+}
+#adminmenu .wp-submenu a { color: var(--qr-color-text-muted) !important; }
+#adminmenu .wp-submenu a:hover { color: var(--qr-color-text-default) !important; }
+#adminmenu .wp-submenu li.current a { color: var(--qr-color-state-selected-mark) !important; }

@@ -35,6 +35,6 @@ add_action( 'admin_enqueue_scripts', function () {
             [],
             '1'
         );
-        wp_enqueue_style( 'quire-layer2', $base . '/layer2-bridge.css', [ 'quire-layer1' ], '1' );
+        wp_enqueue_style( 'quire-layer2', $base . '/layer2-bridge.css', [ 'quire-layer1', 'colors' ], '1' );
     }
 }, 999 );

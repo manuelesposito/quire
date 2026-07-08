@@ -36,7 +36,20 @@ block editor (too heavy for headless capture).
 
 Sampled colours confirm the bridge lands token-exact: body `#f0f0f0 → #e8e5dc`
 (canvas putty, exact), admin bar `#1e1e1e → #211c14` (ink, exact), admin menu
-charcoal → warm light nav.
+items `#262626 → #e6e2d9` (warm light nav) — **after a correction, see below.**
+
+### Correction (found by eye, missed by the sampler)
+
+The first bridge only recoloured the menu *backdrop*; the item area stayed
+charcoal because WP's colour-scheme stylesheet loads after plugin styles and
+re-painted it. The pixel sampler had measured the (light) backdrop region below
+the items, so the numbers looked right while the screen looked broken —
+**a measurement can pass while the design fails; screenshots and eyes stay
+mandatory.** Fixed by (a) declaring the `colors` stylesheet as a dependency so
+the bridge loads after it, and (b) an `!important` tail for the menu states.
+Classic links (hardcoded WP blue, not hook-driven) also needed an explicit
+override. Verified after the fix: menu items `#e6e2d9`, ochre selection, ochre
+links, live on the real Dashboard.
 
 **Block editor (human-verified):** at Layer 1 the accent turned **ochre** —
 the React surface consumes the hooks. But hover states in the classic sidebar
@@ -55,9 +68,10 @@ microstates are hardcoded and the small bridge doesn't chase them.
 3. **The React lane works as hoped.** Setting the official hooks re-accents
    the block editor (and by extension the component-based screens). Delivery
    is a two-lane road: hooks for React surfaces, reskin-css for classic.
-4. **The real cost lives in the long tail.** The blue hover flash is the
-   shape of the ongoing work: hundreds of hardcoded microstates (hover, focus,
-   notices, per-plugin screens) that only enumeration + overrides can catch.
+4. **The real cost lives in the long tail.** The blue hover flash, the
+   colour-scheme load-order fight, the hardcoded link blues, the late-rendered
+   widgets — hundreds of microstates that only enumeration + overrides catch.
+   The "cheap" bridge needed two correction rounds within one afternoon.
    Budget for the tail, not the happy path.
 5. **A grammar limitation, found early:** WP couples links + buttons + focus
    into ONE hook, so Quire's links-ochre / primary-ink split cannot be
