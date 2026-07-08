@@ -139,7 +139,7 @@ select.field{appearance:none;-webkit-appearance:none;padding-right:32px;cursor:p
 .tabs{display:flex;gap:var(--qr-space-500);border-bottom:1px solid var(--qr-color-border-default)}
 .tab{padding:var(--qr-space-300) 0;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);color:var(--qr-color-text-muted);cursor:pointer;background:none;border:0;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color var(--qr-motion-control-duration) var(--qr-motion-control-easing)}
 .tab:hover{color:var(--qr-color-text-default)}
-.tab.is-active{color:var(--qr-color-text-default);border-bottom-color:var(--qr-color-text-default)}
+.tab.is-active{color:var(--qr-color-text-default);border-bottom-color:var(--qr-color-accent-strong)}
 .tab:focus-visible{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
 
 /* =========================================================================

@@ -131,9 +131,10 @@ hold everywhere, and a component that breaks one is the bug.
 
 1. **Colour is meaning, and selection has a cardinality.** The accent is for emphasis —
    links, highlights, the focus ring — and for the **singular "you are here"**: the one
-   current product, the one current page. That state is a light-ochre surface with a
-   dark-ochre mark on top (inverted in dark) — the same warm, legible selection Figma draws in
-   blue. Because it is always *singular*, the accent stays sparse and keeps its meaning.
+   current product, the one current page, **the one active tab** (ink label, ochre
+   underline). That state is a light-ochre surface with a dark-ochre mark on top (inverted
+   in dark) — the same warm, legible selection Figma draws in blue. Because it is always
+   *singular*, the accent stays sparse and keeps its meaning.
    **Bulk, plural selection is neutral** — ticked table rows and the like use a neutral
    surface, never the accent, so a screenful of them stays calm and never reads as a wall of
    warnings. **Hover / pressed** is a neutral translucent wash that sits *below* selected, so
