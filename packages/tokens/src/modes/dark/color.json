@@ -1,53 +1,182 @@
 {
   "color": {
     "text": {
-      "default":   { "$value": "{color.neutral.50}",   "$type": "color" },
-      "muted":     { "$value": "{color.neutral.400}",  "$type": "color" },
-      "subtle":    { "$value": "{color.neutral.500}",  "$type": "color" },
-      "inverse":   { "$value": "{color.neutral.1000}", "$type": "color" },
-      "accent":    { "$value": "{color.ochre.400}",    "$type": "color" },
-      "on-accent": { "$value": "{color.neutral.1000}", "$type": "color" }
+      "default": {
+        "$value": "{color.neutral.50}",
+        "$type": "color"
+      },
+      "muted": {
+        "$value": "{color.neutral.400}",
+        "$type": "color"
+      },
+      "subtle": {
+        "$value": "{color.neutral.500}",
+        "$type": "color"
+      },
+      "inverse": {
+        "$value": "{color.neutral.1000}",
+        "$type": "color"
+      },
+      "accent": {
+        "$value": "{color.ochre.400}",
+        "$type": "color"
+      },
+      "on-accent": {
+        "$value": "{color.neutral.1000}",
+        "$type": "color"
+      }
     },
     "surface": {
-      "canvas":  { "$value": "{color.neutral.1000}", "$type": "color" },
-      "raised":  { "$value": "{color.neutral.900}",  "$type": "color" },
-      "nav":     { "$value": "{color.neutral.1100}", "$type": "color" },
-      "sunken":  { "$value": "{color.neutral.800}",  "$type": "color" },
-      "inverse": { "$value": "{color.neutral.50}",   "$type": "color" }
+      "canvas": {
+        "$value": "{color.neutral.1000}",
+        "$type": "color"
+      },
+      "raised": {
+        "$value": "{color.neutral.900}",
+        "$type": "color"
+      },
+      "nav": {
+        "$value": "{color.neutral.1100}",
+        "$type": "color"
+      },
+      "sunken": {
+        "$value": "{color.neutral.800}",
+        "$type": "color"
+      },
+      "inverse": {
+        "$value": "{color.neutral.50}",
+        "$type": "color"
+      }
     },
     "border": {
-      "default": { "$value": "{color.neutral.800}", "$type": "color" },
-      "strong":  { "$value": "{color.neutral.600}", "$type": "color" }
+      "default": {
+        "$value": "{color.neutral.800}",
+        "$type": "color"
+      },
+      "strong": {
+        "$value": "{color.neutral.600}",
+        "$type": "color"
+      }
     },
     "action": {
       "primary": {
-        "default": { "$value": "{color.neutral.50}",   "$type": "color" },
-        "hover":   { "$value": "{color.neutral.0}",    "$type": "color" },
-        "text":    { "$value": "{color.neutral.1000}", "$type": "color" }
+        "default": {
+          "$value": "{color.neutral.50}",
+          "$type": "color"
+        },
+        "hover": {
+          "$value": "{color.neutral.0}",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{color.neutral.1000}",
+          "$type": "color"
+        }
       },
       "secondary": {
-        "border": { "$value": "{color.neutral.700}", "$type": "color" },
-        "text":   { "$value": "{color.neutral.50}",  "$type": "color" }
+        "border": {
+          "$value": "{color.neutral.700}",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{color.neutral.50}",
+          "$type": "color"
+        }
       },
       "tertiary": {
-        "text": { "$value": "{color.ochre.400}", "$type": "color" }
+        "text": {
+          "$value": "{color.ochre.400}",
+          "$type": "color"
+        }
       },
       "destructive": {
-        "default": { "$value": "{color.brick.400}", "$type": "color" },
-        "hover":   { "$value": "{color.brick.600}", "$type": "color" },
-        "text":    { "$value": "{color.neutral.0}",  "$type": "color" }
+        "default": {
+          "$value": "{color.brick.400}",
+          "$type": "color"
+        },
+        "hover": {
+          "$value": "{color.brick.600}",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{color.neutral.0}",
+          "$type": "color"
+        }
       }
     },
     "state": {
-      "hover":            { "$value": "#FFFFFF0D",         "$type": "color" },
-      "active-surface":   { "$value": "{color.neutral.700}", "$type": "color" },
-      "selected-surface": { "$value": "{color.ochre.800}",   "$type": "color" },
-      "selected-mark":    { "$value": "{color.ochre.400}",   "$type": "color" },
-      "focus-ring":       { "$value": "{color.ochre.400}",   "$type": "color" }
+      "hover": {
+        "$value": "#FFFFFF0D",
+        "$type": "color"
+      },
+      "active-surface": {
+        "$value": "{color.neutral.700}",
+        "$type": "color"
+      },
+      "selected-surface": {
+        "$value": "{color.ochre.800}",
+        "$type": "color"
+      },
+      "selected-mark": {
+        "$value": "{color.ochre.400}",
+        "$type": "color"
+      },
+      "focus-ring": {
+        "$value": "{color.ochre.400}",
+        "$type": "color"
+      }
     },
     "control": {
-      "on":    { "$value": "{color.neutral.0}",    "$type": "color" },
-      "on-fg": { "$value": "{color.neutral.1000}", "$type": "color" }
+      "on": {
+        "$value": "{color.neutral.0}",
+        "$type": "color"
+      },
+      "on-fg": {
+        "$value": "{color.neutral.1000}",
+        "$type": "color"
+      }
+    },
+    "feedback": {
+      "success": {
+        "surface": {
+          "$value": "{color.sage.900}",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{color.sage.100}",
+          "$type": "color"
+        }
+      },
+      "warning": {
+        "surface": {
+          "$value": "{color.amber.900}",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{color.amber.100}",
+          "$type": "color"
+        }
+      },
+      "danger": {
+        "surface": {
+          "$value": "{color.brick.900}",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{color.brick.100}",
+          "$type": "color"
+        }
+      },
+      "info": {
+        "surface": {
+          "$value": "{color.slate.900}",
+          "$type": "color"
+        },
+        "text": {
+          "$value": "{color.slate.100}",
+          "$type": "color"
+        }
+      }
     }
   }
 }
