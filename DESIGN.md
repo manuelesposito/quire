@@ -167,8 +167,8 @@ a guarantee. Honest status today:
 | Accent = emphasis only · status = four fixed colours | Semantic colour tokens (`accent.*`, `feedback.*`) | ✅ real (by token use) |
 | Borders separate · shadow floats | `elevation.*` tokens; shadow only on overlay components | ✅ real (by token use) |
 | One focus ring | Shared focus-ring token used by every focusable component | ✅ real |
-| Tokens are law (no raw values) | A no-raw-value lint | ⏳ planned — package `lint` scripts are placeholders (`no-op`) today |
-| Contrast never regresses | The contrast check wired as a CI gate | ⏳ planned |
+| Tokens are law (no raw colours) | `scripts/lint-colors.py` — scans `components.css` + every app screen for raw colour values; reasoned allowlist for content stand-ins; exit 1 gates CI (`pnpm lint:colors`) | ✅ real (colours; spacing/type lint still planned) |
+| Contrast never regresses | `packages/tokens/scripts/check-contrast.py` — 52 text-on-surface pairs, both themes, resolved from the built CSS; exit 1 gates CI (`pnpm check:contrast`). First run caught 3 real fails (dark subtle, dark selected-mark, light on-accent) — all fixed at token level | ✅ real |
 | Calm · compose-never-fork · respect-the-boundary · degrade-gracefully | Design + code review | 👁 judgment |
 
 When a row says *planned*, the rule still holds — it is upheld by review until the check

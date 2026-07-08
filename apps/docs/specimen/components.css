@@ -195,7 +195,7 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
 .menu__item.is-danger svg{color:currentColor}
 .menu__sep{height:1px;background:var(--qr-color-border-default);margin:var(--qr-space-100) 0}
 
-.modal-scrim{background:rgba(0,0,0,.32);border-radius:var(--qr-radius-md);padding:var(--qr-space-800);display:flex;justify-content:center}
+.modal-scrim{background:var(--qr-color-overlay-scrim);border-radius:var(--qr-radius-md);padding:var(--qr-space-800);display:flex;justify-content:center}
 .modal{background:var(--qr-color-surface-raised);border-radius:var(--qr-radius-lg);box-shadow:var(--qr-elevation-overlay);width:420px;max-width:100%;overflow:hidden}
 .modal__head{padding:var(--qr-space-400) var(--qr-space-400) var(--qr-space-200)}
 .modal__title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-600)}

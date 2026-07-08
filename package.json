@@ -2,7 +2,7 @@
   "name": "quire",
   "version": "0.0.0",
   "private": true,
-  "description": "A cleaner, more unified WordPress admin — design-system first.",
+  "description": "A cleaner, more unified WordPress admin \u2014 design-system first.",
   "license": "GPL-2.0-or-later",
   "type": "module",
   "packageManager": "pnpm@9.0.0",
@@ -13,6 +13,8 @@
     "build": "pnpm -r build",
     "dev": "pnpm -r --parallel dev",
     "lint": "pnpm -r lint",
+    "lint:colors": "python3 scripts/lint-colors.py",
+    "check:contrast": "cd packages/tokens && python3 scripts/check-contrast.py",
     "test": "pnpm -r test"
   },
   "workspaces": [
