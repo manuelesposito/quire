@@ -1,0 +1,132 @@
+/* QUIRE PROBE — LAYER 2: the "cheap bridge."
+   One deliberately small stylesheet (~80 lines) mapping classic wp-admin
+   surfaces onto Quire tokens. The question this layer answers: how far
+   does a MODEST override get a credible Quire look on 20-year-old PHP
+   screens? Not a product — a measurement. */
+
+/* ---- canvas + type ------------------------------------------------ */
+body, #wpwrap, #wpcontent, #wpbody, #wpbody-content {
+  background: var(--qr-color-surface-canvas);
+  color: var(--qr-color-text-default);
+}
+body, .wp-core-ui {
+  font-family: "Inter", -apple-system, system-ui, sans-serif;
+  font-size: 13px;
+}
+#wpbody-content .wrap > h1 {
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-weight: 500;
+  color: var(--qr-color-text-default);
+  letter-spacing: -0.01em;
+}
+
+/* ---- admin bar (top) ---------------------------------------------- */
+#wpadminbar { background: var(--qr-color-surface-inverse); }
+
+/* ---- admin menu: dark charcoal -> Quire light nav ------------------ */
+#adminmenuback, #adminmenuwrap, #adminmenu {
+  background: var(--qr-color-surface-nav);
+}
+#adminmenu a,
+#adminmenu div.wp-menu-name { color: var(--qr-color-text-muted); }
+#adminmenu div.wp-menu-image::before { color: var(--qr-color-text-subtle); }
+#adminmenu li.menu-top:hover,
+#adminmenu li.opensub > a.menu-top,
+#adminmenu li > a.menu-top:focus {
+  background: var(--qr-color-state-hover);
+  color: var(--qr-color-text-default);
+}
+/* the singular "you are here" — Quire's ochre selection */
+#adminmenu li.current a.menu-top,
+#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu,
+#adminmenu .wp-menu-arrow, #adminmenu .wp-menu-arrow div {
+  background: var(--qr-color-state-selected-surface);
+  color: var(--qr-color-state-selected-mark);
+}
+#adminmenu li.current div.wp-menu-image::before,
+#adminmenu li.wp-has-current-submenu div.wp-menu-image::before {
+  color: var(--qr-color-state-selected-mark);
+}
+#adminmenu .wp-submenu {
+  background: var(--qr-color-surface-nav);
+  border-left: 1px solid var(--qr-color-border-default);
+}
+#adminmenu .wp-submenu a { color: var(--qr-color-text-muted); }
+#adminmenu .wp-submenu a:hover, #adminmenu .wp-submenu a:focus { color: var(--qr-color-text-default); }
+#adminmenu .wp-submenu li.current a { color: var(--qr-color-state-selected-mark); font-weight: 600; }
+#collapse-menu { color: var(--qr-color-text-subtle); }
+
+/* ---- buttons: Quire's ink primary / outline secondary -------------- */
+.wp-core-ui .button-primary {
+  background: var(--qr-color-action-primary-default);
+  border-color: var(--qr-color-action-primary-default);
+  color: var(--qr-color-action-primary-text);
+  border-radius: var(--qr-radius-control);
+  text-shadow: none; box-shadow: none;
+}
+.wp-core-ui .button-primary:hover, .wp-core-ui .button-primary:focus {
+  background: var(--qr-color-action-primary-hover);
+  border-color: var(--qr-color-action-primary-hover);
+}
+.wp-core-ui .button, .wp-core-ui .button-secondary {
+  border-radius: var(--qr-radius-control);
+}
+.wp-core-ui .button-secondary, .wp-core-ui .button:not(.button-primary) {
+  background: var(--qr-color-surface-raised);
+  border-color: var(--qr-color-action-secondary-border);
+  color: var(--qr-color-action-secondary-text);
+}
+
+/* ---- boxes, tables, forms ------------------------------------------ */
+.postbox, .stuffbox, .health-check-widget, #dashboard-widgets .postbox {
+  background: var(--qr-color-surface-raised);
+  border: 1px solid var(--qr-color-border-default);
+  border-radius: var(--qr-radius-card);
+  box-shadow: none;
+}
+.postbox .postbox-header { border-bottom: 1px solid var(--qr-color-border-default); }
+.wp-list-table, .widefat {
+  background: var(--qr-color-surface-raised);
+  border: 1px solid var(--qr-color-border-default);
+  border-radius: var(--qr-radius-card);
+  box-shadow: none;
+}
+.widefat thead td, .widefat thead th {
+  border-bottom: 1px solid var(--qr-color-border-default);
+  color: var(--qr-color-text-muted);
+}
+.striped > tbody > :nth-child(odd), .alternate { background: transparent; }
+.widefat td, .widefat th { border-top: 1px solid var(--qr-color-border-default); }
+input[type="text"], input[type="email"], input[type="url"], input[type="password"],
+input[type="search"], input[type="number"], select, textarea {
+  background: var(--qr-color-surface-raised);
+  border: 1px solid var(--qr-color-border-strong);
+  border-radius: var(--qr-radius-sm);
+  color: var(--qr-color-text-default);
+}
+
+/* ---- links: classic screens hardcode WP blue; give them Quire ochre ---- */
+#wpbody-content a:not(.button):not(.page-title-action) { color: var(--qr-color-text-accent); }
+#wpbody-content a:not(.button):hover { color: var(--qr-color-accent-deep); }
+/* menu items: win against the color-scheme sheet's late load */
+#adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {
+  background: var(--qr-color-surface-nav) !important;
+}
+#adminmenu a { color: var(--qr-color-text-muted) !important; }
+#adminmenu div.wp-menu-image::before { color: var(--qr-color-text-subtle) !important; }
+#adminmenu li.current a.menu-top,
+#adminmenu li.wp-has-current-submenu a.wp-has-current-submenu {
+  background: var(--qr-color-state-selected-surface) !important;
+  color: var(--qr-color-state-selected-mark) !important;
+}
+#adminmenu li.current div.wp-menu-image::before,
+#adminmenu li.wp-has-current-submenu div.wp-menu-image::before {
+  color: var(--qr-color-state-selected-mark) !important;
+}
+#adminmenu li.menu-top:hover, #adminmenu li.menu-top > a:focus {
+  background: var(--qr-color-state-hover) !important;
+  color: var(--qr-color-text-default) !important;
+}
+#adminmenu .wp-submenu a { color: var(--qr-color-text-muted) !important; }
+#adminmenu .wp-submenu a:hover { color: var(--qr-color-text-default) !important; }
+#adminmenu .wp-submenu li.current a { color: var(--qr-color-state-selected-mark) !important; }

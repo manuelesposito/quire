@@ -6,8 +6,10 @@
 
 Quire is structured so we can commit fully to a canonical design system **today** without
 committing to *how* it reaches the user (plugin overlay, standalone app, or a hybrid). That
-decision is deliberately deferred until the system is proven — and the architecture makes
-deferring it free.
+decision was deliberately deferred until the system was proven. **It now is, and the
+decision is made: a WordPress plugin, three lanes — see `DELIVERY.md` (2026-07-09).**
+The architecture below is unchanged; it is what made the deferral free and keeps the
+adapter swappable even after the decision.
 
 ## Why not just pick a delivery mechanism now?
 
@@ -57,7 +59,7 @@ change later without touching the source of truth.
 | `demo-core` | Reskinned WordPress core screens, built only from `packages/*`. Proof. |
 | `demo-woo` | WooCommerce screens. Proof. |
 | `demo-jetpack` | Jetpack screens. Proof. |
-| `delivery-*` | **(Deferred.)** Plugin / standalone adapters — added last, when the system is proven. They may only *mount* canonical components, never re-style foreign DOM. |
+| `delivery-*` | **Decided 2026-07-09 — WordPress plugin** (see `DELIVERY.md`). Canonical components mount only in plugin-owned DOM; foreign-DOM styling is confined to `packages/reskin-css` (tokens-only, per-screen documented) — the probe proved that lane is load-bearing, so the old never-re-style rule is amended there, not broken silently. |
 
 ## The boundary with `@wordpress/components`
 

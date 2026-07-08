@@ -1,0 +1,18 @@
+{
+  "name": "@quire/reskin-css",
+  "version": "0.0.0",
+  "private": true,
+  "license": "GPL-2.0-or-later",
+  "description": "Lane 2 of delivery: token-mapped bridge stylesheets for admin surfaces Quire does not own. The ONLY package allowed to style foreign DOM (see DELIVERY.md).",
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "build": "echo 'plain CSS — no build'",
+    "lint": "echo 'no-op'",
+    "test": "echo 'no-op'"
+  },
+  "dependencies": {
+    "@quire/tokens": "workspace:*"
+  }
+}

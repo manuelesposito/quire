@@ -21,11 +21,12 @@ No production code ships yet — by design.
 
 | Decided | Open |
 | --- | --- |
-| Design-system-first monorepo (`packages/` = source of truth, `apps/` = swappable consumers) | Delivery mechanism (plugin overlay / standalone / hybrid) — **deliberately deferred**, now probe-informed (see `experiments/playground-probe/FINDINGS.md`) |
-| Audience: everyday site owners — calm through *consistency*, dense & precise (not big & empty) | Going public |
-| Tokens v1: warm paper canvas, ochre accent, Libre Baskerville · Inter · IBM Plex Mono; dark mode as a first-class axis | Spacing/type lint (colour lint is live) |
+| Design-system-first monorepo (`packages/` = source of truth, `apps/` = swappable consumers) | Going public |
+| Audience: everyday site owners — calm through *consistency*, dense & precise (not big & empty) | Spacing/type lint (colour lint is live) |
+| Tokens v1: warm paper canvas, ochre accent, Libre Baskerville · Inter · IBM Plex Mono; dark mode as a first-class axis | — |
 | The grammar: accent = the singular "you are here"; bulk selection neutral; one focus ring; borders separate, shadow floats | — |
 | Enforced guarantees: WCAG contrast gate + raw-colour lint (both CI-able, see below) | — |
+| **Delivery (2026-07-09): WordPress plugin, three lanes** — hooks · reskin-css · owned-DOM components (see `DELIVERY.md`) | — |
 | Scope: WordPress core + WooCommerce + Jetpack · License: GPL-2.0-or-later | — |
 
 ## Why this structure
