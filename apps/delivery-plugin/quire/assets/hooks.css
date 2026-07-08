@@ -1,0 +1,17 @@
+/* QUIRE PROBE — LAYER 1: WordPress's own theme hooks only.
+   Zero selectors beyond :root. This measures what WP gives us "for free."
+   KNOWN LIMITATION (a finding, not a bug): WP couples links + primary
+   buttons + focus into ONE hook (--wp-admin-theme-color), so Quire's
+   links-ochre / buttons-ink split cannot be expressed at this layer. */
+:root {
+  /* core admin hook + its precomputed shades */
+  --wp-admin-theme-color: var(--qr-color-ochre-600);
+  --wp-admin-theme-color-darker-10: var(--qr-color-ochre-700);
+  --wp-admin-theme-color-darker-20: var(--qr-color-ochre-800);
+
+  /* @wordpress/components (block editor + React screens) */
+  --wp-components-color-accent: var(--qr-color-ochre-600);
+  --wp-components-color-accent-darker-10: var(--qr-color-ochre-700);
+  --wp-components-color-accent-darker-20: var(--qr-color-ochre-800);
+  --wp-components-color-accent-inverted: var(--qr-color-neutral-0);
+}
