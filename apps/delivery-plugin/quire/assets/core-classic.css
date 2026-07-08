@@ -130,3 +130,65 @@ input[type="search"], input[type="number"], select, textarea {
 #adminmenu .wp-submenu a { color: var(--qr-color-text-muted) !important; }
 #adminmenu .wp-submenu a:hover { color: var(--qr-color-text-default) !important; }
 #adminmenu .wp-submenu li.current a { color: var(--qr-color-state-selected-mark) !important; }
+
+/* ================================================================
+   LONG TAIL — round 1. Tour of 2026-07-09 (plugin v0.1 on WP 7.0):
+   Posts / Media / Comments / Users / Plugins / Permalinks.
+   Every block names the screen + state it covers.
+   ================================================================ */
+
+/* All list screens: the header "Add …" action stayed WP-blue-bordered
+   (it was deliberately excluded from the link override). It is a
+   secondary action -> secondary button. */
+.page-title-action {
+  background: var(--qr-color-surface-raised) !important;
+  border: 1px solid var(--qr-color-action-secondary-border) !important;
+  color: var(--qr-color-action-secondary-text) !important;
+  border-radius: var(--qr-radius-control);
+  text-decoration: none;
+}
+.page-title-action:hover, .page-title-action:focus {
+  background: var(--qr-color-state-hover) !important;
+  color: var(--qr-color-text-default) !important;
+}
+
+/* Plugins screen: WP marks active plugins with a pale-blue row + blue
+   spine. "Active" is a PLURAL state (many plugins at once) -> neutral,
+   per the cardinality rule. */
+.plugins .active td, .plugins .active th {
+  background: var(--qr-color-surface-sunken) !important;
+}
+.plugins .active th.check-column {
+  border-left-color: var(--qr-color-border-strong) !important;
+}
+
+/* Forms everywhere (seen on Permalinks): the chosen radio was WP blue.
+   Form selection = control ink; the check glyph is a blue SVG data-URI,
+   flattened to ink via filter (no recolorable hook exists). */
+input[type="radio"]:checked::before {
+  background-color: var(--qr-color-control-on) !important;
+}
+input[type="checkbox"]:checked::before {
+  filter: brightness(0);
+}
+
+/* One focus ring — classic inputs flash the WP blue border+glow. */
+.wp-admin input[type="text"]:focus, .wp-admin input[type="search"]:focus,
+.wp-admin input[type="email"]:focus, .wp-admin input[type="url"]:focus,
+.wp-admin input[type="password"]:focus, .wp-admin input[type="number"]:focus,
+.wp-admin select:focus, .wp-admin textarea:focus,
+.wp-admin input[type="checkbox"]:focus, .wp-admin input[type="radio"]:focus {
+  border-color: var(--qr-color-border-strong) !important;
+  box-shadow: none !important;
+  outline: 2px solid var(--qr-color-state-focus-ring);
+  outline-offset: 1px;
+}
+
+/* Sidebar footer: the collapse control rendered as an unreadable dark
+   blob (its own dark-scheme colors survived the light nav). */
+#adminmenu #collapse-menu { background: transparent !important; }
+#collapse-button, #collapse-button:hover {
+  color: var(--qr-color-text-subtle) !important;
+  background: transparent !important;
+}
+#collapse-button:hover { color: var(--qr-color-text-default) !important; }
