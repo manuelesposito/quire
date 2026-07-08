@@ -14,6 +14,8 @@ rebuild, re-sync. Never edit the variables in Figma by hand.
 | Collection **Primitives** (mode: Value) | `src/primitive/` | 96 vars. Raw ramps & scales. Hidden from property pickers (`scopes: []` for colours) — the semantic layer is the API. |
 | Collection **Semantic** (modes: Light, Dark) | `src/semantic/` + `src/modes/dark/` | 108 vars. Values are **aliases** to Primitives, exactly like the CSS `var()` chain. Dark mode carries the 41 overrides; everything else falls through to the same alias as Light. |
 | Effect styles **Elevation/Raised, Elevation/Overlay** | `elevation.*` | Shadows can't be variables in Figma. |
+| Text styles **Display … Code** (9) | `text.*` composite roles | Family + size BOUND to the semantic variables; weight/line-height/letter-spacing resolved (Figma limits). Libre Baskerville has no Medium — weight 500 resolves to Regular, same as CSS. |
+| Page **Palette** | the semantic colour layer, visually | Two frames, Light & Dark, explicit Semantic mode per frame; all 49 chips + labels are variable-BOUND, so the page re-resolves if tokens change. |
 | — (not mirrored) | `motion.*` (duration/easing) | Not representable in Figma. |
 
 Every variable carries WEB code syntax (`var(--qr-…)`), so Figma's Dev Mode
