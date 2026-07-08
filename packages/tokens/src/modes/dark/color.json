@@ -139,41 +139,57 @@
     "feedback": {
       "success": {
         "surface": {
-          "$value": "{color.sage.900}",
+          "$value": "{color.neutral.900}",
+          "$type": "color"
+        },
+        "chip": {
+          "$value": "{color.neutral.800}",
           "$type": "color"
         },
         "text": {
-          "$value": "{color.sage.100}",
+          "$value": "{color.sage.300}",
           "$type": "color"
         }
       },
       "warning": {
         "surface": {
-          "$value": "{color.amber.900}",
+          "$value": "{color.neutral.900}",
+          "$type": "color"
+        },
+        "chip": {
+          "$value": "{color.neutral.800}",
           "$type": "color"
         },
         "text": {
-          "$value": "{color.amber.100}",
+          "$value": "{color.amber.300}",
           "$type": "color"
         }
       },
       "danger": {
         "surface": {
-          "$value": "{color.brick.900}",
+          "$value": "{color.neutral.900}",
+          "$type": "color"
+        },
+        "chip": {
+          "$value": "{color.neutral.800}",
           "$type": "color"
         },
         "text": {
-          "$value": "{color.brick.100}",
+          "$value": "{color.brick.300}",
           "$type": "color"
         }
       },
       "info": {
         "surface": {
-          "$value": "{color.slate.900}",
+          "$value": "{color.neutral.900}",
+          "$type": "color"
+        },
+        "chip": {
+          "$value": "{color.neutral.800}",
           "$type": "color"
         },
         "text": {
-          "$value": "{color.slate.100}",
+          "$value": "{color.slate.300}",
           "$type": "color"
         }
       }

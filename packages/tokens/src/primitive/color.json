@@ -105,6 +105,10 @@
         "$value": "#F8D6AA",
         "$type": "color"
       },
+      "300": {
+        "$value": "#E8B269",
+        "$type": "color"
+      },
       "400": {
         "$value": "#D8822A",
         "$type": "color"
@@ -127,6 +131,10 @@
         "$value": "#E8CDBF",
         "$type": "color"
       },
+      "300": {
+        "$value": "#D69A80",
+        "$type": "color"
+      },
       "400": {
         "$value": "#AC5638",
         "$type": "color"
@@ -143,6 +151,10 @@
     "sage": {
       "100": {
         "$value": "#D9DCC2",
+        "$type": "color"
+      },
+      "300": {
+        "$value": "#AEB98B",
         "$type": "color"
       },
       "400": {
@@ -165,6 +177,10 @@
     "slate": {
       "100": {
         "$value": "#CDD4DA",
+        "$type": "color"
+      },
+      "300": {
+        "$value": "#9FAEBB",
         "$type": "color"
       },
       "400": {

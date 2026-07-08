@@ -118,21 +118,21 @@ select.field{appearance:none;-webkit-appearance:none;padding-right:32px;cursor:p
 /* =========================================================================
    Notice · Badge/StatusPill · Tabs — built to the locked grammar.
    ========================================================================= */
-.notice{display:flex;gap:var(--qr-space-300);align-items:flex-start;padding:var(--qr-space-300) var(--qr-space-400);border-radius:var(--qr-radius-md);border-left:3px solid;font-size:var(--qr-font-size-300);line-height:var(--qr-font-line-height-normal);max-width:560px}
+.notice{display:flex;gap:var(--qr-space-300);align-items:flex-start;padding:var(--qr-space-300) var(--qr-space-400);border-radius:var(--qr-radius-md);border:1px solid var(--qr-color-border-default);border-left:3px solid;font-size:var(--qr-font-size-300);line-height:var(--qr-font-line-height-normal);max-width:560px}
 .notice svg{width:18px;height:18px;flex-shrink:0;margin-top:1px}
 .notice__title{font-weight:var(--qr-font-weight-semibold)}
-.notice__body{margin-top:2px;opacity:.85}
-.notice--success{background:var(--qr-color-feedback-success-surface);border-color:var(--qr-color-feedback-success-border);color:var(--qr-color-feedback-success-text)}
-.notice--info{background:var(--qr-color-feedback-info-surface);border-color:var(--qr-color-feedback-info-border);color:var(--qr-color-feedback-info-text)}
-.notice--warning{background:var(--qr-color-feedback-warning-surface);border-color:var(--qr-color-feedback-warning-border);color:var(--qr-color-feedback-warning-text)}
-.notice--danger{background:var(--qr-color-feedback-danger-surface);border-color:var(--qr-color-feedback-danger-border);color:var(--qr-color-feedback-danger-text)}
+.notice__body{margin-top:2px;color:var(--qr-color-text-muted)}
+.notice--success{background:var(--qr-color-feedback-success-surface);border-left-color:var(--qr-color-feedback-success-border);color:var(--qr-color-feedback-success-text)}
+.notice--info{background:var(--qr-color-feedback-info-surface);border-left-color:var(--qr-color-feedback-info-border);color:var(--qr-color-feedback-info-text)}
+.notice--warning{background:var(--qr-color-feedback-warning-surface);border-left-color:var(--qr-color-feedback-warning-border);color:var(--qr-color-feedback-warning-text)}
+.notice--danger{background:var(--qr-color-feedback-danger-surface);border-left-color:var(--qr-color-feedback-danger-border);color:var(--qr-color-feedback-danger-text)}
 
 .badge{display:inline-flex;align-items:center;gap:6px;padding:3px var(--qr-space-200);border-radius:var(--qr-radius-full);font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-medium);line-height:1.2}
 .badge .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
-.badge--success{background:var(--qr-color-feedback-success-surface);color:var(--qr-color-feedback-success-text)}
-.badge--info{background:var(--qr-color-feedback-info-surface);color:var(--qr-color-feedback-info-text)}
-.badge--warning{background:var(--qr-color-feedback-warning-surface);color:var(--qr-color-feedback-warning-text)}
-.badge--danger{background:var(--qr-color-feedback-danger-surface);color:var(--qr-color-feedback-danger-text)}
+.badge--success{background:var(--qr-color-feedback-success-chip);color:var(--qr-color-feedback-success-text)}.badge--success .dot{background:var(--qr-color-feedback-success-border)}
+.badge--info{background:var(--qr-color-feedback-info-chip);color:var(--qr-color-feedback-info-text)}.badge--info .dot{background:var(--qr-color-feedback-info-border)}
+.badge--warning{background:var(--qr-color-feedback-warning-chip);color:var(--qr-color-feedback-warning-text)}.badge--warning .dot{background:var(--qr-color-feedback-warning-border)}
+.badge--danger{background:var(--qr-color-feedback-danger-chip);color:var(--qr-color-feedback-danger-text)}.badge--danger .dot{background:var(--qr-color-feedback-danger-border)}
 .badge--neutral{background:var(--qr-color-surface-sunken);color:var(--qr-color-text-muted)}
 .badge--count{background:var(--qr-color-action-primary-default);color:var(--qr-color-action-primary-text);min-width:20px;justify-content:center;padding:2px 7px}
 
