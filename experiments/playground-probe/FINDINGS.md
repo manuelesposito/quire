@@ -65,9 +65,11 @@ microstates are hardcoded and the small bridge doesn't chase them.
 2. **The bridge is cheap and lands exactly.** ~100 lines transformed 57–88%
    of the pixels with token-perfect values. The planned `reskin-css` package
    is therefore the **load-bearing** piece of delivery, not a fallback.
-3. **The React lane works as hoped.** Setting the official hooks re-accents
-   the block editor (and by extension the component-based screens). Delivery
-   is a two-lane road: hooks for React surfaces, reskin-css for classic.
+3. **The React lane works as hoped — on core surfaces.** Setting the official
+   hooks re-accents the block editor. Delivery is a two-lane road: hooks for
+   React surfaces, reskin-css for classic. *(Nuanced by the WooCommerce
+   follow-up below: plugin-owned React components mostly don't consume the
+   hook.)*
 4. **The real cost lives in the long tail.** The blue hover flash, the
    colour-scheme load-order fight, the hardcoded link blues, the late-rendered
    widgets — hundreds of microstates that only enumeration + overrides catch.
@@ -77,6 +79,44 @@ microstates are hardcoded and the small bridge doesn't chase them.
    into ONE hook, so Quire's links-ochre / primary-ink split cannot be
    expressed on React surfaces without deeper overrides.
 
+## Follow-up probe: WooCommerce React screens at Layer 1 (2026-07-08)
+
+The first probe left one hopeful thread: the block editor consumed the hooks,
+so maybe all React surfaces retint for free. WooCommerce is the test that
+matters — it's the biggest React admin app everyday store owners live in.
+Installed Woo via blueprint (`blueprint-woo.json`), captured Home and
+Analytics→Overview at `?quire=0` vs `?quire=1` with Playwright
+(`capture-woo.mjs`), and read **computed styles** off the live DOM — not just
+pixels, per the lesson above.
+
+| Screen (Woo React) | Layer 1: hooks only |
+|---|---|
+| Woo Home | **0.27% pixels changed** — exactly one element |
+| Analytics → Overview | **0.03% pixels changed** — exactly one element |
+
+What moved and what didn't:
+
+- `@wordpress/components` primitives DO consume the hook: the **primary
+  button turned token-exact ochre** (`#3858E9 → #A87B1C`, computed) and the
+  "Update now" link followed. The accent variable reaches Woo.
+- **Everything Woo paints itself stayed hardcoded brand blue** (`#3858E9`):
+  task-list step links, numbered circles, active-step border, progress bar,
+  chart series colours. Woo's own component layer doesn't route through the
+  accent variable.
+- **A second load-order fight:** on wc-admin pages something re-declares
+  `--wp-admin-theme-color: #007cba` after our layer — the computed value
+  stayed WP blue at `?quire=1` even though `--wp-components-color-accent`
+  landed. Same species as the classic colour-scheme stylesheet problem.
+
+**Verdict:** the "React lane" is narrower than the block editor suggested.
+The editor is nearly pure `@wordpress/components`, so it retints broadly;
+Woo is mostly Woo-owned components, so the hook reaches only the primitive
+buttons/links poking through (~0.3% of pixels). WooCommerce screens need
+their own bridge stylesheet, same as classic screens. Two-lane becomes:
+hooks help everywhere a WP primitive appears, but **reskin-css is
+load-bearing on every surface class** — core classic, core React edges,
+and each major plugin's own component layer.
+
 ## Reproduce
 
 ```sh
@@ -85,12 +125,16 @@ npx @wp-playground/cli server --port=8881 --login \
   --mount=./mu-plugins:/wordpress/wp-content/mu-plugins
 # then browse:  /wp-admin/?quire=0  ·  ?quire=1  ·  ?quire=2
 python3 analyze.py            # pixel diffs (expects *-q{0,1,2}.png screenshots)
+
+# WooCommerce follow-up:
+npx @wp-playground/cli server --port=8881 --login \
+  --blueprint=blueprint-woo.json \
+  --mount=./mu-plugins:/wordpress/wp-content/mu-plugins
+npm i playwright-core && node capture-woo.mjs   # screenshots + computed styles
 ```
 
 ## Next probes (not yet run)
 
-- WooCommerce React screens (Home/Analytics) at Layer 1 — does the accent hook
-  reach them like the editor?
 - Dark mode on classic screens — recoloring server-rendered markup we don't own.
 - Long-tail inventory: enumerate the hardcoded classic states (hover/focus/
   notices) to size the real reskin-css effort.
