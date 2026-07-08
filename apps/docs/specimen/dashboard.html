@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quire — Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
+<link rel="stylesheet" href="workbench.css">
+<link rel="stylesheet" href="components.css">
+<style>
+/* page layout only — every component lives in components.css.
+   The experiment: the WP Dashboard as a calm morning desk for an
+   everyday site owner — what needs you, what happened, what's next. */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-canvas);color:var(--qr-color-text-default);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-normal);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased}
+.app{display:flex;height:calc(100vh - var(--wb-h));overflow:hidden}
+.content{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.topbar{padding:20px 32px;border-bottom:1px solid var(--qr-color-border-default);display:flex;align-items:flex-end;justify-content:space-between;gap:var(--qr-space-400);background:var(--qr-color-surface-canvas)}
+.crumb{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle);margin-bottom:5px}
+.title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-800);letter-spacing:var(--qr-font-letter-spacing-tight);line-height:1.05}
+.topbar .actions{display:flex;gap:var(--qr-space-300);align-items:center}
+.scroll{overflow-y:auto;padding:26px 32px 64px}
+.page{max-width:1040px;display:flex;flex-direction:column;gap:var(--qr-space-500)}
+.page > .notice{max-width:none}
+/* stat row + two-column desk */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--qr-space-400)}
+.desk{display:grid;grid-template-columns:1fr 320px;gap:var(--qr-space-500);align-items:start}
+.main,.side{display:flex;flex-direction:column;gap:var(--qr-space-500);min-width:0}
+.desk .card,.desk .chartcard{width:100%;max-width:none}
+/* activity rows — page composition on top of card */
+.act{display:flex;align-items:center;gap:var(--qr-space-300);padding:var(--qr-space-300) 0;border-top:1px solid var(--qr-color-border-default);font-size:var(--qr-font-size-300)}
+.act:first-child{border-top:0}
+.act__body{flex:1;min-width:0}
+.act__line{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.act__line a{color:var(--qr-color-text-default);font-weight:var(--qr-font-weight-medium);text-decoration:none}
+.act__line a:hover{color:var(--qr-color-accent-strong);text-decoration:underline}
+.act__meta{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle);margin-top:2px}
+.act__quote{font-size:var(--qr-font-size-200);color:var(--qr-color-text-muted);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.act .dt-actions{flex-shrink:0}
+.act:hover .dt-actions{opacity:1}
+/* quick draft */
+.draft{display:flex;flex-direction:column;gap:var(--qr-space-300);padding-bottom:var(--qr-space-400)}
+.draft .field{width:100%}
+.draft textarea.field{min-height:88px;resize:vertical;padding-top:8px;line-height:var(--qr-font-line-height-normal)}
+/* setup checklist card */
+.setup .checklist{max-width:none}
+.setup .progress{max-width:none;margin:var(--qr-space-300) 0 var(--qr-space-100)}
+.setup__count{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle)}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <nav class="rail">
+    <div class="stack">
+      <button class="prod active has-tip"><span class="sq"><span class="logo wp"></span></span><span class="tip">WordPress <span class="kbd">⌘1</span></span></button>
+      <button class="prod has-tip"><span class="sq"><span class="logo woo"></span></span><span class="tip">WooCommerce <span class="kbd">⌘2</span></span></button>
+      <button class="prod has-tip"><span class="sq"><span class="logo jp"></span></span><span class="tip">Jetpack <span class="kbd">⌘3</span></span></button>
+      <button class="prod add has-tip"><span class="sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span><span class="tip">Add a plugin</span></button>
+    </div>
+    <div class="acct has-tip">M<span class="tip">Account</span></div>
+  </nav>
+
+  <aside class="subnav">
+    <div class="head">
+      <span class="name">WordPress</span>
+      <button class="head__toggle" id="menuToggle" title="Collapse menu" aria-label="Collapse menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9.5" y1="4" x2="9.5" y2="20"/></svg>
+      </button>
+    </div>
+    <div class="sep"></div>
+    <a class="active">Dashboard</a>
+    <a>Posts</a>
+    <a>Pages</a>
+    <a>Media</a>
+    <a>Comments</a>
+    <a>Appearance</a>
+    <a>Plugins</a>
+    <a>Users</a>
+    <a>Tools</a>
+    <a>Settings</a>
+  </aside>
+
+  <div class="content">
+    <header class="topbar">
+      <div>
+        <div class="crumb">WordPress</div>
+        <div class="title">Dashboard</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn--secondary">View site</button>
+        <button class="btn btn--primary">New post</button>
+      </div>
+    </header>
+
+    <div class="scroll">
+      <div class="page">
+
+        <div class="notice notice--info">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M12 11v5" stroke-linecap="round"/></svg>
+          <div>
+            <div class="notice__title">WordPress 6.9 is ready to install</div>
+            <div class="notice__body">A maintenance release with security fixes. Your site is backed up automatically before updating.</div>
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat__label">Visitors · 7 days</div>
+            <div class="stat__value">1,284</div>
+            <div class="stat__delta up">▲ 12% on last week</div>
+          </div>
+          <div class="stat">
+            <div class="stat__label">Published posts</div>
+            <div class="stat__value">24</div>
+            <div class="stat__delta">2 drafts waiting</div>
+          </div>
+          <div class="stat">
+            <div class="stat__label">Pages</div>
+            <div class="stat__value">12</div>
+            <div class="stat__delta">Updated 3 days ago</div>
+          </div>
+          <div class="stat">
+            <div class="stat__label">Comments in queue</div>
+            <div class="stat__value">3</div>
+            <div class="stat__delta">Oldest from yesterday</div>
+          </div>
+        </div>
+
+        <div class="desk">
+          <div class="main">
+
+            <section class="card">
+              <div class="card__head">
+                <div class="card__title">Needs your eye</div>
+                <div class="card__desc">Comments waiting for a decision.</div>
+              </div>
+              <div class="card__body">
+                <div class="act">
+                  <div class="act__body">
+                    <div class="act__line"><a>Elena R.</a> on <a>First editions worth hunting in 2026</a></div>
+                    <div class="act__quote">“Lovely list — does the Woolf still have its dust jacket? Happy to…”</div>
+                    <div class="act__meta">Yesterday · 18:12</div>
+                  </div>
+                  <div class="dt-actions"><a>Approve</a><a>Reply</a><a>Spam</a></div>
+                </div>
+                <div class="act">
+                  <div class="act__body">
+                    <div class="act__line"><a>Tom Keller</a> on <a>How we grade second-hand books</a></div>
+                    <div class="act__quote">“Would you consider a video walkthrough of the grading bench? I…”</div>
+                    <div class="act__meta">Yesterday · 09:47</div>
+                  </div>
+                  <div class="dt-actions"><a>Approve</a><a>Reply</a><a>Spam</a></div>
+                </div>
+                <div class="act">
+                  <div class="act__body">
+                    <div class="act__line"><a>bookish_kat</a> on <a>Shop opening hours over the summer</a></div>
+                    <div class="act__quote">“Will the reading room stay open on Fridays too?”</div>
+                    <div class="act__meta">Today · 08:03</div>
+                  </div>
+                  <div class="dt-actions"><a>Approve</a><a>Reply</a><a>Spam</a></div>
+                </div>
+              </div>
+              <div class="card__foot"><button class="btn btn--tertiary btn--sm">All comments</button></div>
+            </section>
+
+            <section class="card">
+              <div class="card__head">
+                <div class="card__title">Recently published</div>
+              </div>
+              <div class="card__body">
+                <div class="act">
+                  <div class="act__body">
+                    <div class="act__line"><a>First editions worth hunting in 2026</a></div>
+                    <div class="act__meta">6 July 2026 · 214 visits</div>
+                  </div>
+                  <div class="dt-actions"><a>Edit</a><a>View</a></div>
+                </div>
+                <div class="act">
+                  <div class="act__body">
+                    <div class="act__line"><a>How we grade second-hand books</a></div>
+                    <div class="act__meta">2 July 2026 · 178 visits</div>
+                  </div>
+                  <div class="dt-actions"><a>Edit</a><a>View</a></div>
+                </div>
+                <div class="act">
+                  <div class="act__body">
+                    <div class="act__line"><a>Shop opening hours over the summer</a></div>
+                    <div class="act__meta">29 June 2026 · 96 visits</div>
+                  </div>
+                  <div class="dt-actions"><a>Edit</a><a>View</a></div>
+                </div>
+              </div>
+              <div class="card__foot"><button class="btn btn--tertiary btn--sm">All posts</button></div>
+            </section>
+
+            <section class="card">
+              <div class="card__head">
+                <div class="card__title">Quick draft</div>
+                <div class="card__desc">Catch an idea before it goes — it lands in Posts as a draft.</div>
+              </div>
+              <div class="card__body">
+                <div class="draft">
+                  <input class="field" placeholder="Title">
+                  <textarea class="field" placeholder="What’s on your mind?"></textarea>
+                </div>
+              </div>
+              <div class="card__foot"><button class="btn btn--primary btn--sm">Save draft</button></div>
+            </section>
+
+          </div>
+          <div class="side">
+
+            <section class="card setup">
+              <div class="card__head">
+                <div class="card__title">Finish setting up</div>
+                <div class="progress"><div class="progress__fill" style="width:50%"></div></div>
+                <div class="setup__count">3 of 6 done</div>
+              </div>
+              <div class="card__body">
+                <div class="checklist">
+                  <div class="checklist__item done">
+                    <span class="checklist__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+                    <span class="checklist__label">Name your site</span>
+                  </div>
+                  <div class="checklist__item done">
+                    <span class="checklist__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+                    <span class="checklist__label">Pick a theme</span>
+                  </div>
+                  <div class="checklist__item done">
+                    <span class="checklist__mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
+                    <span class="checklist__label">Write your first post</span>
+                  </div>
+                  <div class="checklist__item">
+                    <span class="checklist__mark"></span>
+                    <span class="checklist__label">Add an About page</span>
+                    <span class="checklist__meta">5 min</span>
+                  </div>
+                  <div class="checklist__item">
+                    <span class="checklist__mark"></span>
+                    <span class="checklist__label">Connect a custom domain</span>
+                    <span class="checklist__meta">10 min</span>
+                  </div>
+                  <div class="checklist__item">
+                    <span class="checklist__mark"></span>
+                    <span class="checklist__label">Set up the shop</span>
+                    <span class="checklist__meta">15 min</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section class="chartcard">
+              <div class="chartcard__label">Visitors · 7 days</div>
+              <div class="chartcard__value">1,284</div>
+              <div class="chart">
+                <div class="bar" style="height:34%"></div>
+                <div class="bar" style="height:52%"></div>
+                <div class="bar" style="height:41%"></div>
+                <div class="bar" style="height:66%"></div>
+                <div class="bar" style="height:58%"></div>
+                <div class="bar" style="height:83%"></div>
+                <div class="bar now" style="height:74%"></div>
+              </div>
+            </section>
+
+            <section class="card">
+              <div class="card__head">
+                <div class="card__title">Site health</div>
+              </div>
+              <div class="card__body" style="padding-bottom:var(--qr-space-400)">
+                <div class="act" style="border-top:0;padding-top:4px">
+                  <div class="act__body">
+                    <div class="act__line">All checks passing</div>
+                    <div class="act__meta">Last checked today · 06:00</div>
+                  </div>
+                  <span class="badge badge--success"><span class="dot"></span>Good</span>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="workbench.js"></script>
+<script>
+// focus mode — collapse leaves only the rail; any rail click re-expands
+const app=document.querySelector('.app');
+document.getElementById('menuToggle').addEventListener('click',()=>app.classList.add('collapsed'));
+document.querySelectorAll('.rail .prod').forEach(b=>b.addEventListener('click',()=>app.classList.remove('collapsed')));
+</script>
+</body>
+</html>
