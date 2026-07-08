@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Quire — Products</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
+<link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
+<link rel="stylesheet" href="workbench.css">
+<link rel="stylesheet" href="components.css">
+<style>
+/* page layout — every component lives in components.css.
+   The experiment: a product catalogue = images inside the dense table,
+   stock language via the status colours, mono for SKU/price data. */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-canvas);color:var(--qr-color-text-default);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-normal);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased}
+.app{display:flex;height:calc(100vh - var(--wb-h));overflow:hidden}
+.content{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.topbar{padding:20px 32px;border-bottom:1px solid var(--qr-color-border-default);display:flex;align-items:flex-end;justify-content:space-between;gap:var(--qr-space-400);background:var(--qr-color-surface-canvas)}
+.crumb{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle);margin-bottom:5px}
+.title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-800);letter-spacing:var(--qr-font-letter-spacing-tight);line-height:1.05}
+.topbar .actions{display:flex;gap:var(--qr-space-200);align-items:center}
+.scroll{overflow-y:auto;padding:26px 32px 64px}
+.dt{max-width:none}
+/* the toolbar carries filters + view switch + search */
+.dt-toolbar .tools{display:flex;gap:var(--qr-space-300);align-items:center}
+/* product cell: thumbnail + name + sku */
+.pcell{display:flex;align-items:center;gap:var(--qr-space-300);min-width:0}
+.pthumb{width:40px;height:52px;border-radius:var(--qr-radius-xs);border:1px solid var(--qr-color-border-default);background:var(--qr-color-surface-sunken);color:var(--qr-color-text-subtle);display:flex;align-items:center;justify-content:center;font-family:var(--qr-font-family-serif);font-size:var(--qr-font-size-500);flex-shrink:0}
+/* t1–t5 tints stand in for product PHOTOS (content, not chrome) — like
+   the catalogue's media-thumb gradient, they'd be <img> in real life */
+.pthumb.t1{background:#B8B29E;color:#3E3A2E}
+.pthumb.t2{background:#A9998A;color:#372F27}
+.pthumb.t3{background:#9AA48F;color:#2F362A}
+.pthumb.t4{background:#C0A488;color:#423422}
+.pthumb.t5{background:#8F9AA4;color:#272E36}
+.pname{min-width:0}
+.pname .dt-link{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sku{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle);margin-top:2px}
+.price,.stockn{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200)}
+.stockn{color:var(--qr-color-text-muted);margin-left:6px}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <nav class="rail">
+    <div class="stack">
+      <button class="prod has-tip"><span class="sq"><span class="logo wp"></span></span><span class="tip">WordPress <span class="kbd">⌘1</span></span></button>
+      <button class="prod active has-tip"><span class="sq"><span class="logo woo"></span></span><span class="tip">WooCommerce <span class="kbd">⌘2</span></span></button>
+      <button class="prod has-tip"><span class="sq"><span class="logo jp"></span></span><span class="tip">Jetpack <span class="kbd">⌘3</span></span></button>
+      <button class="prod add has-tip"><span class="sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span><span class="tip">Add a plugin</span></button>
+    </div>
+    <div class="acct has-tip">M<span class="tip">Account</span></div>
+  </nav>
+
+  <aside class="subnav">
+    <div class="head">
+      <span class="name">WooCommerce</span>
+      <button class="head__toggle" id="menuToggle" title="Collapse menu" aria-label="Collapse menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="4" width="18" height="16" rx="2"/><line x1="9.5" y1="4" x2="9.5" y2="20"/></svg>
+      </button>
+    </div>
+    <div class="sep"></div>
+    <a>Home</a>
+    <a>Orders</a>
+    <a class="active">Products</a>
+    <a>Customers</a>
+    <a>Analytics</a>
+    <a>Marketing</a>
+    <a>Settings</a>
+    <a>Extensions</a>
+  </aside>
+
+  <div class="content">
+    <header class="topbar">
+      <div>
+        <div class="crumb">WooCommerce / Products</div>
+        <div class="title">Products</div>
+      </div>
+      <div class="actions">
+        <button class="btn btn--secondary">Import</button>
+        <button class="btn btn--primary">Add product</button>
+      </div>
+    </header>
+
+    <div class="scroll">
+      <div class="dt">
+        <div class="dt-toolbar">
+          <div class="dt-filters"><a class="is-active">All</a><a>Published</a><a>Drafts</a><a>Low stock</a></div>
+          <div class="tools">
+            <div class="segmented">
+              <button class="is-active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>List</button>
+              <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg>Grid</button>
+            </div>
+            <input class="dt-search" placeholder="Search products…">
+          </div>
+        </div>
+        <table class="dt-table">
+          <thead><tr>
+            <th style="width:18px"><label class="opt"><input type="checkbox"><span class="box sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></label></th>
+            <th class="sortable sorted">Product <span class="sort">↓</span></th>
+            <th>Category</th>
+            <th>Stock</th>
+            <th class="sortable">Price <span class="sort">↕</span></th>
+            <th class="sortable">Updated <span class="sort">↕</span></th>
+            <th></th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td><label class="opt"><input type="checkbox"><span class="box sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></label></td>
+              <td><div class="pcell"><div class="pthumb t1">W</div><div class="pname"><a class="dt-link">To the Lighthouse — first edition, 1927</a><div class="sku">QQ-1927-WOOLF</div></div></div></td>
+              <td>First editions</td>
+              <td><span class="badge badge--success"><span class="dot"></span> In stock</span><span class="stockn">1</span></td>
+              <td class="price">$1,850.00</td>
+              <td>6 July 2026</td>
+              <td><div class="dt-actions"><a>Edit</a><a>View</a></div></td>
+            </tr>
+            <tr>
+              <td><label class="opt"><input type="checkbox"><span class="box sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></label></td>
+              <td><div class="pcell"><div class="pthumb t2">C</div><div class="pname"><a class="dt-link">The Complete Calvino — boxed set</a><div class="sku">QQ-SET-CALVINO</div></div></div></td>
+              <td>Sets &amp; collections</td>
+              <td><span class="badge badge--warning"><span class="dot"></span> Low stock</span><span class="stockn">2</span></td>
+              <td class="price">$240.00</td>
+              <td>5 July 2026</td>
+              <td><div class="dt-actions"><a>Edit</a><a>View</a></div></td>
+            </tr>
+            <tr class="is-selected">
+              <td><label class="opt"><input type="checkbox" checked><span class="box sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></label></td>
+              <td><div class="pcell"><div class="pthumb t3">G</div><div class="pname"><a class="dt-link">Field guide to European hedgerows, 1954</a><div class="sku">QQ-1954-HEDGE</div></div></div></td>
+              <td>Natural history</td>
+              <td><span class="badge badge--success"><span class="dot"></span> In stock</span><span class="stockn">4</span></td>
+              <td class="price">$68.00</td>
+              <td>3 July 2026</td>
+              <td><div class="dt-actions"><a>Edit</a><a>View</a></div></td>
+            </tr>
+            <tr>
+              <td><label class="opt"><input type="checkbox"><span class="box sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></label></td>
+              <td><div class="pcell"><div class="pthumb t4">A</div><div class="pname"><a class="dt-link">Alpine botanicals — hand-coloured plates</a><div class="sku">QQ-1889-ALPINE</div></div></div></td>
+              <td>Natural history</td>
+              <td><span class="badge badge--danger"><span class="dot"></span> Out of stock</span></td>
+              <td class="price">$390.00</td>
+              <td>1 July 2026</td>
+              <td><div class="dt-actions"><a>Edit</a><a>View</a></div></td>
+            </tr>
+            <tr>
+              <td><label class="opt"><input type="checkbox"><span class="box sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></label></td>
+              <td><div class="pcell"><div class="pthumb t5">M</div><div class="pname"><a class="dt-link">Maps of imaginary places — 2nd printing</a><div class="sku">QQ-MAPS-IMAG</div></div></div></td>
+              <td>Cartography</td>
+              <td><span class="badge badge--neutral"><span class="dot"></span> Draft</span></td>
+              <td class="price">$54.00</td>
+              <td>28 June 2026</td>
+              <td><div class="dt-actions"><a>Edit</a><a>View</a></div></td>
+            </tr>
+            <tr>
+              <td><label class="opt"><input type="checkbox"><span class="box sq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 6"/></svg></span></label></td>
+              <td><div class="pcell"><div class="pthumb t1">P</div><div class="pname"><a class="dt-link">Pocket atlas of the night sky, 1938</a><div class="sku">QQ-1938-ATLAS</div></div></div></td>
+              <td>Cartography</td>
+              <td><span class="badge badge--success"><span class="dot"></span> In stock</span><span class="stockn">7</span></td>
+              <td class="price">$36.00</td>
+              <td>26 June 2026</td>
+              <td><div class="dt-actions"><a>Edit</a><a>View</a></div></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="dt-foot"><span>6 of 148 products</span><div class="dt-pager"><button disabled>‹</button><button class="is-active">1</button><button>2</button><button>3</button><button>›</button></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="workbench.js"></script>
+<script>
+// focus mode — collapse leaves only the rail; any rail click re-expands
+const app=document.querySelector('.app');
+document.getElementById('menuToggle').addEventListener('click',()=>app.classList.add('collapsed'));
+document.querySelectorAll('.rail .prod').forEach(b=>b.addEventListener('click',()=>app.classList.remove('collapsed')));
+</script>
+</body>
+</html>
