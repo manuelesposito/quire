@@ -14,8 +14,8 @@ holds the whole idea. WordPress's admin today is **loose, mismatched pages from 
 printers** — wp-admin, Gutenberg, WooCommerce, Jetpack — never bound together. **Quire's
 reason for being is to gather the scattered pages into one coherent, well-bound whole.**
 
-> **North Star.** An everyday person's WordPress admin that feels like a well-made book —
-> calm, coherent, and cared-for — not a committee's dashboard.
+> **North Star.** An everyday person's WordPress admin that is calm, clear, and legible
+> to everyone — one quiet, coherent place instead of a committee's dashboard.
 
 What we believe:
 
@@ -24,20 +24,21 @@ What we believe:
 2. **Calm is the feature.** The work is subtraction — fewer colours, fewer styles, less noise.
    A quiet screen is a finished screen. We never add a control to solve a problem we could
    remove.
-3. **Made like a book, not a form.** Warm paper, a real typeface, craft in the small things.
-   Software can carry the dignity of a well-made physical object — and it should, because the
-   people using it deserve that care.
+3. **Legible to everyone, or it isn't design.** Accessibility is not a checklist item —
+   AAA-contrast body text, unmistakable states, and one honest focus ring are the craft
+   itself. If someone can't read it, nothing else about it matters.
 4. **For the everyday owner.** Not developers, not agencies — the shop owner, the writer, the
    volunteer who never *chose* to learn an admin panel. They deserve one that doesn't punish
    them.
-5. **Built to age, not to trend.** Bookish over fashionable — meant to feel right in ten years,
-   not novel for one. This is *why* "not generic" matters: generic is disposable.
+5. **Built to age, not to trend.** Black, white, gray, and one typeface do not go out of
+   style. Restraint is what keeps a system feeling right in ten years instead of novel for
+   one.
 6. **A commons, not a product.** Open, GPL, owned by the community that runs a large share of
    the web. Quire answers to no vendor.
 
 **The long arc:** today Quire is a coherent skin over the existing admin; the North Star is a
 genuine reimagining of what running a WordPress site feels like. At every stage the immutable
-core is the *feeling* — calm, bound, warm, made with care.
+core is the *feeling* — calm, clear, unhurried, made with care.
 
 ---
 
@@ -63,8 +64,9 @@ exactly one thing, regardless of which team shipped the screen.
 
 ## Audience: everyday site owners
 
-The bar is **calm and low-density**, not power-user dense. Quire reduces noise; it does not
-add controls. When in doubt, choose the roomier spacing, the quieter surface, the fewer
+The bar is **calm, generous, and airy** — big enough type to read without leaning in,
+room around everything, never power-user dense. Quire reduces noise; it does not add
+controls. When in doubt, choose the roomier spacing, the quieter surface, the fewer
 options visible at once. Developers and agencies are not the primary audience — everyday
 owners are.
 
@@ -73,38 +75,35 @@ owners are.
 The principles below say *what* to converge; this says *how it should feel* — the part a
 contributor cannot infer from the tokens.
 
-**Bookish, not chrome.** Quire should feel like a warm, well-set book or an old almanac —
-paper, ink, and character — not a SaaS dashboard. The touchstone is the calm of Anthropic's
-*81k interviews* page: warm putty/oatmeal paper, a serif with personality, generous quiet.
-It is deliberately **not** a clone of any existing admin, nor a copy of any other product's
-look.
+**Clean, quiet, modern.** Quire is white paper and black ink — a strict gray scale, one
+typeface, generous air. Nothing decorates; everything either informs or stays out of the
+way. It is deliberately **not** a clone of any existing admin, nor a copy of any other
+product's look — the discipline is the identity.
 
-**It must not look generic.** The sharpest test we apply: *could a default design-system
-starter kit have produced this screen?* If yes, it's wrong. The canonical tell we've banned
-is the **mono, UPPERCASE, wide-tracked overline label** — the universal "made by a generic
-tool" signature. Quire's labels are **editorial** instead: section labels set in the serif
-(italic, sentence case), like a book's running-head; small technical labels stay quiet and
-lowercase. Character over convention.
+**Nothing decorative, ever.** No marker bars, no letterspaced uppercase labels, no filled
+chips, no gradients, no ornament. State is carried by tone and weight; hierarchy by size
+and space. If an element neither informs nor acts, it goes.
 
 The four pillars of the feel:
 
-- **Warm paper, in layers.** The canvas is warm putty — not white, not cream. Surfaces
-  separate by tone and a 1px hairline, never by drop shadow. Shadow is reserved for things
-  that truly float.
-- **An "almanac" palette.** Muted, vintage pigments. **One** accent for emphasis (warm
-  ochre); status colours that carry meaning only (sage = success, amber = warning, brick =
-  danger, slate = info). Warning is a deliberately *more orange* amber so it never collides
-  with the gold accent — the accent doubles as the "you are here" selection. WordPress's cold
-  indigo is gone. *(The accent itself — warm ochre vs. cooler slate —
-  is under active review; the live contrast check on the Tokens screen is part of deciding
-  it, since legibility on warm paper is a factor.)*
-- **Three typefaces, three jobs.** **Libre Baskerville** (serif) for character and headings;
-  **Inter** (sans) for dense everyday reading; **IBM Plex Mono** for code and identifiers only.
-- **Calm and deliberate.** Roomy spacing, few options at once, nothing shouting. The
-  emotional target is *reassuring* — for an everyday owner, not a power user.
+- **White, in two layers.** Pure white is the page; one near-white carries the quiet
+  chrome. Surfaces separate by a 1px hairline, never by drop shadow — shadow is reserved
+  for things that truly float (menus, modals, tooltips).
+- **Black is the accent.** The strongest ink on screen belongs to the primary action;
+  location is marked by a gray wash and a weight change, never filled. Colour appears
+  *only* as status — green = success, amber = warning, red = danger, blue = info — each
+  with a text step that clears AA, and blue is never interactive, so colour always means
+  something.
+- **One typeface.** Inter, at a generous scale (16px body, AAA contrast), with a
+  single-line/multi-line line-height split so labels sit crisp and reading text breathes.
+  Non-Latin scripts fall through to the system's native fonts. Code renders in the
+  system monospace — as content, not as a voice.
+- **Airy and deliberate.** 40px controls, roomy padding, few options at once, nothing
+  shouting. The emotional target is *reassuring* — for an everyday owner, not a power user.
 
 **Voice & tone (microcopy).** Plain, warm, concrete. Short sentences. Say what happened and
-what to do; never jargon. Reassure, don't alarm.
+what to do; never jargon. Reassure, don't alarm. (The warmth lives in the words now, not
+the pigments.)
 
 ## Principles
 
@@ -131,10 +130,10 @@ hold everywhere, and a component that breaks one is the bug.
 
 1. **Colour is meaning, and selection has a cardinality.** The accent is for emphasis —
    links, highlights, the focus ring — and for the **singular "you are here"**: the one
-   current product, the one current page, **the one active tab** (ink label, ochre
-   underline). That state is a light-ochre surface with a dark-ochre mark on top (inverted
-   in dark) — the same warm, legible selection Figma draws in blue. Because it is always
-   *singular*, the accent stays sparse and keeps its meaning.
+   current product, the one current page, the one active tab. That state is a quiet gray
+   wash with a semibold ink label (inverted in dark) — never a filled chip, never a marker,
+   so it can never be mistaken for a button. Because the primary action is the only solid
+   black on screen, its meaning stays absolute.
    **Bulk, plural selection is neutral** — ticked table rows and the like use a neutral
    surface, never the accent, so a screenful of them stays calm and never reads as a wall of
    warnings. **Hover / pressed** is a neutral translucent wash that sits *below* selected, so
