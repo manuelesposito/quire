@@ -43,6 +43,11 @@ add_action( 'admin_enqueue_scripts', function () {
 	// 'colors' (WP's admin colour scheme) loads late and repaints the menu —
 	// declaring it as a dependency is load-bearing, not cosmetic (probe finding).
 	wp_enqueue_style( 'quire-core-classic', "$base/core-classic.css", [ 'quire-hooks', 'colors' ], $ver );
+
+	// Per-product bridges — only when the product is there to bridge.
+	if ( class_exists( 'WooCommerce' ) ) {
+		wp_enqueue_style( 'quire-woo', "$base/woo.css", [ 'quire-core-classic' ], $ver );
+	}
 }, 999 );
 
 // The front door: wp-login.php runs its own enqueue hook.

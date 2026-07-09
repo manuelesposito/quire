@@ -18,6 +18,7 @@ SOURCES = {
     'hooks.css':        ROOT / 'packages/reskin-css/src/hooks.css',
     'core-classic.css': ROOT / 'packages/reskin-css/src/core-classic.css',
     'login.css':        ROOT / 'packages/reskin-css/src/login.css',
+    'woo.css':          ROOT / 'packages/reskin-css/src/woo.css',
 }
 
 ASSETS.mkdir(parents=True, exist_ok=True)

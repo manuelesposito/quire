@@ -1,0 +1,68 @@
+/* QUIRE RESKIN — the WooCommerce surface class (wc-admin React + classic).
+   The probe measured it: Woo's own components ignore the WP theming hooks
+   (0.03–0.27% pixel change) and paint the Woo brand blue directly.
+   This module covers what the hooks can't reach. Tokens only.
+   Enqueued only when WooCommerce is active — see quire.php. */
+
+/* wc-admin's late-loaded style chunk re-declares --wp-admin-theme-color
+   back to WP blue on :root AFTER our hooks stylesheet (probe finding).
+   Re-assert on body: custom properties inherit, and body beats :root
+   regardless of load order. */
+body.wp-admin {
+  --wp-admin-theme-color: var(--qr-color-ochre-600) !important;
+  --wp-admin-theme-color-darker-10: var(--qr-color-ochre-700) !important;
+  --wp-admin-theme-color-darker-20: var(--qr-color-ochre-800) !important;
+  --wp-components-color-accent: var(--qr-color-ochre-600) !important;
+  --wp-components-color-accent-darker-10: var(--qr-color-ochre-700) !important;
+  --wp-components-color-accent-darker-20: var(--qr-color-ochre-800) !important;
+}
+
+/* ---- Home: the onboarding task list ------------------------------ */
+/* step titles were brand-blue links */
+.woocommerce-task-list__item-title {
+  color: var(--qr-color-text-accent) !important;
+}
+.woocommerce-task-list__item.complete .woocommerce-task-list__item-title {
+  color: var(--qr-color-text-muted) !important;
+}
+/* the numbered step circles carried a blue ring */
+.woocommerce-task__icon {
+  border-color: var(--qr-color-border-strong) !important;
+  color: var(--qr-color-text-muted) !important;
+  background: transparent;
+}
+/* the current step is a singular "you are here" -> ochre, not blue */
+.woocommerce-task-list__item.is-active,
+.woocommerce-task-list__item[class*='is-active'] {
+  background: var(--qr-color-accent-soft) !important;
+  border-left-color: var(--qr-color-state-selected-mark) !important;
+}
+.woocommerce-task-list__item.is-active .woocommerce-task__icon {
+  border-color: var(--qr-color-state-selected-mark) !important;
+  color: var(--qr-color-state-selected-mark) !important;
+}
+
+/* the setup progress bar under the greeting */
+.woocommerce-task-progress-header progress,
+progress.woocommerce-task-progress-header__progress-bar {
+  color: var(--qr-color-accent-default);
+}
+.woocommerce-task-progress-header progress::-webkit-progress-value,
+progress.woocommerce-task-progress-header__progress-bar::-webkit-progress-value {
+  background: var(--qr-color-accent-default);
+}
+.woocommerce-task-progress-header progress::-webkit-progress-bar,
+progress.woocommerce-task-progress-header__progress-bar::-webkit-progress-bar {
+  background: var(--qr-color-surface-sunken);
+}
+.woocommerce-task-progress-header progress::-moz-progress-bar {
+  background: var(--qr-color-accent-default);
+}
+
+/* ---- generic wc-admin links that bypass the accent variable ------- */
+.woocommerce-layout__inbox-message a,
+.woocommerce-inbox-message__content a,
+.woocommerce-stats-overview a,
+.woocommerce-experimental-list a {
+  color: var(--qr-color-text-accent);
+}
