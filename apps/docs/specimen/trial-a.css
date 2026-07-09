@@ -1,0 +1,61 @@
+/* TRIAL A — "Clean neutral": pure white, true grays, no accent colour
+   (black is the accent), no serif, generous scale. NOT adopted — a
+   swappable preview loaded via ?trial=a (see workbench.js). Light only.
+   Mostly overrides PRIMITIVES so the whole semantic layer follows. */
+:root {
+  /* type: one family, no serif. (Pretendard is the production pick for
+     full multilingual coverage; Inter stands in — same metrics.) */
+  --qr-font-family-serif: "Pretendard Variable", Inter, system-ui, sans-serif;
+  --qr-font-family-sans: "Pretendard Variable", Inter, system-ui, sans-serif;
+
+  /* generous scale */
+  --qr-font-size-100: 12px; --qr-font-size-200: 13px; --qr-font-size-300: 15px;
+  --qr-font-size-400: 16px; --qr-font-size-500: 18px; --qr-font-size-600: 21px;
+  --qr-font-size-700: 26px; --qr-font-size-800: 32px; --qr-font-size-900: 44px;
+  --qr-font-line-height-tight: 1.15; --qr-font-line-height-snug: 1.4;
+  --qr-font-line-height-normal: 1.6; --qr-font-line-height-relaxed: 1.7;
+  --qr-font-letter-spacing-tight: -0.01em; --qr-font-letter-spacing-normal: 0;
+
+  /* airy spacing (same 4px grid, one-two steps up) */
+  --qr-space-100: 6px; --qr-space-200: 10px; --qr-space-300: 16px;
+  --qr-space-400: 24px; --qr-space-500: 28px; --qr-space-600: 32px;
+  --qr-space-800: 44px; --qr-space-1000: 56px; --qr-space-1200: 64px;
+  --qr-space-1600: 88px;
+  --qr-size-control-sm: 32px; --qr-size-control-md: 40px; --qr-size-control-lg: 48px;
+  --qr-size-sidebar: 260px;
+
+  /* neutrals -> true grays on pure white */
+  --qr-color-neutral-0: #FFFFFF; --qr-color-neutral-50: #FFFFFF;
+  --qr-color-neutral-75: #FAFAFA; --qr-color-neutral-100: #FFFFFF;
+  --qr-color-neutral-125: #F4F4F5; --qr-color-neutral-150: #ECECEE;
+  --qr-color-neutral-200: #E4E4E7; --qr-color-neutral-300: #D4D4D8;
+  --qr-color-neutral-400: #A1A1AA; --qr-color-neutral-500: #71717A;
+  --qr-color-neutral-600: #52525B; --qr-color-neutral-700: #3F3F46;
+  --qr-color-neutral-800: #27272A; --qr-color-neutral-900: #111318;
+  --qr-color-neutral-1000: #0A0A0B; --qr-color-neutral-1100: #050506;
+
+  /* the accent ramp becomes BLACK — colour reserved for status only */
+  --qr-color-ochre-100: #F4F4F5; --qr-color-ochre-200: #E4E4E7;
+  --qr-color-ochre-400: #111318; --qr-color-ochre-600: #0A0A0A;
+  --qr-color-ochre-700: #0A0A0A; --qr-color-ochre-800: #000000;
+  --qr-color-ochre-900: #18181B;
+
+  /* status: clean modern tints (all text >= AA on their surfaces) */
+  --qr-color-sage-100: #F0FDF4; --qr-color-sage-300: #86EFAC;
+  --qr-color-sage-400: #22C55E; --qr-color-sage-600: #15803D;
+  --qr-color-sage-700: #166534; --qr-color-sage-900: #14532D;
+  --qr-color-amber-100: #FFFBEB; --qr-color-amber-300: #FCD34D;
+  --qr-color-amber-400: #F59E0B; --qr-color-amber-600: #B45309;
+  --qr-color-amber-800: #92400E; --qr-color-amber-900: #78350F;
+  --qr-color-brick-100: #FEF2F2; --qr-color-brick-300: #FCA5A5;
+  --qr-color-brick-400: #EF4444; --qr-color-brick-600: #B91C1C;
+  --qr-color-brick-900: #7F1D1D;
+  --qr-color-slate-100: #EFF6FF; --qr-color-slate-300: #93C5FD;
+  --qr-color-slate-400: #3B82F6; --qr-color-slate-600: #1D4ED8;
+  --qr-color-slate-900: #1E3A8A;
+
+  /* semantic literals that don't route through primitives */
+  --qr-color-state-hover: #0000000A;
+}
+/* trials are light-only — neutralise a dark toggle if it happens */
+[data-theme="dark"] { color-scheme: light; }
