@@ -7,6 +7,8 @@
      full multilingual coverage; Inter stands in — same metrics.) */
   --qr-font-family-serif: "Pretendard Variable", Inter, system-ui, sans-serif;
   --qr-font-family-sans: "Pretendard Variable", Inter, system-ui, sans-serif;
+  --qr-font-family-mono: "Pretendard Variable", Inter, system-ui, sans-serif;
+  --qr-font-letter-spacing-wide: 0; /* the letterspaced-uppercase voice is gone */
 
   /* generous scale */
   --qr-font-size-100: 12px; --qr-font-size-200: 13px; --qr-font-size-300: 15px;
@@ -56,6 +58,23 @@
 
   /* semantic literals that don't route through primitives */
   --qr-color-state-hover: #0000000A;
+
+  /* the singular "you are here" must be UNMISSABLE (WCAG 3:1 state
+     contrast): black chip, white mark — 19.8:1. */
+  --qr-color-state-selected-surface: #111318;
+  --qr-color-state-selected-mark: #FFFFFF;
+}
+
+/* component-voice overrides for the trial (become components.css edits on
+   adoption): the mono-uppercase-letterspaced label style is retired —
+   sentence-case, normal tracking, medium sans. */
+.stat__label, .chartcard__label, .menu__label, .setup__count {
+  font-family: var(--qr-font-family-sans);
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+  font-size: var(--qr-font-size-200);
+  color: var(--qr-color-text-muted);
 }
 /* trials are light-only — neutralise a dark toggle if it happens */
 [data-theme="dark"] { color-scheme: light; }
