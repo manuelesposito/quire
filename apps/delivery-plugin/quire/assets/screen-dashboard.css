@@ -1,0 +1,63 @@
+/* Quire Dashboard screen — page layout only; components come from
+   components.css, values from the tokens. Loaded ONLY on this screen
+   (components.css class names like .card would collide with core
+   elsewhere). Lives inside #wpbody-content with core chrome around it. */
+
+#wpbody-content .quire-screen {
+  padding: 8px 12px 64px 2px;
+  max-width: 1040px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--qr-space-500);
+  font-size: var(--qr-font-size-300);
+  line-height: var(--qr-font-line-height-copy);
+}
+
+.quire-screen .qtopbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--qr-space-400);
+  padding: var(--qr-space-300) 0 var(--qr-space-400);
+  border-bottom: 1px solid var(--qr-color-border-default);
+}
+.quire-screen .qcrumb { font-size: var(--qr-font-size-200); color: var(--qr-color-text-subtle); margin-bottom: 4px; }
+.quire-screen h1.qtitle {
+  font-size: var(--qr-font-size-800);
+  font-weight: var(--qr-font-weight-semibold);
+  letter-spacing: var(--qr-font-letter-spacing-tight);
+  line-height: var(--qr-font-line-height-tight);
+  padding: 0; margin: 0;
+}
+.quire-screen .qactions { display: flex; gap: var(--qr-space-200); align-items: center; }
+.quire-screen .qactions .btn { text-decoration: none; }
+
+.quire-screen .notice-quire { max-width: none; margin: 0; padding-top: var(--qr-space-300); padding-bottom: var(--qr-space-300); }
+.quire-screen .notice-quire a { color: var(--qr-color-text-accent); }
+
+.quire-screen .qstats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--qr-space-400); }
+.quire-screen a.stat { text-decoration: none; color: inherit; display: block; }
+.quire-screen a.stat:hover { border-color: var(--qr-color-border-strong); }
+
+.quire-screen .qdesk { display: grid; grid-template-columns: 1fr 320px; gap: var(--qr-space-500); align-items: start; }
+.quire-screen .qmain, .quire-screen .qside { display: flex; flex-direction: column; gap: var(--qr-space-500); min-width: 0; }
+.quire-screen .qdesk .card { width: 100%; max-width: none; }
+.quire-screen .card__foot .btn { text-decoration: none; }
+
+.quire-screen .act { display: flex; align-items: center; gap: var(--qr-space-300); padding: var(--qr-space-300) 0; border-top: 1px solid var(--qr-color-border-default); font-size: var(--qr-font-size-300); }
+.quire-screen .act:first-child { border-top: 0; }
+.quire-screen .act__body { flex: 1; min-width: 0; }
+.quire-screen .act__line { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.quire-screen .act__line a { color: var(--qr-color-text-default); font-weight: var(--qr-font-weight-medium); text-decoration: none; }
+.quire-screen .act__line a:hover { text-decoration: underline; }
+.quire-screen .act__quote { font-size: var(--qr-font-size-200); color: var(--qr-color-text-muted); margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.quire-screen .act__meta { font-size: var(--qr-font-size-100); color: var(--qr-color-text-subtle); margin-top: 2px; }
+.quire-screen .act__meta a { color: var(--qr-color-text-subtle); }
+.quire-screen .dt-actions.is-open { opacity: 1; flex-shrink: 0; }
+
+.quire-screen .qdraft { display: flex; flex-direction: column; gap: var(--qr-space-300); padding-bottom: var(--qr-space-400); }
+.quire-screen .qdraft .field { width: 100%; }
+.quire-screen .qdraft textarea.field { min-height: 88px; resize: vertical; padding-top: 8px; }
+
+/* keep core's dashboard leftovers out (screen options tab etc. stay) */
+#wpbody-content #dashboard-widgets-wrap { display: none; }

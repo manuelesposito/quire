@@ -46,6 +46,41 @@ add_action( 'admin_enqueue_scripts', function () {
 	}
 }, 999 );
 
+// ---- Lane 3: Quire-owned screens -----------------------------------
+// The Dashboard is the first real screen: our design, real data, rendered
+// in place of wp-admin/index.php. The admin chrome stays (already bridged).
+add_action( 'load-index.php', function () {
+	if ( ! quire_is_enabled() ) {
+		return;
+	}
+	$base = plugin_dir_url( __FILE__ ) . 'assets';
+	$ver  = '0.2.0';
+	// components.css is scoped to Quire screens only — its class names
+	// (.card, .btn) would collide with core styles if loaded globally.
+	wp_enqueue_style( 'quire-components', "$base/components.css", [ 'quire-tokens' ], $ver );
+	wp_enqueue_style( 'quire-screen-dashboard', "$base/screen-dashboard.css", [ 'quire-components' ], $ver );
+	require __DIR__ . '/screens/dashboard.php'; // renders + exits
+} );
+
+// Quick draft — the one write on the Dashboard. Real draft, real nonce.
+add_action( 'admin_post_quire_quick_draft', function () {
+	if ( ! current_user_can( 'edit_posts' ) ) {
+		wp_die( __( 'Sorry, you are not allowed to create drafts.', 'quire' ) );
+	}
+	check_admin_referer( 'quire_quick_draft' );
+	$title = sanitize_text_field( wp_unslash( $_POST['quire_draft_title'] ?? '' ) );
+	$body  = wp_kses_post( wp_unslash( $_POST['quire_draft_content'] ?? '' ) );
+	if ( '' !== $title || '' !== $body ) {
+		wp_insert_post( [
+			'post_title'   => $title,
+			'post_content' => $body,
+			'post_status'  => 'draft',
+		] );
+	}
+	wp_safe_redirect( admin_url( 'index.php?quire-draft=saved' ) );
+	exit;
+} );
+
 // The front door: wp-login.php runs its own enqueue hook.
 add_action( 'login_enqueue_scripts', function () {
 	if ( ! quire_is_enabled() ) {

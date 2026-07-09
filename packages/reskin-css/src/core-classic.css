@@ -106,8 +106,8 @@ input[type="search"], input[type="number"], select, textarea {
 }
 
 /* ---- links: classic screens hardcode WP blue; give them Quire ochre ---- */
-#wpbody-content a:not(.button):not(.page-title-action) { color: var(--qr-color-text-accent); }
-#wpbody-content a:not(.button):hover { color: var(--qr-color-accent-deep); }
+#wpbody-content a:not(.button):not(.page-title-action):not(.btn) { color: var(--qr-color-text-accent); }
+#wpbody-content a:not(.button):not(.btn):hover { color: var(--qr-color-accent-deep); }
 /* menu items: win against the color-scheme sheet's late load */
 #adminmenu, #adminmenu .wp-submenu, #adminmenuback, #adminmenuwrap {
   background: var(--qr-color-surface-nav) !important;

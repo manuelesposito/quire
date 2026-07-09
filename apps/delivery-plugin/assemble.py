@@ -19,6 +19,7 @@ SOURCES = {
     'core-classic.css': ROOT / 'packages/reskin-css/src/core-classic.css',
     'login.css':        ROOT / 'packages/reskin-css/src/login.css',
     'woo.css':          ROOT / 'packages/reskin-css/src/woo.css',
+    'components.css':   ROOT / 'apps/docs/specimen/components.css',
 }
 
 ASSETS.mkdir(parents=True, exist_ok=True)
