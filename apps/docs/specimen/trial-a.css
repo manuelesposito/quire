@@ -44,7 +44,7 @@
   /* status: clean modern tints (all text >= AA on their surfaces) */
   --qr-color-sage-100: #F0FDF4; --qr-color-sage-300: #86EFAC;
   --qr-color-sage-400: #22C55E; --qr-color-sage-600: #15803D;
-  --qr-color-sage-700: #166534; --qr-color-sage-900: #14532D;
+  --qr-color-sage-700: #15803D; /* success text: most vivid green at AA (5.0:1) */ --qr-color-sage-900: #14532D;
   --qr-color-amber-100: #FFFBEB; --qr-color-amber-300: #FCD34D;
   --qr-color-amber-400: #F59E0B; --qr-color-amber-600: #B45309;
   --qr-color-amber-800: #92400E; --qr-color-amber-900: #78350F;
