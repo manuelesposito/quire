@@ -1,9 +1,10 @@
 {
   "font": {
     "family": {
-      "serif": { "$value": "'Libre Baskerville', Georgia, serif", "$type": "fontFamily" },
-      "sans":  { "$value": "Inter, system-ui, sans-serif", "$type": "fontFamily" },
-      "mono":  { "$value": "'IBM Plex Mono', ui-monospace, monospace", "$type": "fontFamily" }
+      "sans": { "$value": "Inter, system-ui, sans-serif", "$type": "fontFamily",
+        "$description": "The one typeface. Non-Latin scripts fall through to the system's native fonts." },
+      "code": { "$value": "ui-monospace, 'SF Mono', Menlo, monospace", "$type": "fontFamily",
+        "$description": "For CODE AS CONTENT only (the code editor). Not a brand voice — the system stack." }
     },
     "weight": {
       "regular":  { "$value": "400", "$type": "fontWeight" },
@@ -12,26 +13,28 @@
       "bold":     { "$value": "700", "$type": "fontWeight" }
     },
     "size": {
-      "100": { "$value": "11px", "$type": "dimension" },
-      "200": { "$value": "12px", "$type": "dimension" },
-      "300": { "$value": "13px", "$type": "dimension" },
-      "400": { "$value": "14px", "$type": "dimension" },
-      "500": { "$value": "16px", "$type": "dimension" },
-      "600": { "$value": "18px", "$type": "dimension" },
-      "700": { "$value": "22px", "$type": "dimension" },
-      "800": { "$value": "28px", "$type": "dimension" },
-      "900": { "$value": "40px", "$type": "dimension" }
+      "100": { "$value": "12px", "$type": "dimension" },
+      "200": { "$value": "13px", "$type": "dimension" },
+      "300": { "$value": "15px", "$type": "dimension" },
+      "400": { "$value": "16px", "$type": "dimension" },
+      "500": { "$value": "18px", "$type": "dimension" },
+      "600": { "$value": "21px", "$type": "dimension" },
+      "700": { "$value": "26px", "$type": "dimension" },
+      "800": { "$value": "32px", "$type": "dimension" },
+      "900": { "$value": "44px", "$type": "dimension" }
     },
     "line-height": {
-      "tight":   { "$value": "1.1",  "$type": "number" },
-      "snug":    { "$value": "1.3",  "$type": "number" },
-      "normal":  { "$value": "1.45", "$type": "number" },
-      "relaxed": { "$value": "1.6",  "$type": "number" }
+      "tight":   { "$value": "1.15", "$type": "number" },
+      "label":   { "$value": "1.2",  "$type": "number",
+        "$description": "Single-line text: buttons, menus, table cells, labels. Aligns with icons." },
+      "snug":    { "$value": "1.4",  "$type": "number" },
+      "copy":    { "$value": "1.6",  "$type": "number",
+        "$description": "Multi-line reading text." },
+      "relaxed": { "$value": "1.7",  "$type": "number" }
     },
     "letter-spacing": {
-      "tight":  { "$value": "-0.015em", "$type": "dimension" },
-      "normal": { "$value": "-0.006em", "$type": "dimension" },
-      "wide":   { "$value": "0.14em",   "$type": "dimension" }
+      "tight":  { "$value": "-0.01em", "$type": "dimension" },
+      "normal": { "$value": "0",       "$type": "dimension" }
     }
   }
 }

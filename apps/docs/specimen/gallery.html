@@ -6,7 +6,7 @@
 <title>Quire — Components</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <!-- the foundation -->
 <link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
 <link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
@@ -15,17 +15,17 @@
 <style>
 /* ===== page chrome (token-driven) — every component lives in components.css ===== */
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-canvas);color:var(--qr-color-text-default);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-normal);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased;padding:64px 44px 96px}
+body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-canvas);color:var(--qr-color-text-default);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-copy);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased;padding:64px 44px 96px}
 .wrap{max-width:920px;margin:0 auto}
-.eyebrow{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle)}
-h1{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-900);letter-spacing:var(--qr-font-letter-spacing-tight);margin:6px 0 8px}
+.eyebrow{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle)}
+h1{font-family:var(--qr-font-family-sans);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-900);letter-spacing:var(--qr-font-letter-spacing-tight);margin:6px 0 8px}
 .lede{color:var(--qr-color-text-muted);max-width:60ch}
-.lede code{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200);background:var(--qr-color-surface-sunken);padding:1px 6px;border-radius:var(--qr-radius-sm)}
+.lede code{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);background:var(--qr-color-surface-sunken);padding:1px 6px;border-radius:var(--qr-radius-sm)}
 section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padding-top:24px}
-.sec-label{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle);margin-bottom:6px}
-.sec-title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-700);margin-bottom:20px}
+.sec-label{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle);margin-bottom:6px}
+.sec-title{font-family:var(--qr-font-family-sans);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-700);margin-bottom:20px}
 .matrix{display:grid;grid-template-columns:120px repeat(5, max-content);gap:16px 22px;align-items:center}
-.mhead{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-subtle)}
+.mhead{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle)}
 .rlabel{font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);color:var(--qr-color-text-muted)}
 .row-note{grid-column:1 / -1;font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle);margin-top:4px}
 .cluster{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
@@ -168,7 +168,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
 
   <section id="datatable">
     <div class="sec-label">DataTable</div>
-    <p class="lede" style="margin-bottom:22px">Sortable headers, row selection (reuses Checkbox), status pills (reuses Badge), hover actions, toolbar &amp; footer — the workhorse behind every list screen. Selected = neutral; ochre only on link/action hover.</p>
+    <p class="lede" style="margin-bottom:22px">Sortable headers, row selection (reuses Checkbox), status pills (reuses Badge), hover actions, toolbar &amp; footer — the workhorse behind every list screen. Selected = neutral; actions reveal on hover.</p>
     <div class="dt">
       <div class="dt-toolbar">
         <div class="dt-filters"><a class="is-active">All</a><a>Processing</a><a>Completed</a><a>Refunded</a></div>
@@ -493,7 +493,7 @@ section{margin-top:48px;border-top:1px solid var(--qr-color-border-default);padd
   <section>
     <div class="sec-label">Consumed &amp; cut</div>
     <div class="consume">
-      <li><b>Block / site editor &amp; rich text</b> — consumed from <code style="font-family:var(--qr-font-family-mono)">@wordpress/components</code> (Gutenberg). We extend it with our tokens, we don’t rebuild it.</li>
+      <li><b>Block / site editor &amp; rich text</b> — consumed from <code style="font-family:var(--qr-font-family-sans)">@wordpress/components</code> (Gutenberg). We extend it with our tokens, we don’t rebuild it.</li>
       <li><b>Admin bar</b> — cut. Folded into the product rail.</li>
       <li><b>Media picker modal</b> — consumed from WordPress’ media library. We build the <em>field</em> above; WP provides the picker.</li>
     </div>

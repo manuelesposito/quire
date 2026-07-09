@@ -14,8 +14,8 @@ body, .wp-core-ui {
   font-size: 13px;
 }
 #wpbody-content .wrap > h1 {
-  font-family: "Libre Baskerville", Georgia, serif;
-  font-weight: 500;
+  font-family: "Inter", -apple-system, system-ui, sans-serif;
+  font-weight: 600;
   color: var(--qr-color-text-default);
   letter-spacing: -0.01em;
 }

@@ -13,9 +13,9 @@ body.login {
   background-image: none !important;
   width: auto;
   height: auto;
-  font-family: "Libre Baskerville", Georgia, serif;
+  font-family: "Inter", -apple-system, system-ui, sans-serif;
   font-size: 28px;
-  font-weight: 400;
+  font-weight: 600;
   letter-spacing: -0.01em;
   color: var(--qr-color-text-default);
   text-indent: 0;

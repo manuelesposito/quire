@@ -1,6 +1,9 @@
 {
   "elevation": {
+    "$description": "Materials, Geist-style: surfaces divide by border, floating elements lift by shadow. Tooltip < menu < modal.",
     "raised":  { "$value": "{shadow.raised}",  "$type": "shadow" },
+    "tooltip": { "$value": "{shadow.tooltip}", "$type": "shadow" },
+    "menu":    { "$value": "{shadow.menu}",    "$type": "shadow" },
     "overlay": { "$value": "{shadow.overlay}", "$type": "shadow" }
   }
 }

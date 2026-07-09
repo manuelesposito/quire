@@ -27,7 +27,7 @@ section{
 
 /* the section heading — one editorial serif-italic label, like a running-head */
 .sec-label{
-  font-family:var(--qr-font-family-serif);
+  font-family:var(--qr-font-family-sans);
   font-style:italic;
   font-weight:var(--qr-font-weight-regular);
   font-size:var(--qr-font-size-600);

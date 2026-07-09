@@ -6,7 +6,7 @@
 <title>Quire — Navigation concept</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <!-- the canonical foundation: this nav now CONSUMES @quire/tokens -->
 <link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
 <link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
@@ -23,12 +23,12 @@
   --text-subtle: var(--qr-color-text-subtle);
   --border:      var(--qr-color-border-default);
   --sans:        var(--qr-font-family-sans);
-  --mono:        var(--qr-font-family-mono);
-  --serif:       var(--qr-font-family-serif);
+  --mono:        var(--qr-font-family-sans);
+  --serif:       var(--qr-font-family-sans);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-normal);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased}
+body{font-family:var(--sans);color:var(--text);background:var(--canvas);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-copy);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased}
 .app{display:flex;height:calc(100vh - var(--wb-h));overflow:hidden}
 /* icon-only rail + contextual sidebar + collapse all live in components.css */
 body.demo-tips .tip{opacity:1;transform:translateY(-50%) translateX(0)}

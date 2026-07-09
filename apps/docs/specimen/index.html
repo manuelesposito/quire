@@ -6,7 +6,7 @@
 <title>Quire — Foundation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <!-- The real source of truth. Everything below reads from these. -->
 <link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
 <link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
@@ -14,24 +14,24 @@
 <style>
 /* =========================================================================
    Quire — Foundation specimen
-   Bookish, not cloth: warm paper, a muted "almanac" palette (ochre accent +
+   Clean and precise: pure white, a strict gray scale (black as the accent +
    brick/sage/slate status), Libre Baskerville for character, calm ink actions with
-   ochre used like a highlighter. Every value here is a live token — change a
+   colour reserved for status alone. Every value here is a live token — change a
    token and this page changes with it. No hand-typed palette.
    ========================================================================= */
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:var(--qr-font-family-sans);color:var(--qr-color-text-default);background:var(--qr-color-surface-canvas);
-  -webkit-font-smoothing:antialiased;line-height:var(--qr-font-line-height-normal);font-size:var(--qr-font-size-400);
+  -webkit-font-smoothing:antialiased;line-height:var(--qr-font-line-height-copy);font-size:var(--qr-font-size-400);
   letter-spacing:var(--qr-font-letter-spacing-normal);padding:64px 40px 96px}
 .wrap{max-width:1080px;margin:0 auto}
 /* labels: no more uppercase-mono-tracked overline. eyebrow = quiet lowercase mono; section labels = editorial serif italic. */
-.eyebrow{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200);letter-spacing:var(--qr-font-letter-spacing-normal);color:var(--qr-color-text-subtle)}
-h1.title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-900);letter-spacing:var(--qr-font-letter-spacing-tight);margin:6px 0 8px}
+.eyebrow{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);letter-spacing:var(--qr-font-letter-spacing-normal);color:var(--qr-color-text-subtle)}
+h1.title{font-family:var(--qr-font-family-sans);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-900);letter-spacing:var(--qr-font-letter-spacing-tight);margin:6px 0 8px}
 .lede{color:var(--qr-color-text-muted);max-width:64ch;font-size:var(--qr-font-size-400)}
-.back{display:inline-block;margin-bottom:var(--qr-space-400);font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle);text-decoration:none}
+.back{display:inline-block;margin-bottom:var(--qr-space-400);font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle);text-decoration:none}
 .back:hover{color:var(--qr-color-text-default)}
 section{margin-top:var(--qr-space-1200);border-top:1px solid var(--qr-color-border-default);padding-top:var(--qr-space-600)}
-.sec-label{font-family:var(--qr-font-family-serif);font-style:italic;font-weight:var(--qr-font-weight-regular);font-size:var(--qr-font-size-500);letter-spacing:var(--qr-font-letter-spacing-normal);color:var(--qr-color-text-muted);margin-bottom:var(--qr-space-500)}
+.sec-label{font-family:var(--qr-font-family-sans);font-style:italic;font-weight:var(--qr-font-weight-regular);font-size:var(--qr-font-size-500);letter-spacing:var(--qr-font-letter-spacing-normal);color:var(--qr-color-text-muted);margin-bottom:var(--qr-space-500)}
 .sec-note{font-size:var(--qr-font-size-300);color:var(--qr-color-text-muted);margin:calc(-1 * var(--qr-space-200)) 0 var(--qr-space-500)}
 
 /* swatches — chip color is a live token; the caption names the role + primitive */
@@ -40,32 +40,32 @@ section{margin-top:var(--qr-space-1200);border-top:1px solid var(--qr-color-bord
 .sw .chip{height:56px;border-bottom:1px solid var(--qr-color-border-default)}
 .sw .meta{padding:8px 10px}
 .sw .role{font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-medium)}
-.sw .maps{font-family:var(--qr-font-family-mono);font-size:10.5px;color:var(--qr-color-text-subtle);margin-top:2px}
+.sw .maps{font-family:var(--qr-font-family-sans);font-size:10.5px;color:var(--qr-color-text-subtle);margin-top:2px}
 
 /* type */
-.serif-disp{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-800);letter-spacing:var(--qr-font-letter-spacing-tight);line-height:1.08}
-.serif-sub{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-regular);font-size:var(--qr-font-size-500);color:var(--qr-color-text-muted);margin-top:8px}
+.serif-disp{font-family:var(--qr-font-family-sans);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-800);letter-spacing:var(--qr-font-letter-spacing-tight);line-height:1.08}
+.serif-sub{font-family:var(--qr-font-family-sans);font-weight:var(--qr-font-weight-regular);font-size:var(--qr-font-size-500);color:var(--qr-color-text-muted);margin-top:8px}
 .hl{background:var(--qr-color-accent-soft);box-shadow:0 0 0 2px var(--qr-color-accent-soft);border-radius:2px}
 .scale > div{display:flex;align-items:baseline;gap:16px;padding:6px 0}
-.scale .px{font-family:var(--qr-font-family-mono);font-size:10.5px;color:var(--qr-color-text-subtle);width:120px;flex:none}
+.scale .px{font-family:var(--qr-font-family-sans);font-size:10.5px;color:var(--qr-color-text-subtle);width:120px;flex:none}
 
 /* sample controls — real component look, all tokens */
 .controls{display:grid;grid-template-columns:1fr 1fr;gap:var(--qr-space-600)}
 .card{background:var(--qr-color-surface-raised);border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-card);padding:var(--qr-space-500)}
-.card h3{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-500);margin-bottom:var(--qr-space-400)}
+.card h3{font-family:var(--qr-font-family-sans);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-500);margin-bottom:var(--qr-space-400)}
 .btn{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium);border-radius:var(--qr-radius-control);padding:7px 14px;border:1px solid transparent;cursor:pointer}
 .btn-primary{background:var(--qr-color-action-primary-default);color:var(--qr-color-action-primary-text)}
 .btn-secondary{background:var(--qr-color-surface-raised);border-color:var(--qr-color-border-strong);color:var(--qr-color-text-default)}
 .btn-tertiary{background:transparent;color:var(--qr-color-accent-strong);font-weight:var(--qr-font-weight-semibold)}
 .btn-row{display:flex;gap:var(--qr-space-200);align-items:center;flex-wrap:wrap}
-.tag{font-family:var(--qr-font-family-mono);font-size:10px;color:var(--qr-color-text-subtle);text-transform:uppercase;letter-spacing:var(--qr-font-letter-spacing-wide);margin-top:var(--qr-space-300)}
+.tag{font-family:var(--qr-font-family-sans);font-size:10px;color:var(--qr-color-text-subtle);text-transform:uppercase;letter-spacing:0;margin-top:var(--qr-space-300)}
 .row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--qr-color-border-default)}
 .row:last-child{border-bottom:0}
 .row .lbl{font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium)}
 .row .desc{font-size:var(--qr-font-size-200);color:var(--qr-color-text-muted);margin-top:1px}
 input.qr{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);padding:7px 10px;border:1px solid var(--qr-color-border-strong);border-radius:var(--qr-radius-control);background:var(--qr-color-surface-raised);color:var(--qr-color-text-default);width:150px}
 input.qr:focus{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px;border-color:var(--qr-color-border-strong)}
-/* toggle — ON uses the control ink, per the grammar (form selection = ink, not ochre) */
+/* toggle — ON uses the control ink, per the grammar (form selection = ink) */
 .switch{width:38px;height:22px;background:var(--qr-color-control-on);border-radius:99px;position:relative;cursor:pointer}
 .switch::after{content:"";position:absolute;top:2px;left:18px;width:18px;height:18px;background:var(--qr-color-control-on-fg);border-radius:50%;box-shadow:var(--qr-elevation-raised)}
 .switch.off{background:var(--qr-color-border-strong)}
@@ -81,7 +81,7 @@ a.lnk{color:var(--qr-color-accent-strong);text-decoration:underline;text-underli
 <div class="wrap">
   <div class="eyebrow">Quire · 01 Foundation</div>
   <h1 class="title">Foundation</h1>
-  <p class="lede">The look itself — warm paper, a muted “almanac” palette with ochre as the accent, Libre Baskerville for character, and calm ink actions. <strong>Every swatch and control on this page reads from the live tokens</strong> — this is the real source of truth, not a sketch of it.</p>
+  <p class="lede">The look itself — pure white, a strict gray scale with black as the accent, one typeface (Inter), colour only where it carries meaning. <strong>Every swatch and control on this page reads from the live tokens</strong> — this is the real source of truth, not a sketch of it.</p>
 
   <section>
     <div class="sec-label">Surfaces — warm paper, in layers</div>
@@ -106,9 +106,9 @@ a.lnk{color:var(--qr-color-accent-strong);text-decoration:underline;text-underli
 
   <section>
     <div class="sec-label">The accent &amp; the status family — muted “almanac”</div>
-    <div class="sec-note">Ochre is the <em>accent</em> — links, highlights, focus. The others carry meaning only: sage = success, ochre = warning, brick = danger, slate = info. WordPress’s cold indigo <code style="font-family:var(--qr-font-family-mono)">#3858E9</code> is gone.</div>
+    <div class="sec-note">Black is the <em>accent</em> — the primary action, the focus ring, the selected mark. Colour appears only when something has a status: green = success, amber = warning, red = danger, blue = info. WordPress’s indigo <code style="font-family:var(--qr-font-family-sans)">#3858E9</code> is gone.</div>
     <div class="swatches">
-      <div class="sw"><div class="chip" style="background:var(--qr-color-accent-strong)"></div><div class="meta"><div class="role">ochre · accent</div><div class="maps">ochre.600 · #A87B1C</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--qr-color-accent-strong)"></div><div class="meta"><div class="role">accent · black</div><div class="maps">gray.1000 · #111318</div></div></div>
       <div class="sw"><div class="chip" style="background:var(--qr-color-feedback-danger-border)"></div><div class="meta"><div class="role">brick · danger</div><div class="maps">brick.400 · #AC5638</div></div></div>
       <div class="sw"><div class="chip" style="background:var(--qr-color-feedback-success-border)"></div><div class="meta"><div class="role">sage · success</div><div class="maps">sage.400 · #7C8856</div></div></div>
       <div class="sw"><div class="chip" style="background:var(--qr-color-feedback-info-border)"></div><div class="meta"><div class="role">slate · info</div><div class="maps">slate.400 · #5C6B79</div></div></div>
@@ -117,7 +117,7 @@ a.lnk{color:var(--qr-color-accent-strong);text-decoration:underline;text-underli
   </section>
 
   <section>
-    <div class="sec-label">Character — Libre Baskerville, with ochre as a highlighter</div>
+    <div class="sec-label">Character — one typeface; weight and tone do the talking</div>
     <div class="serif-disp">What a <span class="hl">cleaner</span> WordPress admin feels like</div>
     <div class="serif-sub">Pages gathered and bound into one — warm, calm, and deliberate.</div>
   </section>
@@ -129,12 +129,12 @@ a.lnk{color:var(--qr-color-accent-strong);text-decoration:underline;text-underli
       <div><span class="px">section · size-500</span><span style="font-size:var(--qr-font-size-500);font-weight:var(--qr-font-weight-semibold);letter-spacing:var(--qr-font-letter-spacing-tight)">General</span></div>
       <div><span class="px">body · size-400</span><span style="font-size:var(--qr-font-size-400)">The everyday working text — calm and dense, legible at small sizes.</span></div>
       <div><span class="px">label · size-300</span><span style="font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-medium)">Site title</span></div>
-      <div><span class="px">mono · size-100</span><span style="font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);letter-spacing:var(--qr-font-letter-spacing-wide);text-transform:uppercase;color:var(--qr-color-text-muted)">Permalinks</span></div>
+      <div><span class="px">mono · size-100</span><span style="font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-100);color:var(--qr-color-text-muted)">Permalinks</span></div>
     </div>
   </section>
 
   <section>
-    <div class="sec-label">Controls — ink actions, ochre highlights</div>
+    <div class="sec-label">Controls — ink actions, quiet states</div>
     <div class="controls">
       <div class="card">
         <h3>Actions</h3>
@@ -145,7 +145,7 @@ a.lnk{color:var(--qr-color-accent-strong);text-decoration:underline;text-underli
         </div>
         <div class="tag">Primary = calm ink. Ochre stays the accent, never the button.</div>
         <div class="btn-row" style="margin-top:18px">
-          <span style="font-size:var(--qr-font-size-300);color:var(--qr-color-text-muted)">Links &amp; selected use ochre — </span><a class="lnk" href="#">read the guide</a>
+          <span style="font-size:var(--qr-font-size-300);color:var(--qr-color-text-muted)">Links are ink, underlined on hover — </span><a class="lnk" href="#">read the guide</a>
         </div>
       </div>
       <div class="card">
@@ -153,7 +153,7 @@ a.lnk{color:var(--qr-color-accent-strong);text-decoration:underline;text-underli
         <div class="row"><div><div class="lbl">Search engine visibility</div><div class="desc">Discourage search engines from indexing</div></div><div class="switch off"></div></div>
         <div class="row"><div><div class="lbl">Comments</div><div class="desc">Allow people to submit comments</div></div><div class="switch"></div></div>
         <div class="row"><div><div class="lbl">Site title</div><div class="desc">Shown in the browser tab</div></div><input class="qr" value="Quire" /></div>
-        <div class="notice">A notice highlighted in ochre — like marking a passage in a book.</div>
+        <div class="notice">A quiet notice — the border carries the voice, the text stays calm.</div>
       </div>
     </div>
   </section>

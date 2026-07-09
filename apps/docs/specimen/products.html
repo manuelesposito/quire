@@ -6,7 +6,7 @@
 <title>Quire — Products</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../../packages/tokens/dist/css/variables.css">
 <link rel="stylesheet" href="../../../packages/tokens/dist/css/dark.css">
 <link rel="stylesheet" href="workbench.css">
@@ -17,12 +17,12 @@
    stock language via the status colours, mono for SKU/price data. */
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-canvas);color:var(--qr-color-text-default);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-normal);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased}
+body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-canvas);color:var(--qr-color-text-default);font-size:var(--qr-font-size-400);line-height:var(--qr-font-line-height-copy);letter-spacing:var(--qr-font-letter-spacing-normal);-webkit-font-smoothing:antialiased}
 .app{display:flex;height:calc(100vh - var(--wb-h));overflow:hidden}
 .content{flex:1;display:flex;flex-direction:column;min-width:0;overflow:hidden}
 .topbar{padding:20px 32px;border-bottom:1px solid var(--qr-color-border-default);display:flex;align-items:flex-end;justify-content:space-between;gap:var(--qr-space-400);background:var(--qr-color-surface-canvas)}
 .crumb{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle);margin-bottom:5px}
-.title{font-family:var(--qr-font-family-serif);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-800);letter-spacing:var(--qr-font-letter-spacing-tight);line-height:1.05}
+.title{font-family:var(--qr-font-family-sans);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-800);letter-spacing:var(--qr-font-letter-spacing-tight);line-height:1.05}
 .topbar .actions{display:flex;gap:var(--qr-space-200);align-items:center}
 .scroll{overflow-y:auto;padding:26px 32px 64px}
 .dt{max-width:none}
@@ -30,7 +30,7 @@ body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-ca
 .dt-toolbar .tools{display:flex;gap:var(--qr-space-300);align-items:center}
 /* product cell: thumbnail + name + sku */
 .pcell{display:flex;align-items:center;gap:var(--qr-space-300);min-width:0}
-.pthumb{width:40px;height:52px;border-radius:var(--qr-radius-xs);border:1px solid var(--qr-color-border-default);background:var(--qr-color-surface-sunken);color:var(--qr-color-text-subtle);display:flex;align-items:center;justify-content:center;font-family:var(--qr-font-family-serif);font-size:var(--qr-font-size-500);flex-shrink:0}
+.pthumb{width:40px;height:52px;border-radius:var(--qr-radius-xs);border:1px solid var(--qr-color-border-default);background:var(--qr-color-surface-sunken);color:var(--qr-color-text-subtle);display:flex;align-items:center;justify-content:center;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-500);flex-shrink:0}
 /* t1–t5 tints stand in for product PHOTOS (content, not chrome) — like
    the catalogue's media-thumb gradient, they'd be <img> in real life */
 .pthumb.t1{background:#B8B29E;color:#3E3A2E}
@@ -40,8 +40,8 @@ body{font-family:var(--qr-font-family-sans);background:var(--qr-color-surface-ca
 .pthumb.t5{background:#8F9AA4;color:#272E36}
 .pname{min-width:0}
 .pname .dt-link{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.sku{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle);margin-top:2px}
-.price,.stockn{font-family:var(--qr-font-family-mono);font-size:var(--qr-font-size-200)}
+.sku{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle);margin-top:2px}
+.price,.stockn{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200)}
 .stockn{color:var(--qr-color-text-muted);margin-left:6px}
 </style>
 </head>

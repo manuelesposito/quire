@@ -16,14 +16,14 @@ VARS_CSS = 'dist/css/variables.css'
 DARK_CSS = 'dist/css/dark.css'
 
 # (foreground, background, min ratio, note)
-# 4.5 = normal text AA · 3.0 = large text / UI marks AA
+# 7.0 = AAA (the body-text tiers — non-negotiable) · 4.5 = AA · 3.0 = UI marks
 PAIRS = [
-    ('text-default', 'surface-canvas', 4.5, 'body text on the page'),
-    ('text-default', 'surface-raised', 4.5, 'body text on cards'),
-    ('text-default', 'surface-nav',    4.5, 'nav labels'),
-    ('text-default', 'surface-sunken', 4.5, 'text in wells'),
-    ('text-muted',   'surface-canvas', 4.5, 'muted text on the page'),
-    ('text-muted',   'surface-raised', 4.5, 'muted text on cards'),
+    ('text-default', 'surface-canvas', 7.0, 'body text on the page'),
+    ('text-default', 'surface-raised', 7.0, 'body text on cards'),
+    ('text-default', 'surface-nav',    7.0, 'nav labels'),
+    ('text-default', 'surface-sunken', 7.0, 'text in wells'),
+    ('text-muted',   'surface-canvas', 7.0, 'muted text on the page'),
+    ('text-muted',   'surface-raised', 7.0, 'muted text on cards'),
     ('text-subtle',  'surface-canvas', 4.5, 'subtle text on the page'),
     ('text-subtle',  'surface-raised', 4.5, 'subtle text on cards'),
     ('text-inverse', 'surface-inverse', 4.5, 'inverse text (admin bar)'),

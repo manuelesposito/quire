@@ -48,23 +48,4 @@
     apply(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
   });
 
-  /* ---- style trials (?trial=a|b|off) — swappable previews, light-only.
-     Persists like the theme so you can click through all screens. ---- */
-  var TKEY = 'qr-trial';
-  var tparam = new URLSearchParams(location.search).get('trial');
-  var trial = null;
-  try { trial = tparam !== null ? tparam : localStorage.getItem(TKEY); } catch (e) { trial = tparam; }
-  if (trial === 'off' || trial === '') trial = null;
-  try { trial ? localStorage.setItem(TKEY, trial) : localStorage.removeItem(TKEY); } catch (e) {}
-  if (trial === 'a' || trial === 'b') {
-    apply('light');
-    var link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'trial-' + trial + '.css';
-    document.head.appendChild(link);
-    var chip = document.createElement('span');
-    chip.textContent = 'Trial ' + trial.toUpperCase();
-    chip.style.cssText = 'margin-left:10px;font-size:11px;font-weight:600;letter-spacing:.02em;padding:3px 8px;border-radius:999px;background:#111;color:#fff;align-self:center';
-    bar.insertBefore(chip, btn);
-  }
 })();

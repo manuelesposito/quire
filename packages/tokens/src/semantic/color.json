@@ -1,239 +1,91 @@
 {
   "color": {
     "text": {
-      "default": {
-        "$value": "{color.neutral.900}",
-        "$type": "color"
-      },
-      "muted": {
-        "$value": "{color.neutral.700}",
-        "$type": "color"
-      },
-      "subtle": {
-        "$value": "{color.neutral.600}",
-        "$type": "color"
-      },
-      "inverse": {
-        "$value": "{color.neutral.0}",
-        "$type": "color"
-      },
-      "accent": {
-        "$value": "{color.ochre.700}",
-        "$type": "color"
-      },
-      "on-accent": {
-        "$value": "{color.neutral.900}",
-        "$type": "color"
-      }
+      "default":     { "$value": "{color.gray.1000}", "$type": "color" },
+      "muted":       { "$value": "{color.gray.900}",  "$type": "color" },
+      "subtle":      { "$value": "{color.gray.800}",  "$type": "color" },
+      "placeholder": { "$value": "{color.gray.700}",  "$type": "color" },
+      "inverse":     { "$value": "{color.white}",     "$type": "color" },
+      "accent":      { "$value": "{color.gray.1000}", "$type": "color" },
+      "on-accent":   { "$value": "{color.white}",     "$type": "color" }
     },
     "surface": {
-      "canvas": {
-        "$value": "{color.neutral.100}",
-        "$type": "color"
-      },
-      "raised": {
-        "$value": "{color.neutral.50}",
-        "$type": "color"
-      },
-      "nav": {
-        "$value": "{color.neutral.75}",
-        "$type": "color"
-      },
-      "sunken": {
-        "$value": "{color.neutral.150}",
-        "$type": "color"
-      },
-      "inverse": {
-        "$value": "{color.neutral.900}",
-        "$type": "color"
-      }
+      "canvas":  { "$value": "{color.background.100}", "$type": "color" },
+      "raised":  { "$value": "{color.background.100}", "$type": "color" },
+      "nav":     { "$value": "{color.background.200}", "$type": "color" },
+      "sunken":  { "$value": "{color.gray.200}",       "$type": "color" },
+      "inverse": { "$value": "{color.gray.1000}",      "$type": "color" }
     },
     "border": {
-      "default": {
-        "$value": "{color.neutral.150}",
-        "$type": "color"
-      },
-      "strong": {
-        "$value": "{color.neutral.300}",
-        "$type": "color"
-      }
+      "default": { "$value": "{color.gray.400}", "$type": "color" },
+      "strong":  { "$value": "{color.gray.500}", "$type": "color" }
     },
     "accent": {
-      "soft": {
-        "$value": "{color.ochre.100}",
-        "$type": "color"
-      },
-      "default": {
-        "$value": "{color.ochre.400}",
-        "$type": "color"
-      },
-      "strong": {
-        "$value": "{color.ochre.600}",
-        "$type": "color"
-      },
-      "deep": {
-        "$value": "{color.ochre.800}",
-        "$type": "color"
-      }
+      "$description": "The accent is BLACK. The strongest ink on screen belongs to the primary action; nothing else competes.",
+      "soft":    { "$value": "{color.gray.200}",  "$type": "color" },
+      "default": { "$value": "{color.gray.1000}", "$type": "color" },
+      "strong":  { "$value": "{color.gray.1000}", "$type": "color" },
+      "deep":    { "$value": "{color.black}",     "$type": "color" }
     },
     "action": {
       "primary": {
-        "default": {
-          "$value": "{color.neutral.900}",
-          "$type": "color"
-        },
-        "hover": {
-          "$value": "{color.neutral.800}",
-          "$type": "color"
-        },
-        "text": {
-          "$value": "{color.neutral.0}",
-          "$type": "color"
-        }
+        "default": { "$value": "{color.gray.1000}", "$type": "color" },
+        "hover":   { "$value": "{color.gray.900}",  "$type": "color" },
+        "text":    { "$value": "{color.white}",     "$type": "color" }
       },
       "secondary": {
-        "border": {
-          "$value": "{color.neutral.300}",
-          "$type": "color"
-        },
-        "text": {
-          "$value": "{color.neutral.900}",
-          "$type": "color"
-        }
+        "border": { "$value": "{color.gray.500}",  "$type": "color" },
+        "text":   { "$value": "{color.gray.1000}", "$type": "color" }
       },
       "tertiary": {
-        "text": {
-          "$value": "{color.ochre.700}",
-          "$type": "color"
-        }
+        "text": { "$value": "{color.gray.1000}", "$type": "color" }
       },
       "destructive": {
-        "default": {
-          "$value": "{color.brick.400}",
-          "$type": "color"
-        },
-        "hover": {
-          "$value": "{color.brick.600}",
-          "$type": "color"
-        },
-        "text": {
-          "$value": "{color.neutral.0}",
-          "$type": "color"
-        }
+        "default": { "$value": "{color.red.700}", "$type": "color" },
+        "hover":   { "$value": "{color.red.800}", "$type": "color" },
+        "text":    { "$value": "{color.white}",   "$type": "color" }
       }
     },
     "state": {
-      "hover": {
-        "$value": "#211C140D",
-        "$type": "color"
-      },
-      "active-surface": {
-        "$value": "{color.neutral.125}",
-        "$type": "color"
-      },
-      "selected-surface": {
-        "$value": "{color.ochre.100}",
-        "$type": "color"
-      },
-      "selected-mark": {
-        "$value": "{color.ochre.800}",
-        "$type": "color"
-      },
-      "focus-ring": {
-        "$value": "{color.ochre.400}",
-        "$type": "color"
-      }
+      "hover":            { "$value": "{color.gray-alpha.200}", "$type": "color" },
+      "active-surface":   { "$value": "{color.gray.300}",       "$type": "color" },
+      "selected-surface": { "$value": "{color.gray.300}",       "$type": "color" },
+      "selected-mark":    { "$value": "{color.gray.1000}",      "$type": "color" },
+      "focus-ring":       { "$value": "{color.gray.1000}",      "$type": "color" }
     },
     "control": {
-      "on": {
-        "$value": "{color.neutral.900}",
-        "$type": "color"
-      },
-      "on-fg": {
-        "$value": "{color.neutral.0}",
-        "$type": "color"
-      }
+      "on":    { "$value": "{color.gray.1000}", "$type": "color" },
+      "on-fg": { "$value": "{color.white}",     "$type": "color" }
     },
     "feedback": {
       "success": {
-        "surface": {
-          "$value": "{color.sage.100}",
-          "$type": "color"
-        },
-        "border": {
-          "$value": "{color.sage.400}",
-          "$type": "color"
-        },
-        "text": {
-          "$value": "{color.sage.700}",
-          "$type": "color"
-        },
-        "chip": {
-          "$value": "{color.sage.100}",
-          "$type": "color"
-        }
+        "surface": { "$value": "{color.green.100}", "$type": "color" },
+        "border":  { "$value": "{color.green.400}", "$type": "color" },
+        "text":    { "$value": "{color.green.700}", "$type": "color" },
+        "chip":    { "$value": "{color.green.100}", "$type": "color" }
       },
       "warning": {
-        "surface": {
-          "$value": "{color.amber.100}",
-          "$type": "color"
-        },
-        "border": {
-          "$value": "{color.amber.400}",
-          "$type": "color"
-        },
-        "text": {
-          "$value": "{color.amber.800}",
-          "$type": "color"
-        },
-        "chip": {
-          "$value": "{color.amber.100}",
-          "$type": "color"
-        }
+        "surface": { "$value": "{color.amber.100}", "$type": "color" },
+        "border":  { "$value": "{color.amber.400}", "$type": "color" },
+        "text":    { "$value": "{color.amber.700}", "$type": "color" },
+        "chip":    { "$value": "{color.amber.100}", "$type": "color" }
       },
       "danger": {
-        "surface": {
-          "$value": "{color.brick.100}",
-          "$type": "color"
-        },
-        "border": {
-          "$value": "{color.brick.400}",
-          "$type": "color"
-        },
-        "text": {
-          "$value": "{color.brick.600}",
-          "$type": "color"
-        },
-        "chip": {
-          "$value": "{color.brick.100}",
-          "$type": "color"
-        }
+        "surface": { "$value": "{color.red.100}", "$type": "color" },
+        "border":  { "$value": "{color.red.400}", "$type": "color" },
+        "text":    { "$value": "{color.red.700}", "$type": "color" },
+        "chip":    { "$value": "{color.red.100}", "$type": "color" }
       },
       "info": {
-        "surface": {
-          "$value": "{color.slate.100}",
-          "$type": "color"
-        },
-        "border": {
-          "$value": "{color.slate.400}",
-          "$type": "color"
-        },
-        "text": {
-          "$value": "{color.slate.600}",
-          "$type": "color"
-        },
-        "chip": {
-          "$value": "{color.slate.100}",
-          "$type": "color"
-        }
+        "surface": { "$value": "{color.blue.100}", "$type": "color" },
+        "border":  { "$value": "{color.blue.400}", "$type": "color" },
+        "text":    { "$value": "{color.blue.700}", "$type": "color" },
+        "chip":    { "$value": "{color.blue.100}", "$type": "color" }
       }
     },
     "overlay": {
-      "scrim": {
-        "$value": "#00000052",
-        "$type": "color",
-        "$description": "The wash behind modals — 32% black, both themes."
-      }
+      "scrim": { "$value": "#00000052", "$type": "color",
+        "$description": "The wash behind modals — 32% black, light theme." }
     }
   }
 }
