@@ -11,11 +11,10 @@ rebuild, re-sync. Never edit the variables in Figma by hand.
 
 | Figma | Mirrors | Notes |
 |---|---|---|
-| Collection **Primitives** (mode: Value) | `src/primitive/` | 96 vars. Raw ramps & scales. Hidden from property pickers (`scopes: []` for colours) — the semantic layer is the API. |
-| Collection **Semantic** (modes: Light, Dark) | `src/semantic/` + `src/modes/dark/` | 108 vars. Values are **aliases** to Primitives, exactly like the CSS `var()` chain. Dark mode carries the 41 overrides; everything else falls through to the same alias as Light. |
-| Effect styles **Elevation/Raised, Elevation/Overlay** | `elevation.*` | Shadows can't be variables in Figma. |
-| Text styles **Display … Code** (9) | `text.*` composite roles | Family + size BOUND to the semantic variables; weight/line-height/letter-spacing resolved (Figma limits). Libre Baskerville has no Medium — weight 500 resolves to Regular, same as CSS. |
-| Page **Palette** | the semantic colour layer, visually | Two frames, Light & Dark, explicit Semantic mode per frame; all 49 chips + labels are variable-BOUND, so the page re-resolves if tokens change. |
+| Collection **Primitives** (mode: Value) | `src/primitive/` | 98 vars (system v2: the 10-step gray contract + alpha twins + 4 status hues). Colours hidden from property pickers — the semantic layer is the API. |
+| Collection **Semantic** (modes: Light, Dark) | `src/semantic/` + `src/modes/dark/` | 105 vars. Values are **aliases** to Primitives, exactly like the CSS `var()` chain; Dark carries the full neutral-world remap. |
+| Effect styles **Elevation/Raised · Tooltip · Menu · Overlay** | `elevation.*` | The materials presets. Shadows can't be variables in Figma. |
+| Text styles **Display … Caption** (7) | `text.*` composite roles | All Inter (system v2 — one typeface); family + size BOUND to the semantic variables; weight/line-height resolved (Figma limits). |
 | — (not mirrored) | `motion.*` (duration/easing) | Not representable in Figma. |
 
 Every variable carries WEB code syntax (`var(--qr-…)`), so Figma's Dev Mode
@@ -23,6 +22,8 @@ shows the real CSS custom property name.
 
 Known Figma limitations, accepted: `LETTER_SPACING` scope is FLOAT-only, so
 the em-string letter-spacing tokens exist but are hidden from pickers.
+
+**Note:** the mirror was fully REBUILT 2026-07-09 for system v2 (the clean-neutral pivot); the old warm-world collections and the Palette page were removed (the palette can be regenerated on demand).
 
 ## How it was synced / how to re-sync
 
