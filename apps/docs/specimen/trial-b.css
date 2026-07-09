@@ -2,8 +2,8 @@
    (#2563EB graphic / #1D4ED8 text — both AA, text near-AAA), no serif,
    generous scale. NOT adopted — a swappable preview via ?trial=b. */
 :root {
-  --qr-font-family-serif: "Pretendard Variable", Inter, system-ui, sans-serif;
-  --qr-font-family-sans: "Pretendard Variable", Inter, system-ui, sans-serif;
+  --qr-font-family-serif: Inter, system-ui, sans-serif;
+  --qr-font-family-sans: Inter, system-ui, sans-serif;
 
   --qr-font-size-100: 12px; --qr-font-size-200: 13px; --qr-font-size-300: 15px;
   --qr-font-size-400: 16px; --qr-font-size-500: 18px; --qr-font-size-600: 21px;

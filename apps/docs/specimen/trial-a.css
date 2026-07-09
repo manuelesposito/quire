@@ -3,11 +3,10 @@
    swappable preview loaded via ?trial=a (see workbench.js). Light only.
    Mostly overrides PRIMITIVES so the whole semantic layer follows. */
 :root {
-  /* type: one family, no serif. (Pretendard is the production pick for
-     full multilingual coverage; Inter stands in — same metrics.) */
-  --qr-font-family-serif: "Pretendard Variable", Inter, system-ui, sans-serif;
-  --qr-font-family-sans: "Pretendard Variable", Inter, system-ui, sans-serif;
-  --qr-font-family-mono: "Pretendard Variable", Inter, system-ui, sans-serif;
+  /* type: ONE family — Inter (final; system fonts cover non-Latin scripts) */
+  --qr-font-family-serif: Inter, system-ui, sans-serif;
+  --qr-font-family-sans: Inter, system-ui, sans-serif;
+  --qr-font-family-mono: Inter, system-ui, sans-serif;
   --qr-font-letter-spacing-wide: 0; /* the letterspaced-uppercase voice is gone */
 
   /* generous scale */
