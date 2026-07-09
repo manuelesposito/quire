@@ -47,19 +47,33 @@ add_action( 'admin_enqueue_scripts', function () {
 }, 999 );
 
 // ---- Lane 3: Quire-owned screens -----------------------------------
-// The Dashboard is the first real screen: our design, real data, rendered
-// in place of wp-admin/index.php. The admin chrome stays (already bridged).
+// Real screens: our design, real data, rendered in place of the core page.
+// The admin chrome (menu, admin bar — already bridged) stays around them
+// until the shell stage of the climb.
+function quire_render_screen( string $screen ): void {
+	$base = plugin_dir_url( __FILE__ ) . 'assets';
+	$ver  = '0.2.1';
+	// components.css is scoped to Quire screens only — its class names
+	// (.card, .btn) would collide with core styles if loaded globally.
+	wp_enqueue_style( 'quire-components', "$base/components.css", [ 'quire-tokens' ], $ver );
+	wp_enqueue_style( "quire-screen-$screen", "$base/screen-$screen.css", [ 'quire-components' ], $ver );
+	require __DIR__ . "/screens/$screen.php"; // renders + exits
+}
+
 add_action( 'load-index.php', function () {
 	if ( ! quire_is_enabled() ) {
 		return;
 	}
-	$base = plugin_dir_url( __FILE__ ) . 'assets';
-	$ver  = '0.2.0';
-	// components.css is scoped to Quire screens only — its class names
-	// (.card, .btn) would collide with core styles if loaded globally.
-	wp_enqueue_style( 'quire-components', "$base/components.css", [ 'quire-tokens' ], $ver );
-	wp_enqueue_style( 'quire-screen-dashboard', "$base/screen-dashboard.css", [ 'quire-components' ], $ver );
-	require __DIR__ . '/screens/dashboard.php'; // renders + exits
+	quire_render_screen( 'dashboard' );
+} );
+
+add_action( 'load-options-general.php', function () {
+	// Multisite trims this page's option set — our form would blank what it
+	// omits (options.php updates the whole allow-list). Core keeps it there.
+	if ( ! quire_is_enabled() || is_multisite() ) {
+		return;
+	}
+	quire_render_screen( 'settings-general' );
 } );
 
 // Quick draft — the one write on the Dashboard. Real draft, real nonce.

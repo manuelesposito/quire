@@ -33,6 +33,11 @@ FILES = [
     'apps/docs/specimen/jetpack.html',
 ]
 
+# every Lane 3 screen the plugin ships is a claimed token-pure surface
+FILES += sorted(
+    str(p) for p in __import__('pathlib').Path(
+        'apps/delivery-plugin/quire/assets').glob('screen-*.css'))
+
 # (file substring, value regex, reason)
 ALLOW = [
     ('components.css', r'#(C9A24A|A85F3C)',

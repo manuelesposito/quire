@@ -1,0 +1,92 @@
+/* Quire Settings → General — page layout only; components come from
+   components.css, values from the tokens. Loaded ONLY on this screen.
+   Lives inside #wpbody-content with core chrome around it. */
+
+#wpbody-content .quire-screen {
+  padding: 8px 12px 64px 2px;
+  max-width: 760px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--qr-space-400);
+  font-size: var(--qr-font-size-300);
+  line-height: var(--qr-font-line-height-copy);
+}
+
+.quire-screen .qtopbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--qr-space-400);
+  padding: var(--qr-space-300) 0 var(--qr-space-400);
+  border-bottom: 1px solid var(--qr-color-border-default);
+}
+.quire-screen .qcrumb { font-size: var(--qr-font-size-200); color: var(--qr-color-text-subtle); margin-bottom: 4px; }
+.quire-screen h1.qtitle {
+  font-size: var(--qr-font-size-800);
+  font-weight: var(--qr-font-weight-semibold);
+  letter-spacing: var(--qr-font-letter-spacing-tight);
+  line-height: var(--qr-font-line-height-tight);
+  padding: 0; margin: 0;
+}
+.quire-screen .qactions { display: flex; gap: var(--qr-space-200); align-items: center; }
+.quire-screen .qactions .btn { text-decoration: none; }
+
+.quire-screen .notice-quire { max-width: none; margin: 0; }
+
+/* one calm column of section cards */
+.quire-screen .qcol { display: flex; flex-direction: column; gap: var(--qr-space-500); }
+.quire-screen .qcol .card { width: 100%; max-width: none; }
+.quire-screen .card__body { padding-bottom: var(--qr-space-300); }
+
+/* controls fill their row cell at a comfortable width */
+.quire-screen .srow__control .field { width: 100%; max-width: 360px; }
+.quire-screen .srow__control .field--url { max-width: 420px; font-size: var(--qr-font-size-200); }
+.quire-screen .srow__control .select-wrap { width: 100%; max-width: 280px; }
+.quire-screen .srow__control .select-wrap .field { max-width: none; width: 100%; }
+.quire-screen .srow__static { padding-top: 7px; }
+.quire-screen .srow__pending a { color: var(--qr-color-text-accent); }
+
+/* selects WP renders for us (language dropdown) — dress them as fields */
+.quire-screen .select-wrap select {
+  appearance: none; -webkit-appearance: none;
+  width: 100%;
+  height: var(--qr-size-control-md);
+  padding: 0 var(--qr-space-600) 0 var(--qr-space-300);
+  border: 1px solid var(--qr-color-border-strong);
+  border-radius: var(--qr-radius-sm);
+  background: var(--qr-color-surface-raised);
+  color: var(--qr-color-text-default);
+  font-family: var(--qr-font-family-sans);
+  font-size: var(--qr-font-size-300);
+}
+.quire-screen .select-wrap select:focus { outline: 2px solid var(--qr-color-state-focus-ring); outline-offset: 2px; }
+
+/* option lists (date/time format) — stacked radios with format previews */
+.quire-screen .opts { display: flex; flex-direction: column; gap: var(--qr-space-200); padding-top: 4px; }
+.quire-screen .fmt { font-family: var(--qr-font-family-sans); font-size: var(--qr-font-size-200); color: var(--qr-color-text-muted); margin-left: 6px; }
+/* .opt hides its inputs to skin the radio — the custom-format text field
+   inside the same label must stay a real, visible field */
+.quire-screen .opt input.field--fmt {
+  position: static; opacity: 1;
+  width: 130px; height: 30px;
+  margin-left: 6px;
+  font-size: var(--qr-font-size-200);
+}
+
+/* site icon row */
+.quire-screen .icon-row { display: flex; align-items: center; gap: var(--qr-space-300); }
+.quire-screen .site-icon {
+  width: 44px; height: 44px; flex-shrink: 0;
+  border-radius: var(--qr-radius-card);
+  object-fit: cover;
+}
+.quire-screen .site-icon--letter {
+  background: var(--qr-color-state-selected-surface);
+  color: var(--qr-color-state-selected-mark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: var(--qr-font-weight-bold);
+}
+
+/* fields other plugins registered here (core form-table markup) */
+.quire-screen .qplug .form-table th { text-align: left; font-size: var(--qr-font-size-300); font-weight: var(--qr-font-weight-medium); padding: var(--qr-space-300) var(--qr-space-400) var(--qr-space-300) 0; vertical-align: top; }
+.quire-screen .qplug .form-table td { padding: var(--qr-space-300) 0; }
