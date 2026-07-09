@@ -32,12 +32,8 @@ add_action( 'admin_enqueue_scripts', function () {
 	$base = plugin_dir_url( __FILE__ ) . 'assets';
 	$ver  = '0.1.0';
 
-	wp_enqueue_style(
-		'quire-fonts',
-		'https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;450;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap',
-		[],
-		$ver
-	);
+	// Fonts are bundled (SIL OFL) — no admin page ever phones a font CDN.
+	wp_enqueue_style( 'quire-fonts', "$base/fonts.css", [], $ver );
 	wp_enqueue_style( 'quire-tokens', "$base/variables.css", [], $ver );
 	wp_enqueue_style( 'quire-hooks', "$base/hooks.css", [ 'quire-tokens' ], $ver );
 	// 'colors' (WP's admin colour scheme) loads late and repaints the menu —
@@ -57,12 +53,8 @@ add_action( 'login_enqueue_scripts', function () {
 	}
 	$base = plugin_dir_url( __FILE__ ) . 'assets';
 	$ver  = '0.1.0';
-	wp_enqueue_style(
-		'quire-fonts',
-		'https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;450;500;600&display=swap',
-		[],
-		$ver
-	);
+	// Fonts are bundled (SIL OFL) — no admin page ever phones a font CDN.
+	wp_enqueue_style( 'quire-fonts', "$base/fonts.css", [], $ver );
 	wp_enqueue_style( 'quire-tokens', "$base/variables.css", [], $ver );
 	wp_enqueue_style( 'quire-login', "$base/login.css", [ 'quire-tokens', 'login' ], $ver );
 } );
