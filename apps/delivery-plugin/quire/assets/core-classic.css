@@ -165,11 +165,15 @@ input[type="search"], input[type="number"], select, textarea {
 /* Forms everywhere (seen on Permalinks): the chosen radio was WP blue.
    Form selection = control ink; the check glyph is a blue SVG data-URI,
    flattened to ink via filter (no recolorable hook exists). */
-input[type="radio"]:checked::before {
+input[type="radio"]:checked, input[type="checkbox"]:checked {
   background-color: var(--qr-color-control-on) !important;
+  border-color: var(--qr-color-control-on) !important;
+}
+input[type="radio"]:checked::before {
+  background-color: var(--qr-color-control-on-fg) !important;
 }
 input[type="checkbox"]:checked::before {
-  filter: brightness(0);
+  filter: brightness(10); /* the blue glyph, flattened to the light on-fg */
 }
 
 /* One focus ring — classic inputs flash the WP blue border+glow. */
@@ -192,3 +196,32 @@ input[type="checkbox"]:checked::before {
   background: transparent !important;
 }
 #collapse-button:hover { color: var(--qr-color-text-default) !important; }
+
+/* ================================================================
+   LONG TAIL — round 2. Tour of 2026-07-09: Themes / Profile /
+   Site Health / Updates / Reading / Widgets.
+   Deliberate exception: the Profile colour-scheme PREVIEW swatches
+   (.color-palette-shade) keep their real colours — they are content.
+   ================================================================ */
+
+/* Admin menu: count bubbles (site-health counter, update counts)
+   were brand blue -> quiet ochre chip, same voice as the selection. */
+#adminmenu .menu-counter, #adminmenu .awaiting-mod, #adminmenu .update-plugins {
+  background: var(--qr-color-state-selected-surface) !important;
+  color: var(--qr-color-state-selected-mark) !important;
+}
+
+/* Themes: the ACTIVE theme's name bar was brand blue. One active
+   theme = a singular "you are here" -> the ochre selection. */
+.theme-browser .theme.active .theme-name,
+.theme-browser .theme.active .theme-actions {
+  background: var(--qr-color-state-selected-surface) !important;
+  color: var(--qr-color-state-selected-mark) !important;
+}
+
+/* Site Health: accordion badges carry status in a coloured border.
+   Map WP's badge palette onto the four status colours (+info). */
+.health-check-accordion-trigger .badge.blue { border-color: var(--qr-color-feedback-info-border) !important; }
+.health-check-accordion-trigger .badge.orange { border-color: var(--qr-color-feedback-warning-border) !important; }
+.health-check-accordion-trigger .badge.red { border-color: var(--qr-color-feedback-danger-border) !important; }
+.health-check-accordion-trigger .badge.green { border-color: var(--qr-color-feedback-success-border) !important; }
