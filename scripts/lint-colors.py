@@ -22,6 +22,7 @@ import sys
 FILES = [
     'packages/reskin-css/src/hooks.css',
     'packages/reskin-css/src/core-classic.css',
+    'packages/reskin-css/src/login.css',
     'apps/docs/specimen/components.css',
     'apps/docs/specimen/nav.html',
     'apps/docs/specimen/orders.html',

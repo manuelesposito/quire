@@ -1,0 +1,106 @@
+/* QUIRE RESKIN — the login screen (wp-login.php).
+   The front door. WP's login doesn't run admin_enqueue_scripts, so this
+   module is enqueued separately via login_enqueue_scripts. Tokens only.
+   The header logo is handled in PHP (site name, serif) — see quire.php. */
+
+body.login {
+  background: var(--qr-color-surface-canvas);
+  font-family: "Inter", -apple-system, system-ui, sans-serif;
+}
+
+/* the site name replaces the WP logo (login_headertext) — set it in serif */
+.login h1 a {
+  background-image: none !important;
+  width: auto;
+  height: auto;
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--qr-color-text-default);
+  text-indent: 0;
+  text-decoration: none;
+}
+
+/* the card */
+.login form {
+  background: var(--qr-color-surface-raised);
+  border: 1px solid var(--qr-color-border-default);
+  border-radius: var(--qr-radius-card);
+  box-shadow: none;
+}
+.login label {
+  color: var(--qr-color-text-default);
+  font-size: 13px;
+}
+
+/* inputs + the one focus ring */
+.login form .input, .login input[type="text"], .login input[type="password"] {
+  background: var(--qr-color-surface-raised);
+  border: 1px solid var(--qr-color-border-strong);
+  border-radius: var(--qr-radius-sm);
+  color: var(--qr-color-text-default);
+  box-shadow: none;
+}
+.login form .input:focus, .login input[type="checkbox"]:focus {
+  border-color: var(--qr-color-border-strong);
+  box-shadow: none;
+  outline: 2px solid var(--qr-color-state-focus-ring);
+  outline-offset: 1px;
+}
+.login input[type="checkbox"] {
+  border: 1px solid var(--qr-color-border-strong);
+  border-radius: var(--qr-radius-xs);
+  background: var(--qr-color-surface-raised);
+}
+.login input[type="checkbox"]:checked {
+  background: var(--qr-color-control-on);
+  border-color: var(--qr-color-control-on);
+}
+.login input[type="checkbox"]:checked::before {
+  filter: brightness(10); /* WP's blue check glyph -> white on the ink fill */
+}
+
+/* the primary action — ink, like every Quire primary */
+body.login.wp-core-ui .button-primary {
+  background: var(--qr-color-action-primary-default);
+  border-color: var(--qr-color-action-primary-default);
+  color: var(--qr-color-action-primary-text);
+  border-radius: var(--qr-radius-control);
+  text-shadow: none;
+  box-shadow: none;
+}
+body.login.wp-core-ui .button-primary:hover, body.login.wp-core-ui .button-primary:focus {
+  background: var(--qr-color-action-primary-hover);
+  border-color: var(--qr-color-action-primary-hover);
+}
+body.login.wp-core-ui .button-primary:focus {
+  outline: 2px solid var(--qr-color-state-focus-ring);
+  outline-offset: 2px;
+}
+/* the password reveal eye */
+body.login.wp-core-ui .button.wp-hide-pw { color: var(--qr-color-text-subtle); }
+body.login.wp-core-ui .button.wp-hide-pw:hover { color: var(--qr-color-text-default); }
+
+/* the quiet links below the card */
+.login #nav a, .login #backtoblog a {
+  color: var(--qr-color-text-accent);
+}
+.login #nav a:hover, .login #backtoblog a:hover {
+  color: var(--qr-color-accent-deep);
+}
+
+/* messages reuse the notice voice */
+.login .message, .login .success {
+  background: var(--qr-color-surface-raised);
+  border: 1px solid var(--qr-color-border-default);
+  border-left: 3px solid var(--qr-color-feedback-info-border);
+  border-radius: var(--qr-radius-md);
+}
+.login #login_error {
+  background: var(--qr-color-feedback-danger-surface);
+  border: 1px solid var(--qr-color-border-default);
+  border-left: 3px solid var(--qr-color-feedback-danger-border);
+  border-radius: var(--qr-radius-md);
+  color: var(--qr-color-feedback-danger-text);
+}
