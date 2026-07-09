@@ -58,37 +58,11 @@
   /* semantic literals that don't route through primitives */
   --qr-color-state-hover: #0000000A;
 
-  /* the singular "you are here": clear gray wash + ink text; the
-     UNMISSABLE part is a black marker bar (below) — visible from
-     across the room, but a thin marker never reads as a button. */
+  /* the singular "you are here": gray wash + SEMIBOLD ink text — no
+     marker, no fill. State is carried by the weight change (a
+     non-colour cue) and, in the real product, aria-current. */
   --qr-color-state-selected-surface: #ECECEE;
   --qr-color-state-selected-mark: #111318;
-}
-
-/* the selection marker — docked black bar, the 19:1 indicator */
-.subnav a { position: relative; }
-.subnav a.active::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 60%;
-  border-radius: 999px;
-  background: var(--qr-color-neutral-900);
-}
-.rail .prod { position: relative; }
-.rail .prod.active::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 3px;
-  height: 55%;
-  border-radius: 999px;
-  background: var(--qr-color-neutral-900);
 }
 
 /* component-voice overrides for the trial (become components.css edits on
