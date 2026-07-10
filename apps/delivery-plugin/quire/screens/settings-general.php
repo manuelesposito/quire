@@ -74,25 +74,52 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
       <h1 class="qtitle"><?php esc_html_e( 'General', 'quire' ); ?></h1>
     </div>
     <div class="qactions">
-      <a class="btn btn--tertiary" href="<?php echo esc_url( admin_url( 'options-general.php' ) ); ?>"><?php esc_html_e( 'Discard', 'quire' ); ?></a>
-      <button type="submit" class="btn btn--primary" form="quire-settings-form"><?php esc_html_e( 'Save changes', 'quire' ); ?></button>
+      <?php // SETTINGS-SPEC.md D2/D3: no action chrome at rest — the bar appears on first edit ?>
+      <div class="qsavebar" id="qsavebar" hidden>
+        <span class="qsavebar__msg" id="qsavebar-msg"><?php esc_html_e( 'Unsaved changes', 'quire' ); ?></span>
+        <button type="button" class="qsavebar__discard" id="qsavebar-discard"><?php esc_html_e( 'Discard', 'quire' ); ?></button>
+        <button type="submit" class="qsavebar__save" form="quire-settings-form"><?php esc_html_e( 'Save', 'quire' ); ?></button>
+      </div>
+      <span class="screen-reader-text" role="status" aria-live="polite" id="qsavebar-live"></span>
     </div>
   </header>
 
-  <?php if ( $saved ) : ?>
-  <div class="notice-quire notice notice--success">
-    <div>
-      <div class="notice__title"><?php esc_html_e( 'Settings saved', 'quire' ); ?></div>
-      <div class="notice__body"><?php esc_html_e( 'Your changes are live across the site.', 'quire' ); ?></div>
-    </div>
-  </div>
-  <?php endif; ?>
+  <div class="qsettings">
 
-  <form id="quire-settings-form" method="post" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>" novalidate="novalidate">
-    <?php settings_fields( 'general' ); ?>
-    <?php // preserved, not yet editable here — omitting it would erase the icon (see header note) ?>
-    <input type="hidden" name="site_icon" value="<?php echo esc_attr( $site_icon_id ?: '' ); ?>">
-    <div class="qcol">
+    <?php
+    // Settings nav — built from WP's real submenu, so pages other plugins
+    // register under Settings appear here automatically (SETTINGS-SPEC.md §2).
+    global $submenu;
+    $settings_pages = isset( $submenu['options-general.php'] ) ? $submenu['options-general.php'] : [];
+    ?>
+    <nav class="qsetnav" aria-label="<?php esc_attr_e( 'Settings sections', 'quire' ); ?>">
+      <?php foreach ( $settings_pages as $item ) :
+        if ( ! current_user_can( $item[1] ) ) { continue; }
+        $slug    = $item[2];
+        $url     = ( false !== strpos( $slug, '.php' ) ) ? admin_url( $slug ) : admin_url( 'options-general.php?page=' . $slug );
+        $current = ( 'options-general.php' === $slug );
+      ?>
+      <a href="<?php echo esc_url( $url ); ?>" <?php echo $current ? 'class="is-current" aria-current="page"' : ''; ?>><?php echo esc_html( wp_strip_all_tags( $item[0] ) ); ?></a>
+      <?php endforeach; ?>
+    </nav>
+
+    <div class="qmain">
+
+      <?php if ( $saved ) : ?>
+      <div class="notice-quire notice notice--success">
+        <div>
+          <div class="notice__title"><?php esc_html_e( 'Settings saved', 'quire' ); ?></div>
+          <div class="notice__body"><?php esc_html_e( 'Your changes are live across the site.', 'quire' ); ?></div>
+        </div>
+      </div>
+      <?php endif; ?>
+
+      <form id="quire-settings-form" method="post" action="<?php echo esc_url( admin_url( 'options.php' ) ); ?>" novalidate="novalidate">
+        <?php settings_fields( 'general' ); ?>
+        <?php // preserved, not yet editable here — omitting it would erase the icon (see header note) ?>
+        <input type="hidden" name="site_icon" value="<?php echo esc_attr( $site_icon_id ?: '' ); ?>">
+        <div class="qcols">
+        <div class="qcol">
 
       <section class="card">
         <div class="card__head">
@@ -163,6 +190,9 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
           </div>
         </div>
       </section>
+
+        </div><?php // /qcol — what the site IS (identity, addresses) ?>
+        <div class="qcol"><?php // how it BEHAVES (membership, locale, quire, plugins) ?>
 
       <section class="card">
         <div class="card__head">
@@ -296,8 +326,12 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
       </section>
       <?php endif; ?>
 
-    </div>
-  </form>
+        </div><?php // /qcol ?>
+        </div><?php // /qcols ?>
+      </form>
+
+    </div><?php // /qmain ?>
+  </div><?php // /qsettings ?>
 
 </div>
 <script>
@@ -310,6 +344,56 @@ document.querySelectorAll('.quire-screen .field--fmt').forEach(function (input) 
     input.closest('label.opt').querySelector('input[type=radio]').checked = true;
   });
 });
+
+// Contextual save bar — SETTINGS-SPEC.md D2 (a11y) + D3 (failure) decisions:
+// appears on first edit, announces politely, never steals focus. Cmd/Ctrl+S
+// saves when dirty. Discard restores the rendered values. Navigating away
+// with edits warns. (Transport failures currently surface through core's
+// options.php response — the qsavebar--error state is wired for the fetch
+// upgrade; see spec.)
+(function () {
+  var form    = document.getElementById('quire-settings-form');
+  var bar     = document.getElementById('qsavebar');
+  var live    = document.getElementById('qsavebar-live');
+  var discard = document.getElementById('qsavebar-discard');
+  if (!form || !bar) { return; }
+  var dirty = false;
+
+  function markDirty() {
+    if (dirty) { return; }
+    dirty = true;
+    bar.hidden = false;
+    live.textContent = <?php echo wp_json_encode( __( 'You have unsaved changes. Save and Discard are available in the page header.', 'quire' ) ); ?>;
+  }
+  function markClean(announcement) {
+    dirty = false;
+    bar.hidden = true;
+    live.textContent = announcement || '';
+  }
+
+  form.addEventListener('input',  markDirty);
+  form.addEventListener('change', markDirty);
+
+  discard.addEventListener('click', function () {
+    form.reset();
+    markClean(<?php echo wp_json_encode( __( 'Changes discarded.', 'quire' ) ); ?>);
+  });
+
+  form.addEventListener('submit', function () { dirty = false; });
+
+  document.addEventListener('keydown', function (e) {
+    if ((e.metaKey || e.ctrlKey) && 's' === e.key.toLowerCase()) {
+      e.preventDefault();
+      if (dirty) {
+        form.requestSubmit ? form.requestSubmit() : form.submit();
+      }
+    }
+  });
+
+  window.addEventListener('beforeunload', function (e) {
+    if (dirty) { e.preventDefault(); e.returnValue = ''; }
+  });
+})();
 </script>
 <?php
 require_once ABSPATH . 'wp-admin/admin-footer.php';

@@ -4,13 +4,84 @@
 
 #wpbody-content .quire-screen {
   padding: 8px 12px 64px 2px;
-  max-width: 760px;
+  max-width: 1220px;
   display: flex;
   flex-direction: column;
   gap: var(--qr-space-400);
   font-size: var(--qr-font-size-300);
   line-height: var(--qr-font-line-height-copy);
 }
+
+/* ---- SETTINGS-SPEC.md anatomy: nav column | content ------------------- */
+/* Until the shell camp, the settings nav lives inside the content area;
+   it moves to the sidebar slot when the Quire shell replaces WP's menu. */
+.quire-screen .qsettings { display: flex; gap: var(--qr-space-600); align-items: flex-start; }
+.quire-screen .qsetnav {
+  width: 184px; flex-shrink: 0;
+  display: flex; flex-direction: column; gap: 2px;
+  position: sticky; top: 46px;
+  padding-top: var(--qr-space-100);
+}
+.quire-screen .qsetnav a {
+  display: block;
+  padding: 6px 10px;
+  border-radius: var(--qr-radius-sm);
+  font-size: var(--qr-font-size-200);
+  color: var(--qr-color-text-muted);
+  text-decoration: none;
+}
+.quire-screen .qsetnav a:hover { background: var(--qr-color-state-hover); color: var(--qr-color-text-default); }
+.quire-screen .qsetnav a:focus-visible { outline: 2px solid var(--qr-color-state-focus-ring); outline-offset: 2px; }
+.quire-screen .qsetnav a.is-current {
+  background: var(--qr-color-state-selected-surface);
+  color: var(--qr-color-state-selected-mark);
+  font-weight: var(--qr-font-weight-semibold);
+}
+.quire-screen .qmain { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: var(--qr-space-400); }
+
+/* two columns of cards; stacks below the spec breakpoint */
+.quire-screen .qcols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--qr-space-500);
+  align-items: start;
+}
+@media (max-width: 1100px) {
+  .quire-screen .qcols { grid-template-columns: 1fr; }
+  .quire-screen .qsetnav { position: static; }
+}
+
+/* stacked labels (spec §3): label above control inside the narrower columns */
+.quire-screen .srow { display: flex; flex-direction: column; gap: 6px; }
+.quire-screen .srow__label { padding-top: 0; }
+.quire-screen .srow--switch { display: grid; grid-template-columns: 1fr auto; align-items: center; }
+
+/* ---- contextual save bar (spec D2/D3) --------------------------------- */
+.quire-screen .qsavebar {
+  display: flex; align-items: center;
+  gap: var(--qr-space-300);
+  background: var(--qr-color-surface-inverse);
+  color: var(--qr-color-text-inverse);
+  border-radius: 8px;
+  padding: 6px 6px 6px 14px;
+  font-size: var(--qr-font-size-200);
+  font-weight: var(--qr-font-weight-medium);
+}
+.quire-screen .qsavebar[hidden] { display: none; }
+.quire-screen .qsavebar button {
+  border: 0; cursor: pointer;
+  border-radius: var(--qr-radius-sm);
+  padding: 5px 12px;
+  font-family: var(--qr-font-family-sans);
+  font-size: var(--qr-font-size-200);
+  font-weight: var(--qr-font-weight-medium);
+}
+.quire-screen .qsavebar__discard { background: transparent; color: var(--qr-color-text-inverse); }
+.quire-screen .qsavebar__discard:hover { background: color-mix(in srgb, var(--qr-color-text-inverse) 12%, transparent); }
+.quire-screen .qsavebar__save { background: var(--qr-color-text-inverse); color: var(--qr-color-surface-inverse); padding: 5px 14px; }
+.quire-screen .qsavebar button:focus-visible { outline: 2px solid var(--qr-color-text-inverse); outline-offset: 2px; }
+/* D3: transport-failure state (activated by the fetch upgrade) */
+.quire-screen .qsavebar--error { background: var(--qr-color-feedback-danger-default); color: var(--qr-color-feedback-danger-on-solid); }
 
 .quire-screen .qtopbar {
   display: flex;
