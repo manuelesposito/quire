@@ -62,25 +62,41 @@
         "surface": { "$value": "{color.green.100}", "$type": "color" },
         "border":  { "$value": "{color.green.400}", "$type": "color" },
         "text":    { "$value": "{color.green.700}", "$type": "color" },
-        "chip":    { "$value": "{color.green.100}", "$type": "color" }
+        "chip":     { "$value": "{color.green.100}", "$type": "color" },
+        "default":  { "$value": "{color.green.700}", "$type": "color" },
+        "hover":    { "$value": "{color.green.800}", "$type": "color" },
+        "pressed":  { "$value": "{color.green.900}", "$type": "color" },
+        "on-solid": { "$value": "{color.white}", "$type": "color" }
       },
       "warning": {
         "surface": { "$value": "{color.amber.100}", "$type": "color" },
         "border":  { "$value": "{color.amber.400}", "$type": "color" },
         "text":    { "$value": "{color.amber.700}", "$type": "color" },
-        "chip":    { "$value": "{color.amber.100}", "$type": "color" }
+        "chip":     { "$value": "{color.amber.100}", "$type": "color" },
+        "default":  { "$value": "{color.amber.600}", "$type": "color" },
+        "hover":    { "$value": "{color.amber.700}", "$type": "color" },
+        "pressed":  { "$value": "{color.amber.900}", "$type": "color" },
+        "on-solid": { "$value": "{color.white}", "$type": "color" }
       },
       "danger": {
         "surface": { "$value": "{color.red.100}", "$type": "color" },
         "border":  { "$value": "{color.red.400}", "$type": "color" },
         "text":    { "$value": "{color.red.700}", "$type": "color" },
-        "chip":    { "$value": "{color.red.100}", "$type": "color" }
+        "chip":     { "$value": "{color.red.100}", "$type": "color" },
+        "default":  { "$value": "{color.red.700}", "$type": "color" },
+        "hover":    { "$value": "{color.red.800}", "$type": "color" },
+        "pressed":  { "$value": "{color.red.900}", "$type": "color" },
+        "on-solid": { "$value": "{color.white}", "$type": "color" }
       },
       "info": {
         "surface": { "$value": "{color.blue.100}", "$type": "color" },
         "border":  { "$value": "{color.blue.400}", "$type": "color" },
         "text":    { "$value": "{color.blue.700}", "$type": "color" },
-        "chip":    { "$value": "{color.blue.100}", "$type": "color" }
+        "chip":     { "$value": "{color.blue.100}", "$type": "color" },
+        "default":  { "$value": "{color.blue.700}", "$type": "color" },
+        "hover":    { "$value": "{color.blue.800}", "$type": "color" },
+        "pressed":  { "$value": "{color.blue.900}", "$type": "color" },
+        "on-solid": { "$value": "{color.white}", "$type": "color" }
       }
     },
     "overlay": {
