@@ -71,13 +71,13 @@ Not a screen — a **per-user, extensible widget board**:
 - **R4 — first-run state.** A brand-new site (0 posts, no icon, default
   tagline) needs a designed welcome moment — this is where variant D's
   greeting language naturally covers core's Welcome panel role.
-- **R5 — personalization scope (DECISION).** Options: none (one opinionated
-  calm layout — Quire's thesis), or show/hide only (Screen-Options parity
-  without drag). Recommendation: none in v1; revisit on real feedback.
-- **R6 — Events & News (DECISION).** Conscious drop, demote to a link, or
-  keep as an optional card. Recommendation: drop from the default view —
-  it is WordPress marketing surface, not site work; the philosophy says
-  the dashboard serves the site owner's site.
+- **R5 — personalization scope — DECIDED 2026-07-11: NONE in v1.** One
+  designed layout; no drag, no show/hide. The "From your plugins" region
+  absorbs the chaos that made dragging necessary. Revisit only with real
+  user feedback.
+- **R6 — Events & News — DECIDED 2026-07-11: DEMOTED TO A LINK.** No box;
+  a quiet "WordPress news & events" entry in the links row/footer keeps
+  community discovery one click away without occupying the room.
 - **R7 — role awareness**: cards render by capability (moderation card only
   for moderate_comments, Quick Draft for edit_posts…).
 - **R8 — Help tab** content rewritten for the Quire dashboard (or the tab
