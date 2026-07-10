@@ -120,7 +120,7 @@
   --qr-color-text-on-accent: var(--qr-color-white);
   --qr-color-surface-canvas: var(--qr-color-gray-200);
   --qr-color-surface-raised: var(--qr-color-background-100);
-  --qr-color-surface-nav: var(--qr-color-gray-200);
+  --qr-color-surface-nav: var(--qr-color-background-100);
   --qr-color-surface-sunken: var(--qr-color-gray-300);
   --qr-color-surface-inverse: var(--qr-color-gray-1000);
   --qr-color-border-default: var(--qr-color-gray-400);
