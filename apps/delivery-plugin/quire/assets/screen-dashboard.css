@@ -5,10 +5,10 @@
 
 #wpbody-content .quire-screen {
   padding: 8px 12px 64px 2px;
-  max-width: 1040px;
+  max-width: 1220px;
   display: flex;
   flex-direction: column;
-  gap: var(--qr-space-500);
+  gap: var(--qr-space-400);
   font-size: var(--qr-font-size-300);
   line-height: var(--qr-font-line-height-copy);
 }
@@ -51,7 +51,7 @@
 .quire-screen .act__line a { color: var(--qr-color-text-default); font-weight: var(--qr-font-weight-medium); text-decoration: none; }
 .quire-screen .act__line a:hover { text-decoration: underline; }
 .quire-screen .act__quote { font-size: var(--qr-font-size-200); color: var(--qr-color-text-muted); margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.quire-screen .act__meta { font-size: var(--qr-font-size-100); color: var(--qr-color-text-subtle); margin-top: 2px; }
+.quire-screen .act__meta { font-size: var(--qr-font-size-200); color: var(--qr-color-text-subtle); margin-top: 2px; }
 .quire-screen .act__meta a { color: var(--qr-color-text-subtle); }
 .quire-screen .dt-actions.is-open { opacity: 1; flex-shrink: 0; }
 
