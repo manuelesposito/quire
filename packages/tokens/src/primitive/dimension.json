@@ -31,7 +31,7 @@
     "control-lg": { "$value": "40px",  "$type": "dimension" },
     "icon-sm":    { "$value": "16px",  "$type": "dimension" },
     "icon-md":    { "$value": "20px",  "$type": "dimension" },
-    "rail":       { "$value": "62px",  "$type": "dimension" },
-    "sidebar":    { "$value": "236px", "$type": "dimension" }
+    "rail":       { "$value": "80px",  "$type": "dimension" },
+    "sidebar":    { "$value": "380px", "$type": "dimension" }
   }
 }

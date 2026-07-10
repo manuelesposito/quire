@@ -18,15 +18,16 @@
 .quire-screen .qsettings { display: flex; gap: var(--qr-space-600); align-items: flex-start; }
 .quire-screen .qsetnav {
   width: 184px; flex-shrink: 0;
-  display: flex; flex-direction: column; gap: 2px;
+  display: flex; flex-direction: column; gap: 4px;
   position: sticky; top: 46px;
   padding-top: var(--qr-space-100);
 }
 .quire-screen .qsetnav a {
-  display: block;
-  padding: 6px 10px;
-  border-radius: var(--qr-radius-sm);
-  font-size: var(--qr-font-size-200);
+  display: flex; align-items: center;
+  height: 40px;
+  padding: 0 var(--qr-space-300);
+  border-radius: var(--qr-radius-control);
+  font-size: var(--qr-font-size-300);
   color: var(--qr-color-text-muted);
   text-decoration: none;
 }

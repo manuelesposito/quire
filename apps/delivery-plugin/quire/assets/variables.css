@@ -80,8 +80,8 @@
   --qr-size-control-lg: 40px;
   --qr-size-icon-sm: 16px;
   --qr-size-icon-md: 20px;
-  --qr-size-rail: 62px;
-  --qr-size-sidebar: 236px;
+  --qr-size-rail: 80px;
+  --qr-size-sidebar: 380px;
   --qr-duration-fast: 120ms;
   --qr-duration-base: 180ms;
   --qr-easing-standard: cubic-bezier(0.2, 0, 0, 1);
