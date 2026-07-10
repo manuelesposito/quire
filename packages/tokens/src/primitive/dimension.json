@@ -2,16 +2,16 @@
   "space": {
     "0":    { "$value": "0",    "$type": "dimension" },
     "50":   { "$value": "2px",  "$type": "dimension" },
-    "100":  { "$value": "6px",  "$type": "dimension" },
-    "200":  { "$value": "10px", "$type": "dimension" },
-    "300":  { "$value": "16px", "$type": "dimension" },
-    "400":  { "$value": "24px", "$type": "dimension" },
-    "500":  { "$value": "28px", "$type": "dimension" },
-    "600":  { "$value": "32px", "$type": "dimension" },
-    "800":  { "$value": "44px", "$type": "dimension" },
-    "1000": { "$value": "56px", "$type": "dimension" },
-    "1200": { "$value": "64px", "$type": "dimension" },
-    "1600": { "$value": "88px", "$type": "dimension" }
+    "100":  { "$value": "4px",  "$type": "dimension" },
+    "200":  { "$value": "8px",  "$type": "dimension" },
+    "300":  { "$value": "12px", "$type": "dimension" },
+    "400":  { "$value": "16px", "$type": "dimension" },
+    "500":  { "$value": "20px", "$type": "dimension" },
+    "600":  { "$value": "24px", "$type": "dimension" },
+    "800":  { "$value": "32px", "$type": "dimension" },
+    "1000": { "$value": "40px", "$type": "dimension" },
+    "1200": { "$value": "48px", "$type": "dimension" },
+    "1600": { "$value": "64px", "$type": "dimension" }
   },
   "radius": {
     "none": { "$value": "0",      "$type": "dimension" },
@@ -26,12 +26,12 @@
     "thick": { "$value": "2px", "$type": "dimension" }
   },
   "size": {
-    "control-sm": { "$value": "32px",  "$type": "dimension" },
-    "control-md": { "$value": "40px",  "$type": "dimension" },
-    "control-lg": { "$value": "48px",  "$type": "dimension" },
+    "control-sm": { "$value": "28px",  "$type": "dimension" },
+    "control-md": { "$value": "32px",  "$type": "dimension" },
+    "control-lg": { "$value": "40px",  "$type": "dimension" },
     "icon-sm":    { "$value": "16px",  "$type": "dimension" },
     "icon-md":    { "$value": "20px",  "$type": "dimension" },
-    "rail":       { "$value": "64px",  "$type": "dimension" },
-    "sidebar":    { "$value": "260px", "$type": "dimension" }
+    "rail":       { "$value": "62px",  "$type": "dimension" },
+    "sidebar":    { "$value": "236px", "$type": "dimension" }
   }
 }

@@ -235,7 +235,7 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
    placements can be added as .tip--* variants later. The keycap tint is built
    from currentColor, so it adapts when the tooltip inverts in dark. */
 .has-tip{position:relative}
-.tip{position:absolute;left:calc(100% + 9px);top:50%;transform:translateY(-50%) translateX(-4px);display:inline-flex;align-items:center;gap:var(--qr-space-200);white-space:nowrap;background:var(--qr-color-surface-inverse);color:var(--qr-color-text-inverse);font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-medium);padding:5px 9px;border-radius:var(--qr-radius-sm);box-shadow:var(--qr-elevation-overlay);opacity:0;pointer-events:none;transition:opacity var(--qr-duration-fast) var(--qr-easing-standard),transform var(--qr-duration-fast) var(--qr-easing-standard);z-index:60}
+.tip{position:absolute;left:calc(100% + 6px);top:50%;transform:translateY(-50%) translateX(-4px);display:inline-flex;align-items:center;gap:var(--qr-space-200);white-space:nowrap;background:var(--qr-color-surface-inverse);color:var(--qr-color-text-inverse);font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-medium);padding:5px 9px;border-radius:var(--qr-radius-sm);box-shadow:var(--qr-elevation-overlay);opacity:0;pointer-events:none;transition:opacity var(--qr-duration-fast) var(--qr-easing-standard),transform var(--qr-duration-fast) var(--qr-easing-standard);z-index:60}
 .tip::before{content:"";position:absolute;right:100%;top:50%;transform:translateY(-50%);border:5px solid transparent;border-right-color:var(--qr-color-surface-inverse)}
 .tip .kbd{display:inline-flex;align-items:center;font-family:var(--qr-font-family-sans);font-size:11px;color:currentColor;background:color-mix(in srgb, currentColor 16%, transparent);border-radius:var(--qr-radius-xs);padding:1px 5px;letter-spacing:.02em}
 .has-tip:hover>.tip,.has-tip:focus-visible>.tip{opacity:1;transform:translateY(-50%) translateX(0)}
@@ -401,6 +401,7 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
 .rail{width:var(--qr-size-rail);background:var(--qr-color-surface-nav);border-right:1px solid var(--qr-color-border-default);display:flex;flex-direction:column;align-items:center;padding:12px 0 14px;flex-shrink:0}
 .rail .stack{display:flex;flex-direction:column;gap:6px;width:100%;align-items:center;flex:1}
 .prod{display:flex;flex-direction:column;align-items:center;background:none;border:0;cursor:pointer;padding:0;width:100%}
+.prod>.tip{left:calc(100% - 3px)}
 .prod .sq{width:42px;height:42px;border-radius:var(--qr-radius-card);display:flex;align-items:center;justify-content:center;transition:background var(--qr-motion-control-duration) var(--qr-motion-control-easing)}
 .prod:focus-visible .sq,.add:focus-visible .sq{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
 .prod .lbl{display:none}
@@ -410,7 +411,10 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
 .add .sq{color:var(--qr-color-text-subtle)}
 .add:hover .sq{background:var(--qr-color-state-hover);color:var(--qr-color-text-muted)}
 .add svg{width:18px;height:18px}
-.rail .acct{width:30px;height:30px;border-radius:50%;background:var(--qr-color-text-default);color:var(--qr-color-text-inverse);display:flex;align-items:center;justify-content:center;font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-semibold);margin-top:8px}
+.rail .acct{width:42px;height:42px;border-radius:var(--qr-radius-card);display:flex;align-items:center;justify-content:center;margin-top:8px;cursor:pointer;transition:background var(--qr-motion-control-duration) var(--qr-motion-control-easing)}
+.rail .acct:hover{background:var(--qr-color-state-hover)}
+.rail .acct>.tip{left:calc(100% + 7px)}
+.rail .acct .dot{width:28px;height:28px;border-radius:50%;background:var(--qr-color-text-default);color:var(--qr-color-text-inverse);display:flex;align-items:center;justify-content:center;font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-semibold)}
 
 .subnav{width:var(--qr-size-sidebar);background:var(--qr-color-surface-nav);border-right:1px solid var(--qr-color-border-default);flex-shrink:0;padding:12px 14px 14px;display:flex;flex-direction:column;overflow:hidden;transition:width var(--qr-duration-base) var(--qr-easing-standard),opacity var(--qr-duration-fast) var(--qr-easing-standard)}
 .subnav .head{display:flex;align-items:center;justify-content:space-between;gap:9px;height:42px;min-height:0;padding:0 10px 0 12px}

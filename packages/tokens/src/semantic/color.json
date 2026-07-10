@@ -10,10 +10,10 @@
       "on-accent":   { "$value": "{color.white}",     "$type": "color" }
     },
     "surface": {
-      "canvas":  { "$value": "{color.background.100}", "$type": "color" },
+      "canvas":  { "$value": "{color.gray.200}",       "$type": "color" },
       "raised":  { "$value": "{color.background.100}", "$type": "color" },
-      "nav":     { "$value": "{color.background.200}", "$type": "color" },
-      "sunken":  { "$value": "{color.gray.200}",       "$type": "color" },
+      "nav":     { "$value": "{color.gray.200}",       "$type": "color" },
+      "sunken":  { "$value": "{color.gray.300}",       "$type": "color" },
       "inverse": { "$value": "{color.gray.1000}",      "$type": "color" }
     },
     "border": {
@@ -48,8 +48,8 @@
     },
     "state": {
       "hover":            { "$value": "{color.gray-alpha.200}", "$type": "color" },
-      "active-surface":   { "$value": "{color.gray.300}",       "$type": "color" },
-      "selected-surface": { "$value": "{color.gray.300}",       "$type": "color" },
+      "active-surface":   { "$value": "{color.gray.500}",       "$type": "color" },
+      "selected-surface": { "$value": "{color.gray.400}",       "$type": "color" },
       "selected-mark":    { "$value": "{color.gray.1000}",      "$type": "color" },
       "focus-ring":       { "$value": "{color.gray.1000}",      "$type": "color" }
     },
