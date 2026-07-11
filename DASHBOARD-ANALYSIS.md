@@ -151,3 +151,19 @@ its full state set, all token-pure. Rules established while designing them:
 | Publishing | Full | scheduled(chip)+published mix, empty ("first post will appear here"), customize |
 | Quick draft | Compact-ish (side column) | REST = single title line ("Catch an idea before it goes…") + recent drafts list; TYPING = focus ring, content area + Discard/Save revealed (the confirmed collapse-expand interaction); customize |
 | News & events | Compact | 3 headlines (nearby event emphasized over project news), feed-unreachable ("News can't be loaded right now. It will refresh on its own." — quiet, never an error tone for non-essential content), customize |
+
+
+**Grid decision (2026-07-11): TWO EQUAL COLUMNS.** Not core's 4 (at 1220px
+content that's ~290/col — only compact widgets survive; variant C proved
+dense rows truncate), and not the earlier asymmetric main+320 side (free
+drag into a fixed narrow column crushes Full-class widgets — the H2 mock
+itself had this bug). Two equal ~590px columns mean ANY widget drops in
+ANY column; compacts subdivide a column two-up; stacks to one column
+<1100px (same breakpoint rule as Settings). Same two-column grammar as
+the Settings body — one rhythm across the product. Customize-entry
+decision, same session: explicit "Customize" button → all handles at
+once → "Done" (modern platform practice: iOS jiggle mode, macOS/Windows
+widget editors, Shopify Analytics customize; core's hover-drag 4-arrow
+is the outlier and causes accidental drags — no undo). Vercel has no
+arrangeable dashboard at all; Shopify Home is fixed, its Analytics uses
+an explicit customize mode.
