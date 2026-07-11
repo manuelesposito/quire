@@ -129,3 +129,25 @@ Not a screen — a **per-user, extensible widget board**:
   for moderate_comments, Quick Draft for edit_posts…).
 - **R8 — Help tab** content rewritten for the Quire dashboard (or the tab
   suppressed on this screen until the shell camp owns help).
+
+
+## Widget library (2026-07-11) — every core widget redesigned, state by state
+
+Figma page "Dashboard — Widget Library" (138:2). All six core boxes, each with
+its full state set, all token-pure. Rules established while designing them:
+
+- **Edit chrome lives on the title line** — grip left of the title, × far
+  right, centered on that one line, never wrapped around a multi-line header.
+- **One removal affordance at a time** — a widget's own dismiss (only
+  Welcome has one) yields to the standard × in customize mode.
+- Plugin widgets get chrome only; their body content belongs to the plugin.
+
+| Widget | Size | States designed |
+|---|---|---|
+| Welcome (setup checklist) | Full | mid-progress (progress bar, hint lines, chevron links), all-done ("You're all set" + explicit Dismiss — acknowledged, not auto-vanished), customize. Steps are CORE-MAPPED and machine-detectable: theme chosen, title/tagline set (≠ defaults), first post written, site icon set, styles edited. Replaces core's static Welcome banner with the same jobs as a living checklist. |
+| Site health | Compact | good (green dot), attention (amber dot, "3 items to look at" + "See what they are"), never-checked ("Run the first check"), customize |
+| Overview (At a Glance) | Full | established, brand-new site (honest sample-content numbers, no fake encouragement — Welcome owns nudging), customize. Comments count restored (earlier mock dropped it); version+theme caption lives here. |
+| Needs your eye | Full | with items (author, quote, ago, Approve/Spam/Trash), all-clear (green dot + "new comments land here first"), customize |
+| Publishing | Full | scheduled(chip)+published mix, empty ("first post will appear here"), customize |
+| Quick draft | Compact-ish (side column) | REST = single title line ("Catch an idea before it goes…") + recent drafts list; TYPING = focus ring, content area + Discard/Save revealed (the confirmed collapse-expand interaction); customize |
+| News & events | Compact | 3 headlines (nearby event emphasized over project news), feed-unreachable ("News can't be loaded right now. It will refresh on its own." — quiet, never an error tone for non-essential content), customize |
