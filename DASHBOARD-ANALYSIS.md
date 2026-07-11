@@ -71,10 +71,41 @@ Not a screen — a **per-user, extensible widget board**:
 - **R4 — first-run state.** A brand-new site (0 posts, no icon, default
   tagline) needs a designed welcome moment — this is where variant D's
   greeting language naturally covers core's Welcome panel role.
-- **R5 — personalization scope — DECIDED 2026-07-11: NONE in v1.** One
-  designed layout; no drag, no show/hide. The "From your plugins" region
-  absorbs the chaos that made dragging necessary. Revisit only with real
-  user feedback.
+- **R5 — personalization scope — REVERSED 2026-07-11: FULL drag/remove/add
+  IS wanted, redesigned in Quire's language.** (Superseded the earlier
+  same-day "none in v1" call — Manuel: "we should keep the idea that the
+  desktop is customizable... a site with WooCommerce installed should be
+  able to place Woo widgets on the desktop too.") Explored in Figma page
+  "Explorations — Dashboard Customization" (file JD565ifTjv534gnI62lNzS,
+  page 123:2), three frames:
+  - **H1 — calm default**: a "Customize" button in the topbar; at rest,
+    zero drag chrome (same contextual-reveal grammar as the settings save
+    bar). Granularity note: bringing back per-widget remove/add means
+    widgets can't be MERGED the way variant G tried (comments+scheduled
+    in one card) — each widget must be one independently addable/removable
+    concept, pulling structure back toward variant A's granularity.
+  - **H2 — customize mode**: every widget gets a small grip handle (drag,
+    not whole-card — cards have live Approve/Edit/View links inside that
+    must stay clickable) + a remove (×); a dashed "+ Add widget" slot ends
+    each column; button becomes "Done"; one widget shown mid-drag with a
+    dashed drop-target ghost showing where it'll land.
+  - **H3 — the widget picker** ("selection area"): a right-hand drawer,
+    grouped by SOURCE — a "Quire" section (Overview, Needs your eye,
+    Recently published, Quick draft, Site health, WordPress news & events)
+    then one section PER ACTIVE PLUGIN, computed from what's actually
+    installed (WooCommerce section only rendered because Woo is active in
+    this scenario; a generic "Other plugins" section for anything else
+    registered via `wp_add_dashboard_widget`). Each row: name + one-line
+    description + Remove (if added) or +Add (if not).
+  Other decisions made in the same brainstorm: two columns (main+side),
+  matching the same two-column body convention as Settings J2 — reuse, not
+  reinvent; auto-saves per drop (no separate save step, matches core);
+  removing a widget only hides it (never deletes data), reversible via the
+  picker. NOT YET BUILT — Figma-only; still needs: persistence schema
+  (user meta, versioned so the widget set can evolve), what happens when a
+  column is emptied (calm empty state, not blank), whether >2 columns are
+  ever needed for very widget-heavy Woo sites (open question, no evidence
+  yet either way).
 - **R6 — Events & News — DECIDED 2026-07-11: DEMOTED TO A LINK.** No box;
   a quiet "WordPress news & events" entry in the links row/footer keeps
   community discovery one click away without occupying the room.
