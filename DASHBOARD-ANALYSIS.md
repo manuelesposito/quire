@@ -106,6 +106,22 @@ Not a screen — a **per-user, extensible widget board**:
   column is emptied (calm empty state, not blank), whether >2 columns are
   ever needed for very widget-heavy Woo sites (open question, no evidence
   yet either way).
+
+  **Size classes (2026-07-11, same session):** not every widget fits a
+  small slot. Dense-row widgets (comment/post lists with inline actions,
+  stat strips) are FULL-WIDTH ONLY — a half-width slot would clip or wrap
+  their action links. Sparse widgets (Site health's one line) waste space
+  at full width — COMPACT, paired two-up on one row. Each widget has ONE
+  fixed size class, not user-resizable (avoids building a real resize
+  engine core doesn't have either). Full: Overview, Needs your eye,
+  Recently published, any Woo order/status list. Compact: Site health,
+  a trimmed News & events, simple one-line plugin stats (SEO overview).
+  **News & events redesigned smaller to fit Compact**: dropped core's
+  location-picker CTA and the extra external-link footer row (happy talk,
+  cut per DESIGN.md) — kept to 3 headlines + "See all", now genuinely
+  compact instead of needing full width. Demonstrated in H1/H2: Site
+  health + News & events sit side by side as a compact pair in the main
+  column.
 - **R6 — Events & News — DECIDED 2026-07-11: DEMOTED TO A LINK.** No box;
   a quiet "WordPress news & events" entry in the links row/footer keeps
   community discovery one click away without occupying the room.
