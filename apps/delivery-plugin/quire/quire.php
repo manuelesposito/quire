@@ -55,7 +55,7 @@ function quire_render_screen( string $screen ): void {
 	// here — the picker drawer replaced it. (Help tab stays for now, R8.)
 	add_filter( 'screen_options_show_screen', '__return_false' );
 	$base = plugin_dir_url( __FILE__ ) . 'assets';
-	$ver  = '0.8.5';
+	$ver  = '0.9.0';
 	// components.css is scoped to Quire screens only — its class names
 	// (.card, .btn) would collide with core styles if loaded globally.
 	// It depends on core-classic so component rules always PRINT after the
@@ -280,7 +280,7 @@ add_action( 'admin_post_quire_quick_draft', function () {
 // set; anything else is silently dropped.
 add_action( 'wp_ajax_quire_dashboard_layout', function () {
 	check_ajax_referer( 'quire_dashboard_layout', 'nonce' );
-	$known  = [ 'welcome', 'overview', 'needs-eye', 'publishing', 'quick-draft', 'site-health', 'news' ];
+	$known  = [ 'welcome', 'overview', 'needs-eye', 'publishing', 'quick-draft', 'site-health', 'news', 'woo-store', 'woo-orders' ];
 	$layout = json_decode( wp_unslash( $_POST['layout'] ?? '' ), true );
 	if ( ! is_array( $layout ) ) {
 		wp_send_json_error( null, 400 );
@@ -292,6 +292,22 @@ add_action( 'wp_ajax_quire_dashboard_layout', function () {
 	}
 	update_user_meta( get_current_user_id(), 'quire_dashboard_layout', $clean );
 	wp_send_json_success();
+} );
+
+// Order fulfilment from the dashboard widget — complete with a true undo
+// (back to processing). Same instant+Undo grammar as everything else.
+add_action( 'wp_ajax_quire_order_action', function () {
+	check_ajax_referer( 'quire_orders', 'nonce' );
+	if ( ! class_exists( 'WooCommerce' ) || ! current_user_can( 'edit_shop_orders' ) ) {
+		wp_send_json_error( null, 403 );
+	}
+	$op    = sanitize_key( $_POST['op'] ?? '' );
+	$order = wc_get_order( (int) ( $_POST['id'] ?? 0 ) );
+	if ( ! $order || ! in_array( $op, [ 'complete', 'uncomplete' ], true ) ) {
+		wp_send_json_error( null, 400 );
+	}
+	$order->update_status( 'complete' === $op ? 'completed' : 'processing', __( 'Quire dashboard', 'quire' ) );
+	wp_send_json_success( [ 'fulfil' => (int) wc_orders_count( 'processing' ) ] );
 } );
 
 // Welcome widget dismissal — per user, permanent until meta is deleted.

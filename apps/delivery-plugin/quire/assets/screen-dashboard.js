@@ -28,6 +28,57 @@
 		} );
 	}
 
+	/* ---- undo toast (shared grammar; markup + styles from components) -- */
+	var toast = screen.querySelector( '.qtoast' );
+	var toastTimer = null, undoFn = null;
+	function showToast( msg, onUndo ) {
+		if ( ! toast ) return;
+		clearTimeout( toastTimer );
+		undoFn = onUndo || null;
+		toast.querySelector( '.qtoast__msg' ).textContent = msg;
+		toast.classList.toggle( 'no-undo', ! onUndo );
+		toast.hidden = false;
+		requestAnimationFrame( function () { toast.classList.add( 'is-open' ); } );
+		toastTimer = setTimeout( function () { toast.classList.remove( 'is-open' ); undoFn = null; }, 8000 );
+	}
+	if ( toast ) {
+		toast.querySelector( '.qtoast__undo' ).addEventListener( 'click', function () {
+			if ( undoFn ) undoFn();
+			toast.classList.remove( 'is-open' );
+			undoFn = null;
+		} );
+	}
+
+	/* ---- Woo: complete an order from the widget, with undo ------------- */
+	function orderAction( op, id ) {
+		var body = new URLSearchParams();
+		body.set( 'action', 'quire_order_action' );
+		body.set( 'nonce', screen.dataset.orderNonce );
+		body.set( 'op', op );
+		body.set( 'id', id );
+		return fetch( screen.dataset.ajax, { method: 'POST', credentials: 'same-origin', body: body } )
+			.then( function ( r ) { return r.json(); } );
+	}
+	screen.addEventListener( 'click', function ( e ) {
+		var btn = e.target.closest( '[data-orderact]' );
+		if ( ! btn ) return;
+		var row = btn.closest( '.act' );
+		var id  = row.dataset.order;
+		var num = row.querySelector( '.act__line a' ).textContent.split( ' — ' )[ 0 ];
+		row.style.display = 'none';
+		orderAction( 'complete', id ).then( function ( res ) {
+			if ( ! res.success ) { row.style.display = ''; return; }
+			var n = screen.querySelector( '[data-woo-fulfil]' );
+			if ( n ) n.textContent = res.data.fulfil;
+			showToast( num + ' completed', function () {
+				orderAction( 'uncomplete', id ).then( function ( r2 ) {
+					row.style.display = '';
+					if ( r2.success && n ) n.textContent = r2.data.fulfil;
+				} );
+			} );
+		} );
+	} );
+
 	/* ---- customize mode ---------------------------------------------- */
 	var btn    = document.getElementById( 'qcustomize' );
 	var drawer = screen.querySelector( '.qdrawer' );

@@ -103,6 +103,10 @@
 .quire-screen .qdrawer__desc { font-size: var(--qr-font-size-200); color: var(--qr-color-text-muted); margin-top: 2px; }
 .quire-screen .qdrawer__removelink { background: none; border: 0; cursor: pointer; padding: 0; font-family: var(--qr-font-family-sans); font-size: var(--qr-font-size-200); font-weight: var(--qr-font-weight-medium); color: var(--qr-color-text-muted); }
 .quire-screen .qdrawer__removelink:hover { color: var(--qr-color-text-default); text-decoration: underline; }
+.quire-screen .qdrawer__groupcaption { font-size: var(--qr-font-size-100); color: var(--qr-color-text-subtle); padding-top: var(--qr-space-200); }
+/* the Complete button in the orders widget — same face as the row links */
+.quire-screen .qlinkbtn { background: none; border: 0; padding: 0; cursor: pointer; font-family: var(--qr-font-family-sans); font-size: var(--qr-font-size-200); color: var(--qr-color-text-muted); }
+.quire-screen .qlinkbtn:hover { color: var(--qr-color-accent-strong); text-decoration: underline; }
 /* .btn's display would beat the hidden attribute — state must win */
 
 /* ---- shared row + footer link --------------------------------------- */

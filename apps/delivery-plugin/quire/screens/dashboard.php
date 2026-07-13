@@ -382,12 +382,126 @@ $quire_widgets = [
 	],
 ];
 
+// ---- WooCommerce widgets (the drawer's first plugin section, R1) -------
+// Real store data, only when Woo is active. From the widget library:
+// "Store overview — states" + "Orders to fulfil — states".
+if ( class_exists( 'WooCommerce' ) ) {
+	// paid orders this calendar week (site's start-of-week)
+	$today0     = strtotime( wp_date( 'Y-m-d 00:00:00' ) );
+	$dow        = (int) wp_date( 'w' );
+	$week_start = $today0 - ( ( ( $dow - (int) get_option( 'start_of_week', 1 ) ) + 7 ) % 7 ) * DAY_IN_SECONDS;
+	// NOTE: 'limit' => -1 silently returns nothing on this HPOS build —
+	// use wc_orders_count() for counts and a bounded query for sums.
+	$paid       = wc_get_orders( [ 'status' => [ 'processing', 'completed', 'on-hold' ], 'date_created' => '>=' . $week_start, 'limit' => 500 ] );
+	$week_sales = 0.0; $today_sales = 0.0;
+	foreach ( $paid as $o ) {
+		$week_sales += (float) $o->get_total();
+		if ( $o->get_date_created() && $o->get_date_created()->getTimestamp() >= $today0 ) {
+			$today_sales += (float) $o->get_total();
+		}
+	}
+	$fulfil_count  = (int) wc_orders_count( 'processing' );
+	$fulfil_orders = wc_get_orders( [ 'status' => 'processing', 'limit' => 3, 'orderby' => 'date', 'order' => 'ASC' ] );
+	$products      = (int) ( wp_count_posts( 'product' )->publish ?? 0 );
+	$coming_soon   = 'yes' === get_option( 'woocommerce_coming_soon' );
+	$money         = fn( float $n ) => html_entity_decode( wp_strip_all_tags( wc_price( $n ) ) );
+	$orders_url    = admin_url( 'admin.php?page=wc-orders' );
+
+	$quire_widgets['woo-store'] = [
+		'title'     => __( 'Store overview', 'quire' ),
+		'desc'      => __( 'Sales, orders and stock at a glance.', 'quire' ),
+		'in_picker' => true,
+		'source'    => 'WooCommerce',
+		'render'    => function () use ( $week_sales, $today_sales, $paid, $fulfil_count, $fulfil_orders, $products, $coming_soon, $money, $orders_url ) { ?>
+			<div class="card__head">
+				<div class="card__title"><?php esc_html_e( 'Store overview', 'quire' ); ?></div>
+			</div>
+			<div class="card__body qov">
+				<a class="qov__cell" href="<?php echo esc_url( admin_url( 'admin.php?page=wc-admin' ) ); ?>">
+					<span class="qov__value"><?php echo esc_html( $money( $week_sales ) ); ?></span>
+					<span class="qov__label"><?php esc_html_e( 'sales this week', 'quire' ); ?></span>
+					<?php if ( $today_sales > 0 ) : ?>
+						<span class="qov__sub"><?php printf( esc_html__( '%s today', 'quire' ), esc_html( $money( $today_sales ) ) ); ?></span>
+					<?php elseif ( 0.0 === $week_sales ) : ?>
+						<span class="qov__sub"><?php esc_html_e( 'waiting for the first order', 'quire' ); ?></span>
+					<?php endif; ?>
+				</a>
+				<a class="qov__cell" href="<?php echo esc_url( $orders_url ); ?>">
+					<span class="qov__value"><?php echo esc_html( number_format_i18n( count( $paid ) ) ); ?></span>
+					<span class="qov__label"><?php echo esc_html( _n( 'order this week', 'orders this week', count( $paid ), 'quire' ) ); ?></span>
+				</a>
+				<a class="qov__cell" href="<?php echo esc_url( $orders_url . '&status=wc-processing' ); ?>">
+					<span class="qov__value" data-woo-fulfil><?php echo esc_html( number_format_i18n( $fulfil_count ) ); ?></span>
+					<span class="qov__label"><?php esc_html_e( 'to fulfil', 'quire' ); ?></span>
+					<?php if ( $fulfil_orders ) : ?>
+						<span class="qov__sub"><?php printf( esc_html__( 'oldest %s ago', 'quire' ), esc_html( human_time_diff( $fulfil_orders[0]->get_date_created()->getTimestamp() ) ) ); ?></span>
+					<?php endif; ?>
+				</a>
+				<a class="qov__cell" href="<?php echo esc_url( admin_url( 'edit.php?post_type=product' ) ); ?>">
+					<span class="qov__value"><?php echo esc_html( number_format_i18n( $products ) ); ?></span>
+					<span class="qov__label"><?php echo esc_html( _n( 'product', 'products', $products, 'quire' ) ); ?></span>
+					<?php if ( 0 === $products ) : ?>
+						<span class="qov__sub"><?php esc_html_e( 'add your first product', 'quire' ); ?></span>
+					<?php endif; ?>
+				</a>
+			</div>
+			<div class="qov__foot"><?php printf( esc_html__( 'WooCommerce %1$s · %2$s', 'quire' ), esc_html( WC()->version ), $coming_soon ? esc_html__( 'Store coming soon', 'quire' ) : esc_html__( 'Store open', 'quire' ) ); ?></div>
+		<?php },
+	];
+
+	$quire_widgets['woo-orders'] = [
+		'title'     => __( 'Orders to fulfil', 'quire' ),
+		'desc'      => __( 'Paid orders waiting to be shipped.', 'quire' ),
+		'in_picker' => true,
+		'source'    => 'WooCommerce',
+		'render'    => function () use ( $fulfil_orders, $orders_url ) { ?>
+			<div class="card__head">
+				<div class="card__title"><?php esc_html_e( 'Orders to fulfil', 'quire' ); ?></div>
+				<div class="card__desc"><?php esc_html_e( 'Paid orders waiting to be shipped.', 'quire' ); ?></div>
+			</div>
+			<div class="card__body">
+				<?php if ( $fulfil_orders ) : foreach ( $fulfil_orders as $o ) :
+					$items = [];
+					foreach ( $o->get_items() as $it ) {
+						$items[] = $it->get_quantity() . ' × ' . $it->get_name();
+					}
+					$summary = implode( ', ', array_slice( $items, 0, 2 ) ) . ( count( $items ) > 2 ? ', …' : '' );
+				?>
+				<div class="act" data-order="<?php echo esc_attr( $o->get_id() ); ?>">
+					<div class="act__body">
+						<div class="act__line"><a href="<?php echo esc_url( $o->get_edit_order_url() ); ?>">#<?php echo esc_html( $o->get_order_number() ); ?> — <?php echo esc_html( $o->get_formatted_billing_full_name() ?: __( 'Guest', 'quire' ) ); ?></a></div>
+						<div class="act__quote"><?php echo esc_html( $summary ); ?> — <?php echo esc_html( html_entity_decode( wp_strip_all_tags( wc_price( $o->get_total() ) ) ) ); ?></div>
+						<div class="act__meta"><?php echo esc_html( human_time_diff( $o->get_date_created()->getTimestamp() ) . ' ' . __( 'ago', 'quire' ) ); ?></div>
+					</div>
+					<div class="dt-actions is-open">
+						<a href="<?php echo esc_url( $o->get_edit_order_url() ); ?>"><?php esc_html_e( 'View', 'quire' ); ?></a>
+						<button type="button" class="qlinkbtn" data-orderact="complete"><?php esc_html_e( 'Complete', 'quire' ); ?></button>
+					</div>
+				</div>
+				<?php endforeach; else : ?>
+				<div class="act">
+					<div class="act__body">
+						<div class="act__line qallclear"><span class="qdot qdot--ok" aria-hidden="true"></span><?php esc_html_e( 'Nothing to ship — every order is on its way.', 'quire' ); ?></div>
+					</div>
+				</div>
+				<?php endif; ?>
+			</div>
+			<div class="card__foot card__foot--start"><a class="qfootlink" href="<?php echo esc_url( $orders_url ); ?>"><?php esc_html_e( 'All orders', 'quire' ); ?></a></div>
+		<?php },
+	];
+}
+
 // ---- per-user layout --------------------------------------------------
 $default_layout = [
 	'main'   => [ 'welcome', 'overview', 'needs-eye', 'publishing' ],
 	'side'   => [ 'quick-draft', 'site-health', 'news' ],
 	'hidden' => [],
 ];
+if ( isset( $quire_widgets['woo-store'] ) ) {
+	// store numbers next to the site numbers; the queue near the queue
+	array_splice( $default_layout['main'], 2, 0, [ 'woo-store' ] );
+	array_splice( $default_layout['side'], 1, 0, [ 'woo-orders' ] );
+}
 $layout = get_user_meta( get_current_user_id(), 'quire_dashboard_layout', true );
 if ( ! is_array( $layout ) ) {
 	$layout = $default_layout;
@@ -426,6 +540,7 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
 <div class="quire-screen"
      data-ajax="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>"
      data-nonce="<?php echo esc_attr( wp_create_nonce( 'quire_dashboard_layout' ) ); ?>"
+     data-order-nonce="<?php echo esc_attr( wp_create_nonce( 'quire_orders' ) ); ?>"
      data-dismiss="<?php echo esc_url( $dismiss_url ); ?>">
 
   <header class="qtopbar">
@@ -491,9 +606,10 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
       <button type="button" class="qdrawer__close" aria-label="<?php esc_attr_e( 'Close', 'quire' ); ?>">&times;</button>
     </div>
     <?php
-    // One group per source. Today that's Quire alone; WooCommerce and
-    // other-plugin sections arrive with the plugin-widget bridge (R1).
-    $sources = [];
+    // One group per source — a plugin's section exists only while the
+    // plugin is active (H3), and says so.
+    $sources  = [];
+    $captions = [ 'WooCommerce' => __( 'Shown because WooCommerce is active', 'quire' ) ];
     foreach ( $quire_widgets as $id => $w ) {
       if ( $w['in_picker'] ) {
         $sources[ $w['source'] ][ $id ] = $w;
@@ -503,6 +619,9 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
     ?>
     <div class="qdrawer__group">
       <div class="qdrawer__grouplabel"><?php echo esc_html( $source ); ?></div>
+      <?php if ( isset( $captions[ $source ] ) ) : ?>
+        <div class="qdrawer__groupcaption"><?php echo esc_html( $captions[ $source ] ); ?></div>
+      <?php endif; ?>
       <?php foreach ( $widgets as $id => $w ) : ?>
       <div class="qdrawer__row" data-widget="<?php echo esc_attr( $id ); ?>">
         <div class="qdrawer__meta">
@@ -516,6 +635,11 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
     </div>
     <?php endforeach; ?>
   </aside>
+
+  <div class="qtoast" hidden>
+    <span class="qtoast__msg"></span>
+    <button type="button" class="qtoast__undo"><?php esc_html_e( 'Undo', 'quire' ); ?></button>
+  </div>
 
 </div>
 <?php
