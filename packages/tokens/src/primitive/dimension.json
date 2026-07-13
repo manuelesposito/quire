@@ -32,6 +32,8 @@
     "icon-sm":    { "$value": "16px",  "$type": "dimension" },
     "icon-md":    { "$value": "20px",  "$type": "dimension" },
     "rail":       { "$value": "80px",  "$type": "dimension" },
-    "sidebar":    { "$value": "380px", "$type": "dimension" }
+    "sidebar":    { "$value": "380px", "$type": "dimension" },
+    "page-board": { "$value": "1280px", "$type": "dimension" },
+    "page-form":  { "$value": "916px",  "$type": "dimension" }
   }
 }

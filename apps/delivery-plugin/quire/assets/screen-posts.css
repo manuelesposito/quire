@@ -1,0 +1,89 @@
+/* Quire Posts screen — from "Pattern · Posts (DECIDED 2026-07-13)".
+   Page layout only; components come from components.css, values from the
+   tokens. Loaded ONLY on this screen. One density, board-token width. */
+
+#wpbody-content .quire-screen {
+  padding: 8px 24px 64px;
+  max-width: var(--qr-size-page-board);
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--qr-space-400);
+  font-size: var(--qr-font-size-300);
+  line-height: var(--qr-font-line-height-copy);
+}
+
+.quire-screen .qtopbar { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--qr-space-400); padding: var(--qr-space-300) 0 var(--qr-space-400); border-bottom: 1px solid var(--qr-color-border-default); }
+.quire-screen .qcrumb { display: inline-block; font-size: var(--qr-font-size-200); color: var(--qr-color-text-subtle); margin-bottom: 4px; text-decoration: none; }
+.quire-screen a.qcrumb:hover { color: var(--qr-color-text-default); text-decoration: underline; }
+.quire-screen h1.qtitle { font-size: var(--qr-font-size-800); font-weight: var(--qr-font-weight-semibold); letter-spacing: var(--qr-font-letter-spacing-tight); line-height: var(--qr-font-line-height-tight); padding: 0; margin: 0; }
+.quire-screen .qactions .btn { text-decoration: none; }
+
+/* ---- the table card --------------------------------------------------- */
+.quire-screen .qtable { width: 100%; max-width: none; }
+
+/* toolbar: rest (views + filters) ⇄ selected (bulk bar) */
+.quire-screen .qtb { border-bottom: 1px solid var(--qr-color-border-default); }
+.quire-screen .qtb__rest { display: flex; align-items: center; gap: var(--qr-space-400); padding: var(--qr-space-300) var(--qr-space-400); }
+.quire-screen .qtb[data-mode="selected"] .qtb__rest { display: none; }
+.quire-screen .qtb__selected { display: flex; align-items: center; gap: var(--qr-space-400); padding: var(--qr-space-300) var(--qr-space-400); min-height: 56px; }
+/* flex would beat the hidden attribute — state must win (the drawer lesson) */
+.quire-screen .qtb__selected[hidden] { display: none !important; }
+.quire-screen .qviews { display: flex; gap: var(--qr-space-500); flex-wrap: wrap; }
+.quire-screen .qviews a { color: var(--qr-color-text-muted); text-decoration: none; }
+.quire-screen .qviews a:hover { color: var(--qr-color-text-default); }
+.quire-screen .qviews a.is-current { color: var(--qr-color-text-default); font-weight: var(--qr-font-weight-semibold); }
+.quire-screen .qviews__n { color: var(--qr-color-text-subtle); font-size: var(--qr-font-size-200); }
+.quire-screen .qtb__filters { display: flex; align-items: center; gap: var(--qr-space-200); margin-left: auto; }
+
+.quire-screen .qtb__count { font-weight: var(--qr-font-weight-semibold); }
+.quire-screen .qtb__sep { width: 1px; height: 16px; background: var(--qr-color-border-strong); }
+.quire-screen .qtb__gap { flex: 1; }
+.quire-screen .qtb__act { background: none; border: 0; padding: 4px 6px; border-radius: var(--qr-radius-sm); cursor: pointer; font-family: var(--qr-font-family-sans); font-size: var(--qr-font-size-300); font-weight: var(--qr-font-weight-medium); color: var(--qr-color-text-muted); }
+.quire-screen .qtb__act:hover { background: var(--qr-color-state-hover); color: var(--qr-color-text-default); }
+.quire-screen .qtb__act--danger { color: var(--qr-color-feedback-danger-text); }
+.quire-screen .qtb__clear { font-weight: var(--qr-font-weight-regular, 400); color: var(--qr-color-text-subtle); font-size: var(--qr-font-size-200); }
+
+/* ---- grid: shared column template for head + rows --------------------- */
+.quire-screen .qthead, .quire-screen .qrow {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr) 110px 130px 140px 48px 150px;
+  gap: var(--qr-space-300);
+  align-items: center;
+  padding: 0 var(--qr-space-400);
+}
+.quire-screen .qthead { padding-top: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--qr-color-border-default); font-size: var(--qr-font-size-200); font-weight: var(--qr-font-weight-medium); color: var(--qr-color-text-subtle); }
+.quire-screen .qthead a { color: var(--qr-color-text-subtle); text-decoration: none; }
+.quire-screen .qthead a:hover, .quire-screen .qthead a.is-sorted { color: var(--qr-color-text-default); }
+
+.quire-screen .qrow { padding-top: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--qr-color-border-default); transition: background-color var(--qr-motion-control-duration) var(--qr-motion-control-easing), opacity var(--qr-duration-base) var(--qr-easing-standard); }
+.quire-screen .qrow:hover { background: var(--qr-color-state-hover); }
+.quire-screen .qrow.is-selected { background: var(--qr-color-state-active-surface); }
+.quire-screen .qrow.is-leaving { opacity: 0.3; }
+
+.quire-screen .qrow__line { display: flex; align-items: center; gap: var(--qr-space-200); min-width: 0; }
+.quire-screen .qrow__title { color: var(--qr-color-text-default); font-weight: var(--qr-font-weight-medium); text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.quire-screen .qrow__title:hover { text-decoration: underline; }
+.quire-screen .qrow__line .badge { flex-shrink: 0; }
+
+/* row actions reveal on hover */
+.quire-screen .qrow__acts { display: flex; gap: var(--qr-space-300); margin-top: 3px; opacity: 0; transition: opacity var(--qr-motion-control-duration) var(--qr-motion-control-easing); }
+.quire-screen .qrow:hover .qrow__acts, .quire-screen .qrow:focus-within .qrow__acts { opacity: 1; }
+.quire-screen .qlink { background: none; border: 0; padding: 0; cursor: pointer; font-family: var(--qr-font-family-sans); font-size: var(--qr-font-size-200); color: var(--qr-color-text-subtle); text-decoration: none; }
+.quire-screen .qlink:hover { color: var(--qr-color-text-default); text-decoration: underline; }
+.quire-screen .qlink--danger { color: var(--qr-color-feedback-danger-text); }
+.quire-screen .qlink--danger:hover { color: var(--qr-color-feedback-danger-text); }
+
+.quire-screen .qcell { font-size: var(--qr-font-size-200); color: var(--qr-color-text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.quire-screen .qcell a { color: var(--qr-color-text-muted); text-decoration: none; }
+.quire-screen .qcell a:hover { color: var(--qr-color-text-default); text-decoration: underline; }
+.quire-screen .qcol--date { display: flex; flex-direction: column; gap: 1px; }
+.quire-screen .qdate__l1 { font-size: var(--qr-font-size-200); color: var(--qr-color-text-subtle); }
+.quire-screen .qdate__l2 { font-size: var(--qr-font-size-200); color: var(--qr-color-text-muted); }
+
+.quire-screen .qtfoot { display: flex; justify-content: space-between; align-items: center; padding: var(--qr-space-300) var(--qr-space-400); font-size: var(--qr-font-size-200); color: var(--qr-color-text-subtle); }
+.quire-screen .qpager { display: flex; gap: var(--qr-space-300); }
+.quire-screen .qpager a { color: var(--qr-color-text-default); text-decoration: none; }
+.quire-screen .qpager .is-off { opacity: 0.35; }
+.quire-screen .qempty-list { padding: var(--qr-space-800) var(--qr-space-400); color: var(--qr-color-text-muted); }

@@ -2,15 +2,23 @@
    components.css, values from the tokens. Loaded ONLY on this screen.
    Lives inside #wpbody-content with core chrome around it. */
 
+/* Width contract (revised 2026-07-13): ONE page container everywhere —
+   the board token — so the page edges and title never move between
+   screens. Only the FORM caps at the form token (GitHub-settings model:
+   nav | narrow form | quiet space right). When the shell moves the nav
+   into the sidebar takeover, the form will center alone (W3 mock). */
 #wpbody-content .quire-screen {
-  padding: 8px 12px 64px 2px;
-  max-width: 1220px;
+  padding: 8px 24px 64px;
+  max-width: var(--qr-size-page-board);
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   flex-direction: column;
   gap: var(--qr-space-400);
   font-size: var(--qr-font-size-300);
   line-height: var(--qr-font-line-height-copy);
 }
+.quire-screen .qmain { max-width: var(--qr-size-page-form); }
 
 /* ---- SETTINGS-SPEC.md anatomy: nav column | content ------------------- */
 /* Until the shell camp, the settings nav lives inside the content area;

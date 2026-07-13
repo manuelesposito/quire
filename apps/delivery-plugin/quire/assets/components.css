@@ -153,8 +153,18 @@ select.field{appearance:none;-webkit-appearance:none;padding-right:32px;cursor:p
 .dt-filters a{color:var(--qr-color-text-muted);text-decoration:none;cursor:pointer}
 .dt-filters a:hover{color:var(--qr-color-text-default)}
 .dt-filters a.is-active{color:var(--qr-color-text-default);font-weight:var(--qr-font-weight-medium)}
-.dt-search{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);padding:0 var(--qr-space-300);min-height:var(--qr-size-control-sm);border:1px solid var(--qr-color-border-strong);border-radius:var(--qr-radius-sm);background:var(--qr-color-surface-raised);color:var(--qr-color-text-default);width:200px}
-.dt-search:focus{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
+/* element-qualified so they out-rank the Lane-2 core bridge's bare
+   input[type=…]/select rules on live admin screens */
+.dt-search,input.dt-search{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);padding:0 var(--qr-space-300);min-height:var(--qr-size-control-sm);border:1px solid var(--qr-color-border-strong);border-radius:var(--qr-radius-sm);background:var(--qr-color-surface-raised);color:var(--qr-color-text-default);width:200px}
+.dt-search:focus,input.dt-search:focus{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
+/* quiet toolbar select — filters that whisper until hovered (Posts P2
+   pattern). ALWAYS wrapped in .select-wrap.select-wrap--quiet: a select
+   without its caret reads as a dead label / mystery ghost button. */
+.dt-select,select.dt-select{appearance:none;-webkit-appearance:none;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle);border:0;background:transparent;cursor:pointer;padding:4px 22px 4px 6px;min-height:0;border-radius:var(--qr-radius-sm)}
+.dt-select:hover,select.dt-select:hover{background:var(--qr-color-state-hover);color:var(--qr-color-text-default)}
+.dt-select:focus-visible,select.dt-select:focus-visible{outline:2px solid var(--qr-color-state-focus-ring);outline-offset:2px}
+.select-wrap--quiet::after{right:9px;width:5px;height:5px;border-color:var(--qr-color-text-subtle)}
+.select-wrap--quiet:hover::after{border-color:var(--qr-color-text-default)}
 table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-300)}
 .dt-table th{text-align:left;padding:var(--qr-space-200) var(--qr-space-400);font-weight:var(--qr-font-weight-medium);color:var(--qr-color-text-muted);font-size:var(--qr-font-size-200);border-bottom:1px solid var(--qr-color-border-default);white-space:nowrap}
 .dt-table th.sortable{cursor:pointer}
@@ -380,6 +390,40 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
 .code-txt{padding-left:var(--qr-space-300);white-space:pre;color:var(--qr-color-text-default)}
 .code-cmt{color:var(--qr-color-text-subtle)}
 .code-kw{color:var(--qr-color-accent-strong)}
+
+/* =========================================================================
+   Drawer · Scrim · Toast — the takeover + undo grammar, ONE source.
+   Drawer: 380 wide (the Figma pattern width), slides both ways on the
+   system motion; scrim = the modal wash; toast = surface-inverse, floats.
+   ========================================================================= */
+.qscrim{position:fixed;inset:32px 0 0 0;z-index:9980;background:var(--qr-color-overlay-scrim);opacity:0;visibility:hidden;transition:opacity var(--qr-duration-base) var(--qr-easing-standard),visibility 0s linear var(--qr-duration-base)}
+.qscrim.is-open{opacity:1;visibility:visible;transition:opacity var(--qr-duration-base) var(--qr-easing-standard)}
+.qdrawer{position:fixed;top:32px;right:0;bottom:0;z-index:9990;width:380px;max-width:92vw;background:var(--qr-color-surface-raised);border-left:1px solid var(--qr-color-border-default);box-shadow:var(--qr-elevation-overlay);padding:var(--qr-space-400);overflow-y:auto;display:flex;flex-direction:column;gap:var(--qr-space-300);font-size:var(--qr-font-size-300);transform:translateX(100%);visibility:hidden;transition:transform var(--qr-duration-base) var(--qr-easing-standard),visibility 0s linear var(--qr-duration-base)}
+.qdrawer.is-open{transform:none;visibility:visible;transition:transform var(--qr-duration-base) var(--qr-easing-standard)}
+.qdrawer__head{display:flex;align-items:flex-start;justify-content:space-between;padding-bottom:var(--qr-space-200);border-bottom:1px solid var(--qr-color-border-default)}
+.qdrawer__title{font-size:var(--qr-font-size-600);font-weight:var(--qr-font-weight-medium)}
+.qdrawer__sub{font-size:var(--qr-font-size-200);color:var(--qr-color-text-subtle);margin-top:2px}
+.qdrawer__close{background:none;border:0;cursor:pointer;color:var(--qr-color-text-subtle);font-size:18px;line-height:1;width:28px;height:28px;border-radius:var(--qr-radius-sm);flex-shrink:0}
+.qdrawer__close:hover{background:var(--qr-color-state-hover);color:var(--qr-color-text-default)}
+.qdrawer__note{font-size:var(--qr-font-size-100);color:var(--qr-color-text-subtle)}
+.qdrawer__foot{display:flex;justify-content:flex-end;gap:var(--qr-space-200);padding-top:var(--qr-space-200);margin-top:auto}
+.qdrawer [hidden]{display:none !important} /* state must beat styled display */
+
+/* drawer form primitives */
+.qfield{display:flex;flex-direction:column;gap:5px}
+.qfield>span{font-size:var(--qr-font-size-200);font-weight:var(--qr-font-weight-medium);color:var(--qr-color-text-subtle)}
+.qfield .field{width:100%}
+.qfield-pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--qr-space-300)}
+.qcheck{display:inline-flex;align-items:center;gap:7px;font-size:var(--qr-font-size-200);color:var(--qr-color-text-muted);cursor:pointer}
+.qchecks{display:flex;flex-direction:column;gap:var(--qr-space-200)}
+.qcatlist{display:flex;flex-wrap:wrap;gap:var(--qr-space-200) var(--qr-space-400);max-height:96px;overflow-y:auto;border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-sm);padding:var(--qr-space-200) var(--qr-space-300)}
+
+/* the undo toast — every destructive/bulk action, product-wide */
+.qtoast{position:fixed;left:24px;bottom:24px;z-index:9995;display:flex;align-items:center;gap:var(--qr-space-400);background:var(--qr-color-surface-inverse);color:var(--qr-color-text-inverse);padding:11px 16px;border-radius:var(--qr-radius-md);box-shadow:var(--qr-elevation-overlay);font-size:var(--qr-font-size-300);opacity:0;transform:translateY(8px);visibility:hidden;transition:opacity var(--qr-duration-base) var(--qr-easing-standard),transform var(--qr-duration-base) var(--qr-easing-standard),visibility 0s linear var(--qr-duration-base)}
+.qtoast.is-open{opacity:1;transform:none;visibility:visible;transition:opacity var(--qr-duration-base) var(--qr-easing-standard),transform var(--qr-duration-base) var(--qr-easing-standard)}
+.qtoast__undo{background:none;border:0;padding:0;cursor:pointer;color:inherit;font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-300);font-weight:var(--qr-font-weight-semibold)}
+.qtoast__undo:hover{text-decoration:underline}
+.qtoast.no-undo .qtoast__undo{display:none}
 
 /* =========================================================================
    Navigation — product rail + contextual sidebar + monochrome marks.

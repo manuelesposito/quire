@@ -1,11 +1,17 @@
 /* Quire Dashboard screen — page layout only; components come from
    components.css, values from the tokens. Loaded ONLY on this screen
    (components.css class names like .card would collide with core
-   elsewhere). Lives inside #wpbody-content with core chrome around it. */
+   elsewhere). Rebuilt from the Figma "Dashboard — Widget Library"
+   (H4 default arrangement). Lives inside #wpbody-content. */
 
+/* Width contract (decided 2026-07-12, Vercel-style): one CENTERED
+   container per screen; boards cap at the page-board token. Stretching
+   to fill the monitor is old wp-admin physics — never do it. */
 #wpbody-content .quire-screen {
-  padding: 8px 12px 64px 2px;
-  max-width: 1220px;
+  padding: 8px 24px 64px;
+  max-width: var(--qr-size-page-board);
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   flex-direction: column;
   gap: var(--qr-space-400);
@@ -21,7 +27,8 @@
   padding: var(--qr-space-300) 0 var(--qr-space-400);
   border-bottom: 1px solid var(--qr-color-border-default);
 }
-.quire-screen .qcrumb { font-size: var(--qr-font-size-200); color: var(--qr-color-text-subtle); margin-bottom: 4px; }
+.quire-screen .qcrumb { display: inline-block; font-size: var(--qr-font-size-200); color: var(--qr-color-text-subtle); margin-bottom: 4px; text-decoration: none; }
+.quire-screen a.qcrumb:hover { color: var(--qr-color-text-default); text-decoration: underline; }
 .quire-screen h1.qtitle {
   font-size: var(--qr-font-size-800);
   font-weight: var(--qr-font-weight-semibold);
@@ -35,29 +42,150 @@
 .quire-screen .notice-quire { max-width: none; margin: 0; padding-top: var(--qr-space-300); padding-bottom: var(--qr-space-300); }
 .quire-screen .notice-quire a { color: var(--qr-color-text-accent); }
 
-.quire-screen .qstats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--qr-space-400); }
-.quire-screen a.stat { text-decoration: none; color: inherit; display: block; }
-.quire-screen a.stat:hover { border-color: var(--qr-color-border-strong); }
-
-.quire-screen .qdesk { display: grid; grid-template-columns: 1fr 320px; gap: var(--qr-space-500); align-items: start; }
-.quire-screen .qmain, .quire-screen .qside { display: flex; flex-direction: column; gap: var(--qr-space-500); min-width: 0; }
+/* ---- the desk: two equal columns, ONE widget width (decided 2026-07-12):
+   every card spans its column, height hugs content. Small widgets are
+   just short cards — no size classes. */
+.quire-screen .qdesk { display: grid; grid-template-columns: 1fr 1fr; gap: var(--qr-space-500); align-items: start; }
+.quire-screen .qcol { display: flex; flex-direction: column; gap: var(--qr-space-500); min-width: 0; }
 .quire-screen .qdesk .card { width: 100%; max-width: none; }
-.quire-screen .card__foot .btn { text-decoration: none; }
+@media (max-width: 1100px) {
+  .quire-screen .qdesk { grid-template-columns: 1fr; }
+}
 
+/* ---- customize mode (H2c): whole card = drag surface, × only ----------
+   The mode adds one glyph per card and nothing else. Card content goes
+   inert (you're arranging, not moderating); cursor announces the drag;
+   the lift shadow appears on press — floating things cast shadows. */
+.quire-screen .qwidget { position: relative; }
+.quire-screen .qremove { display: none; }
+/* lift ladder, all from the elevation tokens: hover = raised (a whisper),
+   press/drag = overlay (floating). Same shadows modals/menus already use. */
+.quire-screen.is-customizing .qwidget { cursor: grab; transition: box-shadow var(--qr-duration-fast) var(--qr-easing-standard); }
+.quire-screen.is-customizing .qwidget:hover { box-shadow: var(--qr-elevation-raised); }
+.quire-screen.is-customizing .qwidget:active { cursor: grabbing; box-shadow: var(--qr-elevation-overlay); }
+.quire-screen.is-customizing .qwidget > :not(.qremove) { pointer-events: none; }
+.quire-screen.is-customizing .qremove {
+  display: flex; align-items: center; justify-content: center;
+  position: absolute; right: var(--qr-space-300); top: 14px;
+  width: 26px; height: 26px; padding: 0;
+  background: none; border: 0; cursor: pointer;
+  color: var(--qr-color-text-subtle); font-size: 16px; line-height: 1;
+  border-radius: var(--qr-radius-sm);
+}
+.quire-screen.is-customizing .qremove:hover { background: var(--qr-color-state-hover); color: var(--qr-color-text-default); }
+.quire-screen.is-customizing .qwelcome__dismiss { visibility: hidden; }
+
+.quire-screen .qslot { display: none; }
+.quire-screen.is-customizing .qslot {
+  display: block;
+  padding: var(--qr-space-400);
+  font-family: var(--qr-font-family-sans); font-size: var(--qr-font-size-300);
+  color: var(--qr-color-text-muted); text-align: center;
+  background: none; border: 1px dashed var(--qr-color-border-strong);
+  border-radius: var(--qr-radius-card); cursor: pointer;
+}
+.quire-screen.is-customizing .qslot:hover { color: var(--qr-color-text-default); background: var(--qr-color-state-hover); }
+
+.quire-screen .qghost {
+  border: 1px dashed var(--qr-color-border-strong);
+  border-radius: var(--qr-radius-card);
+  background: var(--qr-color-surface-sunken);
+}
+.quire-screen .qwidget[draggable="true"] { cursor: grabbing; }
+
+/* ---- picker drawer (H3): sidebar takeover, grouped by source ----------
+   The board darkens behind it (same scrim as modals) and the drawer
+   slides both ways on the system motion tokens. */
+.quire-screen .qdrawer__grouplabel { font-weight: var(--qr-font-weight-semibold); padding: var(--qr-space-400) 0 var(--qr-space-200); border-bottom: 1px solid var(--qr-color-border-default); }
+.quire-screen .qdrawer__row { display: flex; align-items: center; gap: var(--qr-space-300); padding: var(--qr-space-300) 0; border-bottom: 1px solid var(--qr-color-border-default); }
+.quire-screen .qdrawer__meta { flex: 1; min-width: 0; }
+.quire-screen .qdrawer__name { font-weight: var(--qr-font-weight-medium); }
+.quire-screen .qdrawer__desc { font-size: var(--qr-font-size-200); color: var(--qr-color-text-muted); margin-top: 2px; }
+.quire-screen .qdrawer__removelink { background: none; border: 0; cursor: pointer; padding: 0; font-family: var(--qr-font-family-sans); font-size: var(--qr-font-size-200); font-weight: var(--qr-font-weight-medium); color: var(--qr-color-text-muted); }
+.quire-screen .qdrawer__removelink:hover { color: var(--qr-color-text-default); text-decoration: underline; }
+/* .btn's display would beat the hidden attribute — state must win */
+
+/* ---- shared row + footer link --------------------------------------- */
 .quire-screen .act { display: flex; align-items: center; gap: var(--qr-space-300); padding: var(--qr-space-300) 0; border-top: 1px solid var(--qr-color-border-default); font-size: var(--qr-font-size-300); }
 .quire-screen .act:first-child { border-top: 0; }
 .quire-screen .act__body { flex: 1; min-width: 0; }
 .quire-screen .act__line { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .quire-screen .act__line a { color: var(--qr-color-text-default); font-weight: var(--qr-font-weight-medium); text-decoration: none; }
 .quire-screen .act__line a:hover { text-decoration: underline; }
+.quire-screen .act__line .badge { margin-left: var(--qr-space-200); vertical-align: 2px; }
 .quire-screen .act__quote { font-size: var(--qr-font-size-200); color: var(--qr-color-text-muted); margin-top: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .quire-screen .act__meta { font-size: var(--qr-font-size-200); color: var(--qr-color-text-subtle); margin-top: 2px; }
 .quire-screen .act__meta a { color: var(--qr-color-text-subtle); }
 .quire-screen .dt-actions.is-open { opacity: 1; flex-shrink: 0; }
 
+.quire-screen .card__foot--start { justify-content: flex-start; }
+.quire-screen .qfootlink {
+  font-size: var(--qr-font-size-200);
+  font-weight: var(--qr-font-weight-medium);
+  color: var(--qr-color-text-default);
+  text-decoration: none;
+}
+.quire-screen .qfootlink:hover { text-decoration: underline; }
+
+/* status dots — the only colour on the screen (recording-red rule kin) */
+.quire-screen .qdot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 8px; vertical-align: 1px; }
+.quire-screen .qdot--ok { background: var(--qr-color-feedback-success-border); }
+.quire-screen .qdot--warn { background: var(--qr-color-feedback-warning-border); }
+
+/* ---- Welcome --------------------------------------------------------- */
+.quire-screen .qwelcome__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--qr-space-400); }
+.quire-screen .qwelcome__dismiss { font-size: var(--qr-font-size-200); color: var(--qr-color-text-muted); text-decoration: none; flex-shrink: 0; }
+.quire-screen .qwelcome__dismiss:hover { color: var(--qr-color-text-default); text-decoration: underline; }
+.quire-screen .qwelcome__body { padding-bottom: var(--qr-space-300); }
+.quire-screen .qwelcome__count { font-size: var(--qr-font-size-200); color: var(--qr-color-text-muted); margin-bottom: var(--qr-space-200); }
+.quire-screen .qwelcome__progress { max-width: none; margin-bottom: var(--qr-space-300); }
+.quire-screen .qwelcome__list { max-width: none; }
+.quire-screen a.qwelcome__todo { text-decoration: none; color: inherit; }
+.quire-screen .qwelcome__steplabel { display: block; font-weight: var(--qr-font-weight-medium); color: var(--qr-color-text-default); }
+.quire-screen .qwelcome__stepdesc { display: block; font-size: var(--qr-font-size-200); color: var(--qr-color-text-muted); margin-top: 2px; }
+.quire-screen .qchev { width: 7px; height: 7px; border-right: 1.5px solid var(--qr-color-text-subtle); border-bottom: 1.5px solid var(--qr-color-text-subtle); transform: rotate(-45deg); flex-shrink: 0; }
+.quire-screen a.qwelcome__todo:hover .qwelcome__steplabel { text-decoration: underline; }
+
+.quire-screen .qwelcome--done .qwelcome__alldone { display: flex; flex-direction: column; align-items: center; text-align: center; padding: var(--qr-space-800) var(--qr-space-400); }
+.quire-screen .qwelcome__bigmark { width: 32px; height: 32px; border-radius: 50%; background: var(--qr-color-control-on); color: var(--qr-color-control-on-fg); display: inline-flex; align-items: center; justify-content: center; margin-bottom: var(--qr-space-300); }
+.quire-screen .qwelcome__bigmark svg { width: 16px; height: 16px; }
+.quire-screen .qwelcome__donetitle { font-size: var(--qr-font-size-600); font-weight: var(--qr-font-weight-semibold); }
+.quire-screen .qwelcome__donebody { font-size: var(--qr-font-size-300); color: var(--qr-color-text-muted); margin: var(--qr-space-100) 0 var(--qr-space-400); }
+.quire-screen .qwelcome--done .btn { text-decoration: none; }
+
+/* ---- Overview -------------------------------------------------------- */
+.quire-screen .qov { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--qr-space-400); padding-bottom: var(--qr-space-400); }
+.quire-screen a.qov__cell { text-decoration: none; color: inherit; min-width: 0; }
+.quire-screen .qov__value { display: block; font-size: var(--qr-font-size-700); font-weight: var(--qr-font-weight-semibold); letter-spacing: var(--qr-font-letter-spacing-tight); line-height: 1.15; }
+.quire-screen .qov__label { display: block; font-size: var(--qr-font-size-200); color: var(--qr-color-text-muted); margin-top: 2px; }
+.quire-screen .qov__sub { display: block; font-size: var(--qr-font-size-100); color: var(--qr-color-text-subtle); margin-top: 3px; }
+.quire-screen a.qov__cell:hover .qov__label { text-decoration: underline; }
+.quire-screen .qov__foot { padding: var(--qr-space-300) var(--qr-space-400); border-top: 1px solid var(--qr-color-border-default); font-size: var(--qr-font-size-200); color: var(--qr-color-text-subtle); }
+/* the version number is the quiet door to core's "what's new" page */
+.quire-screen .qov__foot a { color: var(--qr-color-text-subtle); text-decoration: none; }
+.quire-screen .qov__foot a:hover { color: var(--qr-color-text-default); text-decoration: underline; }
+
+/* ---- all clear line --------------------------------------------------- */
+.quire-screen .qallclear { white-space: normal; }
+
+/* ---- Quick draft ------------------------------------------------------ */
 .quire-screen .qdraft { display: flex; flex-direction: column; gap: var(--qr-space-300); padding-bottom: var(--qr-space-400); }
 .quire-screen .qdraft .field { width: 100%; }
 .quire-screen .qdraft textarea.field { min-height: 88px; resize: vertical; padding-top: 8px; }
+.quire-screen .qdraft__more { display: flex; flex-direction: column; gap: var(--qr-space-300); }
+.quire-screen .qdraft.is-collapsed .qdraft__more { display: none; }
+.quire-screen .qdraft__actions { display: flex; justify-content: flex-end; gap: var(--qr-space-200); }
+.quire-screen .qdraft__list { border-top: 1px solid var(--qr-color-border-default); padding-bottom: var(--qr-space-200); }
+
+/* ---- Site health · News --------------------------------------------- */
+.quire-screen .qhealth { padding-bottom: var(--qr-space-400); }
+.quire-screen .qhealth__line { margin-bottom: var(--qr-space-200); }
+.quire-screen .qnews { display: flex; flex-direction: column; gap: var(--qr-space-200); padding-bottom: var(--qr-space-400); }
+.quire-screen .qnews__item { font-size: var(--qr-font-size-200); color: var(--qr-color-text-muted); text-decoration: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.quire-screen .qnews__item--lead { color: var(--qr-color-text-default); font-weight: var(--qr-font-weight-medium); font-size: var(--qr-font-size-300); }
+.quire-screen .qnews__item:hover { text-decoration: underline; }
+.quire-screen .qnews__err { font-size: var(--qr-font-size-300); color: var(--qr-color-text-muted); }
+.quire-screen .qnews .qfootlink { margin-top: var(--qr-space-100); }
 
 /* keep core's dashboard leftovers out (screen options tab etc. stay) */
 #wpbody-content #dashboard-widgets-wrap { display: none; }
