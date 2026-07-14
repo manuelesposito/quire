@@ -1,9 +1,27 @@
 {
   "duration": {
-    "fast": { "$value": "120ms", "$type": "duration" },
-    "base": { "$value": "180ms", "$type": "duration" }
+    "fast": {
+      "$value": "120ms",
+      "$type": "duration"
+    },
+    "base": {
+      "$value": "180ms",
+      "$type": "duration"
+    },
+    "tooltip-delay": {
+      "$value": "500ms",
+      "$type": "duration"
+    }
   },
   "easing": {
-    "standard": { "$value": [0.2, 0, 0, 1], "$type": "cubicBezier" }
+    "standard": {
+      "$value": [
+        0.2,
+        0,
+        0,
+        1
+      ],
+      "$type": "cubicBezier"
+    }
   }
 }

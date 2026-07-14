@@ -1,0 +1,428 @@
+/* Quire Shell — D6, the one-column shell.
+   The Figma "Pattern · Shell D6 — pixel-perfect" page is the spec; THE
+   RULEBOOK frame there states every value below. Tokens only — where a
+   value is derived, the arithmetic is stated. Loads on every admin
+   screen; every class is qshell-prefixed, nothing leaks into content. */
+
+/* ---- core chrome retired under the shell ------------------------------ */
+body.quire-shell #adminmenumain,
+body.quire-shell #wpadminbar { display: none; }
+body.quire-shell.wp-admin #wpwrap { background: var(--qr-color-surface-canvas); }
+html.wp-toolbar { padding-top: 0 !important; }
+
+/* Core's responsive margins all lose to the shell's geometry —
+   !important is the documented tail, not an accident. */
+body.quire-shell #wpcontent,
+body.quire-shell #wpfooter {
+  margin-left: var(--qr-size-sidebar) !important;
+  transition: margin-left var(--qr-duration-base) var(--qr-easing-standard);
+}
+body.quire-shell.quire-shell-collapsed #wpcontent,
+body.quire-shell.quire-shell-collapsed #wpfooter {
+  margin-left: var(--qr-size-rail) !important;
+}
+
+/* The second-level column and #wpbody sit side by side below the band —
+   a grid on #wpcontent, so the column is real page content (scrolls with
+   the page; native sticky rests it near the top). */
+body.quire-shell.quire-shell-subnav #wpcontent {
+  display: grid;
+  grid-template-columns: var(--qr-size-subnav) minmax(0, 1fr);
+  align-items: start;
+}
+body.quire-shell.quire-shell-subnav .qshell-band { grid-column: 1 / -1; }
+body.quire-shell.quire-shell-subnav #wpbody { grid-column: 2; }
+body.quire-shell.quire-shell-subnav #wpfooter {
+  margin-left: calc(var(--qr-size-sidebar) + var(--qr-size-subnav)) !important;
+}
+body.quire-shell.quire-shell-collapsed.quire-shell-subnav #wpfooter {
+  margin-left: calc(var(--qr-size-rail) + var(--qr-size-subnav)) !important;
+}
+
+/* ---- THE BAND ----------------------------------------------------------
+   h = size-band = size-masthead BY INTENT (one optical shelf). NO hairline
+   — the top of the screen has no horizontal lines; spacing separates.
+   Scrolls away with the page like content. */
+.qshell-band {
+  height: var(--qr-size-band);
+  display: flex; align-items: center;
+  gap: var(--qr-space-400);
+  padding: 0 var(--qr-space-1000) 0 var(--qr-space-600);
+  font-family: var(--qr-font-family-sans);
+  -webkit-font-smoothing: antialiased;
+}
+.qshell-band__title {
+  font-family: var(--qr-text-page-title-family);
+  font-size: var(--qr-text-page-title-size);
+  font-weight: var(--qr-text-page-title-weight);
+  letter-spacing: var(--qr-text-page-title-letter-spacing);
+  line-height: var(--qr-text-page-title-line-height);
+  color: var(--qr-color-text-default);
+  padding: 0; margin: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.qshell-band__actions {
+  display: flex; gap: var(--qr-space-200); align-items: center;
+  margin-left: auto; flex-shrink: 0;
+}
+/* Classic screens' "Add …" action, adopted into the band by shell.js —
+   out of .wrap it loses core's styling, so it wears ours. */
+.qshell-band__actions .page-title-action {
+  display: inline-flex; align-items: center;
+  height: var(--qr-size-control-md); padding: 0 var(--qr-space-400);
+  border: 1px solid var(--qr-color-action-secondary-border);
+  border-radius: var(--qr-radius-control);
+  background: var(--qr-color-surface-raised);
+  color: var(--qr-color-text-default);
+  font-size: var(--qr-font-size-300); font-weight: var(--qr-font-weight-medium);
+  text-decoration: none; box-shadow: none;
+}
+.qshell-band__actions .page-title-action:hover { background: var(--qr-color-state-hover); }
+
+/* The band carries the page's one h1 — classic screens' own title retires. */
+body.quire-shell-band #wpbody-content .wrap > h1 { display: none; }
+
+/* ---- THE COLUMN ---------------------------------------------------------
+   size-sidebar (300) · surface-nav · thin border-default right — the only
+   line in the shell besides the group divider. Collapse = the column
+   NARROWS to size-rail (80); nothing else changes; only the words leave. */
+.qshell {
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  width: var(--qr-size-sidebar);
+  display: flex; flex-direction: column;
+  background: var(--qr-color-surface-nav);
+  border-right: var(--qr-border-width-thin) solid var(--qr-color-border-default);
+  z-index: 9990;
+  font-family: var(--qr-font-family-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: width var(--qr-duration-base) var(--qr-easing-standard);
+}
+.qshell, .qshell *, .qshell *::before, .qshell *::after { box-sizing: border-box; }
+.qshell.is-collapsed { width: var(--qr-size-rail); }
+
+/* ---- masthead -----------------------------------------------------------
+   h size-masthead (60) · NO underline (space separates — Claude, verified).
+   pad-l space-500 (20); pad-r space-300 (12) + the icon button's 8px glyph
+   inset = the same 20 optical (the optical-padding rule). */
+.qshell__masthead {
+  height: var(--qr-size-masthead); min-height: var(--qr-size-masthead);
+  display: flex; align-items: center;
+  gap: var(--qr-space-100);
+  padding: 0 var(--qr-space-300) 0 var(--qr-space-500);
+}
+/* the site's name — the ONE serif moment (with the login greeting); it IS
+   the way home. FILLS and truncates: the name yields, the buttons never move. */
+.qshell__wordmark {
+  flex: 1; min-width: 0;
+  font-family: var(--qr-font-family-serif);
+  font-size: var(--qr-font-size-500);
+  font-weight: var(--qr-font-weight-medium);
+  color: var(--qr-color-text-default);
+  text-decoration: none; box-shadow: none;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+/* core paints every <a> blue on hover/focus/active (a:hover is 0-1-1 and
+   outranks a lone class) — the shell's links state their ink in EVERY state */
+.qshell__wordmark:hover, .qshell__wordmark:focus, .qshell__wordmark:active {
+  color: var(--qr-color-text-default); box-shadow: none;
+}
+.qshell__wordmark:focus-visible { outline: 2px solid var(--qr-color-state-focus-ring); outline-offset: 2px; }
+/* icon buttons: 32 (control-md) hit area, glyph 16 centered; rest bare
+   text-subtle, hover = the same wash every control uses. */
+.qshell__iconbtn {
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+  width: var(--qr-size-control-md); height: var(--qr-size-control-md);
+  flex-shrink: 0;
+  border: 0; background: none; cursor: pointer; padding: 0;
+  border-radius: var(--qr-radius-control);
+  color: var(--qr-color-text-subtle);
+  transition: background var(--qr-motion-control-duration) var(--qr-motion-control-easing);
+}
+.qshell__iconbtn:hover { background: var(--qr-color-state-hover); color: var(--qr-color-text-default); }
+.qshell__iconbtn:focus-visible { outline: 2px solid var(--qr-color-state-focus-ring); outline-offset: 2px; }
+
+/* ---- the menu -------------------------------------------------------- */
+.qshell__menu {
+  flex: 1;
+  display: flex; flex-direction: column;
+  gap: var(--qr-space-100);
+  padding: var(--qr-space-600) var(--qr-space-300) var(--qr-space-300);
+  overflow-y: auto; overflow-x: hidden;
+}
+
+/* rows: h control-lg (40) · radius-control · pad-x space-300 (12) ·
+   icon icon-sm (16) → label gap space-300 (12) · label size-300 (15). */
+.qshell__row {
+  position: relative;
+  display: flex; align-items: center;
+  gap: var(--qr-space-300);
+  min-height: var(--qr-size-control-lg);
+  flex-shrink: 0;
+  padding: 0 var(--qr-space-300);
+  border-radius: var(--qr-radius-control);
+  color: var(--qr-color-text-muted); text-decoration: none; box-shadow: none;
+  font-size: var(--qr-font-size-300); font-weight: var(--qr-font-weight-regular);
+  transition: background var(--qr-motion-control-duration) var(--qr-motion-control-easing);
+}
+.qshell__row:focus, .qshell__row:active { color: var(--qr-color-text-muted); box-shadow: none; }
+.qshell__row:hover { background: var(--qr-color-state-hover); color: var(--qr-color-text-default); }
+.qshell__row:focus-visible { outline: 2px solid var(--qr-color-state-focus-ring); outline-offset: 2px; }
+.qshell__row.is-current {
+  background: var(--qr-color-state-selected-surface);
+  color: var(--qr-color-text-default);
+  font-weight: var(--qr-font-weight-semibold);
+}
+.qshell__row--quiet { color: var(--qr-color-text-subtle); }
+
+.qshell__label {
+  flex: 1; min-width: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.qshell__icon { display: flex; flex-shrink: 0; }
+.qshell__icon svg { width: var(--qr-size-icon-sm); height: var(--qr-size-icon-sm); stroke-width: 1.7; }
+.qshell__chev { display: flex; flex-shrink: 0; color: var(--qr-color-text-subtle); }
+.qshell__via {
+  flex-shrink: 0;
+  font-size: var(--qr-font-size-200); font-weight: var(--qr-font-weight-regular);
+  color: var(--qr-color-text-subtle);
+}
+/* counts become one quiet ink dot — the number lives on the page */
+.qshell__dot {
+  width: var(--qr-size-dot); height: var(--qr-size-dot);
+  border-radius: var(--qr-radius-pill);
+  background: var(--qr-color-text-default);
+  flex-shrink: 0;
+}
+
+/* the product marks — vendored logo masks; 16 box in rows, 20 in the nameplate */
+.qshell__mark {
+  flex-shrink: 0;
+  background-color: var(--qr-color-text-default);
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center; mask-position: center;
+  -webkit-mask-size: contain; mask-size: contain;
+}
+.qshell__mark--wp  { width: var(--qr-size-icon-sm); height: var(--qr-size-icon-sm); -webkit-mask-image: url(logos/wp-mono.svg); mask-image: url(logos/wp-mono.svg); }
+.qshell__mark--woo { width: var(--qr-size-icon-sm); height: 11px; -webkit-mask-image: url(logos/woo-w.svg); mask-image: url(logos/woo-w.svg); } /* 21:14 ratio in the 16 box */
+.qshell__mark--jp  { width: var(--qr-size-icon-sm); height: var(--qr-size-icon-sm); -webkit-mask-image: url(logos/jetpack-mono.svg); mask-image: url(logos/jetpack-mono.svg); }
+
+/* THE ONE DIVIDER — the site's surfaces above, what's installed below.
+   Same edges as the rows (the menu's padding provides the inset). */
+.qshell__divider {
+  height: var(--qr-border-width-thin);
+  min-height: var(--qr-border-width-thin);
+  background: var(--qr-color-border-default);
+  margin: var(--qr-space-200) 0;
+}
+
+/* the nameplate — whose room you are in: mark (20 box) + name. Click = BACK
+   to the main menu (decided 2026-07-14); hovering slides the back chevron in
+   over the mark, so the door says where it goes before you commit. */
+.qshell__nameplate {
+  position: relative;
+  display: flex; align-items: center;
+  gap: var(--qr-space-200);
+  min-height: var(--qr-size-control-lg);
+  flex-shrink: 0;
+  padding: 0 var(--qr-space-300);
+  margin-bottom: var(--qr-space-100);
+  border-radius: var(--qr-radius-control);
+  color: var(--qr-color-text-default); text-decoration: none; box-shadow: none;
+  font-size: var(--qr-font-size-300); font-weight: var(--qr-font-weight-semibold);
+  transition: background var(--qr-motion-control-duration) var(--qr-motion-control-easing);
+}
+.qshell__nameplate:hover, .qshell__nameplate:focus, .qshell__nameplate:active {
+  color: var(--qr-color-text-default); box-shadow: none;
+}
+.qshell__nameplate:hover { background: var(--qr-color-state-hover); }
+.qshell__nameplate:focus-visible { outline: 2px solid var(--qr-color-state-focus-ring); outline-offset: 2px; }
+/* mark ⇄ chevron share the 20 box: mark at rest, chevron slides in on hover */
+.qshell__np-glyph {
+  position: relative; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  width: var(--qr-size-icon-md); height: var(--qr-size-icon-md);
+}
+.qshell__np-glyph .qshell__mark {
+  transition: opacity var(--qr-motion-control-duration) var(--qr-motion-control-easing);
+}
+.qshell__np-back {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--qr-color-text-default);
+  opacity: 0; transform: translateX(var(--qr-space-100));
+  transition: opacity var(--qr-motion-control-duration) var(--qr-motion-control-easing),
+              transform var(--qr-motion-control-duration) var(--qr-motion-control-easing);
+}
+.qshell__nameplate:hover .qshell__mark,
+.qshell__nameplate:focus-visible .qshell__mark { opacity: 0; }
+.qshell__nameplate:hover .qshell__np-back,
+.qshell__nameplate:focus-visible .qshell__np-back { opacity: 1; transform: translateX(0); }
+.qshell__nameplate .qshell__mark--wp  { width: var(--qr-size-icon-md); height: var(--qr-size-icon-md); }
+.qshell__nameplate .qshell__mark--woo { width: var(--qr-size-icon-md); height: 13px; }
+.qshell__nameplate .qshell__mark--jp  { width: var(--qr-size-icon-md); height: var(--qr-size-icon-md); }
+.qshell__nameplate .qshell__icon svg  { width: var(--qr-size-icon-md); height: var(--qr-size-icon-md); }
+
+/* the tray groups each unknown plugin under its own name (caption voice) */
+.qshell__section {
+  font-size: var(--qr-font-size-200); font-weight: var(--qr-font-weight-semibold);
+  color: var(--qr-color-text-subtle);
+  padding: var(--qr-space-400) var(--qr-space-300) var(--qr-space-100);
+}
+
+/* ---- account ---------------------------------------------------------- */
+.qshell__account { padding: var(--qr-space-500); }
+.qshell__acct {
+  display: flex; border: 0; background: none; padding: 0; cursor: pointer;
+  border-radius: var(--qr-radius-pill);
+}
+.qshell__acct:focus-visible { outline: 2px solid var(--qr-color-state-focus-ring); outline-offset: 2px; }
+.qshell__avatar {
+  width: var(--qr-size-control-sm); height: var(--qr-size-control-sm);
+  border-radius: var(--qr-radius-pill);
+  background: var(--qr-color-surface-inverse); color: var(--qr-color-text-inverse);
+  display: flex; align-items: center; justify-content: center;
+  font-size: var(--qr-font-size-100); font-weight: var(--qr-font-weight-semibold);
+}
+
+/* ---- tooltips — THE ONE SPEC -------------------------------------------
+   h control-sm (28) · surface-tooltip (translucent ink: solid = touchable,
+   translucent = information) · radius-control · pad-x space-300 · 13 medium
+   inverse · elevation-tooltip · NO stem · gap space-200 (8), right side ·
+   appears after the tooltip-delay beat, leaves instantly. */
+.qshell__tip {
+  position: absolute; left: calc(100% + var(--qr-space-200)); top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex; align-items: center; white-space: nowrap;
+  height: var(--qr-size-control-sm); padding: 0 var(--qr-space-300);
+  background: var(--qr-color-surface-tooltip); color: var(--qr-color-text-inverse);
+  font-size: var(--qr-font-size-200); font-weight: var(--qr-font-weight-medium);
+  border-radius: var(--qr-radius-control); box-shadow: var(--qr-elevation-tooltip);
+  opacity: 0; pointer-events: none; z-index: 60;
+  transition: opacity var(--qr-duration-fast) var(--qr-easing-standard);
+  transition-delay: 0ms;
+}
+/* the toggle explains itself in both widths */
+.qshell__iconbtn:hover > .qshell__tip,
+.qshell__iconbtn:focus-visible > .qshell__tip {
+  opacity: 1;
+  transition-delay: var(--qr-duration-tooltip-delay);
+}
+/* rows and the nameplate only need words when the words are gone */
+.qshell.is-collapsed .has-tip:hover > .qshell__tip,
+.qshell.is-collapsed .has-tip:focus-visible > .qshell__tip {
+  opacity: 1;
+  transition-delay: var(--qr-duration-tooltip-delay);
+}
+
+/* ---- COLLAPSED — the column narrows; nothing else changes --------------
+   Same surface, same border, same divider. Squares: 48 × 40
+   (space-1200 × control-lg) · radius-control · icon centered · gap
+   space-100. Strip inset derived: (80 − 48) / 2 = 16 = space-400. */
+.qshell.is-collapsed .qshell__masthead {
+  padding: 0;
+  justify-content: center;
+}
+.qshell.is-collapsed .qshell__wordmark { display: none; }
+.qshell.is-collapsed .qshell__menu {
+  padding-left: var(--qr-space-400);
+  padding-right: var(--qr-space-400);
+}
+.qshell.is-collapsed .qshell__row,
+.qshell.is-collapsed .qshell__nameplate {
+  width: var(--qr-space-1200);
+  justify-content: center;
+  gap: 0; padding: 0;
+}
+.qshell.is-collapsed .qshell__label,
+.qshell.is-collapsed .qshell__via,
+.qshell.is-collapsed .qshell__chev,
+.qshell.is-collapsed .qshell__section { display: none; }
+/* the dot survives on the square's shoulder */
+.qshell.is-collapsed .qshell__row .qshell__dot {
+  position: absolute;
+  top: var(--qr-space-100); right: var(--qr-space-100);
+}
+.qshell.is-collapsed .qshell__account { display: flex; justify-content: center; padding-left: 0; padding-right: 0; }
+
+/* ---- account popover — float = the overlay elevation, like every float -- */
+.qshell__pop {
+  position: fixed; left: calc(var(--qr-size-sidebar) - var(--qr-space-200)); bottom: var(--qr-space-400);
+  min-width: 220px;
+  background: var(--qr-color-surface-raised);
+  border: var(--qr-border-width-thin) solid var(--qr-color-border-default);
+  border-radius: var(--qr-radius-card);
+  box-shadow: var(--qr-elevation-overlay);
+  padding: var(--qr-space-200);
+  z-index: 9991;
+  font-family: var(--qr-font-family-sans);
+}
+body.quire-shell-collapsed .qshell__pop { left: calc(var(--qr-size-rail) + var(--qr-space-200)); }
+.qshell__pop-id { display: flex; flex-direction: column; padding: var(--qr-space-200) var(--qr-space-300); }
+.qshell__pop-name { font-size: var(--qr-font-size-300); font-weight: var(--qr-font-weight-semibold); color: var(--qr-color-text-default); }
+.qshell__pop-mail { font-size: var(--qr-font-size-200); color: var(--qr-color-text-subtle); }
+.qshell__pop-sep { height: var(--qr-border-width-thin); background: var(--qr-color-border-default); margin: var(--qr-space-100) calc(-1 * var(--qr-space-200)); }
+.qshell__pop > a {
+  display: flex; align-items: center; height: var(--qr-size-control-md);
+  padding: 0 var(--qr-space-300); border-radius: var(--qr-radius-control);
+  color: var(--qr-color-text-muted); text-decoration: none;
+  font-size: var(--qr-font-size-300);
+  transition: background var(--qr-motion-control-duration) var(--qr-motion-control-easing);
+  box-shadow: none;
+}
+.qshell__pop > a:focus, .qshell__pop > a:active { color: var(--qr-color-text-muted); box-shadow: none; }
+.qshell__pop > a:hover { background: var(--qr-color-state-hover); color: var(--qr-color-text-default); }
+
+/* ---- the second level — in the page, sticky ----------------------------
+   width size-subnav (208) · rows wear the COLUMN's row clothes — h control-lg
+   (40), gap space-100, pad-x space-300, size-300 — the two menus sit side by
+   side at the same type size, so they share one row spec (decided 2026-07-14);
+   hierarchy is told by width, indent and icons, not by row height · rests
+   space-600 (24) below the band and NEVER MOVES (decided 2026-07-14): it pins
+   at size-band (60), so its rows stay aligned with the column's rows through
+   any scroll — both navigations stand still, only the page moves. The 60
+   quiet zone above it mirrors the masthead zone: the shelf survives the
+   scroll. Long lists scroll within themselves, like the column's menu. */
+.qshell__sub {
+  grid-column: 1;
+  position: sticky;
+  top: var(--qr-size-band);
+  max-height: calc(100vh - var(--qr-size-band));
+  padding: var(--qr-space-600) var(--qr-space-400) var(--qr-space-500) var(--qr-space-600);
+  display: flex; flex-direction: column; gap: var(--qr-space-100);
+  overflow-y: auto;
+  font-family: var(--qr-font-family-sans);
+}
+.qshell__sub-link {
+  display: flex; align-items: center; gap: var(--qr-space-200);
+  min-height: var(--qr-size-control-lg); flex-shrink: 0;
+  padding: 0 var(--qr-space-300);
+  border-radius: var(--qr-radius-control);
+  color: var(--qr-color-text-muted); text-decoration: none; box-shadow: none;
+  font-size: var(--qr-font-size-300); font-weight: var(--qr-font-weight-regular);
+  transition: background var(--qr-motion-control-duration) var(--qr-motion-control-easing);
+}
+.qshell__sub-link:focus, .qshell__sub-link:active { color: var(--qr-color-text-muted); box-shadow: none; }
+.qshell__sub-link:hover { background: var(--qr-color-state-hover); color: var(--qr-color-text-default); }
+.qshell__sub-link.is-current {
+  background: var(--qr-color-state-selected-surface);
+  color: var(--qr-color-text-default);
+  font-weight: var(--qr-font-weight-semibold);
+}
+.qshell__sub-link:focus-visible { outline: 2px solid var(--qr-color-state-focus-ring); outline-offset: 2px; }
+.qshell__sub-link .qshell__label { flex: initial; }
+
+/* ---- small screens: start collapsed (shell.js adds the classes) ------- */
+@media (max-width: 960px) {
+  body.quire-shell.quire-shell-subnav #wpcontent { display: block; }
+  .qshell__sub { display: none; }
+  body.quire-shell.quire-shell-subnav #wpfooter,
+  body.quire-shell.quire-shell-collapsed.quire-shell-subnav #wpfooter { margin-left: var(--qr-size-rail) !important; }
+}
+
+@media print {
+  .qshell, .qshell-band, .qshell__sub { display: none; }
+  body.quire-shell #wpcontent, body.quire-shell #wpfooter { margin-left: 0 !important; }
+  body.quire-shell.quire-shell-subnav #wpcontent { display: block; }
+}

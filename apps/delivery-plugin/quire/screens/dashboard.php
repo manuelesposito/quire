@@ -535,6 +535,19 @@ $render_widget = function ( string $id ) use ( $quire_widgets ) {
 	echo '</section>';
 };
 
+// The band (H1) carries crumb + title; the screen's actions ride in its slot.
+add_filter( 'quire_shell_band_actions', function ( $html ) {
+	ob_start();
+	?>
+	<a class="btn btn--secondary" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'View site', 'quire' ); ?></a>
+	<button type="button" class="btn btn--secondary" id="qcustomize"
+		data-label="<?php esc_attr_e( 'Customize', 'quire' ); ?>"
+		data-label-done="<?php esc_attr_e( 'Done', 'quire' ); ?>"><?php esc_html_e( 'Customize', 'quire' ); ?></button>
+	<a class="btn btn--primary" href="<?php echo esc_url( admin_url( 'post-new.php' ) ); ?>"><?php esc_html_e( 'New post', 'quire' ); ?></a>
+	<?php
+	return $html . ob_get_clean();
+} );
+
 require_once ABSPATH . 'wp-admin/admin-header.php';
 ?>
 <div class="quire-screen"
@@ -543,18 +556,6 @@ require_once ABSPATH . 'wp-admin/admin-header.php';
      data-order-nonce="<?php echo esc_attr( wp_create_nonce( 'quire_orders' ) ); ?>"
      data-dismiss="<?php echo esc_url( $dismiss_url ); ?>">
 
-  <header class="qtopbar">
-    <div>
-      <a class="qcrumb" href="<?php echo esc_url( home_url() ); ?>"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
-      <h1 class="qtitle"><?php esc_html_e( 'Dashboard', 'quire' ); ?></h1>
-    </div>
-    <div class="qactions">
-      <button type="button" class="btn btn--secondary" id="qcustomize"
-        data-label="<?php esc_attr_e( 'Customize', 'quire' ); ?>"
-        data-label-done="<?php esc_attr_e( 'Done', 'quire' ); ?>"><?php esc_html_e( 'Customize', 'quire' ); ?></button>
-      <a class="btn btn--primary" href="<?php echo esc_url( admin_url( 'post-new.php' ) ); ?>"><?php esc_html_e( 'New post', 'quire' ); ?></a>
-    </div>
-  </header>
 
   <?php if ( $draft_saved ) : ?>
   <div class="notice-quire notice notice--success">

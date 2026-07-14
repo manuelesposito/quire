@@ -66,3 +66,10 @@ progress.woocommerce-task-progress-header__progress-bar::-webkit-progress-bar {
 .woocommerce-experimental-list a {
   color: var(--qr-color-text-accent);
 }
+
+/* ---- under the shell's header band (H1) ---------------------------
+   The band carries crumb + title on every screen, so wc-admin's own
+   sticky gray header would say the same thing twice, floating over the
+   band. It retires; its reserved offset goes with it. */
+body.quire-shell-band .woocommerce-layout__header { display: none; }
+body.quire-shell-band .woocommerce-layout__primary { margin-top: 0; }

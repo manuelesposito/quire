@@ -30,7 +30,7 @@ add_action( 'admin_enqueue_scripts', function () {
 		return;
 	}
 	$base = plugin_dir_url( __FILE__ ) . 'assets';
-	$ver  = '0.2.0';
+	$ver  = '0.3.0';
 
 	// Fonts are bundled (SIL OFL) — no admin page ever phones a font CDN.
 	wp_enqueue_style( 'quire-fonts', "$base/fonts.css", [], $ver );
@@ -44,18 +44,30 @@ add_action( 'admin_enqueue_scripts', function () {
 	if ( class_exists( 'WooCommerce' ) ) {
 		wp_enqueue_style( 'quire-woo', "$base/woo.css", [ 'quire-core-classic' ], $ver );
 	}
+
+	// The shell — D6, the one-column shell (masthead + menu + band) on every admin screen.
+	if ( quire_shell_active() ) {
+		wp_enqueue_style( 'quire-shell', "$base/shell.css", [ 'quire-core-classic' ], '0.3.2' );
+		wp_enqueue_script( 'quire-shell', "$base/shell.js", [], '0.3.1', true );
+	}
 }, 999 );
+
+require __DIR__ . '/shell.php';
 
 // ---- Lane 3: Quire-owned screens -----------------------------------
 // Real screens: our design, real data, rendered in place of the core page.
 // The admin chrome (menu, admin bar — already bridged) stays around them
 // until the shell stage of the climb.
 function quire_render_screen( string $screen ): void {
+	// admin-header.php (included below, inside this function) assigns the
+	// $self/$parent_file/$submenu_file the shell's you-are-here reads —
+	// without these declarations they'd die in function scope.
+	global $self, $parent_file, $submenu_file;
 	// Core's Screen Options panel would only manage the hidden core widgets
 	// here — the picker drawer replaced it. (Help tab stays for now, R8.)
 	add_filter( 'screen_options_show_screen', '__return_false' );
 	$base = plugin_dir_url( __FILE__ ) . 'assets';
-	$ver  = '0.9.0';
+	$ver  = '0.9.4';
 	// components.css is scoped to Quire screens only — its class names
 	// (.card, .btn) would collide with core styles if loaded globally.
 	// It depends on core-classic so component rules always PRINT after the

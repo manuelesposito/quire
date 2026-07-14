@@ -14,11 +14,6 @@
   line-height: var(--qr-font-line-height-copy);
 }
 
-.quire-screen .qtopbar { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--qr-space-400); padding: var(--qr-space-300) 0 var(--qr-space-400); border-bottom: 1px solid var(--qr-color-border-default); }
-.quire-screen .qcrumb { display: inline-block; font-size: var(--qr-font-size-200); color: var(--qr-color-text-subtle); margin-bottom: 4px; text-decoration: none; }
-.quire-screen a.qcrumb:hover { color: var(--qr-color-text-default); text-decoration: underline; }
-.quire-screen h1.qtitle { font-size: var(--qr-font-size-800); font-weight: var(--qr-font-weight-semibold); letter-spacing: var(--qr-font-letter-spacing-tight); line-height: var(--qr-font-line-height-tight); padding: 0; margin: 0; }
-.quire-screen .qactions .btn { text-decoration: none; }
 
 /* ---- the table card --------------------------------------------------- */
 .quire-screen .qtable { width: 100%; max-width: none; }

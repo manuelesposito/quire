@@ -193,7 +193,7 @@ table.dt-table{width:100%;border-collapse:collapse;font-size:var(--qr-font-size-
    ========================================================================= */
 .pageheader{display:flex;align-items:flex-end;justify-content:space-between;gap:var(--qr-space-400);padding-bottom:var(--qr-space-300);border-bottom:1px solid var(--qr-color-border-default);max-width:720px}
 .pageheader__crumb{font-family:var(--qr-font-family-sans);font-size:var(--qr-font-size-200);letter-spacing:var(--qr-font-letter-spacing-normal);color:var(--qr-color-text-subtle);margin-bottom:5px}
-.pageheader__title{font-family:var(--qr-font-family-sans);font-weight:var(--qr-font-weight-medium);font-size:var(--qr-font-size-800);letter-spacing:var(--qr-font-letter-spacing-tight);line-height:1.1}
+.pageheader__title{font-family:var(--qr-text-page-title-family);font-weight:var(--qr-text-page-title-weight);font-size:var(--qr-text-page-title-size);letter-spacing:var(--qr-font-letter-spacing-tight);line-height:1.1}
 .pageheader__actions{display:flex;gap:var(--qr-space-200);align-items:center}
 
 .menu{background:var(--qr-color-surface-raised);border:1px solid var(--qr-color-border-default);border-radius:var(--qr-radius-md);box-shadow:var(--qr-elevation-overlay);padding:var(--qr-space-100);min-width:210px}

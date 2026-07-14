@@ -96,21 +96,17 @@ $badge_for = function ( WP_Post $p ): array {
 	return $b;
 };
 
+// The band (H1) carries crumb + title; the screen's action rides in its slot.
+add_filter( 'quire_shell_band_actions', function ( $html ) {
+	return $html . '<a class="btn btn--primary" href="' . esc_url( admin_url( 'post-new.php' ) ) . '">' . esc_html__( 'New post', 'quire' ) . '</a>';
+} );
+
 require_once ABSPATH . 'wp-admin/admin-header.php';
 ?>
 <div class="quire-screen"
      data-ajax="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>"
      data-nonce="<?php echo esc_attr( wp_create_nonce( 'quire_posts' ) ); ?>">
 
-  <header class="qtopbar">
-    <div>
-      <a class="qcrumb" href="<?php echo esc_url( home_url() ); ?>"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a>
-      <h1 class="qtitle"><?php esc_html_e( 'Posts', 'quire' ); ?></h1>
-    </div>
-    <div class="qactions">
-      <a class="btn btn--primary" href="<?php echo esc_url( admin_url( 'post-new.php' ) ); ?>"><?php esc_html_e( 'New post', 'quire' ); ?></a>
-    </div>
-  </header>
 
   <div class="card qtable">
 

@@ -64,45 +64,29 @@ unset( $wp_settings_fields['general']['default'][ QUIRE_OPTION ] );
 $foreign_fields   = ! empty( $wp_settings_fields['general']['default'] );
 $foreign_sections = ! empty( $wp_settings_sections['general'] );
 
+// The band (H1) carries crumb + title; this screen contributes its save
+// cluster to the band's actions slot. SETTINGS-SPEC.md D2/D3 still hold:
+// no action chrome at rest — the bar appears on first edit, and it is
+// FIXED (H1b), so it never scrolls out of sight.
+add_filter( 'quire_shell_band_actions', function ( $html ) {
+	ob_start();
+	?>
+	<div class="qsavebar" id="qsavebar" hidden>
+		<span class="qsavebar__msg" id="qsavebar-msg"><?php esc_html_e( 'Unsaved changes', 'quire' ); ?></span>
+		<button type="button" class="qsavebar__discard" id="qsavebar-discard"><?php esc_html_e( 'Discard', 'quire' ); ?></button>
+		<button type="submit" class="qsavebar__save" form="quire-settings-form"><?php esc_html_e( 'Save', 'quire' ); ?></button>
+	</div>
+	<span class="screen-reader-text" role="status" aria-live="polite" id="qsavebar-live"></span>
+	<?php
+	return $html . ob_get_clean();
+} );
+
 require_once ABSPATH . 'wp-admin/admin-header.php';
 ?>
 <div class="quire-screen">
 
-  <header class="qtopbar">
-    <div>
-      <div class="qcrumb"><?php echo esc_html( get_bloginfo( 'name' ) ); ?> / <?php esc_html_e( 'Settings', 'quire' ); ?></div>
-      <h1 class="qtitle"><?php esc_html_e( 'General', 'quire' ); ?></h1>
-    </div>
-    <div class="qactions">
-      <?php // SETTINGS-SPEC.md D2/D3: no action chrome at rest — the bar appears on first edit ?>
-      <div class="qsavebar" id="qsavebar" hidden>
-        <span class="qsavebar__msg" id="qsavebar-msg"><?php esc_html_e( 'Unsaved changes', 'quire' ); ?></span>
-        <button type="button" class="qsavebar__discard" id="qsavebar-discard"><?php esc_html_e( 'Discard', 'quire' ); ?></button>
-        <button type="submit" class="qsavebar__save" form="quire-settings-form"><?php esc_html_e( 'Save', 'quire' ); ?></button>
-      </div>
-      <span class="screen-reader-text" role="status" aria-live="polite" id="qsavebar-live"></span>
-    </div>
-  </header>
-
   <div class="qsettings">
-
-    <?php
-    // Settings nav — built from WP's real submenu, so pages other plugins
-    // register under Settings appear here automatically (SETTINGS-SPEC.md §2).
-    global $submenu;
-    $settings_pages = isset( $submenu['options-general.php'] ) ? $submenu['options-general.php'] : [];
-    ?>
-    <nav class="qsetnav" aria-label="<?php esc_attr_e( 'Settings sections', 'quire' ); ?>">
-      <?php foreach ( $settings_pages as $item ) :
-        if ( ! current_user_can( $item[1] ) ) { continue; }
-        $slug    = $item[2];
-        $url     = ( false !== strpos( $slug, '.php' ) ) ? admin_url( $slug ) : admin_url( 'options-general.php?page=' . $slug );
-        $current = ( 'options-general.php' === $slug );
-      ?>
-      <a href="<?php echo esc_url( $url ); ?>" <?php echo $current ? 'class="is-current" aria-current="page"' : ''; ?>><?php echo esc_html( wp_strip_all_tags( $item[0] ) ); ?></a>
-      <?php endforeach; ?>
-    </nav>
-
+    <?php // The sections list lives in the shell's second-level column beside the content (S9) — the form centers alone (W3). ?>
     <div class="qmain">
 
       <?php if ( $saved ) : ?>

@@ -8,14 +8,15 @@ body.login {
   font-family: "Inter", -apple-system, system-ui, sans-serif;
 }
 
-/* the site name replaces the WP logo (login_headertext) — set it in serif */
+/* the site name replaces the WP logo (login_headertext) — the ONE serif
+   moment, shared with the shell's masthead (Lora, decided 2026-07-13) */
 .login h1 a {
   background-image: none !important;
   width: auto;
   height: auto;
-  font-family: "Inter", -apple-system, system-ui, sans-serif;
-  font-size: 28px;
-  font-weight: 600;
+  font-family: var(--qr-font-family-serif);
+  font-size: var(--qr-font-size-700);
+  font-weight: var(--qr-font-weight-medium);
   letter-spacing: -0.01em;
   color: var(--qr-color-text-default);
   text-indent: 0;
